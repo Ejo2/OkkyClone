@@ -1,0 +1,1369 @@
+<!DOCTYPE html >
+<!--[if lt IE 7 ]>
+<html lang="ko" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<html lang="ko" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>
+<html lang="ko" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>
+<html lang="ko" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="ko"><!--<![endif]-->
+<head>
+      <meta charset="utf-8">
+      <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+      <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+      
+      <title>OKKY - All That Developer</title>
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta content="_csrf" name="_csrf_parameter"/>
+      <meta content="X-CSRF-TOKEN" name="_csrf_header"/>
+      <meta content="475cd10f-9e0e-4baa-9205-55d9d165db03" name="_csrf"/>
+      <!--begin::Global Theme Styles(used by all pages)-->
+      <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+      <link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css"/>
+      <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+      <!--end::Global Theme Styles-->
+      
+      <!--begin::Layout Themes(used by all pages)-->
+      <link href="assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css"/>
+      <link href="assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css"/>
+      <link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css"/>
+      <link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css"/>
+      <!--end::Layout Themes-->
+      
+      <link href="/assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+      <link href="/assets/images/icon_57x57.png" rel="apple-touch-icon">
+      <link href="/images/icon_114x114.png" rel="apple-touch-icon" sizes="114x114">
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <meta content="https://okky.kr/assets/images/okky_logo_fb.png" property="og:image">
+      <link href="/assets/css/application.css" rel="stylesheet">
+      <script>(function(w, d, s, l, i) {
+           w[l] = w[l] || [];
+           w[l].push({
+                'gtm.start':
+                     new Date().getTime(), event: 'gtm.js',
+           });
+           var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+           j.async = true;
+           j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+           f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-M52CW55');</script>
+      
+      <!--[if lt IE 9]>
+      <script src="/js/libs/html5.js"></script>
+      <script src="/assets/libs/respond.src.js"></script>
+      <script src="/assets/libs/html5.js"></script>
+      <![endif]-->
+      <meta content="DkGncyJVqYFVekHithdbYnKgklkyKVwruPZ18WUDjr0" name="google-site-verification"/>
+
+</head>
+
+<body>
+<div class="layout-container">
+      <div class="main index">
+            <div class="sidebar ">
+                  <a class="sidebar-header" href="javascript://">
+                        <i class="fa fa-bars sidebar-header-icon"></i>
+                  </a>
+                  
+                  <h1>
+                        <div class="logo"><a href="/"><img alt="OKKY" src="/assets/images/okjsp_logo.png" title="OKKY"></a>
+                        </div>
+                  </h1>
+                  
+                  <ul class="nav nav-sidebar nav-sidebar-search-wrapper" id="search-google-icon">
+                        <li class="nav-sidebar-search">
+                              <a class="link" data-toggle="popover" data-trigger="click" href="javascript://" id="search-google"><i class="fa fa-search"></i></a>
+                        </li>
+                  </ul>
+                  
+                  <form action="https://www.google.com/search" class="nav-sidebar-form" id="search-google-form" name="searchMain">
+                        <div class="input-group">
+                              <input class="form-control input-sm" name="qt" placeholder="Google 검색" type="text"/>
+                              <input name="q" type="hidden"/>
+                              <span class="input-group-btn">
+                <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-search"></i></button>
+            </span>
+                        </div>
+                  </form>
+                  <!--사이드바-->
+                  <div class="nav-user nav-sidebar">
+                        <ul class="nav nav-sidebar">
+                              <li><a class="link" href="loginGo.do"><i class="fa fa-sign-in"></i>
+                                    <span class="nav-sidebar-label">로그인</span></a></li>
+                              <li><a class="link" href="joinGo.do"><i class="fa fa-user"></i>
+                                    <span class="nav-sidebar-label">회원가입</span></a></li>
+                        </ul>
+                  </div>
+                  
+                  <ul class="nav nav-sidebar nav-main">
+                        
+                        <li><a class="link" href="/articles/questions"><i class="nav-icon fa fa-database"></i>
+                              <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
+                        <li><a class="link" href="/articles/tech"><i class="nav-icon fa fa-code"></i>
+                              <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
+                        <li><a class="link" href="/articles/community"><i class="nav-icon fa fa-comments"></i>
+                              <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
+                        <li><a class="link" href="/articles/columns"><i class="nav-icon fa fa-quote-left"></i>
+                              <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+                        <li>
+                              <a class="link" href="/articles/recruit?filter.jobType=CONTRACT"><i class="nav-icon fa fa-group"></i>
+                                    <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
+                  </ul>
+                  
+                  <ul class="nav nav-sidebar nav-bottom">
+                        <li>
+                              <a class="link" href="https://github.com/okjsp/okky/issues" target="_blank"><i class="fa fa-github"></i>
+                                    <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a>
+                        </li>
+                  </ul>
+            </div>
+            
+            
+            <div class="main-banner-wrapper">
+                  <div class="main-banner">
+                        <a href="/banner/stats/403" target="_S"><img src="//file.okky.kr/banner/1631772351805.jpg"/></a>
+                  </div>
+            </div>
+            
+            <div class="content scaffold-list clearfix" id="index" role="main">
+                  <div class="col-sm-6 main-block-left">
+                        <div class="main-block">
+                              <h4 class="main-header"><i class="fa fa-flag"></i> Editor's Choice</h4>
+                              <div class="panel panel-default">
+                                    <ul class="list-group">
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1016313">절판된 개발서적 합법적으로 구하는 방법</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/118727"><img src="//www.gravatar.com/avatar/12af2331a5c7451be7f8bd8099e7b767?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/118727" title="shirohoo">shirohoo</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 1k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-08-05T20:20:35">2021-08-05 20:20:35</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1009638">자바 웹 개발자를 위한 개발 가이드</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/163"><img src="//file.okky.kr/profile/2021/1621274110514.png"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/163" title="kenu">kenu</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 56k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-07-28T03:42:40">2021-07-28 03:42:40</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/890592">신입 개발자를 위한 간단한 포트폴리오 작성 팁</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/5322"><img src="//www.gravatar.com/avatar/307d31079ac2364a12f843e2634b23ef?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/5322" title="fender">fender</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 23k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-03-18T12:00:37">2021-03-18 12:00:37</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/861866">2년차 개발자가 이직을 하면서 배우고 느낀점</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/74578"><img src="//www.gravatar.com/avatar/9c98c9bdd79e83d114b61d4a85d089a7?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/74578" title="salsal">salsal</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 1k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-01-30T01:52:15">2021-01-30 01:52:15</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/856384">국비의 전체적인 문제점</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/109035"><img src="//file.okky.kr/profile/2021/1614597352600.jpg"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/109035" title="Ormus">Ormus</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 1k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-01-20T21:04:54">2021-01-20 21:04:54</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col-sm-6 main-block-right">
+                        <div class="main-block">
+                              <h4 class="main-header"><i class="fa fa-star"></i> Weekly Best</h4>
+                              <div class="panel panel-default">
+                                    <ul class="list-group">
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1054491">취업했습니다. 조급해하지 않고 계속 준비하는게 답이네요</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127828"><img src="//www.gravatar.com/avatar/ec8a218b6b160e6dbf0d169ac80a5cb8?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127828" title="hnijl">hnijl</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 54
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-18T05:55:14">2021-09-18 05:55:14</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1054841">스타트업 수익 분배</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127873"><img src="https://avatars.githubusercontent.com/u/77867353?v=4"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127873" title="Jihoo KIM">Jihoo KIM</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 29
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-19T18:47:05">2021-09-19 18:47:05</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055285">아는 사람들이랑 외주뛰면 안되는 이유</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/126592"><img src="https://lh3.googleusercontent.com/a-/AOh14Gg1n0Uwvmwk6xL8j6J31VJmDdtQh6iBVvnRxKp2Ig=s96-c"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/126592" title="독개">독개</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 36
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-22T02:48:59">2021-09-22 02:48:59</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1054606">회사에서 퇴사생각 몇 번 하시나요?</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127843"><img src="https://ssl.pstatic.net/static/pwe/address/img_profile.png"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127843" title="YiDoya">YiDoya</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 21
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-18T14:48:59">2021-09-18 14:48:59</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1054740">이번에 국비지원을 다니고 있는데요 혼자 코드를 짜려고 해도</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/117765"><img src="//www.gravatar.com/avatar/9d3638ca0267da184ed43043d470f5e7?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/117765" title="유리콩">유리콩</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 86
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-19T00:00:31">2021-09-19 00:00:31</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </div>
+                  
+                  <div class="col-sm-8 main-block-left">
+                        <div class="main-block">
+                              <h4 class="main-header"><i class="fa fa-database"></i> Q&A
+                                    <a class="main-more-btn pull-right" href="/articles/questions"><i class="fa fa-ellipsis-h"></i></a>
+                              </h4>
+                              <div class="panel panel-default">
+                                    <ul class="list-group">
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056104">switch case문 질문드립니다</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/107810"><img src="//www.gravatar.com/avatar/C11EA74E4C5C6EFF97FE6E1A8D86BD1C?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/107810" title="초급초급">초급초급</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 40
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:38:53">2021-09-23 16:38:53</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056102">전자정부프레임워크를 이용해서 회원가입 아이디 중복체크 기능 추가중입니다...</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/128003"><img src="//www.gravatar.com/avatar/c5df15682b020deda6ec3f3513f79f02?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/128003" title="너굴22">너굴22</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:37:07">2021-09-23 16:37:07</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056101">https://play.kotlinlang.org/ 에서의 입력</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127642"><img src="//www.gravatar.com/avatar/66df73f3a0b795f92c2bca424a48ab54?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127642" title="너쥰">너쥰</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 50
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:36:28">2021-09-23 16:36:28</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056100">File 깨짐 질문</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127999"><img src="//www.gravatar.com/avatar/6621e1c47b2fab8abf8d8e9c4082581a?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127999" title="choboDeveloper">choboDeveloper</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:34:17">2021-09-23 16:34:17</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056098">ajax에서 스트링형식으로 컨트롤러단에 배열값을 컨트롤러단에서 다시 json형태로 변형시키면 오류가납니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/49331"><img src="//www.gravatar.com/avatar/8a6db8c3e3efa717c56290fdc6f89e04?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/49331" title="자신감뿅뿅">자신감뿅뿅</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 465
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:29:37">2021-09-23 16:29:37</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056089">Vue dynamic component 새로고침 관련</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/36970"><img src="//www.gravatar.com/avatar/4e666a8c3818c4bdcf48f457444af492?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/36970" title="컾희">컾희</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 647
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:10:36">2021-09-23 16:10:36</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056086">자바는 C++과 이런 게 다른가요?</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/123259"><img src="https://ssl.pstatic.net/static/pwe/address/img_profile.png"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/123259" title="입문한 사람">입문한 사람</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 150
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:06:47">2021-09-23 16:06:47</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056071">카테고리 만드려는데 질문드립니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/122485"><img src="//www.gravatar.com/avatar/d7b1db633c39f7c98708ed992bdf825b?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/122485" title="파윤">파윤</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 20
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:54:18">2021-09-23 15:54:18</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056027">aws lightsail 문제 질문드립니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/111811"><img src="//www.gravatar.com/avatar/1525B075C566831F44AE8D0AFB08E492?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/111811" title="민동사니">민동사니</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 30
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:31:57">2021-09-23 15:31:57</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055969">안드로이드 프로그래밍_자바 질문드립니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/121687"><img src="//www.gravatar.com/avatar/006c056c928dd5706bb7eb618ec46690?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/121687" title="058258498625">058258498625</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 76
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T14:43:06">2021-09-23 14:43:06</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                        <div class="main-block">
+                              <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티
+                                    <a class="main-more-btn pull-right" href="/articles/community"><i class="fa fa-ellipsis-h"></i></a>
+                              </h4>
+                              <div class="panel panel-default">
+                                    <ul class="list-group">
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056106">코틀린 공부 중 실무에 관해 질문 드리고자 합니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/128004"><img src="//www.gravatar.com/avatar/653d73cad2667e881f8550b12fd16ac6?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/128004" title="Hung">Hung</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:43:40">2021-09-23 16:43:40</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056096">[핵클 Tech Webinar] 쿠팡 출신 개발자의 장애 리스크 없이 배포하는 방법</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/128001"><img src="//file.okky.kr/profile/2021/1632381592366.png"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/128001" title="핵클">핵클</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:24:54">2021-09-23 16:24:54</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056092">궁금한점이 있어서 올려요!</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127996"><img src="http://k.kakaocdn.net/dn/oiK6d/btreoTUkRKh/mjjwehoGkRNk9Iaxb0kkE0/img_110x110.jpg"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127996" title="DDuDu">DDuDu</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:13:47">2021-09-23 16:13:47</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056082">aws클라우드_자바_ IT기업취업 무료온라인 설명회 안내입니다</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/91524"><img src="//www.gravatar.com/avatar/6bee56fc03d78a97a47e0426a0361f04?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/91524" title="soldesk2020">soldesk2020</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 1k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T16:04:28">2021-09-23 16:04:28</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056079">신입개발자 자기소개서 한번씩 조언 부탁드립니다.....</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/88774"><img src="//www.gravatar.com/avatar/f0284157e42ca6e0dc90bf9f6c49d31e?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/88774" title="_caffe__latte_">_caffe__latte_</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 135
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:56:21">2021-09-23 15:56:21</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056012">다른 직종으로 이직을 고려하고있습니다. 이게 맞나요?</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127994"><img src="//www.gravatar.com/avatar/8ffa97a624ad1d938bebdfa5e20a0e6e?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127994" title="키보드맨">키보드맨</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:25:08">2021-09-23 15:25:08</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056006">신입 프론트엔드 개발자 취직시 프레임워크??</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/118562"><img src="//www.gravatar.com/avatar/fd96162d0a65b129cfccd02df23115c9?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/118562" title="처음하는개발">처음하는개발</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 181
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:20:21">2021-09-23 15:20:21</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055997">지방에 거주하다가 수도권 취업 출퇴근은 어떻게 생각 하시나요</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/105708"><img src="//file.okky.kr/profile/2021/1618267687488.png"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/105708" title="캐티">캐티</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 5k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:11:55">2021-09-23 15:11:55</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055991">[LG 채용] AI 기반 회의 녹취록 요약 경진대회</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/124725"><img src="//www.gravatar.com/avatar/459d3d3c9c1550d93db4629b7330275e?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/124725" title="DACON">DACON</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 225
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:06:37">2021-09-23 15:06:37</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055989">처음 글을 써봐요. it 직종으로 이직을 원하고 있습니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127991"><img src="//www.gravatar.com/avatar/803df510f50dbb71dcf4ceb7b4068d10?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127991" title="한국산새우">한국산새우</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:01:05">2021-09-23 15:01:05</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055978">일이 한가해진 틈을 타 키보드 이야기</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127992"><img src="//www.gravatar.com/avatar/bfba8f33ae84582c338a6a30b104ccc8?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127992" title="wini">wini</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T14:49:36">2021-09-23 14:49:36</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055974">JAVA기반 back-end개발자 서브 언어 추천 부탁드립니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/101304"><img src="//www.gravatar.com/avatar/4c28f9715865cba9aad4448a1afc315b?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/101304" title="doanOh">doanOh</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 20
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T14:48:13">2021-09-23 14:48:13</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055967">IT 교육 프로젝트 발표에 관하여...</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/119204"><img src="//www.gravatar.com/avatar/0247fc864e03c51a8f20a6f040297418?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/119204" title="DonCCC">DonCCC</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 106
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T14:38:55">2021-09-23 14:38:55</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055931">[웹/앱] 오프라인 모각코 모집합니다.</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127836"><img src="//www.gravatar.com/avatar/66813c54d91006abf02f2e79edc3cf46?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127836" title="sudang2">sudang2</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T14:13:05">2021-09-23 14:13:05</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055922">퇴직금</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/76665"><img src="//www.gravatar.com/avatar/31e649d58019692131c7057be49266bf?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/76665" title="jef">jef</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 519
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T14:01:49">2021-09-23 14:01:49</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055920">신입사원의 한풀이,,,</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/117126"><img src="//www.gravatar.com/avatar/354d20fc8864d53b42f0233ae42f25ab?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/117126" title="스프링링링">스프링링링</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 543
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T13:56:57">2021-09-23 13:56:57</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055861">스위프트 과외 받고 싶습니다!</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127987"><img src="//www.gravatar.com/avatar/94a3a4409bfbeef81ab4dadc501f37c1?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127987" title="코프">코프</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 12
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T13:33:17">2021-09-23 13:33:17</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055858">스위프트 과외 받고 싶습니다!</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127987"><img src="//www.gravatar.com/avatar/94a3a4409bfbeef81ab4dadc501f37c1?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127987" title="코프">코프</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 12
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T13:31:16">2021-09-23 13:31:16</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055843">학사편입 질문드려요 ㅠㅠ</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/88254"><img src="//graph.facebook.com/2498340340222142/picture?width=10&height=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/88254" title="MaCo">MaCo</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 10
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T13:23:36">2021-09-23 13:23:36</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055752">뭔 진료를 2시간째 기다리네요</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/27916"><img src="//www.gravatar.com/avatar/ed707b1e3b761b0c09010e378f5c6f92?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/27916" title="라이라">라이라</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 3k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T12:21:49">2021-09-23 12:21:49</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col-sm-4 main-block-right">
+                        
+                        
+                        <div class="main-block main-block-banner">
+                              <a href="/banner/stats/402" target="_k"><img src="//file.okky.kr/banner/1631771146668.jpg"/></a>
+                        </div>
+                        <div class="main-block">
+                              <h4 class="main-header"><i class="fa fa-code"></i> Tech
+                                    <a class="main-more-btn pull-right" href="/articles/tech"><i class="fa fa-ellipsis-h"></i></a>
+                              </h4>
+                              <div class="panel panel-default">
+                                    <div class="panel-body">
+                                          <div class="article-middle-block clearfix">
+                                                <div class="list-tag clearfix" style="">
+                                                      <a class="list-group-item-text item-tag label label-info" href="/articles/tips"><i class="fa fa-code"></i> Tips & 강좌</a>
+                                                      
+                                                      
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/cloud">cloud</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/database">database</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/%EC%8B%9C%EA%B3%84%EC%97%B4%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4">시계열데이터베이스</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/bigdata">bigdata</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/ai">ai</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/machbase">machbase</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5">인공지능</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C">클라우드</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/iot">iot</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0">빅데이터</a>
+                                                </div>
+                                                <h5>
+                                                      <a href="/article/1055693">이상 감지 (Anomaly Detection), 이상 데이터를 감지할 수 있는 다양한 방법</a>
+                                                </h5>
+                                                <div class="list-group-item-author clearfix">
+                                                      
+                                                      
+                                                      <div class="avatar clearfix avatar-x-small pull-right">
+                                                            <a class='avatar-photo' href="/user/info/122667"><img src="//www.gravatar.com/avatar/594aed2d64326e4e1efd611614d3cab9?d=identicon&s=10"/></a>
+                                                            <div class="avatar-info">
+                                                                  <a class="nickname" href="/user/info/122667" title="friendsmachbase">friendsmachbase</a>
+                                                                  <div class="activity">
+                                                                        <span class="fa fa-flash"></span> 152
+                                                                  </div>
+                                                                  <div class="date-created">
+                                                                        <span class="timeago" title="2021-09-23T11:33:46">2021-09-23 11:33:46</span>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <div class="article-middle-block clearfix">
+                                                <div class="list-tag clearfix" style="">
+                                                      <a class="list-group-item-text item-tag label label-info" href="/articles/tips"><i class="fa fa-code"></i> Tips & 강좌</a>
+                                                </div>
+                                                <h5>
+                                                      <a href="/article/1055525">Zookeeper 클러스터 구성 및 컨트롤러 브로커</a>
+                                                </h5>
+                                                <div class="list-group-item-author clearfix">
+                                                      
+                                                      
+                                                      <div class="avatar clearfix avatar-x-small pull-right">
+                                                            <a class='avatar-photo' href="/user/info/97163"><img src="//www.gravatar.com/avatar/fb96f9da36243c353f869915566a7124?d=identicon&s=10"/></a>
+                                                            <div class="avatar-info">
+                                                                  <a class="nickname" href="/user/info/97163" title="토마토바구니">토마토바구니</a>
+                                                                  <div class="activity">
+                                                                        <span class="fa fa-flash"></span> 1k
+                                                                  </div>
+                                                                  <div class="date-created">
+                                                                        <span class="timeago" title="2021-09-23T09:22:44">2021-09-23 09:22:44</span>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <div class="article-middle-block clearfix">
+                                                <div class="list-tag clearfix" style="">
+                                                      <a class="list-group-item-text item-tag label label-info" href="/articles/tips"><i class="fa fa-code"></i> Tips & 강좌</a>
+                                                      
+                                                      
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/%ED%95%98%EC%9D%B4%EB%B2%84%EB%84%A4%EC%9D%B4%ED%8A%B8">하이버네이트</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/%ED%95%98%EC%9D%B4%EB%B2%84%EB%84%A4%EC%9D%B4%ED%8A%B8_%EC%9C%A0%EC%A0%80%EA%B0%80%EC%9D%B4%EB%93%9C">하이버네이트_유저가이드</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/jpa">jpa</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/orm">orm</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/hibernate">hibernate</a>
+                                                      <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/jpa(hibernate)">jpa(hibernate)</a>
+                                                </div>
+                                                <h5>
+                                                      <a href="/article/1055363">[하이버네이트 유저 가이드 파헤치기] BasicTypeRegistry & Explicit BasicTypes - 2.3.4, 2.3.5</a>
+                                                </h5>
+                                                <div class="list-group-item-author clearfix">
+                                                      
+                                                      
+                                                      <div class="avatar clearfix avatar-x-small pull-right">
+                                                            <a class='avatar-photo' href="/user/info/59244"><img src="//www.gravatar.com/avatar/c79df8e24f8badb931fb65c595829a6b?d=identicon&s=10"/></a>
+                                                            <div class="avatar-info">
+                                                                  <a class="nickname" href="/user/info/59244" title="방구석 CTO">방구석 CTO</a>
+                                                                  <div class="activity">
+                                                                        <span class="fa fa-flash"></span> 220
+                                                                  </div>
+                                                                  <div class="date-created">
+                                                                        <span class="timeago" title="2021-09-22T16:47:13">2021-09-22 16:47:13</span>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                        
+                        <div class="main-block">
+                              <h4 class="main-header"><i class="fa fa-quote-left"></i> 칼럼
+                                    <a class="main-more-btn pull-right" href="/articles/columns"><i class="fa fa-ellipsis-h"></i></a>
+                              </h4>
+                              <div class="panel panel-default">
+                                    <div class="panel-body">
+                                          
+                                          
+                                          <a class="list-group-item-text item-tag label label-gray " href="/articles/tagged/kenu">kenu</a>
+                                          <h5><a href="/article/1051454">프로그래밍을 하는 이유</a></h5>
+                                          <p class="main-block-desc">&nbsp;<a href="/article/1051454"> 프로그래밍을 하는 이유: 앱을 만들기 위해서 애플리케이션을 만드는 이유: 서비스에 필요해서 서비스를 만드는 이유: 비즈니스를 하기 위해서 비즈니스를 하는 이유:...</a>
+                                          </p>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="main-block">
+                              <h4 class="main-header"><i class="fa fa-book"></i> 학원/홍보
+                                    <a class="main-more-btn pull-right" href="/articles/promote"><i class="fa fa-ellipsis-h"></i></a>
+                              </h4>
+                              <div class="panel panel-default">
+                                    <ul class="list-group">
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056052">시흥 정왕동 물왕동 왕초보 영어회화 기초 유아 파닉스 일대일 과외 오픽 토플 토익 아이엘츠</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127995"><img src="//www.gravatar.com/avatar/197e1241a607a1526b9143bed8574f25?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127995" title="장소인">장소인</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 60
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:41:37">2021-09-23 15:41:37</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1056028">남양주 수학 과외 다산동 퇴계원 영어 과외 초등 중학생 선행 고등 국어</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/124566"><img src="//file.okky.kr/profile/2021/1630660949424.jpg"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/124566" title="설연">설연</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 1k
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T15:34:32">2021-09-23 15:34:32</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                          <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                                <div class="list-title-wrapper">
+                                                      <h5 class="list-group-item-heading">
+                                                            <a href="/article/1055708">도봉구 창동 포스기 쌍문동 키오스크 도봉산 카드단말기 설치 구매 CCTV 인터넷 가입</a>
+                                                            <div class="list-group-item-author pull-right clearfix">
+                                                                  
+                                                                  
+                                                                  <div class="avatar clearfix avatar-x-small ">
+                                                                        <a class='avatar-photo' href="/user/info/127064"><img src="//www.gravatar.com/avatar/d6980661790683f412a8a1d7b497b196?d=identicon&s=10"/></a>
+                                                                        <div class="avatar-info">
+                                                                              <a class="nickname" href="/user/info/127064" title="포스&카드단말기">포스&카드단말기</a>
+                                                                              <div class="activity">
+                                                                                    <span class="fa fa-flash"></span> 300
+                                                                              </div>
+                                                                              <div class="date-created">
+                                                                                    <span class="timeago" title="2021-09-23T11:47:20">2021-09-23 11:47:20</span>
+                                                                              </div>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </h5>
+                                                </div>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            <div class="right-banner-wrapper">
+                  
+                  
+                  <div class="google-ad">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- okjspad_160x500 -->
+                        <ins class="adsbygoogle"
+                             data-ad-client="ca-pub-8103607814406874"
+                             data-ad-slot="6573675943"
+                             style="display:inline-block;width:160px;height:500px"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                  </div>
+            </div>
+            <div class="footer" id="footer" role="contentinfo">
+                  <div class="row">
+                        <div class="col-sm-9">
+                              <div style="float: left;margin-right: 10px;height:100px;">
+                                    <img alt="footer" src="/assets/images/okky_logo_footer.png">
+                              </div>
+                              <div>
+                                    <a href="/intro/about">About OKKY</a>
+                                    | <a data-target="#userPrivacy" data-toggle="modal" href="/user/privacy">개인정보보호</a>
+                                    | <a href="/intro/ad">광고문의</a>
+                                    | <a href="mailto:info@okky.kr">Contact</a>
+                                    | <a href="https://www.facebook.com/okky.sns" target="_blank">Facebook</a>
+                                    | <a href="https://github.com/okjsp/okky" target="_blank">Github</a> v1.5.4
+                                    <hr style="margin: 8px 0;"/>
+                                    <strong>상호명</strong> : 이브레인 | <strong>대표명</strong> : 노상범 |
+                                    <strong>사업자등록번호</strong> : 144-81-32887 | <strong>문의</strong> : info@okky.kr
+                                    <br/> <strong>주소</strong> : 서울 강남구 봉은사로 303 TGL경복빌딩 502호 (06103)
+                                    <br/> @ 2021 <a href="http://www.ebrain.kr" target="_blank">eBrain Management</a>
+                              </div>
+                        </div>
+                        <div class="sponsor-banner col-sm-3">
+                              <div class="sponsor-banner-head">Sponsored by</div>
+                              <div class="sponsor-banner-images">
+                                    <a href="https://www.inames.co.kr" target="_blank"><img alt="아이네임즈" src="/assets/images/spb_inames.png"></a>
+                                    <a href="https://www.toast.com/" target="_blank"><img alt="NHN Cloud" src="/assets/images/spb_nhncloud.png"></a>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div>
+<script>
+     var contextPath = "";
+     var encodedURL = "%2F";
+</script>
+
+<script src="/assets/js/application.js" type="text/javascript"></script>
+<script src="/assets/js/apps/search.js" type="text/javascript"></script>
+<script>
+     $(function() {
+          $('.timeago').timeago();
+     });
+</script>
+
+<div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal" id="userPrivacy" role="dialog" tabindex="-1">
+      <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+      </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal" id="userAgreement" role="dialog" tabindex="-1">
+      <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+      </div>
+</div>
+
+</body>
+</html>
