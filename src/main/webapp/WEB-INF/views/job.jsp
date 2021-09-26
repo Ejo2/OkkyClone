@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
-
 <body>
 <div class="main">
       <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>

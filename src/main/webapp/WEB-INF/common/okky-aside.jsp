@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="/assets/css/asset.css">
-<div class="main ">
+
       <!--마크업09/23 : 사이드바1-->
       <div class="sidebar sidebar-category"> <!--open 으로 만들시 됨!-->
             <a href="javascript://" class="sidebar-header">
@@ -11,7 +10,7 @@
             
             <!--1: 오키로고-->
             <h1>
-                  <div class="logo"><a href="/"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
+                  <div class="logo"><a href="/main.jsp"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
                   </div>
             </h1>
             
@@ -33,33 +32,44 @@
                         </span>
                   </div>
             </form>
-            
             <!--3: 로그인사진&설정&알람 로고-->
+            
             <div class="nav-user nav-sidebar">
-                  <div class="avatar clearfix avatar-medium ">
-                        <a href="memberDetail.do" class='avatar-photo'><img
-                                src="//www.gravatar.com/avatar/EB4A935EC22B3AD295D18E838B72F9FB?d=identicon&s=40"/></a>
-                  </div>
-                  <div class="nav-user-action">
-                        <div class="nav-user-func">
-                              <a href="javascript://" id="user-func" data-toggle="popover" data-trigger="click"
-                                 tabindex="0">
-                                    <i id="user-func-icon" class="fa fa-cog"></i>
-                              </a>
+                  <c:if test="${empty sessionScope.id}">
+                        <div class="nav-user nav-sidebar">
+                              <ul class="nav nav-sidebar">
+                                    <li data-toggle="tooltip" data-container="body" title="로그인"><a href="loginGo.do" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
+                                    <li data-toggle="tooltip" data-container="body" title="회원가입"><a href="joinGo.do" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
+                              </ul>
                         </div>
-                        <div class="nav-user-func">
-                              <a href="javascript://" id="user-notification" data-toggle="popover" data-trigger="click"
-                                 tabindex="0">
-                                    <i id="user-notification-icon" class="fa fa-bell"></i>
-                                    <span id="user-notification-count" class="badge notification"
-                                          style="display:none;">1</span>
-                              </a>
-                        </div>
-                  </div>
-                  <form action="logout.do" method="post" style="display:none;"><input type="submit" name="logoutButton"
-                                                                                    value="logoutButton" id="logoutButton">
-                  </form>
+                  </c:if>
+                  
                   <c:if test="${not empty sessionScope.id}">
+                        <div class="avatar clearfix avatar-medium ">
+                              <a href="memberDetailGo.do" class='avatar-photo'><img
+                                      src="/assets/img/bros_blank.jpg"/></a>
+                        </div>
+                        <div class="nav-user-action">
+                              <div class="nav-user-func">
+                                    <a href="javascript://" id="user-func" data-toggle="popover" data-trigger="click"
+                                       tabindex="0">
+                                          <i id="user-func-icon" class="fa fa-cog"></i>
+                                    </a>
+                              </div>
+                              <div class="nav-user-func">
+                                    <a href="javascript://" id="user-notification" data-toggle="popover" data-trigger="click"
+                                       tabindex="0">
+                                          <i id="user-notification-icon" class="fa fa-bell"></i>
+                                          <span id="user-notification-count" class="badge notification"
+                                                style="display:none;">1</span>
+                                    </a>
+                              </div>
+                        </div>
+                        <form action="logout.do" method="post" style="display:none;">
+                              <input type="submit" name="logoutButton"
+                                     value="logoutButton" id="logoutButton">
+                        </form>
+                        
                         <script id="setting-template" type="text/template">
                               <div class="popover popover-fixed" role="tooltip">
                                     <div class="arrow"></div>
@@ -70,17 +80,16 @@
                                     </div>
                               </div>
                         </script>
+                        
+                        
+                        <script id="notification-template" type="text/template">
+                              <div class="popover popover-fixed" role="tooltip">
+                                    <div class="arrow"></div>
+                                    <h3 class="popover-title"></h3>
+                                    <div class="popover-content" id="notification-popover"></div>
+                              </div>
+                        </script>
                   </c:if>
-                  
-                  
-                  
-                  <script id="notification-template" type="text/template">
-                        <div class="popover popover-fixed" role="tooltip">
-                              <div class="arrow"></div>
-                              <h3 class="popover-title"></h3>
-                              <div class="popover-content" id="notification-popover"></div>
-                        </div>
-                  </script>
                   
                   <script id="search-google-template" type="text/template">
                         <div class="popover popover-fixed" role="tooltip">
@@ -100,7 +109,6 @@
                         </div>
                   </script>
             </div>
-            
             <ul class="nav nav-sidebar nav-main">
                   <!--class="active 설정이 선택된 카테고리 표시. 각자 맡은 게시판 카테고리에 설정해줄것 "-->
                   <li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
@@ -116,7 +124,7 @@
                           href="/articles/columns" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
                           class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
                   <li data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a
-                          href="/articles/recruit?filter.jobType=CONTRACT" class="link"><i
+                          href="job.do" class="link"><i
                           class="nav-icon fa fa-group"></i> <span
                           class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
             </ul>
@@ -149,4 +157,3 @@
       </div>
       
       <!--마크업09/23-->
-    

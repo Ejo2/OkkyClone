@@ -20,7 +20,6 @@ public class FrontMemoController extends HttpServlet{
     
     public FrontMemoController(){
         super();
-        // TODO Auto-generated constructor stub
     }
     
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -42,18 +41,29 @@ public class FrontMemoController extends HttpServlet{
         }else if (url_Command.equals("/joinGo.do")){
             action = new JoinGoService();
             forward = action.execute(request, response);
-            
+            System.out.println("joinGo.do");
+    
         }else if (url_Command.equals("/join.do")){
             action = new JoinService();
             forward = action.execute(request, response);
             System.out.println("join.do");
+            
         }else if (url_Command.equals("/logout.do")){
             action = new logoutService();
             forward = action.execute(request, response);
             System.out.println("logout.do");
+            
         }else if (url_Command.equals("/memberDetailGo.do")){
+            //UI 페이지 이동
             action = new memberDetailGoService();
             forward = action.execute(request, response);
+            System.out.println("memberDetailGo.do");
+    
+    
+        }else if (url_Command.equals("/job.do")){
+            action = new jobService();
+            forward = action.execute(request, response);
+            System.out.println("job.do");
         }
         
         if (forward != null){
