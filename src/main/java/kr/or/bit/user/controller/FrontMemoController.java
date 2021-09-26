@@ -2,10 +2,7 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.service.JoinGoService;
-import kr.or.bit.user.service.JoinService;
-import kr.or.bit.user.service.LoginGoService;
-import kr.or.bit.user.service.LoginService;
+import kr.or.bit.user.service.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,6 +47,13 @@ public class FrontMemoController extends HttpServlet{
             action = new JoinService();
             forward = action.execute(request, response);
             System.out.println("join.do");
+        }else if (url_Command.equals("/logout.do")){
+            action = new logoutService();
+            forward = action.execute(request, response);
+            System.out.println("logout.do");
+        }else if (url_Command.equals("/memberDetailGo.do")){
+            action = new memberDetailGoService();
+            forward = action.execute(request, response);
         }
         
         if (forward != null){

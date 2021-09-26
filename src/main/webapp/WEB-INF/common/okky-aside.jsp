@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="/assets/css/asset.css">
 <div class="main ">
       <!--마크업09/23 : 사이드바1-->
       <div class="sidebar sidebar-category"> <!--open 으로 만들시 됨!-->
@@ -36,7 +37,7 @@
             <!--3: 로그인사진&설정&알람 로고-->
             <div class="nav-user nav-sidebar">
                   <div class="avatar clearfix avatar-medium ">
-                        <a href="/user/info/112840" class='avatar-photo'><img
+                        <a href="memberDetail.do" class='avatar-photo'><img
                                 src="//www.gravatar.com/avatar/EB4A935EC22B3AD295D18E838B72F9FB?d=identicon&s=40"/></a>
                   </div>
                   <div class="nav-user-action">
@@ -55,7 +56,7 @@
                               </a>
                         </div>
                   </div>
-                  <form action="/logout" method="post" style="display:none;"><input type="submit" name="logoutButton"
+                  <form action="logout.do" method="post" style="display:none;"><input type="submit" name="logoutButton"
                                                                                     value="logoutButton" id="logoutButton">
                   </form>
                   <c:if test="${not empty sessionScope.id}">
@@ -64,7 +65,7 @@
                                     <div class="arrow"></div>
                                     <h3 class="popover-title"></h3>
                                     <div class="popover-footer clearfix" id="user-func-popover">
-                                          <label href="" for="logoutButton" class="popover-btn"><i class="fa fa-sign-out"></i> 로그아웃</label>
+                                          <label href="logout.do" for="logoutButton" class="popover-btn"><i class="fa fa-sign-out"></i> 로그아웃</label>
                                           <a href="/user/edit" class="popover-btn"><i class="fa fa-user"></i> 정보수정</a>
                                     </div>
                               </div>
