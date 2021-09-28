@@ -1,852 +1,374 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: sn022
+  Date: 2021-09-27
+  Time: 오후 7:10
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+         pageEncoding="UTF-8"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.net.*" %>
+<%
+      request.setCharacterEncoding("UTF-8");
+      String sName;
+      
+      String accessKey = "57ZHVpeFbUxqlaVapckledfKUIGL43YL424bfpXt6OfMIWVrcwW"; // 발급받은 accessKey";
+      StringBuffer response2 = new StringBuffer();
+      try {
+            String text = "web";
+            String rText = URLEncoder.encode(text, "UTF-8");
+            String apiURL = "https://oapi.saramin.co.kr/job-search?access-key="+accessKey+"&keyword="+ rText;
+            
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Accept", "application/json");
+            
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            System.out.println("responseCode: "+responseCode);
+            if(responseCode==200) { // 정상 호출
+                  br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 에러 발생
+                  br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            
+            String inputLine;
+            
+            while ((inputLine = br.readLine()) != null) {
+                  response2.append(inputLine);
+            }
+            br.close();
+            System.out.println("여기야"+response2);
+            sName = new String(response2.toString().getBytes("8859_1"), "utf-8");
+            System.out.println("sName : "+sName);
+      } catch (Exception e) {
+            System.out.println(e);
+      }
+
+%>
 <html>
-<jsp:include page="/WEB-INF/common/okky-head.jsp"/>
+      <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 <body>
 <div class="main">
       <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
-      <!----------------------------------------------------------------------------------------------->
-      
-      <div id="user" class="content clearfix" role="main">
-            <div class="panel panel-default">
-                  <div class="panel-body">
-                        
-                        
-                        <div class="avatar clearfix avatar-big col-sm-3 text-center">
-                              <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=150"></a>
+      <div id ="list-article" class="content scaffold-list recruit-list" role="main">
+            <div class="nav" role="navigation">
+                  <a class="create btn btn-success btn-wide pull-right" href="/articles/recruit/create"><i class="fa fa-pencil"></i> 구인 등록</a>
+            
+                  <h4>구인</h4>
+                  <form id="category-filter-form" name="category-filter-form" method="get" action="/articles/recruit">
+                  </form>
+                  <div class="job-filter-container">
+                        <div class="job-filter-btns">
+                              <div class="job-filter-btn" data-type="position">포지션 및 스킬</div>
+                              <div class="job-filter-btn" data-type="pay">급여</div>
+                              <div class="job-filter-btn" data-type="location">지역</div>
+                              <div class="job-filter-btn" data-type="extra">기타 상세</div>
                         </div>
-                        <div class="user-info col-sm-9">
-                              <div class="clearfix">
-                                    <h2 class="pull-left">ᄆᄆᄆ</h2>
-                                    <button class="btn btn-success pull-right btn-wide disabled">
-                                          <i class="fa fa-plus"></i> 팔로우
-                                    </button>
-                              </div>
-                              <div class="user-points">
-                                    <div class="user-point">
-                                          <div class="user-point-label"><i class="fa fa-flash"></i> 활동점수</div>
-                                          <div class="user-point-num"><a href="/user/info/115337/activity">32</a></div>
-                                    </div>
-                                    <div class="user-point">
-                                          <div class="user-point-label"><i class="fa fa-user"></i> 팔로잉</div>
-                                          <div class="user-point-num"><a href="#">0</a></div>
-                                    </div>
-                                    <div class="user-point">
-                                          <div class="user-point-label"><i class="fa fa-users"></i> 팔로워</div>
-                                          <div class="user-point-num"><a href="#">0</a></div>
-                                    </div>
+                        <div class="job-filter-search">
+                              <div class="input-group input-group-sm">
+                                    <input type="search" name="query" id="search-field" class="form-control" placeholder="검색어" value="">
+                                    <span class="input-group-btn">
+						<button class="btn btn-default" id="search-btn"><i class="fa fa-search"></i></button>
+					</span>
                               </div>
                         </div>
                   </div>
             </div>
-            <div class="col-sm-2 user-info-nav pull-right">
-                  <ul class="nav">
-                        <li class="active"><a href="/user/info/115337/activity">최근 활동</a></li>
-                        <li class=""><a href="/user/info/115337/articles">게시물 <span class="badge">3</span></a></li>
-                        <li class=""><a href="/user/info/115337/scrapped">스크랩 <span class="badge">1</span></a></li>
-                  </ul>
-            </div>
-            <div class="col-sm-10 main-block-left pull-left">
-                  <ul class="list-group">
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
+            <div style="margin-top: 25px">
+                  <div class="panel panel-default recruit-panel">
+                        <%--테이블--%>
+                              <ul class="list-group" id="joblist">
                               
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#1056544
-                          	  질문의 <a href="/user/info/126218" class="nickname">야크털깍기매니아</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-26T15:36:30">2021-09-26 15:36:30</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1056544?note=2521278">고졸로 개발자를 꿈꾸는 분들에게..</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/100629" class="avatar-photo"><img src="//file.okky.kr/profile/2021/1614770842257.jpg"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/100629" title="꽃중년보넥스">꽃중년보넥스</a>
-                                                            <div class="activity ">
-                                                                  <span class="fa fa-flash"></span> -990
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#1056544
-                          	  질문의 <a href="/user/info/23468" class="nickname">pooq</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-26T15:35:02">2021-09-26 15:35:02</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1056544?note=2519425">고졸로 개발자를 꿈꾸는 분들에게..</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/100629" class="avatar-photo"><img src="//file.okky.kr/profile/2021/1614770842257.jpg"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/100629" title="꽃중년보넥스">꽃중년보넥스</a>
-                                                            <div class="activity ">
-                                                                  <span class="fa fa-flash"></span> -990
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-down fa-lg"></i>
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          
-                          #1056544 질문의 <a href="/user/info/127859" class="nickname">john_vir</a>님의 답변에 반대 하였습니다.
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-26T15:34:50">2021-09-26 15:34:50</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1056544?note=2519407">고졸로 개발자를 꿈꾸는 분들에게..</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/100629" class="avatar-photo"><img src="//file.okky.kr/profile/2021/1614770842257.jpg"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/100629" title="꽃중년보넥스">꽃중년보넥스</a>
-                                                            <div class="activity ">
-                                                                  <span class="fa fa-flash"></span> -990
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-no-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    <i class="fa fa-pencil"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-	<a href="/articles/tech-qna" class="list-group-item-text item-tag label label-info"><i class="fa fa-database"></i> Tech Q&amp;A</a>
-                              	에 #1057139 게시물을 작성하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-24T15:53:10">2021-09-24 15:53:10</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1057139">123</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#1054675
-                          	  질문의 <a href="/user/info/127834" class="nickname">쿠렁</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-19T22:21:48">2021-09-19 22:21:48</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1054675?note=2516667">국비교육 받고있는데 잘하고 있는건지 모르겠네요</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/127834" class="avatar-photo"><img src="//www.gravatar.com/avatar/1066f9e493270a8194501ffb24d91091?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/127834" title="쿠렁">쿠렁</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 13
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#973157 게시물을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-19T18:24:29">2021-09-19 18:24:29</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/973157">국비학원 식사관련?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-bookmark"></i>
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          
-                          
-                          #1046624 게시물을 스크랩 하였습니다.
-                          </span>
-                                          <span class="timeago" title="2021-09-19T17:56:05">2021-09-19 17:56:05</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1046624">Unity 개발자의 Flutter 앱 개발기</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/127301" class="avatar-photo"><img src="https://lh3.googleusercontent.com/a-/AOh14Gik0Nl_fe0s0wDbOW35OJFV_6dRgqY6G9rAwBfrP2g=s96-c"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/127301" title="이상화">이상화</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 133
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#1046624 게시물을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-19T17:56:04">2021-09-19 17:56:04</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1046624">Unity 개발자의 Flutter 앱 개발기</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/127301" class="avatar-photo"><img src="https://lh3.googleusercontent.com/a-/AOh14Gik0Nl_fe0s0wDbOW35OJFV_6dRgqY6G9rAwBfrP2g=s96-c"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/127301" title="이상화">이상화</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 133
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#1046624
-                          	  질문의 <a href="/user/info/113394" class="nickname">장범준팬개발자</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-19T17:56:02">2021-09-19 17:56:02</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1046624?note=2504499">Unity 개발자의 Flutter 앱 개발기</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/127301" class="avatar-photo"><img src="https://lh3.googleusercontent.com/a-/AOh14Gik0Nl_fe0s0wDbOW35OJFV_6dRgqY6G9rAwBfrP2g=s96-c"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/127301" title="이상화">이상화</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 133
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#1046624
-                          	  질문의 <a href="/user/info/127823" class="nickname">JH Choi</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-09-19T17:56">2021-09-19 17:56:00</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/1046624?note=2516098">Unity 개발자의 Flutter 앱 개발기</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/127301" class="avatar-photo"><img src="https://lh3.googleusercontent.com/a-/AOh14Gik0Nl_fe0s0wDbOW35OJFV_6dRgqY6G9rAwBfrP2g=s96-c"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/127301" title="이상화">이상화</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 133
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#506072
-                          	  질문의 <a href="/user/info/50930" class="nickname">branden</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-08-14T13:15:24">2021-08-14 13:15:24</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/506072?note=1526331">국비 중 진도를 못 따라갑니다...</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <span class="avatar-photo"><img src="//www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=10"></span>
-                                                      <div class="avatar-info">
-                                                            <span class="nickname" title="nanolumiere">nanolumiere</span>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#278154
-                          	  질문의 <a href="/user/info/60665" class="nickname">도도한남자</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-07-09T00:49:51">2021-07-09 00:49:51</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/278154?note=1311119">하나의 프로젝트를 IntelliJ와 Eclipse로 같이 협업 가능 할까요?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/27619" class="avatar-photo"><img src="//www.gravatar.com/avatar/9a10689bf9416b1684d604cbf9b85d1b?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/27619" title="cookker">cookker</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 314
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#981884
-                          	  질문의 <a href="/user/info/86071" class="nickname">팩트폭행범</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-28T16:28:18">2021-06-28 16:28:18</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/981884?note=2403894">2030세대가 살아갈 앞 날은...</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/41736" class="avatar-photo"><img src="//www.gravatar.com/avatar/d8f6c5763e28b2cc397926dd10291407?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/41736" title="jikang2">jikang2</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 392
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#981884 게시물을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-28T16:27:14">2021-06-28 16:27:14</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/981884">2030세대가 살아갈 앞 날은...</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/41736" class="avatar-photo"><img src="//www.gravatar.com/avatar/d8f6c5763e28b2cc397926dd10291407?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/41736" title="jikang2">jikang2</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 392
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#973157
-                          	  질문의 <a href="/user/info/105480" class="nickname">state</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-19T18:52:49">2021-06-19 18:52:49</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/973157?note=2390687">국비학원 식사관련?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#973157
-                          	  질문의 <a href="/user/info/112953" class="nickname">삶은배</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-19T18:52:47">2021-06-19 18:52:47</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/973157?note=2390791">국비학원 식사관련?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#973157
-                          	  질문의 <a href="/user/info/106332" class="nickname">타트</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-18T20:02:53">2021-06-18 20:02:53</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/973157?note=2390815">국비학원 식사관련?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#973157
-                          	  질문의 <a href="/user/info/122351" class="nickname">비트코딩</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-18T20:02:47">2021-06-18 20:02:47</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/973157?note=2390694">국비학원 식사관련?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#973157
-                          	  질문의 <a href="/user/info/122420" class="nickname">민초</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-18T20:02:36">2021-06-18 20:02:36</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/973157?note=2392699">국비학원 식사관련?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                        
-                        
-                        <li class="list-group-item list-group-item-small list-group-has-note clearfix">
-                              <div class="list-icon-wrapper pull-left">
-                                    
-                                    
-                                    <i class="fa fa-angle-up fa-lg"></i>
-                              
-                              
-                              </div>
-                              <div class="list-title-wrapper list-activity">
-                                    <div class="list-activity-desc">
-                          <span class="list-activity-desc-text">
-                          	#973157
-                          	  질문의 <a href="/user/info/59140" class="nickname">거신</a>님의 답변을 추천 하였습니다.
-                          
-                          
-                          
-                          </span>
-                                          <span class="timeago" title="2021-06-18T20:02:35">2021-06-18 20:02:35</span>
-                                    </div>
-                                    <h5 class="list-group-item-heading">
-                                          <a href="/article/973157?note=2391115">국비학원 식사관련?</a>
-                                          <div class="list-group-item-author pull-right clearfix">
-                                                
-                                                
-                                                <div class="avatar clearfix avatar-x-small ">
-                                                      <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=10"></a>
-                                                      <div class="avatar-info">
-                                                            <a class="nickname" href="/user/info/115337" title="ᄆᄆᄆ">ᄆᄆᄆ</a>
-                                                            <div class="activity "><span class="fa fa-flash"></span> 32
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </h5>
-                              </div>
-                        </li>
-                  </ul>
-                  <div class="text-center">
-                        
-                        <ul class="pagination pagination-sm">
-                              <li class="prev disabled">
-				<span>
-«				</span>
-                              </li>
-                              
-                              
-                              <li class="active">
-                                    <span>1</span>
-                              </li>
-                              <li>
-                                    <a href="/user/info/115337/activity?offset=20&amp;max=20">2</a>
-                              </li>
-                              <li>
-                                    <a href="/user/info/115337/activity?offset=40&amp;max=20">3</a>
-                              </li>
-                              
-                              
-                              <li class="next">
-                                    <a href="/user/info/115337/activity?offset=20&amp;max=20">»</a>
-                              </li>
-                        
-                        </ul>
+                              </ul>
                   </div>
             </div>
       </div>
-      
-      <!----------------------------------------------------------------------------------------------->
+<%--      <div id="job-filter-modal" class="contract">--%>
+<%--            <div class="job-filter-modal-container">--%>
+<%--                  <div class="job-filter-modal-top">--%>
+<%--                        <div class="job-filter-modal-item-title active" data-type="position">포지션 및 스킬</div>--%>
+<%--                        <div class="job-filter-modal-item-title" data-type="pay">급여</div>--%>
+<%--                        <div class="job-filter-modal-item-title" data-type="location">지역</div>--%>
+<%--                        <div class="job-filter-modal-item-title" data-type="extra">기타 상세</div>--%>
+<%--                  </div>--%>
+<%--                  <div class="job-filter-modal-body">--%>
+<%--                        <div class="job-filter-modal-item" data-type="position">--%>
+<%--                              <div class="filter-item">--%>
+<%--                                    <div class="filter-item-title">포지션</div>--%>
+<%--                                    <div class="filter-item-content">--%>
+<%--                                          <div class="filter-select-wrapper" data-name="group">--%>
+<%--                                                <div class="filter-select active" data-group-id="1" data-value="1">개발</div>--%>
+<%--                                                <div class="filter-select" data-group-id="2" data-value="2">기획</div>--%>
+<%--                                                <div class="filter-select" data-group-id="3" data-value="3">디자인</div>--%>
+<%--                                                <div class="filter-select" data-group-id="4" data-value="4">마케팅</div>--%>
+<%--                                                <div class="filter-select" data-group-id="5" data-value="5">기타</div>--%>
+<%--                                          </div>--%>
+<%--                                          <div class="filter-select-wrapper" data-group="1" data-name="jobDuty">--%>
+<%--                                                <div class="filter-select" data-value="35">백엔드개발</div>--%>
+<%--                                                <div class="filter-select" data-value="36">프론트엔드개발</div>--%>
+<%--                                                <div class="filter-select" data-value="8">모바일개발</div>--%>
+<%--                                                <div class="filter-select" data-value="11">풀스택개발</div>--%>
+<%--                                                <div class="filter-select" data-value="10">임베디드개발</div>--%>
+<%--                                                <div class="filter-select" data-value="37">PC어플리케이션개발</div>--%>
+<%--                                                <div class="filter-select" data-value="2">DBA</div>--%>
+<%--                                                <div class="filter-select" data-value="38">TA</div>--%>
+<%--                                                <div class="filter-select" data-value="39">AA</div>--%>
+<%--                                                <div class="filter-select" data-value="13">기타개발</div>--%>
+<%--                                                <div class="filter-select" data-value="40">퍼블리셔</div>--%>
+<%--                                                <div class="filter-select" data-value="7">QA</div>--%>
+<%--                                          </div>--%>
+<%--                                          <div class="filter-select-wrapper off" data-group="2" data-name="jobDuty">--%>
+<%--                                                <div class="filter-select" data-value="17">전략기획</div>--%>
+<%--                                                <div class="filter-select" data-value="18">서비스기획</div>--%>
+<%--                                                <div class="filter-select" data-value="19">UI/UX 기획</div>--%>
+<%--                                                <div class="filter-select" data-value="20">사업기획</div>--%>
+<%--                                                <div class="filter-select" data-value="21">PM</div>--%>
+<%--                                          </div>--%>
+<%--                                          <div class="filter-select-wrapper off" data-group="3" data-name="jobDuty">--%>
+<%--                                                <div class="filter-select" data-value="22">웹디자인</div>--%>
+<%--                                                <div class="filter-select" data-value="23">UI 디자인</div>--%>
+<%--                                                <div class="filter-select" data-value="24">디자인</div>--%>
+<%--                                                <div class="filter-select" data-value="25">모바일디자인</div>--%>
+<%--                                                <div class="filter-select" data-value="26">서비스디자인</div>--%>
+<%--                                                <div class="filter-select" data-value="27">UX 디자인</div>--%>
+<%--                                          </div>--%>
+<%--                                          <div class="filter-select-wrapper off" data-group="4" data-name="jobDuty">--%>
+<%--                                                <div class="filter-select" data-value="28">영업</div>--%>
+<%--                                                <div class="filter-select" data-value="29">마케팅</div>--%>
+<%--                                                <div class="filter-select" data-value="30">Growth Hacker</div>--%>
+<%--                                                <div class="filter-select" data-value="31">Digital Marketer</div>--%>
+<%--                                                <div class="filter-select" data-value="32">전략수석</div>--%>
+<%--                                          </div>--%>
+<%--                                          <div class="filter-select-wrapper off" data-group="5" data-name="jobDuty">--%>
+<%--                                                <div class="filter-select" data-value="33">MD</div>--%>
+<%--                                                <div class="filter-select" data-value="34">기타</div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="filter-active-tags"></div>--%>
+<%--                              </div>--%>
+<%--                              <div class="filter-item">--%>
+<%--                                    <div class="filter-item-title">직책</div>--%>
+<%--                                    <div class="filter-item-content">--%>
+<%--                                          <div class="filter-select-wrapper filter-select-minimize" data-name="rank">--%>
+<%--                                                <div class="filter-select" data-value="0">PM</div>--%>
+<%--                                                <div class="filter-select" data-value="1">PL</div>--%>
+<%--                                                <div class="filter-select" data-value="2">팀장</div>--%>
+<%--                                                <div class="filter-select" data-value="3">팀원</div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                              </div>--%>
+<%--                              <div class="filter-item">--%>
+<%--                                    <div class="filter-item-title">스킬</div>--%>
+<%--                                    <div class="filter-item-content">--%>
+<%--                                          <input type="text" name="filter.skill" required="required" value="" placeholder="스킬을 입력해주세요." class="form-control tag-input form-dynamic" style="display: none;"><div class="bootstrap-tagsinput"><span class="twitter-typeahead" style="position: relative; display: inline-block;"><input type="text" class="tt-hint" readonly="" autocomplete="off" spellcheck="false" tabindex="-1" dir="ltr" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);"><span class="twitter-typeahead" style="position: relative; display: inline-block;"><input type="text" class="tt-input tt-hint" autocomplete="off" spellcheck="false" dir="ltr" style="position: absolute; vertical-align: top; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1;" readonly="" tabindex="-1"><input type="text" placeholder="스킬을 입력해주세요." class="tt-input" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><div class="tags-dropdown" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></div></span><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, Dotdum; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"><div class="tt-dataset tt-dataset-0"></div></div></span></div>--%>
+<%--                                    </div>--%>
+<%--                              </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="job-filter-modal-item off" data-type="pay">--%>
+<%--                              <div class="filter-item">--%>
+<%--                                    <div class="filter-item-title">최소급여</div>--%>
+<%--                                    <div class="filter-item-content flow-wrap">--%>
+<%--                                          <div class="filter-select-wrapper" data-name="minPay">--%>
+<%--                                                <div class="filter-select" data-value="300">300만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="400">400만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="500">500만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="600">600만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="700">700만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="800">800만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="900">900만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="1000">1000만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="1100">1100만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="1200">1200만 이상</div>--%>
+<%--                                                <div class="filter-select" data-value="1300">1300만 이상</div>--%>
+<%--                                          </div>--%>
+<%--                                          <div class="filter-input-wrapper">--%>
+<%--                                                <div class="filter-input-line">--%>
+<%--                                                      <input type="checkbox" id="pay-self-checkbox">--%>
+<%--                                                      <label for="pay-self-checkbox" style="font-weight: bold">직접입력</label>--%>
+<%--                                                </div>--%>
+<%--                                                <div class="filter-input-line">--%>
+<%--                                                      <input type="number" id="pay-self-input" disabled="" value="">--%>
+<%--                                                      <label>만 이상</label>--%>
+<%--                                                </div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                              </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="job-filter-modal-item off" data-type="location">--%>
+<%--                              <div class="filter-item">--%>
+<%--                                    <div class="filter-item-content">--%>
+<%--                                          <div class="filter-select-wrapper" data-name="city">--%>
+<%--                                                <div class="filter-select" data-value="">전체</div>--%>
+<%--                                                <div class="filter-select" data-value="서울">서울</div>--%>
+<%--                                                <div class="filter-select" data-value="부산">부산</div>--%>
+<%--                                                <div class="filter-select" data-value="대구">대구</div>--%>
+<%--                                                <div class="filter-select" data-value="인천">인천</div>--%>
+<%--                                                <div class="filter-select" data-value="광주">광주</div>--%>
+<%--                                                <div class="filter-select" data-value="대전">대전</div>--%>
+<%--                                                <div class="filter-select" data-value="울산">울산</div>--%>
+<%--                                                <div class="filter-select" data-value="세종">세종</div>--%>
+<%--                                                <div class="filter-select" data-value="강원">강원</div>--%>
+<%--                                                <div class="filter-select" data-value="경기">경기</div>--%>
+<%--                                                <div class="filter-select" data-value="경남">경남</div>--%>
+<%--                                                <div class="filter-select" data-value="경북">경북</div>--%>
+<%--                                                <div class="filter-select" data-value="전남">전남</div>--%>
+<%--                                                <div class="filter-select" data-value="전북">전북</div>--%>
+<%--                                                <div class="filter-select" data-value="충남">충남</div>--%>
+<%--                                                <div class="filter-select" data-value="충북">충북</div>--%>
+<%--                                                <div class="filter-select" data-value="제주">제주</div>--%>
+<%--                                          </div>--%>
+<%--                                          <div class="filter-select-wrapper" data-name="district">--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="filter-active-tags"></div>--%>
+<%--                              </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="job-filter-modal-item off" data-type="extra">--%>
+<%--                              <div class="filter-item-wrapper">--%>
+<%--                                    <div class="filter-item">--%>
+<%--                                          <div class="filter-item-title">경력</div>--%>
+<%--                                          <div class="filter-item-content">--%>
+<%--                                                <div class="filter-select-wrapper" data-name="minCareer" data-value="">--%>
+<%--                                                      <div data-value="99" class="filter-select">무관</div>--%>
+<%--                                                      <div data-value="0" class="filter-select">--%>
+<%--                                                            신입											</div>--%>
+<%--                                                      <div data-value="1" class="filter-select">--%>
+<%--                                                            1년 이상											</div>--%>
+<%--                                                      <div data-value="2" class="filter-select">--%>
+<%--                                                            2년 이상											</div>--%>
+<%--                                                      <div data-value="3" class="filter-select">--%>
+<%--                                                            3년 이상											</div>--%>
+<%--                                                      <div data-value="4" class="filter-select">--%>
+<%--                                                            4년 이상											</div>--%>
+<%--                                                      <div data-value="5" class="filter-select">--%>
+<%--                                                            5년 이상											</div>--%>
+<%--                                                      <div data-value="6" class="filter-select">--%>
+<%--                                                            6년 이상											</div>--%>
+<%--                                                      <div data-value="7" class="filter-select">--%>
+<%--                                                            7년 이상											</div>--%>
+<%--                                                      <div data-value="8" class="filter-select">--%>
+<%--                                                            8년 이상											</div>--%>
+<%--                                                      <div data-value="9" class="filter-select">--%>
+<%--                                                            9년 이상											</div>--%>
+<%--                                                      <div data-value="10" class="filter-select">--%>
+<%--                                                            10년 이상											</div>--%>
+<%--                                                      <div data-value="11" class="filter-select">--%>
+<%--                                                            11년 이상											</div>--%>
+<%--                                                      <div data-value="12" class="filter-select">--%>
+<%--                                                            12년 이상											</div>--%>
+<%--                                                      <div data-value="13" class="filter-select">--%>
+<%--                                                            13년 이상											</div>--%>
+<%--                                                      <div data-value="14" class="filter-select">--%>
+<%--                                                            14년 이상											</div>--%>
+<%--                                                      <div data-value="15" class="filter-select">--%>
+<%--                                                            15년 이상											</div>--%>
+<%--                                                </div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="filter-item">--%>
+<%--                                          <div class="filter-item-title">학력</div>--%>
+<%--                                          <div class="filter-item-content">--%>
+<%--                                                <div class="filter-select-wrapper" data-name="academicBackground">--%>
+<%--                                                      <div data-value="1" class="filter-select">--%>
+<%--                                                            무관											</div>--%>
+<%--                                                      <div data-value="2" class="filter-select">--%>
+<%--                                                            고졸 이상											</div>--%>
+<%--                                                      <div data-value="3" class="filter-select">--%>
+<%--                                                            전문학사 이상											</div>--%>
+<%--                                                      <div data-value="4" class="filter-select">--%>
+<%--                                                            학사 이상											</div>--%>
+<%--                                                      <div data-value="5" class="filter-select">--%>
+<%--                                                            석사 이상											</div>--%>
+<%--                                                      <div data-value="6" class="filter-select">--%>
+<%--                                                            박사 이상											</div>--%>
+<%--                                                </div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                              </div>--%>
+<%--                              <div class="filter-item-wrapper">--%>
+<%--                                    <div class="filter-item">--%>
+<%--                                          <div class="filter-item-title">근무시작일</div>--%>
+<%--                                          <div class="filter-item-content">--%>
+<%--                                                <div class="filter-select-wrapper" data-name="startDate">--%>
+<%--                                                      <div class="filter-select" data-value="0">2주 이내</div>--%>
+<%--                                                      <div class="filter-select" data-value="1">1개월 이내</div>--%>
+<%--                                                      <div class="filter-select" data-value="2">2개월 이내</div>--%>
+<%--                                                      <div class="filter-select" data-value="3">3개월 이내</div>--%>
+<%--                                                </div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="filter-item">--%>
+<%--                                          <div class="filter-item-title">근무방식</div>--%>
+<%--                                          <div class="filter-item-content">--%>
+<%--                                                <div class="filter-select-wrapper" data-name="workingCondition">--%>
+<%--                                                      <div data-value="1" class="filter-select">--%>
+<%--                                                            상근											</div>--%>
+<%--                                                      <div data-value="3" class="filter-select">--%>
+<%--                                                            재택											</div>--%>
+<%--                                                      <div data-value="4" class="filter-select">--%>
+<%--                                                            협의											</div>--%>
+<%--                                                </div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                              </div>--%>
+<%--                              <div class="filter-item-wrapper">--%>
+<%--                                    <div class="filter-item">--%>
+<%--                                          <div class="filter-item-title">업무방식</div>--%>
+<%--                                          <div class="filter-item-content">--%>
+<%--                                                <div class="filter-select-wrapper" data-name="workType">--%>
+<%--                                                      <div class="filter-select" data-value="0">SI</div>--%>
+<%--                                                      <div class="filter-select" data-value="1">SM</div>--%>
+<%--                                                      <div class="filter-select" data-value="2">SI 이후 SM 진행</div>--%>
+<%--                                                </div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="filter-item">--%>
+<%--                                          <div class="filter-item-title">분야</div>--%>
+<%--                                          <div class="filter-item-content">--%>
+<%--                                                <div class="filter-select-wrapper" data-name="businessField">--%>
+<%--                                                      <div data-value="0" class="filter-select">--%>
+<%--                                                            금융 											</div>--%>
+<%--                                                      <div data-value="1" class="filter-select">--%>
+<%--                                                            제조 											</div>--%>
+<%--                                                      <div data-value="2" class="filter-select">--%>
+<%--                                                            공공 											</div>--%>
+<%--                                                      <div data-value="3" class="filter-select">--%>
+<%--                                                            인터넷 / 서비스 											</div>--%>
+<%--                                                      <div data-value="4" class="filter-select">--%>
+<%--                                                            커머스 / 쇼핑 											</div>--%>
+<%--                                                      <div data-value="5" class="filter-select">--%>
+<%--                                                            통신 											</div>--%>
+<%--                                                      <div data-value="6" class="filter-select">--%>
+<%--                                                            게임 											</div>--%>
+<%--                                                      <div data-value="7" class="filter-select">--%>
+<%--                                                            유통 											</div>--%>
+<%--                                                      <div data-value="8" class="filter-select">--%>
+<%--                                                            물류 											</div>--%>
+<%--                                                      <div data-value="9" class="filter-select">--%>
+<%--                                                            교육											</div>--%>
+<%--                                                      <div data-value="10" class="filter-select">--%>
+<%--                                                            의료 											</div>--%>
+<%--                                                      <div data-value="11" class="filter-select">--%>
+<%--                                                            방송											</div>--%>
+<%--                                                </div>--%>
+<%--                                          </div>--%>
+<%--                                    </div>--%>
+<%--                              </div>--%>
+<%--                        </div>--%>
+<%--                  </div>--%>
+<%--                  <div class="job-filter-modal-bottom">--%>
+<%--                        <div id="job-filter-modal-reset"><i class="fa fa-repeat" aria-hidden="true"></i>&nbsp;선택초기화</div>--%>
+<%--                        <div id="job-filter-modal-confirm">검 색</div>--%>
+<%--                  </div>--%>
+<%--                  <div class="job-filter-close-btn"><i class="fa fa-times" aria-hidden="true" style="color:#8A8A8A;"></i></div>--%>
+<%--            </div>--%>
+<%--      </div>--%>
       <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
 </div>
 </body>
-<script>
-     var contextPath = "";
-     var encodedURL = "%2Farticles%2Fquestions";
-</script>
 
-<script src="assets/js/application.js" type="text/javascript"></script>
-<script src="assets/js/search.js" type="text/javascript"></script>
-<script>
-     $(function() {
-          $('.category-sort-link').click(function(e) {
-               $('#category-sort-input').val($(this).data('sort'));
-               $('#category-order-input').val($(this).data('order'));
-               e.preventDefault();
-               $('#category-filter-form')[0].submit();
-          });
-     });
-</script>
+<script src="/assets/js/application.js"></script>
 </html>

@@ -12,16 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 public class jobService implements Action{
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response){
-        ActionForward forward = null;
-        try{
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(false);
         
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }finally{
-        
-        
-        }
-        return null;
+        forward.setPath("/WEB-INF/views/job.jsp");
+        return forward;
     }
     
 }
