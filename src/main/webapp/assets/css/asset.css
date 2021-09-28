@@ -11272,6 +11272,7 @@ span.filter-count {
     .about-history {
         padding: 0;
     }
+
 }
 @media (max-width: 560px) {
     .about-record-list {
@@ -11288,6 +11289,7 @@ span.filter-count {
         padding-top: 0;
         padding-bottom: 0;
     }
+
 }
 @media (max-width: 480px) {
     .about-mlist {
@@ -11301,6 +11303,9 @@ span.filter-count {
     .about-mlist {
         margin: 0 0 3%;
     }
+
+
+
 }
 
 /*
