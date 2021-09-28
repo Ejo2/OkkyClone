@@ -18,6 +18,10 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/asset.css">
+  <script src="summernote/js/summernote-lite.js"></script><!--예솔 추가함 : summernote-->
+  <script src="summernote/js/summernote-ko-KR.js"></script><!--예솔 추가함 : summernote-->
+  <link rel="stylesheet" href="summernote/css/summernote-lite.css"><!--예솔 추가함 : summernote-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!--예솔 추가함 : jquery-->
 </head>
     
     
