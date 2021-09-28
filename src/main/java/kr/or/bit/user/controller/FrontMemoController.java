@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("*.do")
+@WebServlet("/member.do")
 public class FrontMemoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
     
@@ -58,8 +58,6 @@ public class FrontMemoController extends HttpServlet{
             action = new memberDetailGoService();
             forward = action.execute(request, response);
             System.out.println("memberDetailGo.do");
-    
-    
         }else if (url_Command.equals("/job.do")){
             action = new jobService();
             forward = action.execute(request, response);
