@@ -132,6 +132,10 @@ public class userDao{
             dto.setEmail(rs.getString("email"));
             dto.setPhoto(rs.getString("photo"));
         }
+        ConnectionHelper.close(rs);
+        ConnectionHelper.close(conn);
+        ConnectionHelper.close(pstmt);
+        
         return dto;
     }
     
@@ -148,15 +152,20 @@ public class userDao{
         List<boardDto> userScrapList = new ArrayList<>();
         
         while (rs.next()){
+            
             boardDto dto = new boardDto();
             dto.setTitle(rs.getString("title"));
             userScrapList.add(dto);
+            
         }
         
-        
-        
-        
-        
+        ConnectionHelper.close(rs);
+        ConnectionHelper.close(conn);
+        ConnectionHelper.close(pstmt);
+    
+    
+    
+    
         return userScrapList;
     }
     
@@ -177,6 +186,7 @@ public class userDao{
     
         ArrayList<boardDto> writeBoardList = new ArrayList<>();
         while (rs.next()){
+            
             boardDto dto = new boardDto();
             dto.setNo(rs.getInt("no"));
             dto.setBno(rs.getInt("bno"));
@@ -191,7 +201,8 @@ public class userDao{
             writeBoardList.add(dto);
         
         }
-        System.out.println("내가 쓴 게시물 리스트"+writeBoardList);
+        System.out.println("내가 쓴 게시물 리스트" + writeBoardList);
+        
         ConnectionHelper.close(rs);
         ConnectionHelper.close(conn);
         ConnectionHelper.close(pstmt);

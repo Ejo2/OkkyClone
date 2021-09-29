@@ -67,6 +67,11 @@ public class FrontMemoController extends HttpServlet{
         }else if (url_Command.equals("/scrapListGo.do")){
             action = new scrapListGoService();
             forward = action.execute(request, response);
+        }else if (url_Command.equals("/userInfoChange.do")){
+            action = new userInfoChange();
+            forward = action.execute(request, response);
+            System.out.println("userInfoChange.do");
+    
         }
         
         if (forward != null){
