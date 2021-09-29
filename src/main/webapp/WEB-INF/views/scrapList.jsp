@@ -31,9 +31,9 @@
             </div>
             <div class="col-sm-2 user-info-nav pull-right">
                   <ul class="nav">
-                        <li class="active"><a href="memberDetailGo.do">게시물
+                        <li class=""><a href="memberDetailGo.do">게시물
                               <span class="badge">${totalBoardCount}</span></a></li>
-                        <li class=""><a id="bb" href="scrapListGo.do">스크랩
+                        <li class="active"><a href="scrapListGo.do">스크랩
                               <span class="badge">${userScrapList.size()}</span></a></li>
                   </ul>
             </div>
@@ -118,7 +118,6 @@
 
 <script src="assets/js/application.js" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>
-
 <script>
      $(function() {
           $('.category-sort-link').click(function(e) {
@@ -128,25 +127,23 @@
                $('#category-filter-form')[0].submit();
           });
      });
-
-   
      
      function acyncMovePage(url) {
-          // ajax option
-          var ajaxOption = {
-               url: url,
-               async: true,
-               type: "POST",
-               dataType: "html",
-               cache: false
-          };
+               // ajax option
+               var ajaxOption = {
+                    url: url,
+                    async: true,
+                    type: "POST",
+                    dataType: "html",
+                    cache: false
+               };
           
-          $.ajax(ajaxOption).done(function(data) {
-               // Contents 영역 삭제
-               $('#list-group').children().remove();
-               // Contents 영역 교체
-               $('#list-group').html(data);
-          });
+               $.ajax(ajaxOption).done(function(data) {
+                    // Contents 영역 삭제
+                    $('#list-group').children().remove();
+                    // Contents 영역 교체
+                    $('#list-group').html(data);
+               });
      }
 </script>
 </html>
