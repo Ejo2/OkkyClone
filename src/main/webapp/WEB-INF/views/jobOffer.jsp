@@ -581,6 +581,7 @@
         $(".job-filter-btn").click(function () {
             $("#job-filter-modal").prop('class', ('contract'));
 
+
             $("div").click(function(event){
                 let thisEle = $(event.target);
                 // if(thisEle.attr('class') === "job-filter-modal-item-title"){
