@@ -62,6 +62,10 @@ public class FrontMemoController extends HttpServlet{
             action = new jobService();
             forward = action.execute(request, response);
             System.out.println("job.do");
+        }else if (url_Command.equals("/jobData.do")){ //jobdata를 json으로 생성
+            action = new jobDataService();
+            forward = action.execute(request, response);
+            System.out.println("jobData.do");
         }
         
         if (forward != null){

@@ -8,8 +8,8 @@ $(function () {
     title: "Google 검색",
     placement: "right",
     content: $("#search-google-form")
-      .clone()
-      .attr("id", "search-google-popover")[0],
+        .clone()
+        .attr("id", "search-google-popover")[0],
     html: true,
   });
 
