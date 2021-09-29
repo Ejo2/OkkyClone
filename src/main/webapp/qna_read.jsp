@@ -10,6 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/qna_read.css">
 
+
+
     <title>OKKY - 서블릿 어렵네요ㅠ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf_parameter" content="_csrf"/>
@@ -71,7 +73,7 @@
             <div class="nav" role="navigation">
                 <a class="create btn btn-success btn-wide pull-right" href="/articles/tech-qna/create"><i
                         class="fa fa-pencil"></i> 새 글 쓰기</a>
-                <h4>Tech Q&A</h4>
+                <h4>Q&A</h4>
             </div>
 
 
@@ -99,7 +101,7 @@
                         <div class="content-tags">
                             <span class="list-group-item-text article-id">#1060292</span>
                             <a href="/articles/tech-qna" class="list-group-item-text item-tag label label-info"><i
-                                    class="fa fa-database"></i> Tech Q&A</a>
+                                    class="fa fa-database"></i>Q&A</a>
                         </div>
                         <h2 class="panel-title">
                             서블릿 어렵네요ㅠ
@@ -228,9 +230,7 @@
         </form>
         <form action="/article/scrap/1060292" method="post" name="article-scrap-form" id="article-scrap-form">
         </form>
-        <div class="right-banner-wrapper">
 
-            <div class="google-ad">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- okjspad_160x500 -->
                 <ins class="adsbygoogle"
@@ -268,6 +268,8 @@
         js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+
 </script>
 
 <div id="userPrivacy" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -284,5 +286,23 @@
         </div>
     </div>
 </div>
+<script src="summernote/js/summernote-lite.js"></script>
+<!--예솔 추가함 : summernote-->
+<script src="summernote/js/summernote-ko-KR.js"></script>
+<!--예솔 추가함 : summernote-->
+<link rel="stylesheet" href="summernote/css/summernote-lite.css">
+<!--예솔 추가함 : summernote-->
+<script type="text/javascript">
+    $("#note-create").on('click',function(){
+        $("#note-create").summernote({
+            height: 300,                 // 에디터 높이
+            minHeight: null,             // 최소 높이
+            maxHeight: null,             // 최대 높이
+            focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+            lang: "ko-KR",               // 한글 설정
+            placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
+        });
+    });
+</script>
 </body>
 </html>
