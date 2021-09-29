@@ -18,6 +18,10 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <meta property="og:image" content="https://okky.kr/assets/images/okky_logo_fb.png">
   <link rel="stylesheet" href="assets/css/asset.css">
+  <script src="summernote/js/summernote-lite.js"></script><!--예솔 추가함 : summernote-->
+  <script src="summernote/js/summernote-ko-KR.js"></script><!--예솔 추가함 : summernote-->
+  <link rel="stylesheet" href="summernote/css/summernote-lite.css"><!--예솔 추가함 : summernote-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!--예솔 추가함 : jquery-->
 </head>
     
     
