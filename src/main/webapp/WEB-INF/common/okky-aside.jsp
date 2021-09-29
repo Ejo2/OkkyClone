@@ -145,12 +145,6 @@
                           class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
                           class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a>
                   </li>
-                  <li><a href="/articles/tech-qna" class="link"><span
-                          class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
-                          class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                  <li><a href="/articles/blockchain-qna" class="link"><span
-                          class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
-                          class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
             </div>

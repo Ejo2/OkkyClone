@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/qna_write.css">
+    <link rel="stylesheet"  href="/assets/css/qna_write.css">
     <script src="summernote/js/summernote-lite.js"></script>
     <!--예솔 추가함 : summernote-->
     <script src="summernote/js/summernote-ko-KR.js"></script>
@@ -19,28 +19,11 @@
 
 
     <title>OKKY - Article 등록</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="_csrf_parameter" content="_csrf" />
-    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
-    <meta name="_csrf" content="c6a51f4b-0401-45ae-a2b9-0c475512b478" />
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/assets/images/icon_57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/icon_114x114.png">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta property="og:image" content="https://okky.kr/assets/images/okky_logo_fb.png">
     <link rel="stylesheet" href="/assets/css/application.css">
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        }); var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-M52CW55');</script>
+
     <!--[if lt IE 9]>
-    <script src="/js/libs/html5.js"></script>
-    <script src="/assets/libs/respond.src.js"></script>
-    <script src="/assets/libs/html5.js"></script>
     <![endif]-->
 
 </head>
@@ -180,6 +163,7 @@
             placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
         });
     });
+
 
 
     var tagsinputWidgets = $('input[name=tagString]').tagsinput(tagsInputConfig);
