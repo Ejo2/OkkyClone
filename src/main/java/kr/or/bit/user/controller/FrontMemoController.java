@@ -42,7 +42,7 @@ public class FrontMemoController extends HttpServlet{
             action = new JoinGoService();
             forward = action.execute(request, response);
             System.out.println("joinGo.do");
-    
+            
         }else if (url_Command.equals("/join.do")){
             action = new JoinService();
             forward = action.execute(request, response);
@@ -61,16 +61,32 @@ public class FrontMemoController extends HttpServlet{
             
             
         }else if (url_Command.equals("/job.do")){
+            
             action = new jobService();
             forward = action.execute(request, response);
             System.out.println("job.do");
         }else if (url_Command.equals("/scrapListGo.do")){
+            
             action = new scrapListGoService();
             forward = action.execute(request, response);
+    
         }else if (url_Command.equals("/userInfoChange.do")){
+    
             action = new userInfoChange();
             forward = action.execute(request, response);
             System.out.println("userInfoChange.do");
+    
+        }else if (url_Command.equals("/updateUserNickname.do")){
+            
+            action = new updateUserNicknameService();
+            forward = action.execute(request, response);
+            System.out.println("updateUserNickname.do");
+    
+        }else if (url_Command.equals("/updateUserEmail.do")){
+    
+            action = new updateUserEmailService();
+            forward = action.execute(request, response);
+            System.out.println("updateUserEmail.do");
     
         }
         

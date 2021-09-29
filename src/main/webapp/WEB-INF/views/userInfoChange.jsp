@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
@@ -15,8 +16,6 @@
             <div class="col-md-6 main-block-left">
                   <div class="panel panel-default">
                         <div class="panel-heading">
-                              
-                              
                               
                               
                               <div class="avatar clearfix avatar-medium ">
@@ -39,7 +38,8 @@
                                           <span class="avatar-photo"><img src="${userInfo.photo}"></span>
                                           <span>Google</span>
                                     </div>
-                                    <button class="btn btn-primary" id="profile-upload-btn" style="font-size: 12px">이미지 업로드<br><small>권장 사이즈 150px<br>최대 250KB</small></button>
+                                    <button class="btn btn-primary" id="profile-upload-btn" style="font-size: 12px">이미지 업로드<br><small>권장 사이즈 150px<br>최대 250KB</small>
+                                    </button>
                                     <input type="file" name="files" accept="image/gif, image/jpg, image/jpeg, image/png" style="display:none;" id="profileImage">
                                     <button class="btn btn-success picture-confirm-btn">확인</button>
                               </div>
@@ -53,12 +53,8 @@
                                           <label class="control-label" for="nickname">닉네임</label>
                                           <input type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${userInfo.id}" id="nickname">
                                     </div>
-                                    
-                                    <div class="checkbox">
-                                          <label>
-                                                <input type="checkbox" name="dmAllowed" checked="checked" id="person.dmAllowed">
-                                                이메일 수신 동의                        </label>
-                                    </div>
+                              
+                              
                               </fieldset>
                               <button class="btn btn-primary btn-block" type="submit">정보 수정</button>
                         </form>
@@ -73,9 +69,10 @@
                               <div class="email-edit">
                                     <label class="control-label" for="email" style="width:100%">이메일 주소</label>
                                     <div class="field-subtitle"></div>
-                                    <input type="text" name="email" class="form-control input-sm" placeholder="이메일" required="" value="${userInfo.email}" id="email">
-                                    <button class="btn btn-primary" style="display:none;" data-email-type="UPDATE_EMAIL" type="button" id="verify-email-btn">인증</button>
-                                    <button class="btn btn-success" style="display:none;" type="button" id="verify-email-retry-btn">재전송</button>
+                                    <input type="email" name="email" class="form-control input-sm" placeholder="이메일" required="" value="${userInfo.email}" id="email" style="width: 100%">
+                                    <button class="btn btn-primary"  data-email-type="UPDATE_EMAIL" type="button" id="verify-email-btn">인증</button>
+                                    <button class="btn btn-success"  type="button" id="verify-email-retry-btn">재전송</button>
+                                    <div id ="error_mail" class="result-email result-check"></div>
                               </div>
                         </div>
                   </div>
@@ -86,13 +83,34 @@
                         </div>
                   </div>
             </div>
-            
+      
       </div>
       
       <!----------------------------------------------------------------------------------------------->
       <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
 </div>
 </body>
+<script>
+     function email_check(email) {
+          
+          var regex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+          return (email != '' && email != 'undefined' && regex.test(email));
+          
+     }
+     
+     $("input[type=email]").blur(function(){
+          var email = $(this).val();
+          if( email == '' || email == 'undefined') return;
+          if(! email_check(email) ) {
+               $('#verify-email-btn').attr("display", "none");
+               $(this).focus();
+               return false;
+          }else {
+               $('#verify-email-btn').removeAttr("display");
+               $(".result-email").text('');
+          }
+     });
+</script>
 <script src="assets/js/application.js" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>
 </html>
