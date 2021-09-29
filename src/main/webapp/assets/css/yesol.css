@@ -1,0 +1,44 @@
+/*study-write 단 *********/
+#study-write-sido{
+    list-style:none; /*리스트 앞에 동그라미 지우기*/
+}
+#study-write-sido li {
+    float: left; /*리스트를 수평으로 배열*/
+}
+.form-group {/*지역선택 아래쪽 마진 주기*/
+    margin-bottom: 20px;
+}
+
+#content1{
+    flex-grow: 3;
+}
+#content2{
+    flex-grow: 1;
+}
+#content3{
+    flex-grow: 1;
+}
+.study_email_deadline{
+    display: flex;
+    flex-direction: row;
+}
+.styling{
+    background-color: rgb(0,76,146); /* Green */
+    border: none;
+    color: white;
+    padding: 7px;
+    padding-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.styling2{
+    margin: 5px;
+    padding: 5px;
+}
+/*******************/
