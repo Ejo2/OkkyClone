@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("*.do")
+@WebServlet("/member.do")
 public class FrontMemoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
     
@@ -42,7 +42,7 @@ public class FrontMemoController extends HttpServlet{
             action = new JoinGoService();
             forward = action.execute(request, response);
             System.out.println("joinGo.do");
-            
+    
         }else if (url_Command.equals("/join.do")){
             action = new JoinService();
             forward = action.execute(request, response);
@@ -58,10 +58,7 @@ public class FrontMemoController extends HttpServlet{
             action = new memberDetailGoService();
             forward = action.execute(request, response);
             System.out.println("memberDetailGo.do");
-            
-            
         }else if (url_Command.equals("/job.do")){
-            
             action = new jobService();
             forward = action.execute(request, response);
             System.out.println("job.do");
@@ -88,6 +85,10 @@ public class FrontMemoController extends HttpServlet{
             forward = action.execute(request, response);
             System.out.println("updateUserEmail.do");
     
+        }else if (url_Command.equals("/jobData.do")){ //jobdata를 json으로 생성
+            action = new jobDataService();
+            forward = action.execute(request, response);
+            System.out.println("jobData.do");
         }
         
         if (forward != null){
