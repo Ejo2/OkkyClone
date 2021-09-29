@@ -70,9 +70,9 @@
                                     <label class="control-label" for="email" style="width:100%">이메일 주소</label>
                                     <div class="field-subtitle"></div>
                                     <input type="email" name="email" class="form-control input-sm" placeholder="이메일" required="" value="${userInfo.email}" id="email" style="width: 100%">
-                                    <button class="btn btn-primary"  data-email-type="UPDATE_EMAIL" type="button" id="verify-email-btn">인증</button>
-                                    <button class="btn btn-success"  type="button" id="verify-email-retry-btn">재전송</button>
-                                    <div id ="error_mail" class="result-email result-check"></div>
+                                    <button class="btn btn-primary" data-email-type="UPDATE_EMAIL" type="button" id="verify-email-btn">인증</button>
+                                    <button class="btn btn-success" type="button" id="verify-email-retry-btn">재전송</button>
+                                    <div id="error_mail" class="result-email result-check"></div>
                               </div>
                         </div>
                   </div>
@@ -90,6 +90,30 @@
       <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
 </div>
 </body>
+<script type="module">
+     // Import the functions you need from the SDKs you need
+     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics.js";
+     // TODO: Add SDKs for Firebase products that you want to use
+     // https://firebase.google.com/docs/web/setup#available-libraries
+     
+     // Your web app's Firebase configuration
+     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+     const firebaseConfig = {
+          apiKey: "AIzaSyB_TRLmorlN8qTTKfV1ED0sJ3qvuVwKWcY",
+          authDomain: "ejo-project.firebaseapp.com",
+          projectId: "ejo-project",
+          storageBucket: "ejo-project.appspot.com",
+          messagingSenderId: "950396808559",
+          appId: "1:950396808559:web:3d67301e1cef4d1ea64c9a",
+          measurementId: "G-99EGW3JR5H"
+     };
+     
+     // Initialize Firebase
+     const app = initializeApp(firebaseConfig);
+     const analytics = getAnalytics(app);
+</script>
+
 <script>
      function email_check(email) {
           
@@ -98,18 +122,23 @@
           
      }
      
-     $("input[type=email]").blur(function(){
+     $("input[type=email]").blur(function() {
           var email = $(this).val();
-          if( email == '' || email == 'undefined') return;
-          if(! email_check(email) ) {
-               $('#verify-email-btn').attr("display", "none");
+          if (email == '' || email == 'undefined') return;
+          if (!email_check(email)) {
+               $('#verify-email-btn').attr(`disabled`, `disabled`);
+               $('#verify-email-retry-btn').attr(`disabled`, `disabled`);
+               $('.result-email').text('이메일 틀림 ');
                $(this).focus();
                return false;
-          }else {
-               $('#verify-email-btn').removeAttr("display");
+          } else {
+               $('#verify-email-btn').removeAttr('disabled');
+               $('#verify-email-retry-btn').removeAttr('disabled');
                $(".result-email").text('');
           }
      });
+
+
 </script>
 <script src="assets/js/application.js" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>

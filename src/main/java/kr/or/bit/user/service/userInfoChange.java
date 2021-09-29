@@ -15,15 +15,16 @@ import javax.servlet.http.HttpSession;
 public class userInfoChange implements Action{
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response){
+        
         System.out.println("123");
         ActionForward forward = new ActionForward();
         HttpSession session = request.getSession();
         System.out.println(session.getAttribute("id"));
+        
         try{
             
             String myId = (String) session.getAttribute("id");
             System.out.println("myId");
-            
             
             if (session.getAttribute("id") == null){
                 
