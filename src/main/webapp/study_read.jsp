@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
+<!--작업중입니다. web-inf > views 안에 넣어야 합니다-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
