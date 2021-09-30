@@ -3,7 +3,6 @@ package kr.or.bit.user.service;
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.userDao;
-import kr.or.bit.user.dto.userDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,9 +29,11 @@ public class updatePwdService implements Action{
             System.out.println("업데이트 패스워드의 result를 찍어보자" + result);
             
             if (result > 0){
+                
                 msg = "패스워드 변경 성공";
                 url = "userInfoChange.do";
             }else{
+                
                 msg = "패스워드 변경 실패";
                 url = "userInfoChange.do";
             }
@@ -41,7 +42,9 @@ public class updatePwdService implements Action{
         }catch (Exception e){
             
             System.out.println(e.getMessage());
+            
         }
+        
         request.setAttribute("board_msg", msg);
         request.setAttribute("board_url", url);
         
