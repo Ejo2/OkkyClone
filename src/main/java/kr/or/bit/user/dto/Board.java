@@ -1,8 +1,7 @@
 package kr.or.bit.user.dto;
-
 import java.util.Date;
 
-public class QnADto {
+public class Board {
     private int no;
     private int bno;
     private String id;
@@ -12,14 +11,12 @@ public class QnADto {
     private Date writedate;
     private int good;
     private int removedOk;
+    private int scrapNum;
 
-
-    public QnADto(){
-
+    public Board() {
     }
 
-
-    public QnADto(int no, int bno, String id, String title, String cont, int hit, Date writedate, int good, int removedOk) {
+    public Board(int no, int bno, String id, String title, String cont, int hit, Date writedate, int good, int removedOk, int scrapNum) {
         this.no = no;
         this.bno = bno;
         this.id = id;
@@ -29,6 +26,7 @@ public class QnADto {
         this.writedate = writedate;
         this.good = good;
         this.removedOk = removedOk;
+        this.scrapNum = scrapNum;
     }
 
     public int getNo() {
@@ -103,9 +101,17 @@ public class QnADto {
         this.removedOk = removedOk;
     }
 
+    public int getScrapNum() {
+        return scrapNum;
+    }
+
+    public void setScrapNum(int scrapNum) {
+        this.scrapNum = scrapNum;
+    }
+
     @Override
     public String toString() {
-        return "QnADto{" +
+        return "ColumnDto{" +
                 "no=" + no +
                 ", bno=" + bno +
                 ", id='" + id + '\'' +
@@ -115,6 +121,7 @@ public class QnADto {
                 ", writedate=" + writedate +
                 ", good=" + good +
                 ", removedOk=" + removedOk +
+                ", scrapNum=" + scrapNum +
                 '}';
     }
 }
