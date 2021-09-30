@@ -11,48 +11,40 @@ import javax.servlet.http.HttpSession;
 /*
  
  */
-public class updatePwdService implements Action{
+public class deleteUserService implements Action{
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response){
-        
-        String password = request.getParameter("newPassword");//변경된 비밀번호
         HttpSession session = request.getSession();
-        String myId = (String) session.getAttribute("id");
-        
+    
+        String myId = (String) session.getAttribute("id");//로그인된 아이디
         String msg = "";
         String url = "";
         
         try{
             userDao dao = new userDao();
-            
-            int result = dao.updateUserPwd(myId, password);
-            System.out.println("업데이트 패스워드의 result를 찍어보자" + result);
-            
+            int result = dao.deleteUser(myId);
             if (result > 0){
-                
-                msg = "패스워드 변경 성공";
-                url = "userInfoChange.do";
+    
+                msg = "회원 탈퇴 완료!";
+                url = "/main.jsp";
             }else{
-                
-                msg = "패스워드 변경 실패";
+                msg = "회원 탈퇴 실패!";
                 url = "userInfoChange.do";
             }
             
             
         }catch (Exception e){
-            
             System.out.println(e.getMessage());
-            
         }
-        
         request.setAttribute("board_msg", msg);
         request.setAttribute("board_url", url);
-        
+        session.invalidate();//세션 비활성화
+    
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("/WEB-INF/views/redirect.jsp");
         
-        return forward;
+        return  forward;
     }
     
 }
