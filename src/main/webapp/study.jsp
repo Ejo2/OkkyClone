@@ -16,7 +16,7 @@
     <div id="list-article" class="content scaffold-list event-list" role="main">
         <!--중분류1 : 네비게이션바-->
         <div class="nav" role="navigation">
-            <a class="create btn btn-success btn-wide pull-right" href="/articles/event/create">
+            <a class="create btn btn-success btn-wide pull-right" href="StudyWrite.so">
                 <i class="fa fa-pencil"></i> 새 글 쓰기</a>
 
             <h4>정기모임/스터디</h4>
