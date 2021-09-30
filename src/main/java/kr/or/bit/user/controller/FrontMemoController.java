@@ -79,17 +79,21 @@ public class FrontMemoController extends HttpServlet{
             forward = action.execute(request, response);
             System.out.println("updateUserNickname.do");
     
-        }else if (url_Command.equals("/updateUserEmail.do")){
-    
-            action = new updateUserEmailService();
-            forward = action.execute(request, response);
-            System.out.println("updateUserEmail.do");
-    
         }else if (url_Command.equals("/jobData.do")){ //jobdata를 json으로 생성
             action = new jobDataService();
             forward = action.execute(request, response);
             System.out.println("jobData.do");
+        }else if (url_Command.equals("/validation.do")){
+            action = new validationService();
+            forward = action.execute(request, response);
+    
+        }else if (url_Command.equals("/pwdChangeGo.do")){
+            action = new pwdChangeGoService();
+            
+            forward = action.execute(request, response);
         }
+            
+        
         
         if (forward != null){
             if (forward.isRedirect()){ //true

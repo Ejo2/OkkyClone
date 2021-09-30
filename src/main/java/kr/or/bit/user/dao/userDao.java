@@ -210,7 +210,7 @@ public class userDao{
         return writeBoardList;
     }
     
-    public int updateUserNickname(String nickname , String id){
+    public int updateUserNickname(String nickname, String id){
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -219,12 +219,12 @@ public class userDao{
         
         try{
             conn = ConnectionHelper.getConnection("oracle");
-            String sql = "update MEMBER set NICKNAME=? WHERE id=?";
+            String sql = "UPDATE MEMBER SET NICKNAME=? WHERE ID=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, nickname);
             pstmt.setString(2, id);
             
-            
+            result = pstmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }finally{
@@ -234,6 +234,30 @@ public class userDao{
             
         }
         
+        return result;
+    }
+    
+    public int updateUserEmail(String email, String myId){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        
+        int result = 0;
+        
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "UPDATE MEMBER SET EMAIL=? WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            pstmt.setString(2, myId);
+            
+            result = pstmt.executeUpdate();
+            
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
         return result;
     }
     
