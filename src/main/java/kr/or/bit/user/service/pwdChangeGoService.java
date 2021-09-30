@@ -12,41 +12,34 @@ import javax.servlet.http.HttpSession;
 /*
  
  */
-public class userInfoChange implements Action{
+public class pwdChangeGoService implements Action{
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response){
-        
-        System.out.println("123");
+    
+    
         ActionForward forward = new ActionForward();
         HttpSession session = request.getSession();
-        System.out.println(session.getAttribute("id"));
-        
+        String myPwd = "";
         try{
-            
-            String myId = (String) session.getAttribute("id");
-            System.out.println("myId");
-            
             if (session.getAttribute("id") == null){
-                
                 forward.setPath("/WEB-INF/views/login.jsp");
                 
             }else{
-                
                 userDao dao = new userDao();
+                userDto dto = dao.getUserInfoList(session.getAttribute("id"));
+    
+                System.out.println("패스워드 체인지의 비밀번호 전달값" + dto);
+                myPwd = dto.getPw();
+                System.out.println("왜 비번이 안보이는데????"+myPwd);
                 
-                userDto userInfo = dao.getUserInfoList(myId);
-                request.setAttribute("userInfo", userInfo);
-                
+                request.setAttribute("myPwd", myPwd);
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views/userInfoChange.jsp");
-                
+                forward.setPath("/WEB-INF/views/pwdChange.jsp");
+    
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
-        }finally{
-            System.out.println("파이널리");
         }
-        
         
         return forward;
     }
