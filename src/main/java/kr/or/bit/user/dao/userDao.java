@@ -4,6 +4,7 @@ import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.ConnectionHelper;
 
+import javax.persistence.ManyToOne;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -117,7 +118,7 @@ public class userDao{
     public userDto getUserInfoList(Object sessionId) throws SQLException{
         Connection conn = ConnectionHelper.getConnection("oracle");
         PreparedStatement pstmt = null;
-        String sql = "SELECT ID,EMAIL,NICKNAME,PHOTO FROM MEMBER WHERE ID=?";
+        String sql = "SELECT ID,EMAIL,PW,NICKNAME,PHOTO FROM MEMBER WHERE ID=?";
         pstmt = conn.prepareStatement(sql);
         
         System.out.println("sessionId : " + sessionId);
@@ -132,6 +133,7 @@ public class userDao{
         if (rs.next()){
             dto.setId(rs.getString("id"));
             dto.setNickname(rs.getString("nickname"));
+            dto.setPw(rs.getString("pw"));
             dto.setEmail(rs.getString("email"));
             dto.setPhoto(rs.getString("photo"));
         }
@@ -258,6 +260,34 @@ public class userDao{
             ConnectionHelper.close(conn);
             ConnectionHelper.close(pstmt);
         }
+        return result;
+    }
+    
+    public int updateUserPwd(String myId,String changedPwd){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int result = 0;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "UPDATE MEMBER SET PW=? WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+    
+            pstmt.setString(1, changedPwd);
+            pstmt.setString(2, myId);
+            result = pstmt.executeUpdate();
+            
+        }catch (Exception e){
+    
+            System.out.println(e.getMessage());
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        
+        }
+        
+        
         return result;
     }
     

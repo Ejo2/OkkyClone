@@ -129,8 +129,10 @@
                   </div>
                   <div class="panel panel-default">
                         <div class="panel-body panel-margin">
-                              <a href="pwdChangeGo.do" class="btn btn-info btn-block">비밀번호 변경</a><%--모달창으로 띄울 예정입니다.--%>
-                              <a href="byebyeGo.do" class="btn btn-default btn-block">회원 탈퇴</a><%--모달창으로 띄울 예정입니다.--%>
+                              <form action="pwdChangeGo.do" method="post">
+                                    <button type="submit"  class="btn btn-info btn-block">비밀번호 변경</button>
+                              </form>
+                              <a href="byebyeGo.do" class="btn btn-default btn-block">회원 탈퇴</a>
                         </div>
                   </div>
             </div>

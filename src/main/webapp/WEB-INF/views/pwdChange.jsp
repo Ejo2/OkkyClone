@@ -8,10 +8,11 @@
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 <body>
 <div class="main">
+      <c:set var="myPwd" value="${requestScope.myPwd}"/>
       <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
       <div id="create-user" class="content" role="main">
             <h3 class="content-header">비밀번호 변경</h3>
-            <form action="/user/updatePasswordChange" method="post">
+            <form id="changeForm" action="" method="post">
                   <input type="hidden" name="_csrf" value="458144dc-f920-4d65-adfa-43db6a424027">
                   <div class="col-sm-8 col-sm-offset-2">
                         <div class="panel panel-default panel-margin-10">
@@ -21,12 +22,13 @@
                                           <input type="password" name="password" class="form-control form-control-inline text-center" placeholder="현재 비밀번호">
                                     </div>
                                     <div class="form-group">
-                                          <input type="password" name="newPassword" class="form-control form-control-inline text-center" placeholder="새 비밀번호">
+                                          <input type="password" value="" name="newPassword" class="form-control form-control-inline text-center" placeholder="새 비밀번호">
                                     </div>
                                     <div class="form-group">
-                                          <input type="password" name="passwordConfirm" class="form-control form-control-inline text-center" placeholder="새 비밀번호 확인">
+                                          <input type="password" value="" name="passwordConfirm" class="form-control form-control-inline text-center" placeholder="새 비밀번호 확인">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">비밀번호 변경</button> <a href="/" class="btn btn-default">취소</a>
+                                    <button id="changeSubmit" type="submit" class="btn btn-primary">비밀번호 변경</button>
+                                    <a href="javascript:history.back()" class="btn btn-default">취소</a>
                               </div>
                         </div>
                   </div>
@@ -38,45 +40,59 @@
 </div>
 </body>
 <script>
-     function email_check(email) {
-          
-          var regex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-          return (email != '' && email != 'undefined' && regex.test(email));
-          
-     }
+     let myPwd = "${myPwd}";
+     console.log(myPwd);
+     $(function() {
+          $('#changeForm').removeAttr("action");
+          $('#changeSubmit').click(function() {
+               if ($('input[name=password]').val() == '') {
+                    alert('현재 비밀번호를 입력해주세요');
+               } else if ($('input[name=newPassword]').val() == '' || $('input[name=passwordConfirm]').val() == '') {
+                    alert('변경할 비밀번호를 입력해주세요');
+               } else {
+                    $('#changeForm').attr("action","updatePwd.do");
      
-     $("input[type=email]").blur(function() {
-          var email = $(this).val();
-          if (email == '' || email == 'undefined') return;
-          if (!email_check(email)) {
-               $('#verify-email-btn').attr(`disabled`, `disabled`);
-               $('#verify-email-retry-btn').attr(`disabled`, `disabled`);
-               $('.result-email').text('이메일 틀림 ');
-               $(this).focus();
-               return false;
-          } else {
-               $('#verify-email-btn').removeAttr('disabled');
-               $('#verify-email-retry-btn').removeAttr('disabled');
-               $(".result-email").text('');
-          }
+               }
+               
+               
+          
+          });
+          
+          $(`input[name=password]`).blur(function() {
+               if ($(`input[name=password]`).val() != myPwd) {
+                    console.log($('input[name=password]').val());
+                    console.log(myPwd);
+                    
+                    $(`input[name=password]`).css("border-color", "crimson");
+                    
+                    $(`input[name=password]`).val('');
+                    $('input[name=password]').focus();
+               } else {
+                    $(`input[name=password]`).css("border-color", "blue");
+                    
+               }
+          });
+          
+          $('input[name=passwordConfirm]').blur(function() {
+               if ($('input[name=passwordConfirm]').val() != $('input[name=newPassword]').val()) {
+                    if ($('input[name=passwordConfirm]').val() != '') {
+                         alert("비밀번호가 일치하지 않습니다.");
+                         
+                         $('input[name=passwordConfirm]').val('');
+                         $('input[name=newPassword]').val('');
+                         $('input[name=newPassword]').focus();
+                    }
+               }
+          })
+          
+          
+          
+          
      });
 
-     
-     
-     
-    
 
 </script>
 <script src="assets/js/application.js" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>
-
-<%!
-      public int getRandom(){
-            int random = 0;
-            random = (int) Math.floor((Math.random() * (99999 - 10000 + 1))) + 10000;
-            return random;
-      }
-
-%>
 
 </html>

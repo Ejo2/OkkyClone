@@ -91,6 +91,9 @@ public class FrontMemoController extends HttpServlet{
             action = new pwdChangeGoService();
             
             forward = action.execute(request, response);
+        }else if (url_Command.equals("/updatePwd.do")){
+            action = new updatePwdService();
+            forward = action.execute(request, response);
         }
             
         
