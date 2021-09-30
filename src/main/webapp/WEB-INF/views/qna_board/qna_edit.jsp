@@ -9,11 +9,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet"  href="/assets/css/qna_write.css">
-    <script src="summernote/js/summernote-lite.js"></script>
+    <script src="../../../summernote/js/summernote-lite.js"></script>
     <!--예솔 추가함 : summernote-->
-    <script src="summernote/js/summernote-ko-KR.js"></script>
+    <script src="../../../summernote/js/summernote-ko-KR.js"></script>
     <!--예솔 추가함 : summernote-->
-    <link rel="stylesheet" href="summernote/css/summernote-lite.css">
+    <link rel="stylesheet" href="../../../summernote/css/summernote-lite.css">
     <!--예솔 추가함 : summernote-->
 
 

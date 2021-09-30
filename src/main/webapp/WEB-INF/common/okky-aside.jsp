@@ -112,7 +112,7 @@
             <ul class="nav nav-sidebar nav-main">
                   <!--class="active 설정이 선택된 카테고리 표시. 각자 맡은 게시판 카테고리에 설정해줄것 "-->
                   <li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
-                          href="/articles/questions" class="link"><i class="nav-icon fa fa-database"></i> <span
+                          href="${pageContext.request.contextPath}/QnAList.qo" class="link"><i class="nav-icon fa fa-database"></i> <span
                           class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
                   <li data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a
                           href="/articles/tech" class="link"><i class="nav-icon fa fa-code"></i> <span
@@ -141,7 +141,7 @@
             <h3 class="sub-title">Q&A</h3>
             <ul class="nav">
                   <!--class ="nav-selected가 선택되고 있다는 표시의 빨간점. 각자 맡은 게시판 카테고리에 설정해줄것"-->
-                  <li><a href="/articles/questions" class="link"><span
+                  <li><a href="${pageContext.request.contextPath}/QnAList.qo" class="link"><span
                           class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
                           class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a>
                   </li>

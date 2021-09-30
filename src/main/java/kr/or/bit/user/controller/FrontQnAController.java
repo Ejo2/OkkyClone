@@ -2,7 +2,7 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.service.QnAListService;
+import kr.or.bit.user.service.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,12 +13,12 @@ import java.io.IOException;
 public class FrontQnAController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public FrontQnAController(){
+    public FrontQnAController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String requestURI = request.getRequestURI();
         String contextPath = request.getContextPath();
@@ -27,31 +27,52 @@ public class FrontQnAController extends HttpServlet {
         Action action = null;
         ActionForward forward = null;
 
-     if (url_Command.equals("/QnAList.qo")){
-        action = new QnAListService();
-        forward = action.execute(request, response);
-    }else if(url_Command.equals("/BoardWrite.do")) {
-        action = new BoardWriteService();
-        forward = action.execute(request, response);
-    }else if(url_Command.equals("/BoardWriteOK.do")) {
-        /* response.sendRedirect("/BoardList.do");*/
-        System.out.println("글쓰기 실행");
-        action = new BoardAddService();
-        forward = action.execute(request, response);
-    }else if(url_Command.equals("/BoardContent.do")) {
-        action = new BoardContentService();
-        forward = action.execute(request, response);
+        if (url_Command.equals("/QnAList.qo")) {
+            action = new QnAListService();
+            forward = action.execute(request, response);
+        } else if (url_Command.equals("/QnAWrite.qo")) {
+            action = new QnAWriteService();
+            forward = action.execute(request, response);
+        } else if (url_Command.equals("/QnAWriteOK.qo")) {
+            System.out.println("글쓰기 실행");
+            action = new QnAAddService();
+            forward = action.execute(request, response);
+        } else if (url_Command.equals("/QnAContent.qo")) {
+            System.out.println("상세보기");
+            action = new QnAContentService();
+            forward = action.execute(request, response);
+        } else if (url_Command.equals("/QnAEdit.qo")) {
+            action = new QnAEditService();
+            forward = action.execute(request, response);
+        } else if (url_Command.equals("/QnAEditOk.qo")) {
+            action = new QnAEditOkService();
+            forward = action.execute(request, response);
+        }else if(url_Command.equals("/QnAReplyOk.qo")) {
+            action = new QnAReplyAddService();
+            forward = action.execute(request, response);
         }
 
 
+        if (forward != null) {
+            if (forward.isRedirect()) { //true
+                response.sendRedirect(forward.getPath());
+            } else {
+                System.out.println("forward != null else" + forward);
+                RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
+                dis.forward(request, response);
+            }
+        }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doProcess(request, response);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doProcess(request, response);
     }
 }
