@@ -121,7 +121,7 @@
                           href="/articles/community" class="link"><i class="nav-icon fa fa-comments"></i> <span
                           class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
                   <li data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a
-                          href="/articles/columns" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
+                          href="BoardList.go" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
                           class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
                   <li data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a
                           href="job.do" class="link"><i
