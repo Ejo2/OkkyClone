@@ -3,7 +3,6 @@ package kr.or.bit.user.service;
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.QnADao;
-import kr.or.bit.user.dto.Board;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;

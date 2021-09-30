@@ -7,7 +7,6 @@ import kr.or.bit.user.dto.Board;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 public class QnAEditService implements Action {
 

@@ -1,0 +1,307 @@
+/* 회원정보 */
+CREATE TABLE MEMBER (
+	id NVARCHAR2(30) NOT NULL, /* 회원아이디 */
+	nickname NVARCHAR2(50) NOT NULL, /* 회원닉네임 */
+	pw NVARCHAR2(50) NOT NULL, /* 회원비밀번호 */
+	email NVARCHAR2(50) NOT NULL, /* 회원이메일 */
+	photo NVARCHAR2(2000) /* 회원 프로필사진 */
+);
+
+COMMENT ON TABLE MEMBER IS '회원정보';
+
+COMMENT ON COLUMN MEMBER.id IS '회원아이디';
+
+COMMENT ON COLUMN MEMBER.nickname IS '회원닉네임';
+
+COMMENT ON COLUMN MEMBER.pw IS '회원비밀번호';
+
+COMMENT ON COLUMN MEMBER.email IS '회원이메일';
+
+COMMENT ON COLUMN MEMBER.photo IS '회원 프로필사진';
+
+CREATE UNIQUE INDEX PK_MEMBER
+	ON MEMBER (
+		id ASC
+	);
+
+ALTER TABLE MEMBER
+	ADD
+		CONSTRAINT PK_MEMBER
+		PRIMARY KEY (
+			id
+		);
+
+/* 태그 */
+CREATE TABLE TAG (
+	tagnum NUMBER NOT NULL, /* 태그번호 */
+	tagname NVARCHAR2(10) NOT NULL /* 태그명 */
+);
+
+COMMENT ON TABLE TAG IS '태그';
+
+COMMENT ON COLUMN TAG.tagnum IS '태그번호';
+
+COMMENT ON COLUMN TAG.tagname IS '태그명';
+
+CREATE UNIQUE INDEX PK_TAG
+	ON TAG (
+		tagnum ASC
+	);
+
+ALTER TABLE TAG
+	ADD
+		CONSTRAINT PK_TAG
+		PRIMARY KEY (
+			tagnum
+		);
+
+/* 게시물 태그 */
+CREATE TABLE contentTag (
+	tagnum NUMBER NOT NULL, /* 태그번호 */
+	no NUMBER NOT NULL /* 글 번호 */
+);
+
+COMMENT ON TABLE contentTag IS '게시물 태그';
+
+COMMENT ON COLUMN contentTag.tagnum IS '태그번호';
+
+COMMENT ON COLUMN contentTag.no IS '글 번호';
+
+CREATE UNIQUE INDEX PK_contentTag
+	ON contentTag (
+		tagnum ASC,
+		no ASC
+	);
+
+ALTER TABLE contentTag
+	ADD
+		CONSTRAINT PK_contentTag
+		PRIMARY KEY (
+			tagnum,
+			no
+		);
+
+/* 회원 스크랩 */
+CREATE TABLE scrap (
+	id NVARCHAR2(30) NOT NULL, /* 회원아이디 */
+	no NUMBER NOT NULL /* 글 번호 */
+);
+
+COMMENT ON TABLE scrap IS '회원 스크랩';
+
+COMMENT ON COLUMN scrap.id IS '회원아이디';
+
+COMMENT ON COLUMN scrap.no IS '글 번호';
+
+CREATE UNIQUE INDEX PK_scrap
+	ON scrap (
+		id ASC,
+		no ASC
+	);
+
+ALTER TABLE scrap
+	ADD
+		CONSTRAINT PK_scrap
+		PRIMARY KEY (
+			id,
+			no
+		);
+
+/* 게시판 분류 */
+CREATE TABLE category (
+	bno NUMBER NOT NULL, /* 게시판 번호 */
+	bname NVARCHAR2(20) /* 게시판 이름 */
+);
+
+COMMENT ON TABLE category IS '게시판 분류';
+
+COMMENT ON COLUMN category.bno IS '게시판 번호';
+
+COMMENT ON COLUMN category.bname IS '게시판 이름';
+
+CREATE UNIQUE INDEX PK_category
+	ON category (
+		bno ASC
+	);
+
+ALTER TABLE category
+	ADD
+		CONSTRAINT PK_category
+		PRIMARY KEY (
+			bno
+		);
+
+/* 스터디 게시판 */
+CREATE TABLE B_study (
+	no NUMBER, /* 글 번호 */
+	sido NVARCHAR2(50), /* 지역(시,도) */
+	exp NVARCHAR2(20), /* 경력 */
+	emailOk NUMBER, /* 이메일인증여부 */
+	closeOk NUMBER /* 마감 여부 */
+);
+
+COMMENT ON TABLE B_study IS '스터디 게시판';
+
+COMMENT ON COLUMN B_study.no IS '글 번호';
+
+COMMENT ON COLUMN B_study.sido IS '지역(시,도)';
+
+COMMENT ON COLUMN B_study.exp IS '경력';
+
+COMMENT ON COLUMN B_study.emailOk IS '이메일인증여부';
+
+COMMENT ON COLUMN B_study.closeOk IS '마감 여부';
+
+/* 메인 게시판 */
+CREATE TABLE Board (
+	no NUMBER NOT NULL, /* 글 번호 */
+	bno NUMBER NOT NULL, /* 게시판 번호 */
+	id NVARCHAR2(30) NOT NULL, /* 회원아이디 */
+	title NVARCHAR2(30) NOT NULL, /* 글 제목 */
+	cont CLOB NOT NULL, /* 글 내용 */
+	hit NUMBER, /* 조회수 */
+	writedate DATE, /* 작성 일시 */
+	good NUMBER /* 추천 */
+);
+
+COMMENT ON TABLE Board IS '메인 게시판';
+
+COMMENT ON COLUMN Board.no IS '글 번호';
+
+COMMENT ON COLUMN Board.bno IS '게시판 번호';
+
+COMMENT ON COLUMN Board.id IS '회원아이디';
+
+COMMENT ON COLUMN Board.title IS '글 제목';
+
+COMMENT ON COLUMN Board.cont IS '글 내용';
+
+COMMENT ON COLUMN Board.hit IS '조회수';
+
+COMMENT ON COLUMN Board.writedate IS '작성 일시';
+
+COMMENT ON COLUMN Board.good IS '추천';
+
+CREATE UNIQUE INDEX PK_Board
+	ON Board (
+		no ASC
+	);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT PK_Board
+		PRIMARY KEY (
+			no
+		);
+
+/* 댓글 */
+CREATE TABLE Reply (
+	rno NUMBER NOT NULL, /* 댓글번호 */
+	no NUMBER NOT NULL, /* 글 번호 */
+	rcont NVARCHAR2(500), /* 댓글내용 */
+	rdate DATE /* 작성일 */
+);
+
+COMMENT ON TABLE Reply IS '댓글';
+
+COMMENT ON COLUMN Reply.rno IS '댓글번호';
+
+COMMENT ON COLUMN Reply.no IS '글 번호';
+
+COMMENT ON COLUMN Reply.rcont IS '댓글내용';
+
+COMMENT ON COLUMN Reply.rdate IS '작성일';
+
+CREATE UNIQUE INDEX PK_Reply
+	ON Reply (
+		rno ASC,
+		no ASC
+	);
+
+ALTER TABLE Reply
+	ADD
+		CONSTRAINT PK_Reply
+		PRIMARY KEY (
+			rno,
+			no
+		);
+
+ALTER TABLE contentTag
+	ADD
+		CONSTRAINT FK_TAG_TO_contentTag
+		FOREIGN KEY (
+			tagnum
+		)
+		REFERENCES TAG (
+			tagnum
+		);
+
+ALTER TABLE contentTag
+	ADD
+		CONSTRAINT FK_Board_TO_contentTag
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);
+
+ALTER TABLE scrap
+	ADD
+		CONSTRAINT FK_MEMBER_TO_scrap
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES MEMBER (
+			id
+		);
+
+ALTER TABLE scrap
+	ADD
+		CONSTRAINT FK_Board_TO_scrap
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);
+
+ALTER TABLE B_study
+	ADD
+		CONSTRAINT FK_Board_TO_B_study
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_category_TO_Board
+		FOREIGN KEY (
+			bno
+		)
+		REFERENCES category (
+			bno
+		);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_MEMBER_TO_Board
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES MEMBER (
+			id
+		);
+
+ALTER TABLE Reply
+	ADD
+		CONSTRAINT FK_Board_TO_Reply
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);
