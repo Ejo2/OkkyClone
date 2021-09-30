@@ -10,7 +10,7 @@
             
             <!--1: 오키로고-->
             <h1>
-                  <div class="logo"><a href="/main.jsp"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
+                  <div class="logo"><a href="/main.jsp"><img src="assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
                   </div>
             </h1>
             
@@ -111,7 +111,7 @@
             </div>
             <ul class="nav nav-sidebar nav-main">
                   <!--class="active 설정이 선택된 카테고리 표시. 각자 맡은 게시판 카테고리에 설정해줄것 "-->
-                  <li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
+                  <li data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
                           href="/articles/questions" class="link"><i class="nav-icon fa fa-database"></i> <span
                           class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
                   <li data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a
@@ -120,9 +120,9 @@
                   <li data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a
                           href="/articles/community" class="link"><i class="nav-icon fa fa-comments"></i> <span
                           class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
-                  <li data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a
+                  <li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a
                           href="BoardList.go" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
-                          class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+                          class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>     
                   <li data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a
                           href="job.do" class="link"><i
                           class="nav-icon fa fa-group"></i> <span
@@ -138,19 +138,14 @@
       </div>
       <!--마크업09/23사이드바2-->
       <div class="sidebar-category-nav">
-            <h3 class="sub-title">Q&A</h3>
+            <h3 class="sub-title">칼럼</h3>
             <ul class="nav">
                   <!--class ="nav-selected가 선택되고 있다는 표시의 빨간점. 각자 맡은 게시판 카테고리에 설정해줄것"-->
-                  <li><a href="/articles/questions" class="link"><span
+                  <li><a href="BoardList.go" class="link"><span
                           class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
                           class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a>
                   </li>
-                  <li><a href="/articles/tech-qna" class="link"><span
-                          class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
-                          class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                  <li><a href="/articles/blockchain-qna" class="link"><span
-                          class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
-                          class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                 
             </ul>
             <div class="special-nav">
             </div>
