@@ -40,7 +40,7 @@
 				<div class="job-filter-search">
 					<div class="input-group input-group-sm">
 						<input type="search" name="query" id="search-field" class="form-control" placeholder="검색어"
-						       value=""/>
+							   value=""/>
 						<span class="input-group-btn">
 						<button class="btn btn-default" id="search-btn"><i class="fa fa-search"></i></button>
 					</span>
@@ -186,23 +186,24 @@
 		<div id="job-filter-modal" class="contract off">
 			<div class="job-filter-modal-container">
 				<div class="job-filter-modal-top">
-					<div class="job-filter-modal-item-title" data-type="position">포지션 및 스킬</div>
+					<div class="job-filter-modal-item-title active" data-type="position">포지션 및 스킬</div>
 					<div class="job-filter-modal-item-title" data-type="pay">급여</div>
 					<div class="job-filter-modal-item-title" data-type="location">지역</div>
 					<div class="job-filter-modal-item-title" data-type="extra">기타 상세</div>
 				</div>
 				<div class="job-filter-modal-body">
 
-                    <div class="job-filter-modal-item active" data-type="position">
+					<div class="job-filter-modal-item" data-type="position">
 						<div class="filter-item">
 							<div class="filter-item-title">포지션</div>
 							<div class="filter-item-content">
 								<div class="filter-select-wrapper" data-name="group">
-									<div class="filter-select" data-group-id="1" data-value="1">개발</div>
+									<div class="filter-select active" data-group-id="1" data-value="1">개발</div>
 									<div class="filter-select" data-group-id="2" data-value="2">기획</div>
 									<div class="filter-select" data-group-id="3" data-value="3">디자인</div>
 									<div class="filter-select" data-group-id="4" data-value="4">마케팅</div>
 									<div class="filter-select" data-group-id="5" data-value="5">기타</div>
+									<!-- 여기 filter-select은 토글기능X, 선택한 select만 active 추가   -->
 								</div>
 								<div class="filter-select-wrapper" data-group="1" data-name="jobDuty">
 									<div class="filter-select" data-value="35">백엔드개발</div>
@@ -217,6 +218,9 @@
 									<div class="filter-select" data-value="13">기타개발</div>
 									<div class="filter-select" data-value="40">퍼블리셔</div>
 									<div class="filter-select" data-value="7">QA</div>
+									<!-- 여기 filter-select은 토글기능o,
+										 부모  class="filter-select-wrapper" &
+										 data-name="jobDuty"(not null)인 애들만    -->
 								</div>
 								<div class="filter-select-wrapper off" data-group="2" data-name="jobDuty">
 									<div class="filter-select" data-value="17">전략기획</div>
@@ -249,29 +253,29 @@
 						</div>
 
 						<!--삭제-->
-						<div class="filter-item">
-							<div class="filter-item-title">직책</div>
-							<div class="filter-item-content">
-								<div class="filter-select-wrapper filter-select-minimize" data-name="rank">
-									<div class="filter-select" data-value="0">PM</div>
-									<div class="filter-select" data-value="1">PL</div>
-									<div class="filter-select" data-value="2">팀장</div>
-									<div class="filter-select" data-value="3">팀원</div>
-								</div>
-							</div>
-						</div>
+						<%--						<div class="filter-item">--%>
+						<%--							<div class="filter-item-title">직책</div>--%>
+						<%--							<div class="filter-item-content">--%>
+						<%--								<div class="filter-select-wrapper filter-select-minimize" data-name="rank">--%>
+						<%--									<div class="filter-select" data-value="0">PM</div>--%>
+						<%--									<div class="filter-select" data-value="1">PL</div>--%>
+						<%--									<div class="filter-select" data-value="2">팀장</div>--%>
+						<%--									<div class="filter-select" data-value="3">팀원</div>--%>
+						<%--								</div>--%>
+						<%--							</div>--%>
+						<%--						</div>--%>
 						<div class="filter-item">
 							<div class="filter-item-title">스킬</div> <!--가능할지도.. -->
 							<div class="filter-item-content">
 								<input type="text" name="filter.skill" required="required" value=""
-								       placeholder="스킬을 입력해주세요." class="form-control tag-input form-dynamic">
+									   placeholder="스킬을 입력해주세요." class="form-control tag-input form-dynamic">
 							</div>
 						</div>
 					</div>
 					<!--삭제-->
 
 					<!-- 연봉조건 -->
-					<div class="job-filter-modal-item off" data-type="pay" >
+					<div class="job-filter-modal-item off" data-type="pay">
 						<div class="filter-item">
 							<div class="filter-item-title">최소연봉</div>
 							<div class="filte-item-content flow-wrap">
@@ -528,190 +532,230 @@
 </div>
 </body>
 <script>
-    var contextPath = "";
-    var encodedURL = "%2Farticles%2Fquestions";
+	var contextPath = "";
+	var encodedURL = "%2Farticles%2Fquestions";
 </script>
 <script src="assets/js/application.js" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>
 <script>
-    $(function () {
-        $('.category-sort-link').click(function (e) {
-            $('#category-sort-input').val($(this).data('sort'));
-            $('#category-order-input').val($(this).data('order'));
-            e.preventDefault();
-            $('#category-filter-form')[0].submit();
-        });
-    });
+	$(function () {
+		$('.category-sort-link').click(function (e) {
+			$('#category-sort-input').val($(this).data('sort'));
+			$('#category-order-input').val($(this).data('order'));
+			e.preventDefault();
+			$('#category-filter-form')[0].submit();
+		});
+	});
 </script>
+
 <script type="text/javascript">
-    $(function () {
-        $.ajax({
-            url: 'http://localhost:8090/OkkyClone_war_exploded/jobData.do', //json데이터 주소
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                //data길이만큼 돌면서 list를 출력하는 함수
-                $.each(data, function (index, obj) {
-                    for (let i = 1; i < obj.job.length; i++) {
+	$(function () {
+		$.ajax({
+			url: 'http://localhost:8090/jobData.do', //json데이터 주소
+			type: 'get',
+			dataType: 'json',
+			success: function (data) {
+
+				//data길이만큼 돌면서 list를 출력하는 함수
+				$.each(data, function (index, obj) {
+					for (let i = 1; i < obj.job.length; i++) {
 //TODO 중복 제거 - data.jobs.job[0]
-                        $(".list-group").append($('#list-group-items').attr('style', ('display:""'))); //list 생성
-                        $('#list-group-items:eq(0)').attr('style', ('display:none')); //첫번째 공고 숨김
+						$(".list-group").append($('#list-group-items').attr('style', ('display:""'))); //list 생성
+						$('#list-group-items:eq(0)').attr('style', ('display:none')); //첫번째 공고 숨김
 
-                        $('.title-link:eq(' + i + ')').attr('href', (data.jobs.job[i]["url"])); //타이틀 링크 변경
-                        $('.position:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
-                        $('.project:eq(' + i + ')').text(data.jobs.job[i].position["title"]); //공고제목
-                        $('.salary-name:eq(' + i + ')').text(data.jobs.job[i]["salary"].name); //연봉
-                        $('.required-education-level-name:eq(' + i + ')').text(data.jobs.job[i].position["required-education-level"].name); //학력
-                        $('.experience-level-name:eq(' + i + ')').text(data.jobs.job[i].position["experience-level"].name); //경력
-                        $('.location-name:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
-                        $('.job-type-name:eq(' + i + ')').text(data.jobs.job[i].position["job-type"].name); //근무형태
-                        let deadline = new Date((data.jobs.job[i]['expiration-timestamp']) * 1000);
-                        $('.expiration-timestamp:eq(' + i + ')').text('마감일   ' + deadline.toLocaleDateString()); //마감일
-                        $('.list-company-info:eq(' + i + ') a').attr('href', (data.jobs.job[i].company["detail"].href)) //회사 링크 변경
-                        $('.company-nickname:eq(' + i + ')').text((data.jobs.job[i].company["detail"].name)) //회사명 변경
-                    };
-                });
+						$('.title-link:eq(' + i + ')').attr('href', (data.jobs.job[i]["url"])); //타이틀 링크 변경
+						$('.position:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
+						$('.project:eq(' + i + ')').text(data.jobs.job[i].position["title"]); //공고제목
+						$('.salary-name:eq(' + i + ')').text(data.jobs.job[i]["salary"].name); //연봉
+						$('.required-education-level-name:eq(' + i + ')').text(data.jobs.job[i].position["required-education-level"].name); //학력
+						$('.experience-level-name:eq(' + i + ')').text(data.jobs.job[i].position["experience-level"].name); //경력
+						$('.location-name:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
+						$('.job-type-name:eq(' + i + ')').text(data.jobs.job[i].position["job-type"].name); //근무형태
+						let deadline = new Date((data.jobs.job[i]['expiration-timestamp']) * 1000);
+						$('.expiration-timestamp:eq(' + i + ')').text('마감일   ' + deadline.toLocaleDateString()); //마감일
+						$('.list-company-info:eq(' + i + ') a').attr('href', (data.jobs.job[i].company["detail"].href)) //회사 링크 변경
+						$('.company-nickname:eq(' + i + ')').text((data.jobs.job[i].company["detail"].name)) //회사명 변경
+					}
+					;
+				});
 
-            }
-        });
-    });
-
-    //모달창
-
-        $(".job-filter-btn").click(function () {
-            $("#job-filter-modal").prop('class', ('contract'));
+			}
+		});
+	});
 
 
-            $("div").click(function(event){
-                let thisEle = $(event.target);
-                // if(thisEle.attr('class') === "job-filter-modal-item-title"){
-                //     thisEle.attr('class', 'job-filter-modal-item-title active');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // }
-                // else if(thisEle.attr('class') === "job-filter-modal-item off"){
-                //     thisEle.attr('class', 'job-filter-modal-item');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // }else if(thisEle.attr('class') === "filter-select-wrapper off"){
-                //     thisEle.attr('class', 'filter-select-wrapper');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // }else if(thisEle.attr('class') === "filter-select"){
-                //     thisEle.attr('class', 'filter-select active');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // } else if(thisEle.attr('class') === "job-filter-modal-item-title active"){
-                //     thisEle.attr('class', 'job-filter-modal-item-title');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // }else if(thisEle.attr('class') === "job-filter-modal-item"){
-                //     thisEle.attr('class', 'job-filter-modal-item off');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // }else if(thisEle.attr('class') === "filter-select-wrapper"){
-                //     thisEle.attr('class', 'filter-select-wrapper off');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // }else if(thisEle.attr('class') === "filter-select active"){
-                //     thisEle.attr('class', 'filter-select');
-                //     console.log(thisEle.attr('class'));
-                //     return false;
-                // }
-                switch (thisEle.prop('class')){
-                    case "job-filter-modal-item-title": thisEle.prop('class', 'job-filter-modal-item-title active'); console.log('1' + thisEle.prop('class'));
-                        break;
-                    case "job-filter-modal-item off": thisEle.prop('class', 'job-filter-modal-item'); console.log('2' +thisEle.prop('class'));
-                        break;
-                    case "filter-select-wrapper off": thisEle.prop('class', 'filter-select-wrapper'); console.log('3' +thisEle.prop('class'));
-                        break;
-                    case "filter-select": thisEle.prop('class', 'filter-select active'); console.log('4' +thisEle.prop('class'));
-                        break;
-                    case "job-filter-modal-item-title active": thisEle.prop('class', 'job-filter-modal-item-title'); console.log('5' +thisEle.prop('class'));
-                        break;
-                    case "job-filter-modal-item": thisEle.prop('class', 'job-filter-modal-item off'); console.log('6' +thisEle.prop('class'));
-                        break;
-                    case "filter-select-wrapper": thisEle.prop('class', 'filter-select-wrapper off'); console.log('7' +thisEle.prop('class'));
-                        break;
-                    case "filter-select active": thisEle.prop('class', 'filter-select'); console.log('8' +thisEle.prop('class'));
-                        break;
-                };
-            });
+	//모달창
 
-            // $("div").click(function(event){
-            //     let thisEle = $(event.target);
-			//
-            //     // if(thisEle.attr('class') === "job-filter-modal-item-title"){
-            //     //     thisEle.attr('class', 'job-filter-modal-item-title active');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // }
-            //     // else if(thisEle.attr('class') === "job-filter-modal-item off"){
-            //     //     thisEle.attr('class', 'job-filter-modal-item');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // }else if(thisEle.attr('class') === "filter-select-wrapper off"){
-            //     //     thisEle.attr('class', 'filter-select-wrapper');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // }else if(thisEle.attr('class') === "filter-select"){
-            //     //     thisEle.attr('class', 'filter-select active');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // } else if(thisEle.attr('class') === "job-filter-modal-item-title active"){
-            //     //     thisEle.attr('class', 'job-filter-modal-item-title');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // }else if(thisEle.attr('class') === "job-filter-modal-item"){
-            //     //     thisEle.attr('class', 'job-filter-modal-item off');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // }else if(thisEle.attr('class') === "filter-select-wrapper"){
-            //     //     thisEle.attr('class', 'filter-select-wrapper off');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // }else if(thisEle.attr('class') === "filter-select active"){
-            //     //     thisEle.attr('class', 'filter-select');
-            //     //     console.log(thisEle.attr('class'));
-            //     //     return false;
-            //     // }
-			//
-            //     switch (thisEle.attr('class')){
-            //         // case "job-filter-modal-item-title": thisEle.prop('class', 'job-filter-modal-item-title active'); console.log('1' + thisEle.prop('class'));
-            //         //     break;
-            //         // case "job-filter-modal-item off": thisEle.prop('class', 'job-filter-modal-item'); console.log('2' +thisEle.prop('class'));
-            //         //     break;
-            //         // case "filter-select-wrapper off": thisEle.prop('class', 'filter-select-wrapper'); console.log('3' +thisEle.prop('class'));
-            //         //     break;
-            //         // case "filter-select": thisEle.prop('class', 'filter-select active'); console.log('4' +thisEle.prop('class'));
-            //         //     break;
-            //         case "job-filter-modal-item-title active": thisEle.prop('class', 'job-filter-modal-item-title'); console.log('5' +thisEle.prop('class'));
-            //             break;
-            //         case "job-filter-modal-item": thisEle.prop('class', 'job-filter-modal-item off'); console.log('6' +thisEle.prop('class'));
-            //             break;
-            //         case "filter-select-wrapper": thisEle.prop('class', 'filter-select-wrapper off'); console.log('7' +thisEle.prop('class'));
-            //             break;
-            //         case "filter-select active": thisEle.prop('class', 'filter-select'); console.log('8' +thisEle.prop('class'));
-            //             break;
-            //     };
-            // });
+	//버튼 누르면 모달창 뜨고
+	$(".job-filter-btn").click(function () {
+		$("#job-filter-modal").prop('class', ('contract'));
+	});
+	//x버튼 누르면 모달창 꺼짐
+	$(".job-filter-close-btn").click(function () {
+		$("#job-filter-modal").prop('class', ('contract off'));
+	});
 
-        // $(".job-filter-close-btn").click(function () {
-        //     $("#job-filter-modal").prop('class', ('contract off'));
-        // });
-    });
-    //1. 이벤트 발생객체가 ~~라면 ~~ 실행 2. 해당 이벤트 발생 후 추가 이벤트 발생 객체가~~라면 ~~실행
+	// console.log($('.job-filter-modal-item-title').data('type'));
+	$(".filter-select").click(function (event) {
+		console.log($(this).parent());
+		console.log($(this).parent().data('name'));
+		console.log($(this).parent().has('data-name'));
+		console.log($(this).parent().has('data-name').data('name'));
 
-    // console.log($('.job-filter-modal-item-title').data('type'));
-    // console.log($('.job-filter-modal-item-title').data('type').attr("class"));
+		// console.log($(this).parent().prop('class'));
+		console.log($(this).data('group-id'));
+		console.log($(this).parent().parent().children());
+		// console.log($(this).parent().parent().children().dataset.group()=='1');
+		console.log($(this).parent().parent().children().has('data-group'));
+		console.log($('div[data-group="1"]').data('group'));
+		console.log($('div[data-group="1"]'));
+		// let pick = $(this).parent().parent().children().data('group') === '1'
+		// console.log(pick)
+
+		//선택한 옵션의 그룹아이디와 부모-형제의 그룹 요소값이 같지 않으면 클래스명 + off
+		if($(this).parent().data('name') != ''){ //부모 클래스가 data-name= not null 일때만
+			$(this).parent().children().prop('class', 'filter-select'); //클릭한 div의 동일레벨 div 클래스가 비활성화
+			$(this).prop('class', 'filter-select active'); //클릭한 div만 활성화 == 클릭한 옵션이 선택된다
+			console.log($(this).data('group-id'));
+			$(this).parent().parent().children().prop('class', 'filter-select-wrapper off'); //모든 wrapper 비활성화
+			$(this).parent().parent().children().first().prop('class', 'filter-select-wrapper'); //첫번째 wrapper(group) 활성화
+			$('div[data-name="district"]').prop('class', 'filter-select-wrapper');
+
+			if($(this).data('group-id') == '1' ){ //선택한 옵션만 활성화 //선택한 옵션(div)의 요소 data('group-id')가 1이라면
+				$('div[data-group="1"]').prop('class', 'filter-select-wrapper') //요소 data('group-id')를 가지는 div의 클래스명을 변경
+			} else if($(this).data('group-id') == '2' ){
+				$('div[data-group="2"]').prop('class', 'filter-select-wrapper')
+			} else if($(this).data('group-id') == '3' ){
+				$('div[data-group="3"]').prop('class', 'filter-select-wrapper')
+			} else if($(this).data('group-id') == '4' ){
+				$('div[data-group="4"]').prop('class', 'filter-select-wrapper')
+			} else if($(this).data('group-id') == '5' ){
+				$('div[data-group="5"]').prop('class', 'filter-select-wrapper')
+			}
+
+
+		}else if($(this).parent().prop('class') === 'filter-select-wrapper' &&
+				$(this).parent().data('name') != '') {
+			$(this).toggleClass("active");
+		}
+	});
+
+	//대분류 선택 활성화 , 비활성화
+	$(".job-filter-modal-item-title").click(function (event) {
+		$(this).parent().children().prop('class', 'job-filter-modal-item-title'); //클릭한 div의 동일레벨 div 클래스가 비활성화
+		$(this).prop('class', 'job-filter-modal-item-title active');
+		$(this).parent().next().children().prop('class', 'job-filter-modal-item off');
+
+		if($(this).data('type') === 'position'){
+			// <div class="job-filter-modal-item" data-type="position">을 class="job-filter-modal-item"로 변경해야하는데
+			//class="job-filter-modal-body" 밑의 job-filter-modal-item만 적용해야함
+
+			//.job-filter-modal-body 하위 div 중 data-type="position"인 class명을 'job-filter-modal-item'로 변경해서 활성화 시킨다.
+			$('.job-filter-modal-body > div[data-type="position"]').prop('class', 'job-filter-modal-item');
+		}else if($(this).data('type') === 'pay'){
+			$('.job-filter-modal-body > div[data-type="pay"]').prop('class', 'job-filter-modal-item');
+		}else if($(this).data('type') === 'location'){
+			$('.job-filter-modal-body > div[data-type="location"]').prop('class', 'job-filter-modal-item');
+		}else if($(this).data('type') === 'extra'){
+			$('.job-filter-modal-body > div[data-type="extra"]').prop('class', 'job-filter-modal-item');
+		}
+	});
+
+	// $(".job-filter-modal-item").click(function (event) {
+	//     $(this).toggleClass("off");
+	//     $(".job-filter-modal-item").prop('class', 'job-filter-modal-item');
+	// });
+	//
+	// $(".job-filter-modal-item-title").click(function (event) {
+	//     $(this).toggleClass("active");
+	//     $(".job-filter-modal-item-title").prop('class', 'job-filter-modal-item');
+	//
+	// });
+
+	// $(".job-filter-modal-item-title").click(function(event){
+	//     $(this).toggleClass("active");
+	// });
+	//
+	// $(".job-filter-modal-item").click(function(event){
+	//     $(this).toggleClass("off");
+	// });
+	//
+	// $(".filter-select-wrapper").click(function (event) {
+	//     $(this).toggleClass("off");
+	// });
+
+	// $("div").click(function (event) {
+	//     let thisEle = $(event.target);
+	//     // if(thisEle.attr('class') === "job-filter-modal-item-title"){
+	//     //     thisEle.attr('class', 'job-filter-modal-item-title active');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // }
+	//     // else if(thisEle.attr('class') === "job-filter-modal-item off"){
+	//     //     thisEle.attr('class', 'job-filter-modal-item');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // }else if(thisEle.attr('class') === "filter-select-wrapper off"){
+	//     //     thisEle.attr('class', 'filter-select-wrapper');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // }else if(thisEle.attr('class') === "filter-select"){
+	//     //     thisEle.attr('class', 'filter-select active');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // } else if(thisEle.attr('class') === "job-filter-modal-item-title active"){
+	//     //     thisEle.attr('class', 'job-filter-modal-item-title');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // }else if(thisEle.attr('class') === "job-filter-modal-item"){
+	//     //     thisEle.attr('class', 'job-filter-modal-item off');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // }else if(thisEle.attr('class') === "filter-select-wrapper"){
+	//     //     thisEle.attr('class', 'filter-select-wrapper off');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // }else if(thisEle.attr('class') === "filter-select active"){
+	//     //     thisEle.attr('class', 'filter-select');
+	//     //     console.log(thisEle.attr('class'));
+	//     //     return false;
+	//     // }
+	//     console.log(thisEle.prop('class'));
+	//     switch (thisEle.prop('class')) {
+	//         // case "job-filter-modal-item-title": thisEle.prop('class', 'job-filter-modal-item-title active'); console.log('1' + thisEle.prop('class'));
+	//         //     break;
+	//         // case "job-filter-modal-item off": thisEle.prop('class', 'job-filter-modal-item'); console.log('2' +thisEle.prop('class'));
+	//         //     break;
+	//         // case "filter-select-wrapper off":
+	//         //     thisEle.prop('class', 'filter-select-wrapper');
+	//         //     console.log('3' + thisEle.prop('class'));
+	//         //     break;
+	//         // case "filter-select" || "filter-select active" :
+	//         //     console.log(1);
+	//         //     $(this).toggleClass("active");
+	//         //
+	//         //     break;
+	//
+	//         // case "job-filter-modal-item-title active": thisEle.prop('class', 'job-filter-modal-item-title'); console.log('5' +thisEle.prop('class'));
+	//         //     break;
+	//         // case "job-filter-modal-item": thisEle.prop('class', 'job-filter-modal-item off'); console.log('6' +thisEle.prop('class'));
+	//         //     break;
+	//         // case "filter-select-wrapper": thisEle.prop('class', 'filter-select-wrapper off'); console.log('7' +thisEle.prop('class'));
+	//         //     break;
+	//         // case "filter-select active": thisEle.prop('class', 'filter-select'); console.log('8' +thisEle.prop('class'));
+	//         //     break;
+	//     }
+	//     ;
+	// });
+
+
+	//1. 이벤트 발생객체가 ~~라면 ~~ 실행 2. 해당 이벤트 발생 후 추가 이벤트 발생 객체가~~라면 ~~실행
+
+	// console.log($('.job-filter-modal-item-title').data('type'));
+	// console.log($('.job-filter-modal-item-title').data('type').attr("class"));
 </script>
 
 
-}
-});
-
-});
-</script>
 
 </html>
 

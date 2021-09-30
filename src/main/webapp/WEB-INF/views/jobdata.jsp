@@ -8,7 +8,7 @@
 //        String text = "web";
 //        String apiURL = "https://oapi.saramin.co.kr/job-search?access-key="+accessKey+"&keyword="+ text;
 //TODO count, job_mid_cd 등 검색 값에 따라 변경되게 설정해서 유동적 검색 가능하도록
-        String text = "&count=3&job_mid_cd=4,12";
+        String text = "&count=5&job_mid_cd=4,12";
         String apiURL = "https://oapi.saramin.co.kr/job-search?access-key=" + accessKey + text;
 
         URL url = new URL(apiURL);
