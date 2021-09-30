@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/qna_read.css">
+
+
 
     <title>OKKY - 서블릿 어렵네요ㅠ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,6 +54,13 @@
 </head>
 
 <body>
+<c:set var="board" value="${requestScope.board}" />
+<c:set var="idx" value="${requestScope.no}" />
+<c:set var="cpage" value="${requestScope.cp}" />
+<c:set var="pagesize" value="${requestScope.ps}" />
+<c:set var="replyList" value="${requestScope.replyList}" />
+
+
 <div>
     <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
 
@@ -65,13 +75,10 @@
     <div class="main">
         <div id="article" class="content" role="main">
 
-
-
-
             <div class="nav" role="navigation">
-                <a class="create btn btn-success btn-wide pull-right" href="/articles/tech-qna/create"><i
-                        class="fa fa-pencil"></i> 새 글 쓰기</a>
-                <h4>Tech Q&A</h4>
+                <a class="create btn btn-success btn-wide pull-right" href="${pageContext.request.contextPath}/QnAWrite.qo">
+                    <i class="fa fa-pencil"></i> 새 글 쓰기</a>
+                <h4>Q&A</h4>
             </div>
 
 
@@ -82,31 +89,31 @@
                         <a href="/user/info/127868" class='avatar-photo'><img
                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40"/></a>
                         <div class="avatar-info">
-                            <a class="nickname" href="/user/info/127868" title="닉녬">닉녬</a>
-                            <div class="activity"><span class="fa fa-flash"></span> 10</div>
-                            <div class="date-created"><span class="timeago" title="2021-09-28T18:57:07">2021-09-28 18:57:07</span>
+                            <a class="nickname" href="/user/info/127868" title="${requestScope.userInfo.nickname}">${requestScope.userInfo.nickname}</a>
+                            <div class="activity"><span class="fa fa-flash"></span> 10</div> <%--활동점수--%>
+                            <div class="date-created"><span class="timeago" title="${board.writedate}">${board.writedate}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="content-identity pull-right">
-                        <div class="content-identity-count"><i class="fa fa-comment"></i> 0</div>
-                        <div class="content-identity-count"><i class="fa fa-eye"></i> 1</div>
+                        <div class="content-identity-count"><i class="fa fa-comment"></i> 0</div> <%--??--%>
+                        <div class="content-identity-count"><i class="fa fa-eye"></i>${board.hit}</div>
                     </div>
                 </div>
                 <div class="content-container clearfix">
                     <div id="content-body" class="panel-body content-body pull-left">
                         <div class="content-tags">
-                            <span class="list-group-item-text article-id">#1060292</span>
-                            <a href="/articles/tech-qna" class="list-group-item-text item-tag label label-info"><i
-                                    class="fa fa-database"></i> Tech Q&A</a>
+                            <span class="list-group-item-text article-id">${board.no}</span>
+                            <a href="/articles/tech-qna" class="list-group-item-text item-tag label label-info">
+                                <i class="fa fa-database"></i>Q&A</a>
                         </div>
                         <h2 class="panel-title">
-                            서블릿 어렵네요ㅠ
+                            ${board.title}
                         </h2>
                         <hr/>
                         <article class="content-text" itemprop="articleBody">
-                            <p>어려워요ㅠ</p>
+                            <p> ${board.cont}</p>
                         </article>
                     </div>
 
@@ -131,10 +138,9 @@
                             </div>
                         </div>
                         <div class="content-function-group article-scrap-wrapper">
-                            <a href="javascript://" id="article-scrap-btn" data-type="scrap"><i class="fa fa-bookmark "
-                                                                                                data-toggle="tooltip"
-                                                                                                data-placement="left"
-                                                                                                title="스크랩"></i></a>
+                            <a href="javascript://" id="article-scrap-btn" data-type="scrap">
+                                <i class="fa fa-bookmark" data-toggle="tooltip" data-placement="left" title="스크랩"></i>
+                            </a>
                             <div id="article-scrap-count" class="content-count">0</div>
                         </div>
                     </div>
@@ -143,18 +149,20 @@
 
                         </div>
 
+                        <%--지워야함!!!!--%>
+                        <a href="${pageContext.request.contextPath}/QnAEdit.qo">수정</a>
+
                         <div class="dropdown">
-                            <form action="/article/delete/1060292" method="post" name="article-delete-form"
+                            <form action="${pageContext.request.contextPath}/QnAContent.qo" method="post" name="article-delete-form"
                                   id="article-delete-form">
                                 <input type="hidden" name="_csrf" value="d3611fcc-5ba1-49ea-9f83-7e974f6bbf11">
                                 <input type="hidden" name="_method" value="DELETE" id="method">
                                 <div class="dropdown">
-                                    <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog"
-                                                                                      data-toggle="tooltip"
-                                                                                      data-placement="left"
-                                                                                      title="게시물 설정"></i></a>
+                                    <a href="javascript://" data-toggle="dropdown">
+                                        <i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="게시물 설정"></i>
+                                    </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/article/edit/1060292" class="edit"><i
+                                        <li><a href="${pageContext.request.contextPath}/QnAEdit.qo" class="edit"><i
                                                 class="fa fa-edit fa-fw"></i> 수정 </a></li>
                                         <li><a href="javascript://" id="article-delete-btn"><i
                                                 class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
@@ -167,6 +175,7 @@
             </div>
 
 
+            <%--댓글--%>
             <div class="panel panel-default clearfix">
                 <!-- List group -->
                 <ul class="list-group">
@@ -174,7 +183,7 @@
                         <h3 class="panel-title">답변 <span id="note-count">0</span></h3>
                     </li>
                     <li class="list-group-item note-form clearfix">
-                        <form action="/article/addNote/1060292" method="post" class="note-create-form">
+                        <form action="${pageContext.request.contextPath}/QnAContent.qo" method="post" class="note-create-form">
                             <input type="hidden" name="_csrf" value="d3611fcc-5ba1-49ea-9f83-7e974f6bbf11">
                             <div class="content-body panel-body pull-left">
                                 <div style="margin-left: 5px;">
@@ -228,9 +237,7 @@
         </form>
         <form action="/article/scrap/1060292" method="post" name="article-scrap-form" id="article-scrap-form">
         </form>
-        <div class="right-banner-wrapper">
 
-            <div class="google-ad">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- okjspad_160x500 -->
                 <ins class="adsbygoogle"
@@ -268,6 +275,8 @@
         js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+
 </script>
 
 <div id="userPrivacy" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -284,5 +293,23 @@
         </div>
     </div>
 </div>
+<script src="../../../summernote/js/summernote-lite.js"></script>
+<!--예솔 추가함 : summernote-->
+<script src="../../../summernote/js/summernote-ko-KR.js"></script>
+<!--예솔 추가함 : summernote-->
+<link rel="stylesheet" href="../../../summernote/css/summernote-lite.css">
+<!--예솔 추가함 : summernote-->
+<script type="text/javascript">
+    $("#note-create").on('click',function(){
+        $("#note-create").summernote({
+            height: 300,                 // 에디터 높이
+            minHeight: null,             // 최소 높이
+            maxHeight: null,             // 최대 높이
+            focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+            lang: "ko-KR",               // 한글 설정
+            placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
+        });
+    });
+</script>
 </body>
 </html>

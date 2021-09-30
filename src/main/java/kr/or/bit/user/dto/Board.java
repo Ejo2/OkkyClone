@@ -2,6 +2,7 @@ package kr.or.bit.user.dto;
 
 import java.util.Date;
 
+
 public class Board {
     private int no;
     private int bno;
@@ -13,6 +14,10 @@ public class Board {
     private int good;
     private int removedOk;
     private int scrapNum;
+
+    public Board() {
+
+    }
 
     public Board(int no, int bno, String id, String title, String cont, int hit, Date writedate, int good, int removedOk, int scrapNum) {
         this.no = no;
@@ -123,3 +128,5 @@ public class Board {
                 '}';
     }
 }
+
+
