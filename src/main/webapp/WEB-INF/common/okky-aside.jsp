@@ -115,14 +115,14 @@
       
       <ul class="nav nav-sidebar nav-main">
             <!--class="active 설정이 선택된 카테고리 표시. 각자 맡은 게시판 카테고리에 설정해줄것 "-->
-            <li  data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
-                    href="/articles/questions" class="link"><i class="nav-icon fa fa-database"></i> <span
+            <li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
+                    href="#" class="link"><i class="nav-icon fa fa-database"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
             <li data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a
-                    href="/articles/tech" class="link"><i class="nav-icon fa fa-code"></i> <span
+                    href="#" class="link"><i class="nav-icon fa fa-code"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
             <li data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a
-                    href="/articles/community" class="link"><i class="nav-icon fa fa-comments"></i> <span
+                    href="#" class="link"><i class="nav-icon fa fa-comments"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
             <li data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a
                     href="BoardList.go" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
@@ -147,14 +147,15 @@
       <h3 class="sub-title">Q&A</h3>
       <ul class="nav">
             <!--class ="nav-selected가 선택되고 있다는 표시의 빨간점. 각자 맡은 게시판 카테고리에 설정해줄것"-->
-            <li><a href="/articles/questions" class="link"><span
-                    class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
+            <li><a href="#" class="link">
+                  <span
+                          class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
                     class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a>
             </li>
-            <li><a href="/articles/tech-qna" class="link"><span
+            <li><a href="#" class="link"><span
                     class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
                     class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-            <li><a href="/articles/blockchain-qna" class="link"><span
+            <li><a href="#" class="link"><span
                     class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
                     class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
       </ul>
@@ -162,12 +163,14 @@
       </div>
 </div>
 <script>
+     
      $("#setting").popover({
           html: true,
           content: function() {
                return $('#popover-content').html();
           },
      });
+
      $('#notification').popover({
           html: true,
           content: function() {
@@ -175,6 +178,51 @@
           },
      });
      
+     $(function() {
+          let liActive = $("ul > li.link >i");
+          liActive.click(function(event) {
+               liActive.parent.removeClass("active");
+               $(this).addClass("active");
+               console.log($(this));
+          });
+     });
 
 </script>
 <!--마크업09/23-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
