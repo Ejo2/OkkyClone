@@ -64,7 +64,7 @@
                     <a href="/user/info/127868" class='avatar-photo'><img
                             src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
                     <div class="avatar-info">
-                        <a class="nickname" href="/user/info/127868" title="닉네임">닉네임</a>
+                        <a class="nickname" href="/user/info/127868" title="닉네임" >닉네임</a>
                         <div class="activity block"><span class="fa fa-flash"></span> 0</div>
                     </div>
                 </div>

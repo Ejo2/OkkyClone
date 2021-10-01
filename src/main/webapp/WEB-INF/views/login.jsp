@@ -17,8 +17,8 @@
                         </div>
                         
                         <form action='login.do' class="form-signin form-user panel-body panel-margin" method='POST' id='loginForm' autocomplete='off'>
-                              <input type="text" name="id" autocorrect="off" autocapitalize="off" id="id" class="username form-control input-sm" placeholder="아이디" required autofocus>
-                              <input type="password" name='pw' class="password form-control input-sm" placeholder="비밀번호" required>
+                              <input style="width: 100%" type="text" name="id" autocorrect="off" autocapitalize="off" id="id" class="username form-control input-sm" placeholder="아이디" required autofocus>
+                              <input style="width: 100%" type="password" name='pw' class="password form-control input-sm" placeholder="비밀번호" required>
                               <div class="checkbox">
                                     <label>
                                           <input type="checkbox" name="remember_me" id="remember_me"> 로그인 유지
