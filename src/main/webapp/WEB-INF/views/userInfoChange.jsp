@@ -47,6 +47,15 @@
             background  : url(https://img.icons8.com/metro/26/000000/close-window.png);
             text-indent : -9999px;
       }
+      
+      .img_wrap {
+            width  : 42px;
+            height : 42px;
+      }
+      
+      .img_wrap img {
+            max-width : 100%;
+      }
 
 
 </style>
@@ -65,42 +74,40 @@
                               
                               
                               <div class="avatar clearfix avatar-medium ">
-                                    <a href="/user/info/115337" class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=40"></a>
+                                    <a href="memberDetailGo.do" class="avatar-photo"><img src="upload/${userInfo.photo}"></a>
                                     <div class="avatar-info">
                                           <a class="nickname" href="memberDetailGo.do" title="${userInfo.nickname}">${userInfo.nickname}</a>
                                     </div>
                               </div>
                               <a id="edit-picture-btn">변경</a>
-                              <div class="profile-picture-list" style="display:none;">
+                              
+                              <div id="uploadImage" class="profile-picture-list" style="display:none;">
                                     
                                     
                                     <div class="profile-picture selected" data-id="0">
-                                          <span class="avatar-photo"><img src="//www.gravatar.com/avatar/0285579c04f577bf59230b931e1da2f5?d=identicon&amp;s=40"></span>
-                                          <span>Gravatar</span>
+                                          <span class="avatar-photo"><img src="upload/${userInfo.photo}"></span>
+                                          <span>MY 프로필</span>
                                     </div>
-                                    
-                                    
-                                    <div class="profile-picture " data-id="34418">
-                                          <span class="avatar-photo"><img src="${userInfo.photo}"></span>
-                                          <span>Google</span>
-                                    </div>
-                                    <button class="btn btn-primary" id="profile-upload-btn" style="font-size: 12px">이미지 업로드<br><small>권장 사이즈 150px<br>최대 250KB</small>
-                                    </button>
-                                    <input type="file" name="files" accept="image/gif, image/jpg, image/jpeg, image/png" style="display:none;" id="profileImage">
-                                    <button class="btn btn-success picture-confirm-btn">확인</button>
+                                    <form action="profileChange.do" method="POST" enctype="multipart/form-data" id="uploadForm">
+                                          
+                                          <h2><b>이미지 미리보기</b></h2>
+                                          <input type="file" name="filename1" id="input_img"/>
+                                          <div class="profile-picture" data-id="0">
+                                                <span class="avatar-photo"><img id="img"></span>
+                                          </div>
+                                          <input type="submit" value="이미지 변경하기">
+                                    </form>
+                              
                               </div>
                         </div>
                         <form action="updateUserNickname.do" method="POST" class="form-signup form-user panel-body" id="loginForm" autocomplete="off"><%--정보수정에 대한 form태그--%>
                               <input type="hidden" name="_csrf" value="93edf1b2-d9ca-4a57-8435-1f40c51ee8bb">
                               <input type="hidden" name="_method" value="PUT" id="_method">
                               <fieldset>
-                                    
                                     <div class="form-group">
                                           <label class="control-label" for="nickname">닉네임</label>
-                                          <input type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${userInfo.nickname}" id="nickname">
+                                          <input  style="width: 100%"  type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${userInfo.nickname}" id="nickname">
                                     </div>
-                              
-                              
                               </fieldset>
                               <button class="btn btn-primary btn-block" type="submit">정보 수정</button>
                         </form>
@@ -119,18 +126,18 @@
                                           <input type="email" name="email" class="form-control input-sm" placeholder="이메일" required="" value="${userInfo.email}" id="email" style="width: 100%">
                                           <input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=getRandom()%>"/>
                                           
-                                          <input class="form-control" type="submit" id="verify-email-btn" value="인증" style="background-color: #5bc0de; color: #fff"></input>
+                                          <input class="form-control" type="submit" id="verify-email-btn" value="인증" style="background-color: #5bc0de; color: #fff"/>
                                           <div id="error_mail" class="result-email result-check"></div>
                                     </div>
                               </div>
                         </form>
-                        
+                  
                   
                   </div>
                   <div class="panel panel-default">
                         <div class="panel-body panel-margin">
                               <form action="pwdChangeGo.do" method="post">
-                                    <button type="submit"  class="btn btn-info btn-block">비밀번호 변경</button>
+                                    <button type="submit" class="btn btn-info btn-block">비밀번호 변경</button>
                               </form>
                               <a href="byebyeGo.do" class="btn btn-default btn-block">회원 탈퇴</a>
                         </div>
@@ -144,6 +151,61 @@
 </div>
 </body>
 <script>
+     var sel_file;
+     
+     $(document).ready(function() {
+          $("#input_img").on("change", handleImgFileSelect);
+     });
+     
+     function handleImgFileSelect(e) {
+          var files = e.target.files;
+          console.log(files.target);
+          var filesArr = Array.prototype.slice.call(files);
+          console.log(filesArr.toString());
+          
+          filesArr.forEach(function(f) {
+               if (!f.type.match("image.*")) {
+                    alert("확장자는 이미지 확장자만 가능합니다.");
+                    return;
+               }
+               
+               sel_file = f;
+               
+               var reader = new FileReader();
+               
+               reader.onload = function(e) {
+                    console.log("온로드 타켓!" + e.target);
+                    $("#img").attr("src", e.target.result);
+               };
+               
+               reader.readAsDataURL(f);
+          });
+     }
+     
+     function submitAction() {
+          var data = new FormData();
+          
+          for (var i = 0, len = sel_files.length; i < len; i++) {
+               var name = "image_" + i;
+               data.append(name, sel_files[i]);
+          }
+          data.append("image_count", sel_files.length);
+          
+          
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "./study01_af.php");
+          xhr.onload = function(e) {
+               if (this.status == 200) {
+                    console.log("Result : " + e.currentTarget.responseText);
+               }
+          }
+          
+          xhr.send(data);
+          
+     }
+     
+     
+     
      function email_check(email) {
           
           var regex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -166,14 +228,17 @@
                $(".result-email").text('');
           }
      });
+     $('#edit-picture-btn').click(function() {
+          if ($('#uploadImage').css("display") == 'none') {
+               $('#uploadImage').show();
+          } else {
+               $('#uploadImage').hide()
+          }
+     });
 
-     
-     
-     
-    
 
 </script>
-<script src="assets/js/application.js" type="text/javascript"></script>
+<script src="/assets/js/application" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>
 
 <%!

@@ -19,7 +19,7 @@
                         
                         
                         <div class="avatar clearfix avatar-big col-sm-3 text-center">
-                              <a href="/user/info/115337" class="avatar-photo"><img src="${userInfo.photo}"></a>
+                              <a href="#" class="avatar-photo"><img src="upload/${userInfo.photo}"></a>
                         </div>
                         <div class="user-info col-sm-9">
                               <div class="clearfix">
@@ -116,7 +116,6 @@
      var encodedURL = "%2Farticles%2Fquestions";
 </script>
 
-<script src="assets/js/application.js" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>
 
 <script>

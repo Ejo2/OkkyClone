@@ -19,33 +19,33 @@
                         
                         
                         <div class="avatar clearfix avatar-big col-sm-3 text-center">
-                              <a href="/user/info/115337" class="avatar-photo"><img src="${userInfo.photo}"></a>
+                              <a href="#" class="avatar-photo"><img src="upload/${userInfo.photo}"></a>
                         </div>
                         <div class="user-info col-sm-9">
                               <div class="clearfix">
                                     <h2 class="pull-left">${userInfo.nickname}</h2>
                               </div>
-                        
-                        </div>
-                  </div>
+
             </div>
-            <div class="col-sm-2 user-info-nav pull-right">
-                  <ul class="nav">
-                        <li class=""><a href="memberDetailGo.do">게시물
-                              <span class="badge">${totalBoardCount}</span></a></li>
-                        <li class="active"><a href="scrapListGo.do">스크랩
-                              <span class="badge">${userScrapList.size()}</span></a></li>
-                  </ul>
-            </div>
-            <div class="col-sm-10 main-block-left pull-left">
-                  <ul class="list-group" id="list-group">
-                        
-                        <c:forEach var="board" items="${writeBoardList}">
+      </div>
+</div>
+<div class="col-sm-2 user-info-nav pull-right">
+      <ul class="nav">
+            <li class=""><a href="memberDetailGo.do">게시물
+                  <span class="badge">${totalBoardCount}</span></a></li>
+            <li class="active"><a href="scrapListGo.do">스크랩
+                  <span class="badge">${userScrapList.size()}</span></a></li>
+      </ul>
+</div>
+<div class="col-sm-10 main-block-left pull-left">
+      <ul class="list-group" id="list-group">
+      
+      <c:forEach var="board" items="${writeBoardList}">
                               <li class="list-group-item list-group-item-small list-group-has-note clearfix">
                                     <div class="list-icon-wrapper pull-left">
                                           
                                           <i class="fa fa-angle-up fa-lg"></i>
-                                    
+                                          
                                     </div>
                                     <div class="list-title-wrapper list-activity">
                                           <div class="list-activity-desc">
