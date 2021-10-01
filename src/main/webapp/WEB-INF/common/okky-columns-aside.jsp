@@ -47,7 +47,7 @@
                   <c:if test="${not empty sessionScope.id}">
                         <div class="avatar clearfix avatar-medium ">
                               <a href="memberDetailGo.do" class='avatar-photo'><img
-                                      src="/assets/img/bros_blank.jpg"/></a>
+                                      src="/upload/bros_blank.jpg"/></a>
                         </div>
                         <div class="nav-user-action">
                               <div class="nav-user-func">

@@ -19,13 +19,13 @@
                               <div class="panel-body panel-body-content text-center">
                                     <p class="lead">변경하실 비밀번호를 입력해 주세요.</p>
                                     <div class="form-group">
-                                          <input type="password" name="password" class="form-control form-control-inline text-center" placeholder="현재 비밀번호">
+                                          <input style="width: 100%;" type="password" name="password" class="form-control form-control-inline text-center" placeholder="현재 비밀번호">
                                     </div>
                                     <div class="form-group">
-                                          <input type="password" value="" name="newPassword" class="form-control form-control-inline text-center" placeholder="새 비밀번호">
+                                          <input style="width: 100%;" type="password" value="" name="newPassword" class="form-control form-control-inline text-center" placeholder="새 비밀번호">
                                     </div>
                                     <div class="form-group">
-                                          <input type="password" value="" name="passwordConfirm" class="form-control form-control-inline text-center" placeholder="새 비밀번호 확인">
+                                          <input style="width: 100%;" type="password" value="" name="passwordConfirm" class="form-control form-control-inline text-center" placeholder="새 비밀번호 확인">
                                     </div>
                                     <button id="changeSubmit" type="submit" class="btn btn-primary">비밀번호 변경</button>
                                     <a href="javascript:history.back()" class="btn btn-default">취소</a>

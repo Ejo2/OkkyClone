@@ -24,11 +24,11 @@
                               <input type="hidden" name="_csrf" value="7907b04a-3989-4228-83bd-d76781042c9f">
                               <fieldset>
                                     
-                                    <input type="text" name="id" class="form-control input-sm" required="" placeholder="아이디" value="" id="id">
-                                    <input type="text" name="nickname" class="form-control input-sm" required="" placeholder="닉네임" value="" id="nickname">
-                                    <input type="password" name="pw" class="form-control input-sm" required="" placeholder="비밀번호" value="" id="pw">
-                                    <input type="password" name="pw2" class="form-control input-sm" required="" placeholder="비밀번호 확인" value="" id="pw2">
-                                    <input type="text" name="email" style="width:100%;" class="form-control input-sm" required="" placeholder="이메일" value="" id="email">
+                                    <input style="width: 100%"  type="text" name="id" class="form-control input-sm" required="" placeholder="아이디" value="" id="id">
+                                    <input style="width: 100%" type="text" name="nickname" class="form-control input-sm" required="" placeholder="닉네임" value="" id="nickname">
+                                    <input style="width: 100%" type="password" name="pw" class="form-control input-sm" required="" placeholder="비밀번호" value="" id="pw">
+                                    <input style="width: 100%"  type="password" name="pw2" class="form-control input-sm" required="" placeholder="비밀번호 확인" value="" id="pw2">
+                                    <input  type="text" name="email" style="width:100%;" class="form-control input-sm" required="" placeholder="이메일" value="" id="email">
                                     <input type="file" name="photo" id="photo" value="파일선택" accept="image/*">
                                     <%--프로필사진은 일단은 기본 이미지로 대체합니다.
                                     이후 회원정보에서 프로필 사진 업로드합니다.
