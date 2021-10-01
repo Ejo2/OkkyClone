@@ -30,6 +30,7 @@ public class FrontMemoController extends HttpServlet{
         
         Action action = null;
         ActionForward forward = null;
+        
         if (url_Command.equals("/loginGo.do")){
             action = new LoginGoService();
             forward = action.execute(request, response);
@@ -94,6 +95,16 @@ public class FrontMemoController extends HttpServlet{
         }else if (url_Command.equals("/updatePwd.do")){
             action = new updatePwdService();
             forward = action.execute(request, response);
+        }else if (url_Command.equals("/byebyeGo.do")){
+            action = new deleteUserService();
+            forward = action.execute(request, response);
+    
+            System.out.println("byebyeGo.do");
+        }else if (url_Command.equals("/profileChange.do")){
+            action = new profileChangeService();
+            forward = action.execute(request, response);
+    
+            System.out.println("profileChange.do");
         }
             
         

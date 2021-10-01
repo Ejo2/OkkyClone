@@ -116,7 +116,6 @@
      var encodedURL = "%2Farticles%2Fquestions";
 </script>
 
-<script src="assets/js/application.js" type="text/javascript"></script>
 <script src="assets/js/search.js" type="text/javascript"></script>
 
 <script>
