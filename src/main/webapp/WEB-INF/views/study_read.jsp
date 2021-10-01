@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
-<!--작업중입니다. web-inf > views 안에 넣어야 합니다-->
+<jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/qna_read.css">
 
-    <title>OKKY - 서블릿 어렵네요ㅠ</title>
+    <title>${sb.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf_parameter" content="_csrf"/>
     <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
@@ -22,38 +22,12 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta property="og:image" content="https://okky.kr/assets/images/okky_logo_fb.png">
     <link rel="stylesheet" href="/assets/css/application.css">
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-M52CW55');</script>
-    <!--[if lt IE 9]>
-    <script src="/js/libs/html5.js"></script>
-    <script src="/assets/libs/respond.src.js"></script>
-    <script src="/assets/libs/html5.js"></script>
-    <![endif]-->
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="OKKY">
-    <meta property="og:url" content="https://okky.kr/article/1060292">
-    <meta property="og:description" content=" 어려워요ㅠ ">
-    <meta property="og:title" content="OKKY | 서블릿 어렵네요ㅠ">
-    <meta property="dable:item_id" content="1060292">
-    <meta property="dable:author" content="닉녬">
-    <meta property="article:section" content="tech-qna">
-    <meta property="article:published_time" content="2021-09-28T18:57:07Z">
 </head>
 
 <body>
+<link rel="stylesheet" href="../../assets/css/yesol.css">
 <div>
-    <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+
 
 
     <script id="notification-template" type="text/template">
@@ -67,63 +41,65 @@
         <div id="article" class="content" role="main">
 
 
-
-
             <div class="nav" role="navigation">
-                <a class="create btn btn-success btn-wide pull-right" href="/articles/tech-qna/create"><i
+                <a class="create btn btn-success btn-wide pull-right" href="StudyWrite.so"><i
                         class="fa fa-pencil"></i> 새 글 쓰기</a>
-                <h4>Tech Q&A</h4>
+                <h4>정기모임/스터디</h4>
             </div>
 
 
             <div class="panel panel-default clearfix fa-">
                 <div class="panel-heading clearfix">
-
+                    <c:set var="sb" value="${requestScope.sb}"></c:set>
                     <div class="avatar clearfix avatar-medium pull-left">
                         <a href="/user/info/127868" class='avatar-photo'><img
                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40"/></a>
                         <div class="avatar-info">
-                            <a class="nickname" href="/user/info/127868" title="닉녬">닉녬</a>
-                            <div class="activity"><span class="fa fa-flash"></span> 10</div>
-                            <div class="date-created"><span class="timeago" title="2021-09-28T18:57:07">2021-09-28 18:57:07</span>
+                            <a class="nickname" href="/user/info/127868" title=${sb.id}>${sb.id}</a>
+                            <div class="date-created"><span class="timeago" title="2021-09-28T18:57:07">${sb.writedate}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="content-identity pull-right">
                         <div class="content-identity-count"><i class="fa fa-comment"></i> 0</div>
-                        <div class="content-identity-count"><i class="fa fa-eye"></i> 1</div>
+                        <div class="content-identity-count"><i class="fa fa-eye"></i>${sb.hit}</div>
                     </div>
                 </div>
                 <div class="content-container clearfix">
                     <div id="content-body" class="panel-body content-body pull-left">
                         <div class="content-tags">
-                            <span class="list-group-item-text article-id">#1060292</span>
+                            <span class="list-group-item-text article-id">${sb.no}</span>
                             <a href="/articles/tech-qna" class="list-group-item-text item-tag label label-info"><i
-                                    class="fa fa-database"></i> Tech Q&A</a>
+                                    class="fa fa-database"></i>정기모임/스터디</a>
                         </div>
                         <h2 class="panel-title">
-                            서블릿 어렵네요ㅠ
+                            ${sb.title}
                         </h2>
                         <hr/>
                         <article class="content-text" itemprop="articleBody">
-                            <p>어려워요ㅠ</p>
+                            <div class="study_email_deadline"><div class="styling">지역 </div><div class="styling2">${sb.sido}</div></div>
+                            <div class="study_email_deadline"><div class="styling">스터디 유형 </div><div class="styling2">${requestScope.cateName}</div></div>
+                            <div class="study_email_deadline"><div class="styling">경력 </div><div class="styling2">${sb.exp}</div></div>
+                            <div class="study_email_deadline"><div class="styling">마감여부 </div><div class="styling2" id="closeok">${sb.closeok}</div></div>
+                            <hr/>
+                            ${sb.cont}
                         </article>
                     </div>
 
                     <div id="content-function" class="content-function pull-right text-center">
                         <div class="content-function-group">
                             <div class="note-evaluate-wrapper">
-                                <a href="javascript://" class="note-vote-btn" role="button" data-type="assent"
+                                <a href="StudyGood.so?type=up&no=${sb.no}" class="note-vote-btn" role="button" data-type="assent"
                                    data-eval="true" data-id="2524877">
                                     <i id="note-evaluate-assent-2524877"
                                        class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left"
                                        data-toggle="tooltip" title="추천"></i>
                                 </a>
 
-                                <div id="content-vote-count-2524877" class="content-eval-count">0</div>
+                                <div id="content-vote-count-2524877" class="content-eval-count">${sb.good}</div>
 
-                                <a href="javascript://" class="note-vote-btn" role="button" data-type="dissent"
+                                <a href="StudyGood.so?type=down&no=${sb.no}" class="note-vote-btn" role="button" data-type="dissent"
                                    data-eval="true" data-id="2524877">
                                     <i id="note-evaluate-dissent-2524877"
                                        class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left"
@@ -136,7 +112,7 @@
                                                                                                 data-toggle="tooltip"
                                                                                                 data-placement="left"
                                                                                                 title="스크랩"></i></a>
-                            <div id="article-scrap-count" class="content-count">0</div>
+                            <div id="article-scrap-count" class="content-count">${sb.scrapNum}</div>
                         </div>
                     </div>
                     <div class="content-function-cog share-btn-wrapper">
@@ -155,9 +131,9 @@
                                                                                       data-placement="left"
                                                                                       title="게시물 설정"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/article/edit/1060292" class="edit"><i
+                                        <li><a href="StudyEdit.so?no=${sb.no}" class="edit"><i
                                                 class="fa fa-edit fa-fw"></i> 수정 </a></li>
-                                        <li><a href="javascript://" id="article-delete-btn"><i
+                                        <li><a href="StudyDelete.so?no=${sb.no}" id="article-delete-btn"><i
                                                 class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
                                     </ul>
                                 </div>
@@ -247,8 +223,42 @@
 </div>
 
 <script>
-    var contextPath = "";
-    var encodedURL = "%2Farticle%2F1060292";
+    //마감 여부 체크
+    let closeok = ${sb.closeok};
+    let html = "";
+    if(closeok ==1){
+        html +="마감";
+    }else{
+        html +="모집중";
+    }
+    $('#closeok').html(html);
+
+    //비동기로 좋아요/싫어요 수 늘리기 - 아직 작업중...
+    function goodUpAndDown(pageNum){
+        var jsonData ={
+            pageNum:pageNum
+        }
+        $.ajax({
+            url:"/opentutorials/getBoardsByPageNum",
+            type:"POST",
+            dataType:"json",
+            contentType:"application/json",
+            data:JSON.stringify(jsonData),
+            success:function(response){
+                if(response){
+                    createBoardTable(response);
+                }else{
+                    alert("error occured")
+                }
+            },
+            error : function(request,status,error){
+                console.log(error);
+            }
+        })
+    }
+
+
+
 </script>
 
 <script src="/assets/js/application.js" type="text/javascript"></script>

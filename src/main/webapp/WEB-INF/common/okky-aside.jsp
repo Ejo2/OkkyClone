@@ -112,7 +112,7 @@
                     href="/articles/tech" class="link"><i class="nav-icon fa fa-code"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
             <li data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a
-                    href="/articles/community" class="link"><i class="nav-icon fa fa-comments"></i> <span
+                    href="/StudyPaging.so?page=1" class="link"><i class="nav-icon fa fa-comments"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
             <li data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a
                     href="/articles/columns" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
