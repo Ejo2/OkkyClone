@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 /*
  
  */
-public class updateUserEmailService implements Action{
+public class profileChangeService implements Action{
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response){
+        
         
         return null;
     }

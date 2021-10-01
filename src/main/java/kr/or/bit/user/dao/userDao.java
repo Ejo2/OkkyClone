@@ -1,9 +1,11 @@
 package kr.or.bit.user.dao;
 
+import com.sun.xml.internal.ws.util.xml.DummyLocation;
 import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.ConnectionHelper;
 
+import javax.persistence.ManyToOne;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -117,7 +119,7 @@ public class userDao{
     public userDto getUserInfoList(Object sessionId) throws SQLException{
         Connection conn = ConnectionHelper.getConnection("oracle");
         PreparedStatement pstmt = null;
-        String sql = "SELECT ID,EMAIL,NICKNAME,PHOTO FROM MEMBER WHERE ID=?";
+        String sql = "SELECT ID,EMAIL,PW,NICKNAME,PHOTO FROM MEMBER WHERE ID=?";
         pstmt = conn.prepareStatement(sql);
         
         System.out.println("sessionId : " + sessionId);
@@ -132,6 +134,7 @@ public class userDao{
         if (rs.next()){
             dto.setId(rs.getString("id"));
             dto.setNickname(rs.getString("nickname"));
+            dto.setPw(rs.getString("pw"));
             dto.setEmail(rs.getString("email"));
             dto.setPhoto(rs.getString("photo"));
         }
@@ -210,7 +213,7 @@ public class userDao{
         return writeBoardList;
     }
     
-    public int updateUserNickname(String nickname , String id){
+    public int updateUserNickname(String nickname, String id){
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -219,12 +222,12 @@ public class userDao{
         
         try{
             conn = ConnectionHelper.getConnection("oracle");
-            String sql = "update MEMBER set NICKNAME=? WHERE id=?";
+            String sql = "UPDATE MEMBER SET NICKNAME=? WHERE ID=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, nickname);
             pstmt.setString(2, id);
             
-            
+            result = pstmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }finally{
@@ -236,6 +239,101 @@ public class userDao{
         
         return result;
     }
+    
+    public int updateUserEmail(String email, String myId){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        
+        int result = 0;
+        
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "UPDATE MEMBER SET EMAIL=? WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            pstmt.setString(2, myId);
+            
+            result = pstmt.executeUpdate();
+            
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
+        return result;
+    }
+    
+    public int updateUserPwd(String myId,String changedPwd){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int result = 0;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "UPDATE MEMBER SET PW=? WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+    
+            pstmt.setString(1, changedPwd);
+            pstmt.setString(2, myId);
+            result = pstmt.executeUpdate();
+            
+        }catch (Exception e){
+    
+            System.out.println(e.getMessage());
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        
+        }
+        
+        
+        return result;
+    }
+    
+    public int deleteUser(String myId){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int result = 0;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            
+    
+            String sql2 = "DELETE  FROM SCRAP WHERE id=?";
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setString(1, myId);
+    
+            result += pstmt.executeUpdate();
+            System.out.println("반영된 삭제 행의 갯수" + result);
+    
+            String sql = "DELETE FROM BOARD WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, myId);
+    
+            result += pstmt.executeUpdate();
+            System.out.println("반영된 삭제 행의 갯수" + result);
+            
+            String sql3 = "delete FROM MEMBER WHERE id=?";
+            pstmt = conn.prepareStatement(sql3);
+            pstmt.setString(1, myId);
+    
+            result += pstmt.executeUpdate();
+            System.out.println("반영된 삭제 행의 갯수" + result);
+            
+        }catch (Exception e){
+    
+            System.out.println(e.getMessage());
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
+        
+        return result;
+    }
+    
     
 }
 
