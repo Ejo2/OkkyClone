@@ -33,7 +33,6 @@ public class FrontColumnController extends HttpServlet {
             //UI+로직
             action = new columnListService();
             forward = action.execute(request, response);
-            
         }else if(url_Command.equals("/BoardWrite.go")) { //만약 있다면 상세보기
             //UI 제공 ...
             //예) /WEB-INF/views/memoview.jsp 가정

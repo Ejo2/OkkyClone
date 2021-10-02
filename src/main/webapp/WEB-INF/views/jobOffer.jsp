@@ -834,28 +834,35 @@
                 //data길이만큼 돌면서 list를 출력하는 함수
 
 	            //TODO 급여, 경력조건은 여기서 필터링
+				console.log(exp_lv_select);
+				console.log(sal_cd_select);
+if (exp_lv_select != null){
+	$.each(data, function (index, obj) {
+		for (let i = 1; i < obj.job.length; i++) {
 
+			if(data.jobs.job[i]["url"] != null){
+				$(".list-group").append($('#list-group-items').attr('style', ('display:""'))); //list 생성
+				$('#list-group-items:eq(0)').attr('style', ('display:none')); //첫번째 공고 숨김
 
-                $.each(data, function (index, obj) {
-                    for (let i = 1; i < obj.job.length; i++) {
-                        $(".list-group").append($('#list-group-items').attr('style', ('display:""'))); //list 생성
-                        $('#list-group-items:eq(0)').attr('style', ('display:none')); //첫번째 공고 숨김
+				$('.title-link:eq(' + i + ')').attr('href', (data.jobs.job[i]["url"])); //타이틀 링크 변경
+				$('.position:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
+				$('.project:eq(' + i + ')').text(data.jobs.job[i].position["title"]); //공고제목
+				$('.salary-name:eq(' + i + ')').text(data.jobs.job[i]["salary"].name); //연봉
+				$('.required-education-level-name:eq(' + i + ')').text(data.jobs.job[i].position["required-education-level"].name); //학력
+				$('.experience-level-name:eq(' + i + ')').text(data.jobs.job[i].position["experience-level"].name); //경력
+				$('.location-name:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
+				$('.job-type-name:eq(' + i + ')').text(data.jobs.job[i].position["job-type"].name); //근무형태
+				let deadline = new Date((data.jobs.job[i]['expiration-timestamp']) * 1000);
+				$('.expiration-timestamp:eq(' + i + ')').text('마감일   ' + deadline.toLocaleDateString()); //마감일
+				$('.list-company-info:eq(' + i + ') a').attr('href', (data.jobs.job[i].company["detail"].href)) //회사 링크 변경
+				$('.company-nickname:eq(' + i + ')').text((data.jobs.job[i].company["detail"].name)) //회사명 변경
+			}
 
-                        $('.title-link:eq(' + i + ')').attr('href', (data.jobs.job[i]["url"])); //타이틀 링크 변경
-                        $('.position:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
-                        $('.project:eq(' + i + ')').text(data.jobs.job[i].position["title"]); //공고제목
-                        $('.salary-name:eq(' + i + ')').text(data.jobs.job[i]["salary"].name); //연봉
-                        $('.required-education-level-name:eq(' + i + ')').text(data.jobs.job[i].position["required-education-level"].name); //학력
-                        $('.experience-level-name:eq(' + i + ')').text(data.jobs.job[i].position["experience-level"].name); //경력
-                        $('.location-name:eq(' + i + ')').text((data.jobs.job[i].position["location"].name).replace("&gt;", ">")); //지역
-                        $('.job-type-name:eq(' + i + ')').text(data.jobs.job[i].position["job-type"].name); //근무형태
-                        let deadline = new Date((data.jobs.job[i]['expiration-timestamp']) * 1000);
-                        $('.expiration-timestamp:eq(' + i + ')').text('마감일   ' + deadline.toLocaleDateString()); //마감일
-                        $('.list-company-info:eq(' + i + ') a').attr('href', (data.jobs.job[i].company["detail"].href)) //회사 링크 변경
-                        $('.company-nickname:eq(' + i + ')').text((data.jobs.job[i].company["detail"].name)) //회사명 변경
-                    }
-                    ;
-                });
+		};
+	});
+
+}
+
 
             },
             error:function(jqXHR, textStatus, errorThrown){

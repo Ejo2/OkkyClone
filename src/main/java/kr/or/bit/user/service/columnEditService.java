@@ -1,14 +1,14 @@
 package kr.or.bit.user.service;
 
-import kr.or.bit.user.action.Action;
-import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.dao.QnADao;
-import kr.or.bit.user.dto.Board;
+        import javax.servlet.http.HttpServletRequest;
+        import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+        import kr.or.bit.user.action.Action;
+        import kr.or.bit.user.action.ActionForward;
+        import kr.or.bit.user.dao.ColumnDao;
+        import kr.or.bit.user.dto.Board;
 
-public class QnAEditService implements Action {
+public class columnEditService implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -18,21 +18,21 @@ public class QnAEditService implements Action {
         String msg="";
         String url="";
 
-        QnADao qnADao;
+        ColumnDao columnDao;
 
         ActionForward forward = null;
         try {
             if(no == null || no.trim().equals("")){
-                response.sendRedirect("QnAList.qo");
+                response.sendRedirect("BoardList.go"); //cpage=1 , ps=5
                 return null;
             }
-            qnADao = new QnADao();
+            columnDao = new ColumnDao();
 
-           Board board = qnADao.qnaEditContent(no);
+            Board board = columnDao.columnEditContent(no);
 
             if(board == null){
                 msg ="데이터 오류";
-                url ="QnAList.qo";
+                url ="BoardList.go";
 
                 request.setAttribute("board_msg", msg);
                 request.setAttribute("board_url", url);
@@ -47,7 +47,7 @@ public class QnAEditService implements Action {
 
                 forward = new ActionForward();
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views/qna_board/qna_edit.jsp");
+                forward.setPath("/WEB-INF/views/columnedit.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
