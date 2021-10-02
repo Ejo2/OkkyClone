@@ -8,20 +8,17 @@
 
 <body>
 <div class="main">
-	<!-- 실례합니다 테스트 좀 해볼게요-->
-	<!----------------------------------------------------------------------------------------------->
-	<jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
-	메인
-	<c:if test="${sessionScope.id!=null}">
-		<a href="logout.do">로그아웃 임시</a>
 
-		<a href="userInfoChange.do">회원 정보 수정</a>
+      <!-- 실례합니다 테스트 좀 해볼게요-->
+      <!----------------------------------------------------------------------------------------------->
+      <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+      메인
+    
+      
+      <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
+      
+      <!----------------------------------------------------------------------------------------------->
 
-	</c:if>
-
-	<jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
-
-	<!----------------------------------------------------------------------------------------------->
 </div>
 </body>
 
