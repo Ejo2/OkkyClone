@@ -18,7 +18,7 @@ public class LoginService implements Action{
     
         String id = request.getParameter("id");
         String pw = request.getParameter("pw");
-    
+        
         ActionForward forward = new ActionForward();
         userDao dao = new userDao();
         userDto dto = dao.login(id, pw);
@@ -27,6 +27,7 @@ public class LoginService implements Action{
             
             HttpSession session = request.getSession();
             session.setAttribute("id", id);
+            session.setAttribute("photo",dto.getPhoto());
             System.out.println(id);
             
             forward.setRedirect(true);
