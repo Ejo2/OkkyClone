@@ -4,11 +4,12 @@
 <c:set var="userInfo" value="${requestScope.userInfo}"/>
 <!--마크업09/23 : 사이드바1-->
 <style>
-      .container {padding : 20px;}
+      /* css 삭제*/
+      /*.container {padding : 20px;}*/
       
-      .form-control {width : 120px;}
+      /*.form-control {width : 120px;}*/
       
-      .popover {max-width : 400px;}
+      /*.popover {max-width : 400px;}*/
 </style>
 <div class="sidebar sidebar-category"> <!--open 으로 만들시 됨!-->
       <a href="javascript://" class="sidebar-header">

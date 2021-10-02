@@ -9,6 +9,7 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots />
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
@@ -57,5 +58,7 @@
     <orderEntry type="library" name="jquery-3.1.1" level="application" />
     <orderEntry type="library" name="jquery-3.4.1" level="application" />
     <orderEntry type="library" name="javax.mail-1.6.2" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6 (3)" level="project" />
+    <orderEntry type="library" name="javax.mail-api-1.4.7" level="project" />
   </component>
 </module>

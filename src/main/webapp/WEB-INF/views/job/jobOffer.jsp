@@ -768,7 +768,7 @@
                         if (data.jobs.job[i]["url"] != null && data.jobs.job[i]["url"] != undefined) {
 
                             url = data.jobs.job[i]["url"];
-                            location = (data.jobs.job[i].position["location"].name).replace("&gt;", ">");
+                            location = (data.jobs.job[i].position["location"].name);
                             title = data.jobs.job[i].position["title"];
                             salary = data.jobs.job[i]["salary"].name;
                             required_education_level = data.jobs.job[i].position["required-education-level"].name;
