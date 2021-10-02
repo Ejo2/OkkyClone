@@ -5,7 +5,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.userDao;
-import kr.or.bit.user.dto.userDto;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

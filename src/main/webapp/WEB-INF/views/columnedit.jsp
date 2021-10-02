@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/common/okky-columns-aside.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
 
 <c:set var="board" value="${requestScope.board}" />
 <c:set var="no" value="${requestScope.no}" />

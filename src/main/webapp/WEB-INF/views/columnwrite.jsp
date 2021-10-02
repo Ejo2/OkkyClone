@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,9 @@
 
 
 <body>
-<jsp:include page="/WEB-INF/common/okky-columns-aside.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+<c:set var="userInfo" value="${requestScope.userInfo}"/>
+<c:set var="board" value="${requestScope.board}" />
 <div class="main">
 
 
@@ -47,7 +50,7 @@
                     <a href="/user/info/127868" class='avatar-photo'><img
                             src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
                     <div class="avatar-info">
-                        <a class="nickname" href="/user/info/127868" title="닉네임" >닉네임</a>
+                        <a class="nickname" href="/user/info/127868" title="${requestScope.userInfo.nickname}">${board.id}</a>
                         <div class="activity block"><span class="fa fa-flash"></span> 0</div>
                     </div>
                 </div>
@@ -94,7 +97,7 @@
 
                         <div class="nav" role="navigation">
                             <fieldset class="buttons">
-                                <a href="${pageContext.request.contextPath}/BoardList.go" class="btn btn-default btn-wide"
+                                <a href="/BoardList.go" class="btn btn-default btn-wide"
                                    onclick="return confirm('정말로 취소하시겠습니까?')">취소</a>
                                 <input type="submit" name="create" class="create btn btn-success btn-wide pull-right"
                                        action="create" value="등록" id="create">
@@ -215,19 +218,7 @@
             }
         });
 
-        $('#category').change(function () {
-            if (this.value == 'recruit') {
-                if (this.value && confirm('게시판 변경시 수정된 내용은 초기화 됩니다. 변경 하시겠습니까?')) {
-                    /*if(this.value == 'recruit') {
-                      location.href=contextPath+'/recruit/create';
-                    } else {*/
-                    location.href = contextPath + '/articles/' + this.value + '/create';
-                    // }
-                } else {
 
-                }
-            }
-        });
     </script>
     <script type="text/javascript">
         setInterval(function () {

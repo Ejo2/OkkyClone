@@ -4,9 +4,12 @@ import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.ColumnDao;
 import kr.or.bit.user.dto.Board;
+import kr.or.bit.user.dto.Comments;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class columnContentService implements Action {
 
@@ -21,7 +24,7 @@ public class columnContentService implements Action {
         System.out.println("글번호" + no);
 
         Board board = new Board();
-        //List<Reply> replyList = new ArrayList<>();
+        List<Comments> replyList = new ArrayList<>();
 
         boolean isread = false;
 
@@ -48,14 +51,14 @@ public class columnContentService implements Action {
 
             if (isread) {
                 board = columnDao.columnContent(Integer.parseInt(no));
-                //  replyList = dao.replylist(idx);
+                replyList = columnDao.replylist(no);
             }
 
             request.setAttribute("board", board);
             request.setAttribute("no", no);
             request.setAttribute("cp", cpage);
             request.setAttribute("ps", pagesize);
-            //request.setAttribute("replyList", replyList);
+            request.setAttribute("replyList", replyList);
 
             forward = new ActionForward();
             forward.setRedirect(false); // forward
@@ -67,4 +70,6 @@ public class columnContentService implements Action {
         }
         return forward;
     }
+
+
 }

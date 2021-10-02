@@ -7,22 +7,32 @@
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 
 <body>
-
 <c:set var="cpage" value="${requestScope.cpage}" />
 <c:set var="pagecount" value="${requestScope.pagecount}" />
-<c:set var="qnalist" value="${requestScope.collist}" />
+<c:set var="qnalist" value="${requestScope.qnalist}" />
 <c:set var="totalboardcount" value="${requestScope.totalboardcount}" />
 <c:set var="pager" value="${requestScope.pager}" />
+<c:set var="userInfo" value="${requestScope.userInfo}"/>
+<c:set var="userInfo" value="${requestScope.totalReplyCount}"/>
 
 <div class="main">
 
-    <jsp:include page="/WEB-INF/common/okky-columns-aside.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
 
     <div id="list-article" class="content scaffold-list event-list" role="main">
         <!--중분류1 : 네비게이션바-->
         <div class="nav" role="navigation">
-            <a class="create btn btn-success btn-wide pull-right" href="${pageContext.request.contextPath}/BoardWrite.go">
-                <i class="fa fa-pencil"></i> 새 글 쓰기</a>
+
+            <c:choose>
+                <c:when test="${sessionScope.id !=null}">
+                    <a class="create btn btn-success btn-wide pull-right" href="${pageContext.request.contextPath}/BoardWrite.go">
+                        <i class="fa fa-pencil"></i> 새 글 쓰기</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="create btn btn-success btn-wide pull-right" href="/login.do">
+                        <i class="fa fa-pencil"></i> 새 글 쓰기</a>
+                </c:otherwise>
+            </c:choose>
 
             <%--수정!!!!--%>
             <h4>칼럼</h4>
@@ -86,7 +96,7 @@
                             <div class="avatar clearfix avatar-list ">
                                 <a href="/user/info/102530" class='avatar-photo'><img src="//www.gravatar.com/avatar/9675fbddc407a1515b0b688801acf1cd?d=identicon&s=30"/></a>
                                 <div class="avatar-info">
-                                    <a class="nickname" href="/user/info/102530" title="${requestScope.userInfo.nickname}">${requestScope.userInfo.nickname}</a>
+                                    <a class="nickname" href="/user/info/102530" title="${requestScope.userInfo.nickname}">${collist.id}</a>
                                     <div class="date-created"><span class="timeago" title=" ${collist.writedate}"> ${collist.writedate}</span></div>
                                 </div>
                             </div>
@@ -101,19 +111,11 @@
 
         <!--중분류 3:페이징-->
         <div class="text-center">
-            <ul class="pagination pagination-sm">
-                <li class="prev disabled">
-                    <span>«</span>
-                </li>
-
-                <li class="active">
-                    <span>1</span> <!--활성화된 페이지는 span으로 죽여주나봄-->
-                </li>
-
-                <li class="next">
-                    <a href="/articles/community?offset=20&max=20&sort=id&order=desc">»</a>
-                </li>
-            </ul>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    ${pager}
+                </ul>
+            </nav>
         </div>
 
     </div>
