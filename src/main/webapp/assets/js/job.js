@@ -1,6 +1,6 @@
 $(function(){
     $.ajax({
-        url: 'http://localhost:8090/OkkyClone_war_exploded/jobData.do',
+        url: 'http://localhost:8090/jobData.do',
         type: 'get',
         dataType: 'json',
         success: function (data) {
