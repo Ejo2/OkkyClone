@@ -22,6 +22,7 @@
    ${requestScope.deadline}
    <br>
    ${requestScope.text}
-
+   <br>
+   ${requestScope.count}
 </body>
 </html>

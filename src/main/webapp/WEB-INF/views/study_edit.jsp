@@ -15,7 +15,7 @@
 
     <div id="article-create" class="content" role="main">
         <div class="content-header">
-            <h3>새 글 쓰기</h3>
+            <h3>글 수정하기</h3>
         </div>
 
         <div class="panel panel-default clearfix">
@@ -31,13 +31,14 @@
                 </div>
             </div>
             <div class="panel-body"> <!--form 시작-->
-                <form action="StudyWriteSubmit.so" method="post" id="article-form" class="article-form" role="form">
+                <c:set var="sb" value="${requestScope.sb}"></c:set>
+                <form action="StudyEditConfirm.so?no=${sb.no}" method="post" id="article-form" class="article-form" role="form">
                     <fieldset class="form">
                         <input type="hidden" name="_csrf" value="2815446a-a095-4ed8-9793-12ef7c7d5b72">
 
                         <div class="form-group has-feedback">
                             <div>
-                                <input type="text" name="title" required="" value="" placeholder="제목을 입력해 주세요."
+                                <input type="text" name="title" required="" value="${sb.title}" placeholder=""
                                        class="form-control" id="title"> <!--parameter 1 : 제목-->
                             </div>
                         </div>
@@ -92,14 +93,16 @@
                             <div class="study_email_deadline">
                                 <div class="styling">마감 여부</div>
                                 <div class="styling2"><input type="radio" name="deadline" value="0" checked><label>모집중</label></div>
-                                <div class="styling2"><input type="radio" name="deadline" value="1" disabled> <label>마감</label></div>
-                            </div><!--parameter 6 : 마감여부 - 글 생성시에는 무조건 모집중-->
+                                <div class="styling2"><input type="radio" name="deadline" value="1"> <label>마감</label></div>
+                            </div><!--parameter 6 : 마감여부 - edit에서는 마감 설정이 가능-->
                         </div>
 
 
                         <div class="form-group has-feedback">
                             <textarea name="text" id="summernote" rows="20"
-                                      class="form-control input-block-level"></textarea>
+                                      class="form-control input-block-level">
+                                ${sb.cont}
+                            </textarea>
                         </div><!--parameter 5 : 마감여부 - 글내용-->
                         <input type="hidden" name="textType" value="HTML" id="textType">
 
@@ -114,7 +117,7 @@
                                 <a href="/articles/gathering" class="btn btn-default btn-wide"
                                    onclick="testfunc()">취소</a>
                                 <input type="submit" name="create" class="create btn btn-success btn-wide pull-right"
-                                       action="create" value="등록" id="create">
+                                        value="등록" id="create">
                             </fieldset>
                         </div>
                     </fieldset>

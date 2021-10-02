@@ -6,11 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="OkkyClone" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="OkkyClone" target="8" />
+      <module name="OkkyClone" target="1.8" />
       <module name="OkkyClone1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
