@@ -5,7 +5,7 @@ import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.StudyDao;
 import kr.or.bit.user.dto.Comments;
 import kr.or.bit.user.dto.Study_Board;
-import kr.or.bit.user.service.*;
+import kr.or.bit.user.service.study.*;
 
 
 import javax.servlet.RequestDispatcher;

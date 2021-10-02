@@ -2,7 +2,7 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.service.*;
+import kr.or.bit.user.service.qna.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

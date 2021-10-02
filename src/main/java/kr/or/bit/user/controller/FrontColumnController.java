@@ -2,8 +2,8 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.service.columnBoardAddService;
-import kr.or.bit.user.service.columnListService;
+import kr.or.bit.user.service.columns.columnBoardAddService;
+import kr.or.bit.user.service.columns.columnListService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
