@@ -400,6 +400,7 @@ public class StudyDao {
 
         return resultrow;
     }
+    //댓글 추가하기 ///////////////////////////////////////////////////////////////////////////////////
     public int insertReply(Comments cm){
         Connection conn =null;
         int resultrow=0;
@@ -427,6 +428,53 @@ public class StudyDao {
         }
         return resultrow;
     }
+    ///댓글 리스트////////////////////////////////////////////////////
+    public ArrayList<Comments> getCommentsByNo(int no) {
+
+        ArrayList<Comments> commentlist = new ArrayList<Comments>();
+
+        Connection conn =null;
+        PreparedStatement pstmt = null;
+        ResultSet rs =null;
+        try {
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "select * from comments where removedok=0 and no=? order by rno";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,no);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Comments cm = new Comments();
+                cm.setRno(rs.getInt("rno"));
+                cm.setNo(rs.getInt("no"));
+                cm.setId(rs.getString("id"));
+                cm.setRcont(rs.getString("rcont"));
+                cm.setRdate(rs.getTimestamp("rdate"));
+
+                commentlist.add(cm);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(pstmt);
+
+            ConnectionHelper.close(conn);
+        }
+        return commentlist;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
