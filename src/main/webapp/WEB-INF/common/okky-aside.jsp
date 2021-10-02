@@ -147,17 +147,11 @@
       <h3 class="sub-title">Q&A</h3>
       <ul class="nav">
             <!--class ="nav-selected가 선택되고 있다는 표시의 빨간점. 각자 맡은 게시판 카테고리에 설정해줄것"-->
-            <li><a href="#" class="link">
+            <li><a href="/QnAList.qo" class="link">
                   <span
                           class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
                     class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a>
             </li>
-            <li><a href="#" class="link"><span
-                    class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
-                    class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-            <li><a href="#" class="link"><span
-                    class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
-                    class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
       </ul>
       <div class="special-nav">
       </div>

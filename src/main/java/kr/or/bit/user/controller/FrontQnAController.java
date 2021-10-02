@@ -63,15 +63,10 @@ public class FrontQnAController extends HttpServlet {
         }else if(url_Command.equals("/ReplyDeleteOk.qo")) {
             action = new QnAReplyDeleteOkService();
             forward = action.execute(request, response);
-        }/*else if(url_Command.equals("/QnAReUpDate.qo")) {
-            System.out.println("수정실행1");
-            action = new QnAReUpDateService();
+        }else if(url_Command.equals("/getQnaCommentList.qo")) {
+            action = new QnACommentListService();
             forward = action.execute(request, response);
-        }else if(url_Command.equals("/QnAReUpDateOk.do")) {
-            System.out.println("수정실행2");
-            action = new QnAReUpDateOk();
-            forward = action.execute(request, response);
-        }*/
+        }
 
 
         if (forward != null) {
