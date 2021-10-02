@@ -28,7 +28,7 @@ public class userInfoChange implements Action{
             
             if (session.getAttribute("id") == null){
                 
-                forward.setPath("/WEB-INF/views/login.jsp");
+                forward.setPath("/WEB-INF/views/loginlogout/login.jsp");
                 
             }else{
                 
@@ -38,7 +38,7 @@ public class userInfoChange implements Action{
                 request.setAttribute("userInfo", userInfo);
                 
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views/userInfoChange.jsp");
+                forward.setPath("/WEB-INF/views/userInfo/userInfoChange.jsp");
                 
             }
         }catch (Exception e){

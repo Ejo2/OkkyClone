@@ -22,7 +22,7 @@ public class StudyWriteGoService implements Action {
 
         forward = new ActionForward();
         forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/study_write.jsp");
+        forward.setPath("/WEB-INF/views/study/study_write.jsp");
 
 
         return forward;

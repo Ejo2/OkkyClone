@@ -14,7 +14,7 @@ public class jobDataService implements Action{
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/jobdata.jsp");
+        forward.setPath("/WEB-INF/views/job/jobdata.jsp");
 
         return forward;
     }

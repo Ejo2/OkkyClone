@@ -67,7 +67,7 @@ public class columnListService implements Action {
 
             forward = new ActionForward();
             forward.setRedirect(false); // forward
-            forward.setPath("/WEB-INF/views/columnlist.jsp");
+            forward.setPath("/WEB-INF/views/columns/columnlist.jsp");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

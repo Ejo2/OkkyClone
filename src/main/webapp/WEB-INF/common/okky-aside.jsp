@@ -26,8 +26,7 @@
       
       
       <!--2-1: 반응형으로 작아졌을때 검색창-->
-      <form id="search-google-form" name="searchMain" class="nav-sidebar-form"
-            action="https://www.google.com/search">
+      <form id="search-google-form" name="searchMain" class="nav-sidebar-form" action="https://www.google.com/search">
             <div class="input-group">
                   <input type="text" name="qt" class="form-control input-sm" placeholder="Google 검색"/>
                   <input type="hidden" name="q"/>
@@ -144,20 +143,10 @@
 
 <!--마크업09/23사이드바2-->
 <div class="sidebar-category-nav">
-      <h3 id="sub-title" class="sub-title">Q&A</h3>
+      <h3 id="sub-title" class="sub-title"></h3>
       <ul id="sub-sub-title" class="nav">
             <!--class ="nav-selected가 선택되고 있다는 표시의 빨간점. 각자 맡은 게시판 카테고리에 설정해줄것"-->
-            <li><a href="#" class="link">
-                  <span
-                          class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
-                    class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a>
-            </li>
-            <li><a href="#" class="link"><span
-                    class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
-                    class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-            <li><a href="#" class="link"><span
-                    class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
-                    class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+           
       </ul>
       <div class="special-nav">
       </div>
@@ -252,7 +241,8 @@
      
      
                }
-     
+               
+               
           });
           
      

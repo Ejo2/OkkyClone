@@ -22,7 +22,7 @@ public class pwdChangeGoService implements Action{
         String myPwd = "";
         try{
             if (session.getAttribute("id") == null){
-                forward.setPath("/WEB-INF/views/login.jsp");
+                forward.setPath("/WEB-INF/views/loginlogout/login.jsp");
                 
             }else{
                 userDao dao = new userDao();

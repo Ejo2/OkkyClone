@@ -15,7 +15,7 @@ public class LoginGoService implements Action{
         
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/login.jsp");
+        forward.setPath("/WEB-INF/views/loginlogout/login.jsp");
         
         return forward;
     }

@@ -27,7 +27,7 @@ public class StudyEditGoService implements Action {
 
             forward = new ActionForward();
             forward.setRedirect(false);
-            forward.setPath("/WEB-INF/views/study_edit.jsp");
+            forward.setPath("/WEB-INF/views/study/study_edit.jsp");
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }

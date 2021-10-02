@@ -40,7 +40,7 @@ public class JoinService implements Action{
             url = "/main.jsp";
         }else{
             msg = "등록실패";
-            url = "/WEB-INF/views/join.jsp";
+            url = "/WEB-INF/views/loginlogout/join.jsp";
         }
         
         request.setAttribute("board_msg", msg);
@@ -48,7 +48,7 @@ public class JoinService implements Action{
         
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/redirect.jsp");
+        forward.setPath("/WEB-INF/views/redirect/redirect.jsp");
         
         return forward;
     }

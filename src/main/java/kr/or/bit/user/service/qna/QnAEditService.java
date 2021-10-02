@@ -39,7 +39,7 @@ public class QnAEditService implements Action {
 
                 forward = new ActionForward();
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views/redirect.jsp");
+                forward.setPath("/WEB-INF/views/redirect/redirect.jsp");
 
             }else {
                 request.setAttribute("no", no);

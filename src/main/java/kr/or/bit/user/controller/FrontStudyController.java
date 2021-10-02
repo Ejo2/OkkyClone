@@ -62,8 +62,10 @@ public class FrontStudyController extends HttpServlet{
             action = new StudyDeleteService();
             forward = action.execute(request, response);
         }else if(url_Command.equals("/StudyGood.so")) {//스터디 좋아요&싫어요
+        
 //            action = new StudyGoodService();
 //            forward = action.execute(request, response);
+            
             String type = request.getParameter("type");
             int no = Integer.parseInt(request.getParameter("no"));
             StudyDao dao = new StudyDao();

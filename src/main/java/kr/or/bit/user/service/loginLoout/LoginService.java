@@ -36,7 +36,7 @@ public class LoginService implements Action{
         }else{
             
             forward.setRedirect(false);
-            forward.setPath("/WEB-INF/views/login.jsp");
+            forward.setPath("/WEB-INF/views/loginlogout/login.jsp");
         }
         return forward;
     }

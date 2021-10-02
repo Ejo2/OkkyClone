@@ -50,7 +50,7 @@ public class StudyPagingService implements Action{
             
             forward = new ActionForward();
             forward.setRedirect(false);
-            forward.setPath("/WEB-INF/views/study.jsp");
+            forward.setPath("/WEB-INF/views/study/study.jsp");
             
         }catch (Exception e){
             System.out.println(e.getMessage());

@@ -25,7 +25,7 @@ public class scrapListGoService implements Action{
         try{
             if (session.getAttribute("id") == null){
             
-                forward.setPath("/WEB-INF/views/login.jsp");
+                forward.setPath("/WEB-INF/views/loginlogout/login.jsp");
             
             }else{
             
@@ -85,7 +85,7 @@ public class scrapListGoService implements Action{
             
                 System.out.println("회원의 글목록을 띄웁니다.");
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views/scrapList.jsp");
+                forward.setPath("/WEB-INF/views/userInfo/scrapList.jsp");
             
             }
         }catch (Exception e){

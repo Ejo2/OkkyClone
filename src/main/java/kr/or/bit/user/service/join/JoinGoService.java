@@ -14,7 +14,7 @@ public class JoinGoService implements Action{
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response){
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/join.jsp");
+        forward.setPath("/WEB-INF/views/loginlogout/join.jsp");
     
         return forward;
     }

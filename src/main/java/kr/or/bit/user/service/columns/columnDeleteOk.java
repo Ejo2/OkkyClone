@@ -39,7 +39,7 @@ public class columnDeleteOk implements Action {
 
             ActionForward forward = new ActionForward();
             forward.setRedirect(false); // forward
-            forward.setPath("/WEB-INF/views/redirect.jsp");
+            forward.setPath("/WEB-INF/views/redirect/redirect.jsp");
 
             return forward;
         }

@@ -25,7 +25,7 @@ public class StudyDetailService implements Action {
 
             forward = new ActionForward();
             forward.setRedirect(false);
-            forward.setPath("/WEB-INF/views/study_read.jsp");
+            forward.setPath("/WEB-INF/views/study/study_read.jsp");
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }

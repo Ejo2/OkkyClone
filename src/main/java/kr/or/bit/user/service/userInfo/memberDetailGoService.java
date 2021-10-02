@@ -26,7 +26,7 @@ public class memberDetailGoService implements Action{
         try{
             if (session.getAttribute("id") == null){
                 
-                forward.setPath("/WEB-INF/views/login.jsp");
+                forward.setPath("/WEB-INF/views/loginlogout/login.jsp");
                 
             }else{
                 
@@ -87,7 +87,7 @@ public class memberDetailGoService implements Action{
                 
                 System.out.println("회원의 글목록을 띄웁니다.");
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views/memberDetail.jsp");
+                forward.setPath("/WEB-INF/views//userInfo/memberDetail.jsp");
                 
             }
         }catch (Exception e){

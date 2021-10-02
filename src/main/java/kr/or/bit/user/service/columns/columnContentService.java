@@ -59,7 +59,7 @@ public class columnContentService implements Action {
 
             forward = new ActionForward();
             forward.setRedirect(false); // forward
-            forward.setPath("/WEB-INF/views/columncontent.jsp");
+            forward.setPath("/WEB-INF/views/columns/columncontent.jsp");
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
