@@ -8,34 +8,32 @@
 
 <body>
 <div class="main">
-
       <!-- 실례합니다 테스트 좀 해볼게요-->
       <!----------------------------------------------------------------------------------------------->
-      <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+      <jsp:include page="/WEB-INF/common/okky-aside.jsp"/>
       메인
     
       
-      <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
+      <jsp:include page="/WEB-INF/common/okky-footer.jsp"/>
       
       <!----------------------------------------------------------------------------------------------->
-
 </div>
 </body>
 
 <script>
-    var contextPath = "";
-    var encodedURL = "%2Farticles%2Fquestions";
+     var contextPath = "";
+     var encodedURL = "%2Farticles%2Fquestions";
 </script>
 
 <script src="assets/js/application.js" type="text/javascript"></script>
 <script>
-    $(function () {
-        $('.category-sort-link').click(function (e) {
-            $('#category-sort-input').val($(this).data('sort'));
-            $('#category-order-input').val($(this).data('order'));
-            e.preventDefault();
-            $('#category-filter-form')[0].submit();
-        });
-    });
+     $(function() {
+          $('.category-sort-link').click(function(e) {
+               $('#category-sort-input').val($(this).data('sort'));
+               $('#category-order-input').val($(this).data('order'));
+               e.preventDefault();
+               $('#category-filter-form')[0].submit();
+          });
+     });
 </script>
 </html>

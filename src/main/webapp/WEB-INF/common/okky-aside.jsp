@@ -26,8 +26,7 @@
       
       
       <!--2-1: 반응형으로 작아졌을때 검색창-->
-      <form id="search-google-form" name="searchMain" class="nav-sidebar-form"
-            action="https://www.google.com/search">
+      <form id="search-google-form" name="searchMain" class="nav-sidebar-form" action="https://www.google.com/search">
             <div class="input-group">
                   <input type="text" name="qt" class="form-control input-sm" placeholder="Google 검색"/>
                   <input type="hidden" name="q"/>
@@ -42,7 +41,7 @@
             <c:if test="${empty sessionScope.id}">
                   <div class="nav-user nav-sidebar">
                         <ul class="nav nav-sidebar">
-                              <li id="login"data-toggle="tooltip" data-container="body" title="로그인">
+                              <li id="login" data-toggle="tooltip" data-container="body" title="로그인">
                                     <a href="loginGo.do" class="link"><i class="fa fa-sign-in"></i>
                                           <span class="nav-sidebar-label">로그인</span></a></li>
                               <li id="join" data-toggle="tooltip" data-container="body" title="회원가입">
@@ -59,10 +58,10 @@
                   </div>
                   <ul class="list-unstyled">
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="setting"><span class="glyphicon glyphicon-cog" style="margin:7px 0 0 0"></span></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
                         </li>
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="notification"><span class="glyphicon glyphicon-bell" style="margin:7px 0 0 0"></span></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="notification"><i class="fas fa-bell" style="margin-top: 7px"></i></a>
                         </li>
                               <%--팝오버 창 start--%>
                         <div id="popover-content" class="hide" role="tooltip">
@@ -122,14 +121,14 @@
                     href="#" class="link"><i class="nav-icon fa fa-code"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
             <li id="study" data-toggle="tooltip" data-placement="right" data-container="body" title="스터디"><a
-                    href="#" class="link"><i class="nav-icon fa fa-comments"></i> <span
+                    href="/StudyPaging.so?page=1" class="link"><i class="nav-icon fa fa-comments"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">스터디</span></a></li>
             <li id="column" data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a
                     href="BoardList.go" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
             <li id="jobs" data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a
                     href="job.do" class="link"><i
-                    class="nav-icon fa fa-group"></i> <span
+                    class="nav-icon fa fa-user-friends"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
       </ul>
       
@@ -144,20 +143,10 @@
 
 <!--마크업09/23사이드바2-->
 <div class="sidebar-category-nav">
-      <h3 id="sub-title" class="sub-title">Q&A</h3>
+      <h3 id="sub-title" class="sub-title"></h3>
       <ul id="sub-sub-title" class="nav">
             <!--class ="nav-selected가 선택되고 있다는 표시의 빨간점. 각자 맡은 게시판 카테고리에 설정해줄것"-->
-            <li><a href="#" class="link">
-                  <span
-                          class="nav-sidebar-label nav-sidebar-category-label">All</span> <span
-                    class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a>
-            </li>
-            <li><a href="#" class="link"><span
-                    class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
-                    class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-            <li><a href="#" class="link"><span
-                    class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
-                    class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+           
       </ul>
       <div class="special-nav">
       </div>
@@ -252,7 +241,8 @@
      
      
                }
-     
+               
+               
           });
           
      
