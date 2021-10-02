@@ -825,7 +825,7 @@
         console.log(Adata)
         $.ajax({
           //  url: 'http://localhost:8090/jobData.do?data=' + edu_lv + loc_cd + job_mid_cd + job_cd, //json데이터에 검색할 param담아서 요청
-	      url: 'http://localhost:8090/jobData.do?',  //json데이터에 검색할 param담아서 요청
+	      url: 'http://localhost:8060/jobData.do?',  //json데이터에 검색할 param담아서 요청
             type: 'get',
             dataType: 'json',
 	       // data: "job_mid_cd="+job_mid_cd + '&job_cd='+job_cd + "&edu_lv="+edu_lv + "&loc_cd="+loc_cd ,

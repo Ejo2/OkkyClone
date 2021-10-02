@@ -13,6 +13,12 @@
       <c:set var="writeBoardList" value="${requestScope.writeBoardList}"/>
       <c:set var="userScrapList" value="${requestScope.userScrapList}"/>
       <c:set var="totalBoardCount" value="${requestScope.totalBoardCount}"/>
+      
+      <c:set var="pagesize" value="${requestScope.pagesize}"/>
+      <c:set var="cpage" value="${requestScope.cpage}"/>
+      <c:set var="pageCount" value="${requestScope.pageCount}"/>
+      <c:set var="totalBoardCount" value="${requestScope.totalBoardCount}"/>
+      
       <div id="user" class="content clearfix" role="main">
             <div class="panel panel-default">
                   <div class="panel-body">
@@ -127,8 +133,8 @@
                $('#category-filter-form')[0].submit();
           });
      });
-
-   
+     
+     
      
      function acyncMovePage(url) {
           // ajax option

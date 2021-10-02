@@ -76,6 +76,7 @@ public class memberDetailGoService implements Action{
                 
                 request.setAttribute("pagesize", pagesize);
                 request.setAttribute("cpage", cpage);
+    
                 request.setAttribute("pageCount", pageCount);
                 request.setAttribute("totalBoardCount", totalBoardCount);
                 
