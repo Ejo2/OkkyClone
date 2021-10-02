@@ -10,7 +10,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="OkkyClone" target="1.8" />
+      <module name="OkkyClone" target="8" />
+      <module name="OkkyClone1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

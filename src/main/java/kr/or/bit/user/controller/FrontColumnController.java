@@ -2,7 +2,8 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.service.*;
+import kr.or.bit.user.service.columnBoardAddService;
+import kr.or.bit.user.service.columnListService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,37 +29,22 @@ public class FrontColumnController extends HttpServlet {
         Action action=null;
         ActionForward forward=null;
 
-        if(url_Command.equals("/BoardList.go")) { //게시판 리스트
+        if(url_Command.equals("/BoardList.go")) { //글쓰기 처리
+            //UI+로직
             action = new columnListService();
             forward = action.execute(request, response);
-        }else if(url_Command.equals("/BoardWrite.go")) { //글쓰기
+        }else if(url_Command.equals("/BoardWrite.go")) { //만약 있다면 상세보기
+            //UI 제공 ...
+            //예) /WEB-INF/views/memoview.jsp 가정
             forward = new ActionForward();
             forward.setRedirect(false);
             forward.setPath("/WEB-INF/views/columnwrite.jsp");
-        }else if(url_Command.equals("/BoardWriteOK.go")) { //글쓰기 OK
+        }else if(url_Command.equals("/BoardWriteOK.go")) { //만약 있다면 상세보기
+            //UI 제공 ...
+            //예) /WEB-INF/views/memoview.jsp 가정
             action = new columnBoardAddService();
             forward = action.execute(request, response);
-        }else if (url_Command.equals("/BoardContent.go")) { //상세보기
-            System.out.println("상세보기");
-            action = new columnContentService();
-            forward = action.execute(request, response);
-        }else if(url_Command.equals("/BoardEdit.go")) { //수정하기
-            action = new columnEditService();
-            forward = action.execute(request, response);
-        }else if(url_Command.equals("/BoardEditOk.go")) {
-            action = new columnEditOkService();
-            forward = action.execute(request, response);
-        }else if(url_Command.equals("/BoardDelete.go")) { //삭제하기
-            action = new columnDeleteService();
-            forward = action.execute(request, response);
-        }else if(url_Command.equals("/BoardDeleteOk.go")) { //삭제하기 ok
-            action = new columnDeleteOk();
-            forward = action.execute(request, response);
         }
-
-
-
-
         if(forward != null) {
             if(forward.isRedirect()) { //true
                 response.sendRedirect(forward.getPath());

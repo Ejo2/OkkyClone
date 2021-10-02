@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -31,31 +32,40 @@
 
 <body>
 <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
-<div class="main">
 
+<c:set var="no" value="${requestScope.no}" />
+<c:set var="board" value="${requestScope.board}" />
 
-<div id="article-create" class="content" role="main">
-    <div class="content-header">
-        <h3>새 글 쓰기</h3>
-    </div>
+<div class="main content">
 
 
     <div class="panel panel-default clearfix">
         <div class="panel-heading clearfix">
+        <div class="panel-body">
+            <div id="article-create">
 
-            <div class="avatar clearfix avatar-medium pull-left">
-                <a href="/user/info/127868" class='avatar-photo'><img
-                        src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
-                <div class="avatar-info">
-                    <a class="nickname" href="/user/info/127868" title="닉녬">닉녬</a>
-                    <div class="activity block"><span class="fa fa-flash"></span> 0</div>
+                        <div class="avatar clearfix avatar-medium pull-left">
+                            <a href="/user/info/127868" class='avatar-photo'><img
+                                    src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
+                            <div class="avatar-info">
+                                <a class="nickname" href="/user/info/127868" title="닉녬">닉녬</a>
+
+                                <div class="activity"><span class="fa fa-flash"></span> 10</div>
+                                <div class="date-created"><span class="timeago" title="${board.writedate}">${board.writedate}</span></div>
+                            </div>
+                        </div>
+                        <div class="content-identity pull-right">
+                            <div class="article-id">${no}</div>
+                            <div><i class="fa fa-eye"></i>${board.hit}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="panel-body">
-            <form action="/articles/questions/save" method="post" id="article-form" class="article-form" role="form"
+
+            <form action="/QnAEditOk.qo" method="post" id="article-form" class="article-form" role="form"
                   onsubmit="return postForm()">
                 <fieldset class="form">
+                    <input type="hidden" id="no" name ="no" value="${no}" />
                     <input type="hidden" name="_csrf" value="c6a51f4b-0401-45ae-a2b9-0c475512b478">
                     <div class="form-group has-feedback">
                         <div>
@@ -69,8 +79,8 @@
 
                     <div class="form-group has-feedback">
                         <div>
-                            <input type="text" name="title" required="" value="" placeholder="제목을 입력해 주세요."
-                                   class="form-control" id="title">
+                            <input type="text" name="title"  required="" value="${board.title}" placeholder="제목을 입력해 주세요."
+                                   class="form-control" id="title"/>
                         </div>
                     </div>
 
@@ -82,8 +92,8 @@
                     </div>
 
                     <div class="form-group has-feedback">
-                            <textarea name="text" id="summernote" rows="20"
-                                      class="form-control input-block-level"></textarea>
+                            <textarea name="cont" id="summernote" rows="20"
+                                      class="form-control input-block-level">${board.cont}</textarea>
                     </div>
                     <input type="hidden" name="textType" value="HTML" id="textType">
 
@@ -104,8 +114,8 @@
                 </fieldset>
             </form>
         </div>
-    </div>
-</div>
+
+
 
 <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
 
@@ -161,6 +171,14 @@
             focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
             lang: "ko-KR",               // 한글 설정
             placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
+        });
+
+
+        /*submit 전송*/
+        $("#article-form").submit(function (){
+           let no =  $("#no").val();
+           let title = $("#title").val();
+           let cont = $("#summernote").val();
         });
     });
 

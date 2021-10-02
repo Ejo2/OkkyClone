@@ -1,6 +1,7 @@
 package kr.or.bit.user.dao;
 
 import kr.or.bit.user.dto.Board;
+import kr.or.bit.user.dto.Comments;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,18 +31,33 @@ public class QnADao {
         List<Board> qnalist = null;
         try {
             conn = ds.getConnection();
-            String sql = "select no, bno, id, title, cont, writedate, good, hit, removedok, scrapnum from Board";
+            String sql = "select * " +
+                    "from " +
+                    " (select rownum rn,no, bno,  id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
+                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id ORDER BY no DESC ) " +
+                    "  where rownum <= ?) " +
+                    "where rn >= ?" ;
+
             pstmt = conn.prepareStatement(sql);
+            //공식같은 로직
+            int start = cpage * pagesize - (pagesize -1); //1 * 5 - (5 - 1) >> 1
+            int end = cpage * pagesize; // 1 * 5 >> 5
+
+            System.out.println("start = " + start);
+            System.out.println("end = " + end);
+
+            pstmt.setInt(1, end);
+            pstmt.setInt(2, start);
 
             rs = pstmt.executeQuery();
             qnalist = new ArrayList<Board>();
             while (rs.next()) {
-                System.out.println("반복중..: " + rs.getInt("no") + ", " + rs.getString("title") + rs.getString("id"));
+                System.out.println("반복중: " + rs.getInt("no") + ", " + rs.getString("title") + rs.getString("id"));
                 Board qnaBoard = new Board();
                 qnaBoard.setNo(rs.getInt("no"));
                 qnaBoard.setBno(rs.getInt("bno"));
                 qnaBoard.setTitle(rs.getString("title"));
-                qnaBoard.setId(rs.getString("id"));
+                qnaBoard.setId(rs.getString("nickname"));
                 qnaBoard.setCont(rs.getString("cont"));
                 qnaBoard.setWritedate(rs.getDate("writedate"));
                 qnaBoard.setRemovedOk(rs.getInt("removedok"));
@@ -65,6 +81,7 @@ public class QnADao {
         return qnalist;
     }
 
+    //글쓰기 insert
     public int qnaWriteok(Board board) {
         System.out.println("board = " + board);
         Connection conn = null;
@@ -73,17 +90,16 @@ public class QnADao {
         try {
             conn = ds.getConnection();
             String sql = "insert into board(no, bno, id, title, cont, hit, good, removedok, scrapnum)" +
-                        " values(board_no.nextval,200,'a',?,?,?,?,?,?)";
+                        " values(board_no.nextval,200,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
-            /*pstmt.setString(1, board.getId());*/
-
-            pstmt.setString(1, board.getTitle());
-            pstmt.setString(2, board.getCont());
-            pstmt.setInt(3, board.getHit());
-            pstmt.setInt(4, board.getGood());
-            pstmt.setInt(5, board.getRemovedOk());
-            pstmt.setInt(6, board.getScrapNum());
+            pstmt.setString(1, board.getId());
+            pstmt.setString(2, board.getTitle());
+            pstmt.setString(3, board.getCont());
+            pstmt.setInt(4, board.getHit());
+            pstmt.setInt(5, board.getGood());
+            pstmt.setInt(6, board.getRemovedOk());
+            pstmt.setInt(7, board.getScrapNum());
 
             row = pstmt.executeUpdate();
 
@@ -99,7 +115,7 @@ public class QnADao {
         return row;
     }
 
-
+    //게시글 상세보기
     public Board QnAContent(int no) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -108,15 +124,20 @@ public class QnADao {
 
         try {
             conn = ds.getConnection();
-            String sql = "select no, bno, id, title, cont, writedate, good, hit, removedok, scrapnum from board where no=?";
+            String sql = "select no, bno, m.id, title, cont, writedate, good, hit, removedok, scrapnum ,m.nickname as nickname " +
+                    "from board b" +
+                    "     inner join" +
+                    "     member m" +
+                    "     on b.id = m.id " +
+                    "where no=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, no);
-            System.out.println("글글글" + no);
+            System.out.println("게시글번호" + no);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 board.setBno(rs.getInt("bno"));
-                board.setId(rs.getString("id"));
+                board.setId(rs.getString("nickname"));
                 board.setTitle(rs.getString("title"));
                 board.setCont(rs.getString("cont"));
                 board.setHit(rs.getInt("hit"));
@@ -156,7 +177,6 @@ public class QnADao {
             if(row > 0 ) {
                 result = true;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -169,7 +189,7 @@ public class QnADao {
         return result;
     }
 
-    //게시글 수정하기 화면(답글)
+    //게시글 수정하기 화면
     public Board qnaEditContent(String no) {
         return this.QnAContent(Integer.parseInt(no));
         //조회화면 동일 (기존에 있는 함수 재활용)
@@ -181,6 +201,11 @@ public class QnADao {
         String title = boarddata.getParameter("title");
         String cont = boarddata.getParameter("cont");
 
+        System.out.println("게시판번호 불러오기= " + no);
+        System.out.println("title = " + title);
+        System.out.println("cont = " + cont);
+        System.out.println("게시판아이디= " + id);
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -189,8 +214,8 @@ public class QnADao {
         try {
             conn = ds.getConnection();
             String sql_idx = "select no  from board where no=?";
-            String sql_udpate = "update board set id=?" +
-                    " ,title=? , content=? where no=?";
+            String sql_udpate = "update board set " +
+                    " title=? , cont=? where no=?";
             pstmt = conn.prepareStatement(sql_idx);
             pstmt.setInt(1, Integer.parseInt(no));
 
@@ -203,10 +228,9 @@ public class QnADao {
                 //pstmt.close();
                 //업데이트
                 pstmt = conn.prepareStatement(sql_udpate);
-                pstmt.setString(1, id);
-                pstmt.setString(2, title);
-                pstmt.setString(3, cont);
-                pstmt.setString(4, no);
+                pstmt.setString(1, title);
+                pstmt.setString(2, cont);
+                pstmt.setInt(3, Integer.parseInt(no));
                 row = pstmt.executeUpdate();
             }
         } catch (Exception e) {
@@ -223,7 +247,36 @@ public class QnADao {
         return row;
     }
 
-    //게시물 총 건수 구하기
+    //총 댓글 건수 구하기
+    public int totalReplyCount(int no) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int totalReply = 0;
+        try {
+            conn = ds.getConnection(); //dbcp 연결객체 얻기
+            String sql = "select count(*) cnt from comments where removedok !=1 and no=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,no);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                totalReply = rs.getInt("cnt");
+                System.out.println("총 댓글 건수= " + totalReply);
+            }
+        } catch (Exception e) {
+                e.printStackTrace();
+        } finally {
+            try {
+                pstmt.close();
+                rs.close();
+                conn.close();//반환  connection pool 에 반환하기
+            } catch (Exception e) {
+            }
+        }
+        return totalReply;
+    }
+
+    //게시물 총  건수 구하기
     public int totalBoardCount() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -231,16 +284,15 @@ public class QnADao {
         int totalcount = 0;
         try {
             conn = ds.getConnection(); //dbcp 연결객체 얻기
-            System.out.println("콘콘" + conn);
-            String sql = "select count(*) cnt from board";
+            String sql = "select count(*) cnt from board where removedok != 1"; //1(삭제)이 아닌것을 가져옴
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 totalcount = rs.getInt("cnt");
-                System.out.println("한글말= " + totalcount);
+                System.out.println("총게시물 건수= " + totalcount);
             }
         } catch (Exception e) {
-                e.printStackTrace();
+            e.printStackTrace();
         } finally {
             try {
                 pstmt.close();
@@ -253,25 +305,152 @@ public class QnADao {
     }
 
 
+    //댓글 insert
+    public int qnaReplyWrite(Comments comments) {
 
-    public int qnaReplyWrite(int no , String id , String rcont, int removedOk) {
+        System.out.println("게시판 드가자" + comments);
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int row = 0;
+        try {
+            conn = ds.getConnection();
+            String sql="insert into comments(rno, id, rcont, no, removedOk) "+
+                    " values(comments_rno.nextval,?,?,?,?)";
+            pstmt =conn.prepareStatement(sql);
 
+            pstmt.setString(1, comments.getId());
+            pstmt.setString(2, comments.getRcont());
+            pstmt.setInt(3, comments.getNo());
+            pstmt.setInt(4, comments.getRemovedOk());
+
+            row = pstmt.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                pstmt.close();
+                conn.close();//반환
+            }catch (Exception e) {
+            }
+        }
+        return row;
+    }
+
+    //댓글리스트 출력
+    public List<Comments> replylist(String no){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<Comments> list = null;
+
+        try {
+            conn = ds.getConnection();
+            String reply_sql = "select * from Comments where no =? and removedok !=1  order by no desc";
+                                //댓글이 0인것만 최신순으로 리스트 출력
+            pstmt = conn.prepareStatement(reply_sql);
+            pstmt.setString(1, no);
+
+            rs =pstmt.executeQuery();
+
+            list = new ArrayList<>();
+            while(rs.next()) {
+                Comments reList = new Comments();
+                reList.setRno(rs.getInt("rno"));
+                reList.setNo(rs.getInt("no"));
+                reList.setId(rs.getString("id"));
+                reList.setRcont(rs.getString("rcont"));
+                reList.setRemovedOk(rs.getInt("removedOK"));
+                reList.setRdate(rs.getDate("rdate"));
+                list.add(reList);
+                System.out.println("댓글 목록" + list);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                pstmt.close();
+                rs.close();
+                conn.close();//반환
+            }catch (Exception e) {
+            }
+        }
+        return list;
+    }
+
+    //게시물 삭제
+    public int qnaDelete(int no) {
         System.out.println("게시판 번호" + no);
-        System.out.println("댓글 아이디" + id);
-        System.out.println("댓글 내용" + rcont);
 
         Connection conn = null;
         PreparedStatement pstmt = null;
         int row = 0;
         try {
             conn = ds.getConnection();
-            String sql="insert into comments(rno,id,rcont, no, removedOk) "+
-                    " values(comments_rno.nextval,'a',?,?,?)";
+            String sql="update board set removedok = 1 "+  // 삭제(1)라면 해당 board의 removedok을 1로 업데이트
+                    " where no =?";
             pstmt =conn.prepareStatement(sql);
-           // pstmt.setString(1, id);
-            pstmt.setString(1, rcont);
+            pstmt.setInt(1,no);
+
+            row = pstmt.executeUpdate();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                pstmt.close();
+                conn.close();//반환
+            }catch (Exception e) {
+            }
+        }
+        return row;
+    }
+
+        //게시물 추천
+    public int recommend(int no, int goodVal) {
+        System.out.println("no = " + no);
+        System.out.println("goodVal = " + goodVal);
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        int row = 0;
+        try {
+            conn = ds.getConnection();
+            String sql="update board set good = good+ ? "+
+                    " where no=?";  //추천 업데이트 good+goodVal
+            pstmt =conn.prepareStatement(sql);
+            pstmt.setInt(1,goodVal);
             pstmt.setInt(2,no);
-            pstmt.setInt(3, removedOk);
+
+            row = pstmt.executeUpdate();
+
+            System.out.println("row = " + row);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                pstmt.close();
+                conn.close();//반환
+            }catch (Exception e) {
+            }
+        }
+        return row;
+    }
+
+
+    //댓글 삭제
+    public int qnaReplyDelete(int rno) {
+        System.out.println("댓글 번호" + rno);
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int row = 0;
+        try {
+            conn = ds.getConnection();
+            String sql="update comments set removedok = 1 "+  // 삭제(1)라면 해당 board의 removedok을 1로 업데이트
+                    " where rno =?";
+            pstmt =conn.prepareStatement(sql);
+            pstmt.setInt(1,rno);
 
             row = pstmt.executeUpdate();
         }catch (Exception e) {
