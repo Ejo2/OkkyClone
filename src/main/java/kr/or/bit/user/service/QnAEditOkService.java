@@ -14,6 +14,7 @@ public class QnAEditOkService implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         String no = request.getParameter("no");
 
+
         String msg = "";
         String url = "";
         ActionForward forward = null;
@@ -29,7 +30,7 @@ public class QnAEditOkService implements Action {
 
                 if (result > 0) {
                     msg = "edit success";
-                    url = "QnAList.do";
+                    url = "QnAList.qo";
                 } else {
                     msg = "edit fail";
                     url = "QnAEdit.qo?no=" + no;

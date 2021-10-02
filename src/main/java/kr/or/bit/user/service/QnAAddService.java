@@ -8,6 +8,7 @@ import kr.or.bit.user.dto.Board;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class QnAAddService implements Action {
     @Override
@@ -15,15 +16,15 @@ public class QnAAddService implements Action {
 
         String title = request.getParameter("title");
         String cont = request.getParameter("cont");
+        HttpSession session = request.getSession();
 
-        System.out.println("title = " + title);
-        System.out.println("cont = " + cont);
 
         int result = 0;
         Board board = new Board();
 
         board.setTitle(title);
         board.setCont(cont);
+        board.setId((String) session.getAttribute("id")); //아이디 세션
 
 
         try {

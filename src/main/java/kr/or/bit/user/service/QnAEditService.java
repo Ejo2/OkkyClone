@@ -14,7 +14,7 @@ public class QnAEditService implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         //수정하기
         String no = request.getParameter("no");
-
+        System.out.println("수정게시판 번호=" + no);
         String msg="";
         String url="";
 
@@ -23,11 +23,10 @@ public class QnAEditService implements Action {
         ActionForward forward = null;
         try {
             if(no == null || no.trim().equals("")){
-                response.sendRedirect("QnAList.qo"); //cpage=1 , ps=5
+                response.sendRedirect("QnAList.qo");
                 return null;
             }
             qnADao = new QnADao();
-
 
            Board board = qnADao.qnaEditContent(no);
 

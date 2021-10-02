@@ -8,46 +8,29 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/qna_write.css">
-    <script src="summernote/js/summernote-lite.js"></script>
+    <link rel="stylesheet"  href="/assets/css/qna_write.css">
+    <script src="../../../summernote/js/summernote-lite.js"></script>
     <!--예솔 추가함 : summernote-->
-    <script src="summernote/js/summernote-ko-KR.js"></script>
+    <script src="../../../summernote/js/summernote-ko-KR.js"></script>
     <!--예솔 추가함 : summernote-->
-    <link rel="stylesheet" href="summernote/css/summernote-lite.css">
+    <link rel="stylesheet" href="../../../summernote/css/summernote-lite.css">
     <!--예솔 추가함 : summernote-->
 
 
 
     <title>OKKY - Article 등록</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="_csrf_parameter" content="_csrf" />
-    <meta name="_csrf_header" content="X-CSRF-TOKEN" />
-    <meta name="_csrf" content="c6a51f4b-0401-45ae-a2b9-0c475512b478" />
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/assets/images/icon_57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/icon_114x114.png">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta property="og:image" content="https://okky.kr/assets/images/okky_logo_fb.png">
     <link rel="stylesheet" href="/assets/css/application.css">
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        }); var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-M52CW55');</script>
+
     <!--[if lt IE 9]>
-    <script src="/js/libs/html5.js"></script>
-    <script src="/assets/libs/respond.src.js"></script>
-    <script src="/assets/libs/html5.js"></script>
     <![endif]-->
 
 </head>
 
 
 <body>
-<jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/common/okky-columns-aside.jsp"></jsp:include>
 <div class="main">
 
 
@@ -70,10 +53,8 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form name="bbs" action="${pageContext.request.contextPath}/BoardWriteOK.go" method="POST" class="article-form" >
-               <!--
-                <form action="/articles/questions/save" method="post" id="article-form" class="article-form" role="form"
-                      onsubmit="return postForm()">-->
+                <form action="${pageContext.request.contextPath}/BoardWriteOK.go" method="post" id="article-form" class="article-form" role="form"
+                      onsubmit="return postForm()">
                     <fieldset class="form">
                         <input type="hidden" name="_csrf" value="c6a51f4b-0401-45ae-a2b9-0c475512b478">
                         <div class="form-group has-feedback">
@@ -85,7 +66,6 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-group has-feedback">
                             <div>
                                 <input type="text" name="title" required="" value="" placeholder="제목을 입력해 주세요."
@@ -101,7 +81,7 @@
                         </div>
 
                         <div class="form-group has-feedback">
-                            <textarea name="text" id="summernote" rows="20"
+                            <textarea name="cont" id="summernote" rows="20"
                                       class="form-control input-block-level"></textarea>
                         </div>
                         <input type="hidden" name="textType" value="HTML" id="textType">
@@ -114,12 +94,10 @@
 
                         <div class="nav" role="navigation">
                             <fieldset class="buttons">
-                                <a href="/articles/questions" class="btn btn-default btn-wide"
+                                <a href="${pageContext.request.contextPath}/BoardList.go" class="btn btn-default btn-wide"
                                    onclick="return confirm('정말로 취소하시겠습니까?')">취소</a>
-                                <!--
                                 <input type="submit" name="create" class="create btn btn-success btn-wide pull-right"
-                                       action="create" value="등록" id="create">-->
-                                <a class="create btn btn-success btn-wide pull-right" href="BoardWriteOK.go"><p>글쓰기</p></a>
+                                       action="create" value="등록" id="create">
                             </fieldset>
                         </div>
                     </fieldset>
@@ -184,6 +162,7 @@
                 placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
             });
         });
+
 
 
         var tagsinputWidgets = $('input[name=tagString]').tagsinput(tagsInputConfig);

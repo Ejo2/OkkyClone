@@ -54,15 +54,13 @@
                                     <div id="content2" style="flex-grow: 1; margin-right:10px">
                                         <select id="location2" name="location2" class="form-control" required="">
                                             <option value="">==시군구 선택==</option>
-                                            <option value="시군구1">시군구1</option>
-                                            <option value="시군구2">시군구2</option>
                                         </select><!--parameter 3 : 지역2-->
                                     </div>
                                     <div id="content3" style="flex-grow: 3">
                                         <select id="study" name="categoryCode" class="form-control" required="">
                                             <option value="">==스터디 유형을 선택해 주세요==</option>
                                             <c:forEach var="categoryList" items="${categoryList}">
-                                            <option value="${categoryList.st_category}">${categoryList.st_category}</option>
+                                            <option value="${categoryList.st_categorynum}">${categoryList.st_category}</option>
                                             </c:forEach>
                                         </select><!--parameter 4 : 스터디유형-->
                                     </div>
@@ -93,8 +91,8 @@
                         <div class="form-group has-feedback">
                             <div class="study_email_deadline">
                                 <div class="styling">마감 여부</div>
-                                <div class="styling2"><input type="radio" name="deadline" value="going" checked><label>모집중</label></div>
-                                <div class="styling2"><input type="radio" name="deadline" value="end" disabled> <label>마감</label></div>
+                                <div class="styling2"><input type="radio" name="deadline" value="0" checked><label>모집중</label></div>
+                                <div class="styling2"><input type="radio" name="deadline" value="1" disabled> <label>마감</label></div>
                             </div><!--parameter 6 : 마감여부 - 글 생성시에는 무조건 모집중-->
                         </div>
 
