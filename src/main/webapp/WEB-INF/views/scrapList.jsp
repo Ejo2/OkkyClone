@@ -40,7 +40,7 @@
 <div class="col-sm-10 main-block-left pull-left">
       <ul class="list-group" id="list-group">
       
-      <c:forEach var="board" items="${writeBoardList}">
+      <c:forEach var="scrap" items="${userScrapList}">
                               <li class="list-group-item list-group-item-small list-group-has-note clearfix">
                                     <div class="list-icon-wrapper pull-left">
                                           
@@ -50,7 +50,7 @@
                                     <div class="list-title-wrapper list-activity">
                                           <div class="list-activity-desc">
                           <span class="list-activity-desc-text">
-                          	${board.id}
+                          	${scrap.id}님이
                           	  게시글을 작성하셨습니다.
                           
                           

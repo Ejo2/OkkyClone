@@ -122,7 +122,7 @@
                     href="#" class="link"><i class="nav-icon fa fa-code"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
             <li id="study" data-toggle="tooltip" data-placement="right" data-container="body" title="스터디"><a
-                    href="#" class="link"><i class="nav-icon fa fa-comments"></i> <span
+                    href="/StudyPaging.so?page=1" class="link"><i class="nav-icon fa fa-comments"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">스터디</span></a></li>
             <li id="column" data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a
                     href="BoardList.go" class="link"><i class="nav-icon fa fa-quote-left"></i> <span

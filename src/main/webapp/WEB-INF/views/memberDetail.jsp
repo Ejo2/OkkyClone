@@ -56,7 +56,7 @@
                                     <div class="list-title-wrapper list-activity">
                                           <div class="list-activity-desc">
                           <span class="list-activity-desc-text">
-                          	${board.id}
+                          	${board.id}님이
                           	  게시글을 작성하셨습니다.
                           
                           
