@@ -839,6 +839,7 @@
 if (exp_lv_select != null){
 	$.each(data, function (index, obj) {
 		for (let i = 1; i < obj.job.length; i++) {
+
 			if(data.jobs.job[i]["url"] != null){
 				$(".list-group").append($('#list-group-items').attr('style', ('display:""'))); //list 생성
 				$('#list-group-items:eq(0)').attr('style', ('display:none')); //첫번째 공고 숨김
