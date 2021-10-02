@@ -74,7 +74,7 @@
                               
                               
                               <div class="avatar clearfix avatar-medium ">
-                                    <a href="/user/info/115337" class="avatar-photo"><img src="${userInfo.photo}"></a>
+                                    <a href="memberDetailGo.do" class="avatar-photo"><img src="upload/${userInfo.photo}"></a>
                                     <div class="avatar-info">
                                           <a class="nickname" href="memberDetailGo.do" title="${userInfo.nickname}">${userInfo.nickname}</a>
                                     </div>
@@ -85,12 +85,13 @@
                                     
                                     
                                     <div class="profile-picture selected" data-id="0">
-                                          <span class="avatar-photo"><img src="${userInfo.photo}"></span>
+                                          <span class="avatar-photo"><img src="upload/${userInfo.photo}"></span>
                                           <span>MY 프로필</span>
                                     </div>
-                                    <h2><b>이미지 미리보기</b></h2>
-                                    <input type="file" id="input_img"/>
                                     <form action="profileChange.do" method="POST" enctype="multipart/form-data" id="uploadForm">
+                                          
+                                          <h2><b>이미지 미리보기</b></h2>
+                                          <input type="file" name="filename1" id="input_img"/>
                                           <div class="profile-picture" data-id="0">
                                                 <span class="avatar-photo"><img id="img"></span>
                                           </div>
@@ -103,13 +104,10 @@
                               <input type="hidden" name="_csrf" value="93edf1b2-d9ca-4a57-8435-1f40c51ee8bb">
                               <input type="hidden" name="_method" value="PUT" id="_method">
                               <fieldset>
-                                    
                                     <div class="form-group">
                                           <label class="control-label" for="nickname">닉네임</label>
-                                          <input type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${userInfo.nickname}" id="nickname">
+                                          <input  style="width: 100%"  type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${userInfo.nickname}" id="nickname">
                                     </div>
-                              
-                              
                               </fieldset>
                               <button class="btn btn-primary btn-block" type="submit">정보 수정</button>
                         </form>
@@ -128,7 +126,7 @@
                                           <input type="email" name="email" class="form-control input-sm" placeholder="이메일" required="" value="${userInfo.email}" id="email" style="width: 100%">
                                           <input type="hidden" readonly="readonly" name="code_check" id="code_check" value="<%=getRandom()%>"/>
                                           
-                                          <input class="form-control" type="submit" id="verify-email-btn" value="인증" style="background-color: #5bc0de; color: #fff"></input>
+                                          <input class="form-control" type="submit" id="verify-email-btn" value="인증" style="background-color: #5bc0de; color: #fff"/>
                                           <div id="error_mail" class="result-email result-check"></div>
                                     </div>
                               </div>
@@ -172,40 +170,41 @@
                }
                
                sel_file = f;
-     
+               
                var reader = new FileReader();
                
                reader.onload = function(e) {
+                    console.log("온로드 타켓!" + e.target);
                     $("#img").attr("src", e.target.result);
                };
                
                reader.readAsDataURL(f);
           });
      }
-
+     
      function submitAction() {
           var data = new FormData();
-     
-          for(var i=0, len=sel_files.length; i<len; i++) {
-               var name = "image_"+i;
+          
+          for (var i = 0, len = sel_files.length; i < len; i++) {
+               var name = "image_" + i;
                data.append(name, sel_files[i]);
           }
           data.append("image_count", sel_files.length);
-     
-     
+          
+          
           var xhr = new XMLHttpRequest();
-          xhr.open("POST","./study01_af.php");
+          xhr.open("POST", "./study01_af.php");
           xhr.onload = function(e) {
-               if(this.status == 200) {
-                    console.log("Result : "+e.currentTarget.responseText);
+               if (this.status == 200) {
+                    console.log("Result : " + e.currentTarget.responseText);
                }
           }
-     
+          
           xhr.send(data);
-     
+          
      }
-
-
+     
+     
      
      function email_check(email) {
           

@@ -96,7 +96,7 @@ class MyAuthentication extends Authenticator {
         String pw = "Tkd1wns1!";          // 구글 비밀번호
         
         // ID와 비밀번호를 입력한다.
-        pa = new javax.mail.PasswordAuthentication(id, pw);
+        pa = new PasswordAuthentication(id, pw);
         
     }
     

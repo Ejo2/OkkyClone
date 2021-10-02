@@ -1,6 +1,5 @@
 package kr.or.bit.user.dao;
 
-import com.sun.xml.internal.ws.util.xml.DummyLocation;
 import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.ConnectionHelper;
@@ -50,7 +49,7 @@ public class userDao{
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         try{
-            String sql = "SELECT ID,PW FROM MEMBER WHERE ID=? AND PW=?";
+            String sql = "SELECT ID,PW,PHOTO FROM MEMBER WHERE ID=? AND PW=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             pstmt.setString(2, pw);
@@ -59,7 +58,7 @@ public class userDao{
                 dto = new userDto();
                 dto.setId(rs.getString("id"));
                 dto.setPw(rs.getString("pw"));
-                
+                dto.setPhoto(rs.getString("photo"));
                 
             }
         }catch (Exception e){
@@ -263,7 +262,7 @@ public class userDao{
         return result;
     }
     
-    public int updateUserPwd(String myId,String changedPwd){
+    public int updateUserPwd(String myId, String changedPwd){
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -272,19 +271,19 @@ public class userDao{
             conn = ConnectionHelper.getConnection("oracle");
             String sql = "UPDATE MEMBER SET PW=? WHERE ID=?";
             pstmt = conn.prepareStatement(sql);
-    
+            
             pstmt.setString(1, changedPwd);
             pstmt.setString(2, myId);
             result = pstmt.executeUpdate();
             
         }catch (Exception e){
-    
+            
             System.out.println(e.getMessage());
         }finally{
             ConnectionHelper.close(rs);
             ConnectionHelper.close(conn);
             ConnectionHelper.close(pstmt);
-        
+            
         }
         
         
@@ -299,30 +298,30 @@ public class userDao{
         try{
             conn = ConnectionHelper.getConnection("oracle");
             
-    
-            String sql2 = "DELETE  FROM SCRAP WHERE id=?";
+            
+            String sql2 = "DELETE  FROM SCRAP WHERE ID=?";
             pstmt = conn.prepareStatement(sql2);
             pstmt.setString(1, myId);
-    
-            result += pstmt.executeUpdate();
-            System.out.println("반영된 삭제 행의 갯수" + result);
-    
-            String sql = "DELETE FROM BOARD WHERE ID=?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, myId);
-    
+            
             result += pstmt.executeUpdate();
             System.out.println("반영된 삭제 행의 갯수" + result);
             
-            String sql3 = "delete FROM MEMBER WHERE id=?";
+            String sql = "DELETE FROM BOARD WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, myId);
+            
+            result += pstmt.executeUpdate();
+            System.out.println("반영된 삭제 행의 갯수" + result);
+            
+            String sql3 = "DELETE FROM MEMBER WHERE ID=?";
             pstmt = conn.prepareStatement(sql3);
             pstmt.setString(1, myId);
-    
+            
             result += pstmt.executeUpdate();
             System.out.println("반영된 삭제 행의 갯수" + result);
             
         }catch (Exception e){
-    
+            
             System.out.println(e.getMessage());
         }finally{
             ConnectionHelper.close(rs);
@@ -333,6 +332,33 @@ public class userDao{
         return result;
     }
     
+    
+    public int setPhoto(String myId, String orifilename){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int result = 0;
+        
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "UPDATE MEMBER SET PHOTO = ? WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, orifilename);
+            pstmt.setString(2, myId);
+            
+            result = pstmt.executeUpdate();
+            
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
+        
+        return result;
+    }
     
 }
 
