@@ -1,5 +1,6 @@
 package kr.or.bit.user.dao;
 
+import kr.or.bit.user.dto.Comments;
 import kr.or.bit.user.dto.Study_Board;
 import kr.or.bit.user.dto.Study_category;
 import kr.or.bit.utils.ConnectionHelper;
@@ -399,7 +400,33 @@ public class StudyDao {
 
         return resultrow;
     }
-    
+    public int insertReply(Comments cm){
+        Connection conn =null;
+        int resultrow=0;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn= ConnectionHelper.getConnection("oracle");//추가
+            //board에 대한 삽입
+            String sql1 = "insert into comments(rno,no,id,rcont,removedok) values((select nvl(max(rno),0) + 1 from comments),?,'admin',?,0)";
+            pstmt = conn.prepareStatement(sql1);
+            pstmt.setInt(1, cm.getNo());
+            pstmt.setString(2, cm.getRcont());
+            resultrow = pstmt.executeUpdate();
+
+        }catch(Exception e) {
+            System.out.println("Insert : " + e.getMessage());
+        }finally {
+            ConnectionHelper.close(pstmt);
+            ConnectionHelper.close(conn);
+            try {
+                conn.close(); //받환하기
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultrow;
+    }
 
 
 

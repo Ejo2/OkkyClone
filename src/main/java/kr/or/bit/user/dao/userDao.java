@@ -5,7 +5,6 @@ import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.ConnectionHelper;
 
-import javax.persistence.ManyToOne;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

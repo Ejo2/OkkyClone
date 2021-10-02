@@ -89,17 +89,17 @@
 
                     <div id="content-function" class="content-function pull-right text-center">
                         <div class="content-function-group">
-                            <div class="note-evaluate-wrapper">
-                                <a href="StudyGood.so?type=up&no=${sb.no}" class="note-vote-btn" role="button" data-type="assent"
+                            <div class="note-evaluate-wrapper"> <!--비동기로 바꾸는 작업 필요-->
+                                <a href="javascript:goodUpAndDown('up',${sb.no});" class="note-vote-btn" role="button" data-type="assent"
                                    data-eval="true" data-id="2524877">
                                     <i id="note-evaluate-assent-2524877"
                                        class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left"
                                        data-toggle="tooltip" title="추천"></i>
                                 </a>
 
-                                <div id="content-vote-count-2524877" class="content-eval-count">${sb.good}</div>
+                                <div id="content-vote-count-2524877" class="content-eval-count">${sb.good}</div><!--비동기로 좋아요 가져오기-->
 
-                                <a href="StudyGood.so?type=down&no=${sb.no}" class="note-vote-btn" role="button" data-type="dissent"
+                                <a href="javascript:goodUpAndDown('down',${sb.no});" class="note-vote-btn" role="button" data-type="dissent"
                                    data-eval="true" data-id="2524877">
                                     <i id="note-evaluate-dissent-2524877"
                                        class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left"
@@ -150,37 +150,83 @@
                     <li id="note-title" class="list-group-item note-title">
                         <h3 class="panel-title">답변 <span id="note-count">0</span></h3>
                     </li>
+
+                    <!--댓글 뿌려주는 영역-->
+
+                    <li class="list-group-item note-item clearfix" id="note-2448736">
+                        <form action="/content/update/2448736" method="post" data-id="2448736" class="note-update-form">
+                            <input type="hidden" name="_method" value="PUT" id="_method">
+                            <div class="content-body panel-body pull-left">
+
+                                <div class="avatar clearfix avatar-medium ">
+                                    <a href="/user/info/122431" class='avatar-photo'><img src="https://phinf.pstatic.net/contact/20191027_276/1572171959967Pzk1W_JPEG/ccc.jpg"/></a>
+                                    <div class="avatar-info">
+                                        <a class="nickname" href="/user/info/122431" title="궁예">궁예</a>
+                                        <div class="date-created"><span class="timeago" title="2021-07-28T13:10:13">2021-07-28 13:10:13</span></div>
+                                    </div>
+                                </div>
+                                <fieldset class="form">
+                                    <article id="note-text-2448736" class="list-group-item-text note-text">
+                                        <p>좋은정보감사합니다</p>
+                                    </article>
+                                </fieldset>
+                            </div>
+
+                            <div class="content-function pull-right text-center">
+                                <div class="content-function-group">
+
+                                    <div class="note-evaluate-wrapper">
+                                        <a href="javascript://" class="note-vote-btn" role="button" data-type="assent" data-eval="true" data-id="2448736">
+                                            <i id="note-evaluate-assent-2448736" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천"></i>
+                                        </a>
+
+                                        <div id="content-vote-count-2448736" class="content-eval-count">0</div>
+
+                                        <a href="javascript://" class="note-vote-btn" role="button" data-type="dissent" data-eval="true" data-id="2448736">
+                                            <i id="note-evaluate-dissent-2448736" class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left" data-toggle="tooltip" title="반대"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="/content/delete/2448736" method="post" id="note-delete-form-2448736">
+                            <input type="hidden" name="_csrf" value="0ce7b07d-b94c-4215-b32a-507dd87b3a63">
+                            <input type="hidden" name="_method" value="DELETE" id="_method">
+                        </form>
+
+
+                    <!---->
+                    <!--여기부터 댓글 작성 폼-------------------------------------------------------------->
                     <li class="list-group-item note-form clearfix">
-                        <form action="/article/addNote/1060292" method="post" class="note-create-form">
+                        <form action="" onsubmit="replyAdd()" method="post" class="note-create-form">
                             <input type="hidden" name="_csrf" value="d3611fcc-5ba1-49ea-9f83-7e974f6bbf11">
                             <div class="content-body panel-body pull-left">
                                 <div style="margin-left: 5px;">
-                                    <div class="note-select-indicator note-deselected">
-                                        <i class="fa fa-edit"></i>
-                                    </div>
+
 
                                     <div class="avatar clearfix avatar-medium ">
                                         <a href="/user/info/127868" class='avatar-photo'><img
                                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40"/></a>
                                         <div class="avatar-info">
-                                            <a class="nickname" href="/user/info/127868" title="닉녬">닉녬</a>
-                                            <div class="activity block"><span class="fa fa-flash"></span> 0</div>
+                                            <a class="nickname" href="#" title="${sb.id}" id="reply-nickname">${sb.id}</a>
+
                                         </div>
                                     </div>
                                 </div>
                                 <fieldset class="form">
                                     <input type="hidden" name="textType" value="HTML" id="note.textType">
-                                    <textarea name="note.text" id="note-create" placeholder="댓글 쓰기"
-                                              class="form-control"></textarea>
+                                    <textarea name="repltext"  placeholder="댓글 쓰기"
+                                              class="form-control" id="reply-content"></textarea>
                                 </fieldset>
                             </div>
                             <div class="content-function-cog note-submit-buttons clearfix">
                                 <p><a href="javascript://" id="note-create-cancel-btn" class="btn btn-default btn-wide"
-                                      style="display: none;">취소</a></p>
+                                      >취소</a></p>
                                 <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide"
-                                       value="등록" disabled="disabled">
+                                       value="등록" >
                             </div>
                         </form>
+                    <!--------------------------------------------------------------------------->
                     </li>
                 </ul>
             </div>
@@ -233,20 +279,21 @@
     }
     $('#closeok').html(html);
 
-    //비동기로 좋아요/싫어요 수 늘리기 - 아직 작업중...
-    function goodUpAndDown(pageNum){
-        var jsonData ={
-            pageNum:pageNum
+    //비동기로 좋아요/싫어요 수 늘리기
+    function goodUpAndDown(type,no){
+        let jsonData ={
+            type:type,
+            no:no
         }
         $.ajax({
-            url:"/opentutorials/getBoardsByPageNum",
+            url:"/StudyGood.so", //"StudyGood.so?type=up&no=${sb.no}"
             type:"POST",
-            dataType:"json",
-            contentType:"application/json",
-            data:JSON.stringify(jsonData),
+            dataType:"text",//수신타입
+            contentType:"application/x-www-form-urlencoded; charset=utf-8",
+            data:jsonData,//발신데이터 자체
             success:function(response){
                 if(response){
-                    createBoardTable(response);
+                    document.querySelector("#content-vote-count-2524877").innerHTML=response;
                 }else{
                     alert("error occured")
                 }
@@ -256,6 +303,29 @@
             }
         })
     }
+
+    //비동기로 댓글 입력
+    function replyAdd(){
+        let jsonData ={
+            no:document.querySelector("#list-group-item-text article-id").innerHTML,
+            id:document.querySelector("#reply-nickname").innerHTML,
+            content:document.querySelector("#reply-content").innerHTML
+        }
+        $.ajax({
+            url : "StudyReply.so",
+            type : 'POST',
+            data : jsonData,
+            success : function(data) {
+                //replyList();
+                $('#reply-nickname').val("");
+                $('#reply-content').val("");
+
+            },
+            error : function() {
+                alert('댓글 등록 실패');
+            }
+        });
+    };
 
 
 
