@@ -1,4 +1,4 @@
-package kr.or.bit.user.service;
+package kr.or.bit.user.service.job;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
