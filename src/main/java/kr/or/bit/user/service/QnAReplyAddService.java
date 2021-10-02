@@ -3,45 +3,46 @@ package kr.or.bit.user.service;
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.QnADao;
+import kr.or.bit.user.dto.Board;
+import kr.or.bit.user.dto.Comments;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class QnAReplyAddService implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 
-
-        String id = request.getParameter("id");
         String rcont = request.getParameter("rcont");
         String no = request.getParameter("no");
-        String removed = request.getParameter("removedOk");
+        HttpSession session = request.getSession();
 
-
-        System.out.println("댓글 아이디=" + id);
         System.out.println("댓글내용=" + rcont);
+        System.out.println("게시물댓글번호=" + no);
 
+        int result = 0;
 
+        Comments reply = new Comments();
 
-        //Reply reply = new Reply();
         String msg="";
         String url="";
 
         try {
+            reply.setNo(Integer.parseInt(no));
+            reply.setRcont(rcont);
+            reply.setId((String) session.getAttribute("id")); //로그인 한 사람만 댓글 작성 가능
+
             QnADao dao = new QnADao();
-            int boardNo = Integer.parseInt(no);
-            int removedOk = Integer.parseInt(removed);
-
-            int result = dao.qnaReplyWrite(boardNo, id, rcont, removedOk);
-
+            result = dao.qnaReplyWrite(reply);
 
             if(result > 0){
                 msg ="댓글 입력 성공";
-                url ="QnAContent.qo?no="+boardNo;
+                url ="QnAContent.qo?no="+no;
             }else{
                 msg="댓글 입력 실패";
-                url="QnAContent.qo?no="+boardNo;
+                url="QnAContent.qo?no="+no;
             }
         } catch (Exception e) {
             e.getStackTrace();

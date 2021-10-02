@@ -1,5 +1,6 @@
 package kr.or.bit.user.controller;
 
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -84,7 +85,7 @@ public class emailSenderController extends HttpServlet{
     
 }
 
-class MyAuthentication extends Authenticator{
+class MyAuthentication extends Authenticator {
     
     PasswordAuthentication pa;
     
