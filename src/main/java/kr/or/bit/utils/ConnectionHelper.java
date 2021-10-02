@@ -11,10 +11,11 @@ public class ConnectionHelper{
 
 		if (dbname.toLowerCase().equals("oracle")) {
 			try {
-					Context initContext = new InitialContext();
-					DataSource source = (DataSource) initContext.lookup("java:comp/env/jdbc/oracle");
-					Connection conn = source.getConnection();
-					return conn;
+				// JDBC 드라이버를 메모리에 올림
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				// 접속할 DB 정보로 Connection 객체 생성
+				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "study", "3410");
+				return conn;
 			} catch (Exception ex) {
 				System.out.println("connection" + ex.getMessage());
 				return null;

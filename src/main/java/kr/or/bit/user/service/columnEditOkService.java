@@ -2,38 +2,37 @@ package kr.or.bit.user.service;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.dao.QnADao;
+import kr.or.bit.user.dao.ColumnDao;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class QnAEditOkService implements Action {
+public class columnEditOkService implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         String no = request.getParameter("no");
-
 
         String msg = "";
         String url = "";
         ActionForward forward = null;
 
         try {
-            QnADao qnADao = new QnADao();
+            ColumnDao ColumnDao = new ColumnDao();
 
             if (no == null || no.trim().equals("")) {
                 msg = "글번호 입력 오류";
-                url = "QnAList.qo";
+                url = "BoardList.go";
             }else {
-                int result = qnADao.qnaBoardEdit(request);
+                int result = ColumnDao.columnEdit(request);
 
                 if (result > 0) {
                     msg = "edit success";
-                    url = "QnAList.qo";
+                    url = "BoardList.go";
                 } else {
                     msg = "edit fail";
-                    url = "QnAEdit.qo?no=" + no;
+                    url = "BoardEdit.go?no=" + no;
                 }
             }
             request.setAttribute("board_msg", msg);

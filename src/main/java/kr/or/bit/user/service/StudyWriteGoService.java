@@ -7,9 +7,9 @@ import kr.or.bit.user.dto.Study_category;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
+//리스트 -> 글쓰기 페이지로 가는 서비스 입니다
 public class StudyWriteGoService implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
