@@ -25,7 +25,7 @@ public class emailSenderController extends HttpServlet{
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
         Properties props = System.getProperties();
-        props.put("mail.smtp.user", "qkrtkdwns3410"); // 서버 아이디만 쓰기
+        props.put("mail.smtp.user", "qkrtkdwns34102"); // 서버 아이디만 쓰기
         props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.starttls.enable", "true");
