@@ -1,119 +1,116 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko" class="no-js">
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
     <link rel="stylesheet"  href="/assets/css/qna_write.css">
-    <script src="../../../summernote/js/summernote-lite.js"></script>
+    <script src="<c:url value="/summernote/js/summernote-lite.js"/>"></script>
     <!--예솔 추가함 : summernote-->
-    <script src="../../../summernote/js/summernote-ko-KR.js"></script>
+    <script src="<c:url value="/summernote/js/summernote-ko-KR.js"/>"></script>
     <!--예솔 추가함 : summernote-->
-    <link rel="stylesheet" href="../../../summernote/css/summernote-lite.css">
+    <link rel="stylesheet" href="<c:url value="/summernote/css/summernote-lite.css"/>">
     <!--예솔 추가함 : summernote-->
-
-
-
     <title>OKKY - Article 등록</title>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta property="og:image" content="https://okky.kr/assets/images/okky_logo_fb.png">
     <link rel="stylesheet" href="/assets/css/application.css">
-
-    <!--[if lt IE 9]>
-    <![endif]-->
-
 </head>
-
 
 <body>
 <jsp:include page="/WEB-INF/common/okky-columns-aside.jsp"></jsp:include>
-<div class="main">
 
+<c:set var="board" value="${requestScope.board}" />
+<c:set var="no" value="${requestScope.no}" />
+<c:set var="cpage" value="${requestScope.cp}" />
+<c:set var="pagesize" value="${requestScope.ps}" />
+<c:set var="replyList" value="${requestScope.replyList}" />
 
-    <div id="article-create" class="content" role="main">
-        <div class="content-header">
-            <h3>새 글 쓰기</h3>
-        </div>
+<div class="main content">
+    <div class="panel panel-default clearfix">
+        <div class="panel-heading clearfix">
+            <div class="panel-body">
+                <div id="article-create">
 
+                    <div class="avatar clearfix avatar-medium pull-left">
+                        <a href="/user/info/127868" class='avatar-photo'><img
+                                src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
+                        <div class="avatar-info">
+                            <a class="nickname" href="/user/info/127868" title="닉네임">닉네임</a>
 
-        <div class="panel panel-default clearfix">
-            <div class="panel-heading clearfix">
-
-                <div class="avatar clearfix avatar-medium pull-left">
-                    <a href="/user/info/127868" class='avatar-photo'><img
-                            src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
-                    <div class="avatar-info">
-                        <a class="nickname" href="/user/info/127868" title="닉네임">닉네임</a>
-                        <div class="activity block"><span class="fa fa-flash"></span> 0</div>
+                            <div class="activity"><span class="fa fa-flash"></span> 10</div>
+                            <div class="date-created"><span class="timeago" title="${board.writedate}">${board.writedate}</span></div>
+                        </div>
+                    </div>
+                    <div class="content-identity pull-right">
+                        <div class="article-id">${board.no}</div>
+                        <div><i class="fa fa-eye"></i>${board.hit}</div>
                     </div>
                 </div>
             </div>
-            <div class="panel-body">
-                <form action="${pageContext.request.contextPath}/BoardWriteOK.go" method="post" id="article-form" class="article-form" role="form"
-                      onsubmit="return postForm()">
-                    <fieldset class="form">
-                        <input type="hidden" name="_csrf" value="c6a51f4b-0401-45ae-a2b9-0c475512b478">
-                        <div class="form-group has-feedback">
-                            <div>
-                                <select id="category" name="categoryCode" class="form-control" required="">
-                                    <option value="">게시판을 선택해 주세요.</option>
-                                    <option value="tech-qna" data-external="false" data-anonymity="false">
-                                        칼럼 </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <div>
-                                <input type="text" name="title" required="" value="" placeholder="제목을 입력해 주세요."
-                                       class="form-control" id="title">
-                            </div>
-                        </div>
-
-                        <div class="form-group has-feedback">
-                            <div>
-                                <input type="text" name="tagString" value="" placeholder="Tags," class="form-control"
-                                       id="tagString">
-                            </div>
-                        </div>
-
-                        <div class="form-group has-feedback">
-                            <textarea name="cont" id="summernote" rows="20"
-                                      class="form-control input-block-level"></textarea>
-                        </div>
-                        <input type="hidden" name="textType" value="HTML" id="textType">
-
-                        <div class="recaptcha-wrapper">
-                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                            <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">
-                            </div>
-                        </div>
-
-                        <div class="nav" role="navigation">
-                            <fieldset class="buttons">
-                                <a href="${pageContext.request.contextPath}/BoardList.go" class="btn btn-default btn-wide"
-                                   onclick="return confirm('정말로 취소하시겠습니까?')">취소</a>
-                                <input type="submit" name="create" class="create btn btn-success btn-wide pull-right"
-                                       action="create" value="등록" id="create">
-                            </fieldset>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
         </div>
+
+        <form action="${pageContext.request.contextPath}/BoardEditOk.go" name="edit" method="post" id="article-form" class="article-form" role="form"
+              onsubmit="return postForm()">
+            <fieldset class="form">
+                <input type="hidden" name="_csrf" value="c6a51f4b-0401-45ae-a2b9-0c475512b478">
+                <div class="form-group has-feedback">
+                    <div>
+                        <select id="category" name="categoryCode" class="form-control" required="">
+                            <option value="">게시판을 선택해 주세요.</option>
+                            <option value="tech-qna" data-external="false" data-anonymity="false">
+                                칼럼 </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <div>
+                        <input type="text" name="title" required="" value="${board.title}" placeholder="제목을 입력해 주세요."
+                               class="form-control" id="title">
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <div>
+                        <input type="text" name="tagString" value="" placeholder="Tags," class="form-control"
+                               id="tagString">
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <textarea name="text" id="summernote" rows="20" class="form-control input-block-level">${board.cont}</textarea>
+                </div>
+                <input type="hidden" name="textType" value="HTML" id="textType">
+
+                <div class="recaptcha-wrapper">
+                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                    <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">
+                    </div>
+                </div>
+
+                <div class="nav" role="navigation">
+                    <fieldset class="buttons">
+                        <a href="${pageContext.request.contextPath}/BoardList.go" class="btn btn-default btn-wide"
+                           onclick="return confirm('정말로 취소하시겠습니까?')">취소</a>
+                        <input type="submit" name="create" class="create btn btn-success btn-wide pull-right"
+                               action="create" value="등록" id="create">
+                    </fieldset>
+                </div>
+            </fieldset>
+        </form>
     </div>
 
     <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
-
 
     <script>
         var contextPath = "";
         var encodedURL = "%2Farticles%2Fquestions%2Fcreate";
     </script>
-
 
     <script src="/assets/js/application.js" type="text/javascript"></script>
     <script src="/assets/js/apps/search.js" type="text/javascript"></script>
@@ -147,9 +144,7 @@
         var tagsInputItemAddedEventCallback = function (event) {
             $(this).parent().find(".tt-input").typeahead("val", "");
         };
-
     </script>
-
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -162,8 +157,6 @@
                 placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
             });
         });
-
-
 
         var tagsinputWidgets = $('input[name=tagString]').tagsinput(tagsInputConfig);
         $('input[name=tagString]').on('itemAdded', tagsInputItemAddedEventCallback);

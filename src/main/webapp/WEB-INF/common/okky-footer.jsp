@@ -4,7 +4,7 @@
       <div class="row">
             <div class="col-sm-9">
                   <div style="float: left;margin-right: 10px;height:100px;">
-                        <img src="../../assets/img/okky_logo_footer.png" alt="footer">
+                        <img src="assets/img/okky_logo_footer.png" alt="footer">
                   </div>
                   <div>
                         <a href="/intro/about">About OKKY</a>
