@@ -7,38 +7,6 @@
 <html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 <style>
-      /* The Modal (background) */
-      .modal_wrap {
-            display    : none;
-            width      : 500px;
-            height     : 500px;
-            position   : absolute;
-            top        : 50%;
-            left       : 50%;
-            margin     : -250px 0 0 -250px;
-            background : #eee;
-            z-index    : 2;
-      }
-      
-      .black_bg {
-            display          : none;
-            position         : absolute;
-            content          : "";
-            width            : 100%;
-            height           : 100%;
-            background-color : rgba(0, 0, 0, 0.5);
-            top              : 0;
-            left             : 0;
-            z-index          : 1;
-      }
-      
-      .modal_close {
-            width    : 26px;
-            height   : 26px;
-            position : absolute;
-            top      : -30px;
-            right    : 0;
-      }
       
       .modal_close > a {
             display     : block;
@@ -48,10 +16,6 @@
             text-indent : -9999px;
       }
       
-      .img_wrap {
-            width  : 42px;
-            height : 42px;
-      }
       
       .img_wrap img {
             max-width : 100%;
@@ -63,7 +27,7 @@
 
 <body>
 <div class="main">
-      <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+      <jsp:include page="/WEB-INF/common/okky-aside.jsp"/>
       <c:set var="userInfo" value="${requestScope.userInfo}"/>
       <!----------------------------------------------------------------------------------------------->
       <div id="create-user" class="content clearfix" role="main">
@@ -106,7 +70,7 @@
                               <fieldset>
                                     <div class="form-group">
                                           <label class="control-label" for="nickname">닉네임</label>
-                                          <input  style="width: 100%"  type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${userInfo.nickname}" id="nickname">
+                                          <input style="width: 100%" type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${userInfo.nickname}" id="nickname">
                                     </div>
                               </fieldset>
                               <button class="btn btn-primary btn-block" type="submit">정보 수정</button>

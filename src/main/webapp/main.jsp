@@ -10,11 +10,11 @@
 <div class="main">
       <!-- 실례합니다 테스트 좀 해볼게요-->
       <!----------------------------------------------------------------------------------------------->
-      <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+      <jsp:include page="/WEB-INF/common/okky-aside.jsp"/>
       메인
     
       
-      <jsp:include page="/WEB-INF/common/okky-footer.jsp"></jsp:include>
+      <jsp:include page="/WEB-INF/common/okky-footer.jsp"/>
       
       <!----------------------------------------------------------------------------------------------->
 </div>

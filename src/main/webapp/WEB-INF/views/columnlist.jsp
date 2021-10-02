@@ -16,7 +16,7 @@
 
 <div class="main">
 
-    <jsp:include page="/WEB-INF/common/okky-columns-aside.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
 
     <div id="list-article" class="content scaffold-list event-list" role="main">
         <!--중분류1 : 네비게이션바-->

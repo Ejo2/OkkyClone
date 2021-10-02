@@ -42,7 +42,7 @@
             <c:if test="${empty sessionScope.id}">
                   <div class="nav-user nav-sidebar">
                         <ul class="nav nav-sidebar">
-                              <li id="login"data-toggle="tooltip" data-container="body" title="로그인">
+                              <li id="login" data-toggle="tooltip" data-container="body" title="로그인">
                                     <a href="loginGo.do" class="link"><i class="fa fa-sign-in"></i>
                                           <span class="nav-sidebar-label">로그인</span></a></li>
                               <li id="join" data-toggle="tooltip" data-container="body" title="회원가입">
@@ -59,10 +59,10 @@
                   </div>
                   <ul class="list-unstyled">
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="setting"><span class="glyphicon glyphicon-cog" style="margin:7px 0 0 0"></span></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
                         </li>
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="notification"><span class="glyphicon glyphicon-bell" style="margin:7px 0 0 0"></span></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="notification"><i class="fas fa-bell" style="margin-top: 7px"></i></a>
                         </li>
                               <%--팝오버 창 start--%>
                         <div id="popover-content" class="hide" role="tooltip">
@@ -129,7 +129,7 @@
                     class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
             <li id="jobs" data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a
                     href="job.do" class="link"><i
-                    class="nav-icon fa fa-group"></i> <span
+                    class="nav-icon fa fa-user-friends"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
       </ul>
       
