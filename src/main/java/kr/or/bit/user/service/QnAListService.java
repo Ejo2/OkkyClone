@@ -4,7 +4,7 @@ import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.QnADao;
 import kr.or.bit.user.dto.Board;
-import kr.or.bit.utils.ThePager;
+import kr.or.bit.utils.QnAPager;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +26,7 @@ public class QnAListService implements Action {
             String ps = request.getParameter("ps"); // pagesize
             String cp = request.getParameter("cp"); // current page
 
-            // List 페이지 처음 호출 ...
+            // List 페이지 처음 호출
             if (ps == null || ps.trim().equals("")) {
                 // default 값 설정
                 ps = "5"; // 5개씩
@@ -40,7 +40,6 @@ public class QnAListService implements Action {
             int cpage = Integer.parseInt(cp);
             int pagecount = 0;
 
-            // 23건 % 5
             if (totalboardcount % pagesize == 0) {
                 pagecount = totalboardcount / pagesize; // 20 << 100/5
             } else {
@@ -51,8 +50,8 @@ public class QnAListService implements Action {
             // 전체 목록 가져오기
             List<Board> qnalist = qnADao.qnaList(cpage, pagesize);
             System.out.println("list.size() = " + qnalist.size());
-            int pagersize=3; //[1][2][3]
-            ThePager pager = new ThePager(totalboardcount,cpage,pagesize,pagersize,"QnAList.qo");
+            int pagersize=3;
+            QnAPager pager = new QnAPager(totalboardcount,cpage,pagesize,pagersize,"QnAList.qo");
 
             request.setAttribute("pagesize", pagesize);
             request.setAttribute("cpage", cpage);
@@ -60,7 +59,6 @@ public class QnAListService implements Action {
             request.setAttribute("qnalist", qnalist);
             request.setAttribute("totalboardcount", totalboardcount);
             request.setAttribute("pager", pager);
-
 
             forward = new ActionForward();
             forward.setRedirect(false); // forward

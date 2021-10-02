@@ -44,13 +44,34 @@ public class FrontQnAController extends HttpServlet {
         } else if (url_Command.equals("/QnAEdit.qo")) {
             action = new QnAEditService();
             forward = action.execute(request, response);
+            System.out.println("수정실행");
         } else if (url_Command.equals("/QnAEditOk.qo")) {
             action = new QnAEditOkService();
             forward = action.execute(request, response);
         }else if(url_Command.equals("/QnAReplyOk.qo")) {
+            System.out.println("댓글실행!");
             action = new QnAReplyAddService();
             forward = action.execute(request, response);
-        }
+        }else if(url_Command.equals("/QnADeleteOk.qo")) {
+            System.out.println("삭제실행!");
+            action = new QnADeleteAddService();
+            forward = action.execute(request, response);
+        }else if(url_Command.equals("/recommendOk.qo")) { //ajax
+            System.out.println("추천실행!");
+            action = new QnArecommendService();
+            forward = action.execute(request, response);
+        }else if(url_Command.equals("/ReplyDeleteOk.qo")) {
+            action = new QnAReplyDeleteOkService();
+            forward = action.execute(request, response);
+        }/*else if(url_Command.equals("/QnAReUpDate.qo")) {
+            System.out.println("수정실행1");
+            action = new QnAReUpDateService();
+            forward = action.execute(request, response);
+        }else if(url_Command.equals("/QnAReUpDateOk.do")) {
+            System.out.println("수정실행2");
+            action = new QnAReUpDateOk();
+            forward = action.execute(request, response);
+        }*/
 
 
         if (forward != null) {
