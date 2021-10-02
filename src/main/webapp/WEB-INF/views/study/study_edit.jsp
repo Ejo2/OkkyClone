@@ -7,8 +7,8 @@
 
 <body>
 <div class="main">
-      <link rel="stylesheet" href="../../assets/css/yesol.css"><!--예솔 추가함 : study게시판 용 css-->
-      <script src="../../assets/js/location/location.js"></script>
+      <link rel="stylesheet" href="../../../assets/css/yesol.css"><!--예솔 추가함 : study게시판 용 css-->
+      <script src="../../../assets/js/location/location.js"></script>
       <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
       <!----------------------------------------------------------------------------------------------->
       
@@ -141,8 +141,8 @@
      var encodedURL = "%2Farticles%2Fquestions";
 </script>
 
-<script src="../../assets/js/application.js" type="text/javascript"></script>
-<script src="../../assets/js/search.js" type="text/javascript"></script>
+<script src="../../../assets/js/application.js" type="text/javascript"></script>
+<script src="../../../assets/js/search.js" type="text/javascript"></script>
 <script>
      
      $(document).ready(function() {

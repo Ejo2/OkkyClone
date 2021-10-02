@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<link rel="stylesheet" href="../../assets/css/yesol.css">
+<link rel="stylesheet" href="../../../assets/css/yesol.css">
 <div>
 
 
