@@ -2,8 +2,8 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.service.columnBoardAddService;
-import kr.or.bit.user.service.columnListService;
+import kr.or.bit.user.service.columns.columnBoardAddService;
+import kr.or.bit.user.service.columns.columnListService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,7 +38,7 @@ public class FrontColumnController extends HttpServlet {
             //예) /WEB-INF/views/memoview.jsp 가정
             forward = new ActionForward();
             forward.setRedirect(false);
-            forward.setPath("/WEB-INF/views/columnwrite.jsp");
+            forward.setPath("/WEB-INF/views/columns/columnwrite.jsp");
         }else if(url_Command.equals("/BoardWriteOK.go")) { //만약 있다면 상세보기
             //UI 제공 ...
             //예) /WEB-INF/views/memoview.jsp 가정
