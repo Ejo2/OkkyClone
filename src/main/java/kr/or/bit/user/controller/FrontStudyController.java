@@ -120,6 +120,8 @@ public class FrontStudyController extends HttpServlet{
                 jsonObj.put("rdate", time);
                 jsonArr.add(jsonObj);
             }
+
+
             System.out.println(jsonArr.size());
 
             response.setContentType("application/x-json; charset=UTF-8");
