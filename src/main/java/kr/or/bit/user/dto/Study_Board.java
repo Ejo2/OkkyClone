@@ -19,6 +19,8 @@ public class Study_Board {
     private String exp;
     private int closeok;
 
+
+
 ////getter , setter //////////////////
     public int getNo() {
         return no;
@@ -131,6 +133,8 @@ public class Study_Board {
     public void setCloseok(int closeok) {
         this.closeok = closeok;
     }
+
+
 
     @Override
     public String toString() {
