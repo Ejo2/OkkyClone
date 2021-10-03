@@ -19,7 +19,7 @@ public class QnArecommendService implements Action {
         int no = Integer.parseInt(request.getParameter("no"));//글번호
         String status = request.getParameter("status");//good이냐 bad냐
         System.out.println("status = " + status);
-        int good_val=(status.equals("good"))?1:-1; //
+        int good_val=(status.equals("good"))?1:-1;
         String msg = "";
 
         try {
