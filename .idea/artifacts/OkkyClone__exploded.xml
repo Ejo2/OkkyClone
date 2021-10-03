@@ -8,15 +8,10 @@
           <element id="javaee-facet-classes" facet="OkkyClone/web/Web" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: servlets.com:cos:05Nov2002" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
-          <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.9" />
-          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
-          <element id="library" level="project" name="Maven: com.oracle.database.jdbc:ojdbc8:19.7.0.0" />
-          <element id="library" level="project" name="Java EE 6-Java EE 6 (2)" />
-          <element id="library" level="project" name="gson-2.8.6" />
-          <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="project" name="Maven: servlets.com:cos:05Nov2002" />
+          <element id="library" level="project" name="json-lib-2.4-jdk15" />
+          <element id="library" level="project" name="lib" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="OkkyClone/web/Web" />

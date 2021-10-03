@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/qna_read.css">
 
-    <title>OKKY - 상세보기</title>
+    <title>OKKY - 서블릿 어렵네요ㅠ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf_parameter" content="_csrf"/>
     <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
@@ -40,8 +40,17 @@
     <script src="/assets/libs/respond.src.js"></script>
     <script src="/assets/libs/html5.js"></script>
     <![endif]-->
-
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="OKKY">
+    <meta property="og:url" content="https://okky.kr/article/1060292">
+    <meta property="og:description" content=" 어려워요ㅠ ">
+    <meta property="og:title" content="OKKY | 서블릿 어렵네요ㅠ">
+    <meta property="dable:item_id" content="1060292">
+    <meta property="dable:author" content="닉녬">
+    <meta property="article:section" content="tech-qna">
+    <meta property="article:published_time" content="2021-09-28T18:57:07Z">
 </head>
+
 <body>
 
     <c:set var="board" value="${requestScope.board}" />
@@ -164,7 +173,7 @@
 
                                     <%--아이디 null 값이면 삭제 못함--%>
                                     <c:choose>
-                                        <c:when test="${sessionScope.id !=null}">
+                                        <c:when test="${sessionScope.id == board.id}">
                                             <a href="javascript://" data-toggle="dropdown">
                                                 <i class="fa fa-cog" data-toggle="tooltip" data-placement="left"
                                                    title="게시물 설정" ></i>
@@ -180,8 +189,8 @@
 
 
                                     <ul class="dropdown-menu" role="menu" >
-                                        <li><a href="${pageContext.request.contextPath}/BoardEdit.go?no=${no}&cp=${cpage}&ps=${pagesize}" class="edit"><i
-                                                class="fa fa-edit fa-fw"></i> 수정 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/BoardEdit.go?no=${no}&cp=${cpage}&ps=${pagesize}" class="edit">
+                                            <i class="fa fa-edit fa-fw"></i> 수정 </a></li>
                                         <li><a href="javascript://" id="article-delete-btn"><i
                                                 class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
                                     </ul>
@@ -198,105 +207,91 @@
             <div class="panel panel-default clearfix">
 
                 <!-- List group -->
-                <ul class="list-group">
+                <ul class="list-group reply_data_ul">
 
                         <li id="note-title" class="list-group-item note-title">
                             <h3 class="panel-title">답변 <span id="note-count">${totalReplyCount}</span></h3>
                         </li>
                     <c:forEach var="replyList" items="${replyList}">
-                        <li class="list-group-item note-item clearfix" id="note-2524880">
-                            <form action="/content/update/2524880" method="post" data-id="2524880" class="note-update-form">
-                                <input type="hidden" name="_method" value="PUT" id="method11">
-                                <div class="content-body panel-body pull-left">
-                                    <a href="javascript://" class="note-vote-btn note-select-btn note-deselected"
-                                       data-id="2524880" data-type="select">
-                                        <i class="fa fa-check"></i>
-                                    </a>
+                        <li class="list-group-item note-item clearfix reply_data" id="note-2524880">
+                            <input type="hidden" name="_method" value="PUT" id="method11">
+                            <div class="content-body panel-body pull-left">
+                                <a href="javascript://" class="note-vote-btn note-select-btn note-deselected"
+                                   data-id="2524880" data-type="select">
+                                    <i class="fa fa-check"></i>
+                                </a>
 
-                                        <%--  <c:if test="${not empty replyList}">
-                                              <c:forEach var="reply" items="${replyList}">--%>
-
-                                    <div class="avatar clearfix avatar-medium ">
-                                        <a href="/user/info/127406" class="avatar-photo"> <%--회원정보 가기--%>
-                                            <img src="//www.gravatar.com/avatar/970c7decc77dd782550e549336b71d3a?d=identicon&amp;s=40"></a>
-                                        <div class="avatar-info">
-                                            <a class="nickname" href="/memberDetailGo.do" title="${requestScope.userInfo.nickname}">${replyList.id}</a> <%--댓글 작성자 닉네님--%>
-                                            <div class="activity"><span class="fa fa-flash"></span> 28</div>  <%--활동점수--%>
-                                            <div class="date-created"><span class="timeago" title="${replyList.rdate}">${replyList.rdate}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <fieldset class="form">
-                                        <article id="note-text-2524880" class="list-group-item-text note-text">
-                                            <p>${replyList.rcont}</p>
-                                        </article>
-                                    </fieldset>
-                                </div>
-                                    <%-- </c:forEach>
-                                         </c:if>--%>
-                                <div class="content-function pull-right text-center">
-
-
-                                    <div class="content-function-group">
-
-                                        <div class="note-evaluate-wrapper">
-                                            <a href="javascript://" class="note-vote-btn" role="button" data-type="assent"
-                                               data-eval="true" data-id="2524880">
-                                                <i id="note-evaluate-assent-2524880"
-                                                   class="fa fa-angle-up note-evaluate-assent-assent " data-placement="left"
-                                                   data-toggle="tooltip" title="" data-original-title="추천"></i>
-                                            </a>
-
-                                            <div id="content-vote-count-2524880" class="content-eval-count ">0</div>
-
-                                            <a href="javascript://" class="note-vote-btn" role="button" data-type="dissent"
-                                               data-eval="true" data-id="2524880">
-                                                <i id="note-evaluate-dissent-2524880"
-                                                   class="fa fa-angle-down note-evaluate-dissent-dissent "
-                                                   data-placement="left" data-toggle="tooltip" title=""
-                                                   data-original-title="반대"></i>
-                                            </a>
+                                <div class="avatar clearfix avatar-medium ">
+                                    <a href="/user/info/127406" class="avatar-photo"> <%--회원정보 가기--%>
+                                        <img src="//www.gravatar.com/avatar/970c7decc77dd782550e549336b71d3a?d=identicon&amp;s=40"></a>
+                                    <div class="avatar-info">
+                                        <a class="nickname" href="/memberDetailGo.do" title="${requestScope.userInfo.nickname}">${replyList.id}</a> <%--댓글 작성자 닉네님--%>
+                                        <div class="activity"><span class="fa fa-flash"></span> 28</div>  <%--활동점수--%>
+                                        <div class="date-created"><span class="timeago" title="${replyList.rdate}">${replyList.rdate}</span>
                                         </div>
                                     </div>
                                 </div>
+                                <fieldset class="form">
+                                    <article id="note-text-2524880" class="list-group-item-text note-text">
+                                        <p>${replyList.rcont}</p>
+                                    </article>
+                                </fieldset>
+                            </div>
+                            <div class="content-function pull-right text-center">
 
-                                <div id="content-function-cog-2529765" class="content-function-cog">
-                                    <div class="dropdown">
 
+                                <div class="content-function-group">
 
+                                    <div class="note-evaluate-wrapper">
+                                        <a href="javascript://" class="note-vote-btn" role="button" data-type="assent"
+                                           data-eval="true" data-id="2524880">
+                                            <i id="note-evaluate-assent-2524880"
+                                               class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left"
+                                               data-toggle="tooltip" title="" data-original-title="추천"></i>
+                                        </a>
 
-                                            <%--아이디가 null값이면 활성화x  댓글 삭제수정하기--%>
-                                        <c:choose>
-                                            <c:when test="${sessionScope.id != null}">
-                                                <a href="javascript://" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="" data-original-title="게시물 설정"></i></a>
-                                                <ul class="dropdown-menu" role="menu" >
-                                                    <li><a href="javascript://" class="note-edit-btn" data-id="2529765"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>
-                                                    <li><a href="javascript://" class="note-delete-btn" data-id="2529765"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
-                                                </ul>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a href="javascript://" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="" data-original-title="게시물 설정" style="display: none"></i></a>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <div id="content-vote-count-2524880" class="content-eval-count">0</div>
 
+                                        <a href="javascript://" class="note-vote-btn" role="button" data-type="dissent"
+                                           data-eval="true" data-id="2524880">
+                                            <i id="note-evaluate-dissent-2524880"
+                                               class="fa fa-angle-down note-evaluate-dissent-dissent"
+                                               data-placement="left" data-toggle="tooltip" title=""
+                                               data-original-title="반대"></i>
+                                        </a>
                                     </div>
                                 </div>
+                            </div>
 
-                            </form>
-                                <%--댓글삭제 같음--%>
-                            <form action="/ReplyDeleteOk.go" method="post" id="note-delete-form-2524880" style="display: none">
+                            <div id="content-function-cog-2529765" class="content-function-cog">
+                                <div class="dropdown">
+                                        <%--아이디가 null값이면 활성화x  댓글 삭제수정하기--%>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.id != null}">
+                                            <a href="javascript://" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="" data-original-title="게시물 설정"></i></a>
+                                            <ul class="dropdown-menu" role="menu" >
+                                               <!--<li><a href="javascript://" class="note-edit-btn" data-id="2529765"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>-->
+                                                <li onclick="deleteReply('${replyList.rno}')"><a href="javascript://" class="note-delete-btn" data-id="2529765"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
+                                            </ul>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="javascript://" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="" data-original-title="게시물 설정" style="display: none"></i></a>
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </div>
+                            </div>
+
+                                <%--댓글삭제--%>
+                            <form style="display: none" onsubmit="return false">
                                 <input id="rno" name="rno" value="${replyList.rno}">
                             </form>
-
-                                <%-- <form action="/content/delete/2524880" method="post" id="note-delete-form-2524880">
-                                     <input type="hidden" name="_csrf" value="4ca7ddc0-25d6-4348-8561-599374a73af4">
-                                     <input type="hidden" name="_method" value="DELETE" id="method22">
-                                 </form>--%>
                         </li>
 
+
                     </c:forEach>
-                    <li class="list-group-item note-form clearfix">
+                    <li class="list-group-item note-form clearfix reply_submit">
                         <form action="/BoardReplyOk.go" method="post" class="note-create-form">
                             <%--댓글 리스트--%>
                             <input type="hidden" name="_csrf" value="4ca7ddc0-25d6-4348-8561-599374a73af4">
@@ -329,14 +324,13 @@
 
                                 <c:choose>
                                     <c:when test="${sessionScope.id !=null}">
-                                        <input type="reset" id="note-create-cancel-btn" class="btn btn-default btn-wide" value="취소" style="margin: 2px" />
-
-                                        <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide"
-                                               value="등록">
+                                        <p><a href="javascript://" id="note-create-cancel-btn" class="btn btn-default btn-wide">취소</a></p>
+                                        <input  name="create" id="btn-create-btn" class="btn btn-success btn-wide reply_create" style="width:70%;"
+                                                value="등록" onclick="insertReply();">
                                     </c:when>
                                     <c:otherwise>
 
-                                        <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide"
+                                        <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide" style="width:70%;"
                                                value="등록" disabled="disabled">
                                     </c:otherwise>
                                 </c:choose>
@@ -396,17 +390,7 @@
                 //아니요
             }
         });
-ㄹ
 
-        /*댓글삭제*/
-        $(".note-delete-btn").on("click", function (){
-            if(confirm("정말로 삭제 하시겠습니까?")){
-                //예
-                $("#note-delete-form-2524880").submit();
-            } else {
-                //아니요
-            }
-        });
 
         //추천 제이쿼리 (클릭하면 추천)
         $(".good").on('click',function(){
@@ -448,6 +432,128 @@
         }
 
 
+        function insertReply() {
+            var param_data = {"rcont":$("textarea[name='rcont']").val() , "no":"${no}"};
+            $.ajax({
+                url:"/BoardReplyOk.go",
+                method:"post",
+                data:param_data,
+                success: function (result) {
+                    if (result == "ok") {
+                        getCommentList();
+                    }
+                },
+                error:function(request,status,error){
+                    console.log(error);
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+        }
+
+        function deleteReply(rno) {
+            if(!confirm("정말 삭제 하시겠습니까?")) return;
+            var param_data = {"rno":rno};
+            $.ajax({
+                url:"/ReplyDeleteOk.go",
+                method:"post",
+                data:param_data,
+                success: function (result) {
+                    console.log(result);
+
+                    if (result == "ok") {
+                        console.log("실행");
+                        getCommentList();
+                    }
+                },
+                error:function(request,status,error){
+                    console.log(error);
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+        }
+
+        /*댓글ajax*/
+        function getCommentList(){
+            var html = "";
+            $.ajax({
+                url:"/getCommentList.go",
+                method:"post",
+                data:{"no":"${no}"},
+                dataType:"json",
+                success : function(result) {
+                    $(".reply_data_ul > li.reply_data").remove();
+                    if(result.length==0){
+                        return;
+                    }
+
+                    for (let reply of result) {
+
+
+
+
+                        html += '<li class="list-group-item note-item clearfix reply_data" id="note-2524880">';
+                        html += '<div class="content-body panel-body pull-left">';
+                        html += '<a href="javascript://" class="note-vote-btn note-select-btn note-deselected" data-id="2524880" data-type="select">';
+                        html += '<i class="fa fa-check"></i>';
+                        html += '</a>';
+                        html += '<div class="avatar clearfix avatar-medium ">';
+                        html += '<a href="/user/info/127406" class="avatar-photo">';
+                        html += '<img src="//www.gravatar.com/avatar/970c7decc77dd782550e549336b71d3a?d=identicon&amp;s=40"></a>';
+                        html += '<div class="avatar-info">';
+                        html += '<a class="nickname" href="/memberDetailGo.do" title="aa" data-value="'+reply.no+'">'+reply.id+'</a>';
+                        html += '<div class="activity"><span class="fa fa-flash"></span> 28</div>';
+                        html += '<div class="date-created"><span class="timeago" title="asdsa">'+reply.date+'</span>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '<fieldset class="form">';
+                        html += '<article id="note-text-2524880" class="list-group-item-text note-text">';
+                        html += '<p>'+reply.cont+'</p>';
+                        html += '</article>';
+                        html += '</fieldset>';
+                        html += '</div>';
+                        html += '<div class="content-function pull-right text-center">';
+                        html += '<div class="content-function-group">';
+                        html += '<div class="note-evaluate-wrapper">';
+                        html += '<a href="javascript://" class="note-vote-btn" role="button" data-type="assent" data-eval="true" data-id="2524880">';
+                        html += '<i id="note-evaluate-assent-2524880" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="" data-original-title="추천"></i> ';
+                        html += '</a>';
+                        html += '<div id="content-vote-count-2524880" class="content-eval-count">0</div>';
+                        html += '<a href="javascript://" class="note-vote-btn" role="button" data-type="dissent" data-eval="true" data-id="2524880">';
+                        html += '<i id="note-evaluate-dissent-2524880" class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left" data-toggle="tooltip" title="" data-original-title="반대"></i>';
+                        html += '</a>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '<div id="content-function-cog-2529765" class="content-function-cog">';
+                        html += '<div class="dropdown">';
+                        html += '<a href="javascript://" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="" data-original-title="게시물 설정"></i></a>';
+                        html += '<ul class="dropdown-menu" role="menu">';
+                        html += '<li><a href="javascript://" class="note-edit-btn" data-id="2529765"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>';
+                        html += '<li onclick="deleteReply('+reply.rno+')">'
+                        html +=  '<a href="javascript://" class="note-delete-btn" data-id="2529765"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>';
+                        html += '</ul>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '<form action="/ReplyDeleteOk.go" method="post" id="note-delete-form-2524880" style="display: none">';
+                        html += '<input id="rno" name="rno" value="">';
+                        html += '</form>';
+                        html += '</li>';
+                        $("ul.reply_data_ul").append(html);
+                        html = "";
+                    };
+
+                    $("li.reply_submit").appendTo($("ul.reply_data_ul"));
+                    $("textarea[name='rcont']").val("");
+                },
+                error:function(request,status,error){
+                    console.log(error);
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+        }
+
+
     </script>
 
     <script src="/assets/js/application.js" type="text/javascript"></script>
@@ -468,9 +574,10 @@
             js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-
-
     </script>
+
+
+
 
     <div id="userPrivacy" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
