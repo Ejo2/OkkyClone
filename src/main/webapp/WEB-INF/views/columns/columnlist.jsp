@@ -9,7 +9,7 @@
 <body>
 <c:set var="cpage" value="${requestScope.cpage}" />
 <c:set var="pagecount" value="${requestScope.pagecount}" />
-<c:set var="qnalist" value="${requestScope.qnalist}" />
+<c:set var="collist" value="${requestScope.collist}" />
 <c:set var="totalboardcount" value="${requestScope.totalboardcount}" />
 <c:set var="pager" value="${requestScope.pager}" />
 <c:set var="userInfo" value="${requestScope.userInfo}"/>
