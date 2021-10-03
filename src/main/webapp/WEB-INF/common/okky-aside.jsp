@@ -54,8 +54,10 @@
             <%--로그인 상태인 경우 프로필 사진과 알림 & 정보수정 (로그아웃) 이동 창을 띄웁니다.--%>
             <c:if test="${not empty sessionScope.id}">
                   <div class="avatar clearfix avatar-medium ">
-                        <a href="memberDetailGo.do" class='avatar-photo'><img
-                                src="upload/${sessionScope.photo}"/></a>
+                        <a href="memberDetailGo.do" class='avatar-photo'>
+<%--   20211003 지혜 : 404 오류 임시   주석        --%>
+<%--                <img--%>
+<%--                                src="upload/${sessionScope.photo}"/></a>--%>
                   </div>
                   <ul class="list-unstyled">
                         <li>
@@ -128,7 +130,7 @@
                     href="BoardList.go" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
             <li id="jobs" data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a
-                    href="job.do" class="link"><i
+                    href="job.do?jobType=CONTRACT" class="link"><i
                     class="nav-icon fa fa-user-friends"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
       </ul>

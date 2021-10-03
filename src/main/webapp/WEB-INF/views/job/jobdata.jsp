@@ -10,6 +10,7 @@
     String job_cd= request.getParameter("job_cd");
     String edu_lv= request.getParameter("edu_lv");
     String loc_cd= request.getParameter("loc_cd");
+    String job_type= request.getParameter("job_type");
     String queryString= request.getParameter("data");
     System.out.println("job_mid_cd="+job_mid_cd.replace("undefined", "")+
             "&job_cd="+job_cd.replace("undefined", "") +
@@ -24,7 +25,9 @@
 //        String apiURL = "https://oapi.saramin.co.kr/job-search?access-key="+accessKey+"&keyword="+ text;
 //TODO 기본셋팅 개발자 구인이게
         // String text = "&count=10&job_cd="+queryString;
-        String text = "&count=110&"+ "job_mid_cd="+job_mid_cd.replace("undefined", "")+
+        String text = "&count=110&"+ "job_type=" + job_type +
+
+                "&job_mid_cd="+job_mid_cd.replace("undefined", "")+
                 "&job_cd="+job_cd.replace("undefined", "") +
                 "&edu_lv="+edu_lv.replace("undefined", "") +
                 "&loc_cd="+loc_cd.replace("undefined", "");

@@ -168,7 +168,6 @@
     });
 
 
-
     var tagsinputWidgets = $('input[name=tagString]').tagsinput(tagsInputConfig);
     $('input[name=tagString]').on('itemAdded', tagsInputItemAddedEventCallback);
 

@@ -1,13 +1,14 @@
 package kr.or.bit.user.service.columns;
 
-        import javax.naming.NamingException;
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-
         import kr.or.bit.user.action.Action;
-        import kr.or.bit.user.action.ActionForward;
-        import kr.or.bit.user.dao.ColumnDao;
-        import kr.or.bit.user.dto.Board;
+import kr.or.bit.user.action.ActionForward;
+import kr.or.bit.user.dao.ColumnDao;
+import kr.or.bit.user.dto.Board;
+
+import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class columnBoardAddService implements Action {
 
@@ -16,7 +17,7 @@ public class columnBoardAddService implements Action {
 
         String title = request.getParameter("title");
         String cont = request.getParameter("cont");
-
+        HttpSession session = request.getSession();
 
         int result = 0;
 
@@ -24,7 +25,7 @@ public class columnBoardAddService implements Action {
 
         board.setTitle(title);
         board.setCont(cont);
-
+        board.setId((String) session.getAttribute("id")); //아이디 세션
 
         try {
             ColumnDao dao = new ColumnDao();

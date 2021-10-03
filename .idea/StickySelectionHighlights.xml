@@ -8,12 +8,32 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6__3_.xml">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/OkkyClone.iml">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/controller/FrontColumnController.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/controller/FrontQnAController.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/controller/FrontStudyController.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/controller/emailSenderController.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -29,6 +49,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/dto/ColumnDto.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/QnAContentService.java">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -68,6 +93,41 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columnReplyAddService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columnReplyDeleteOkService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columnrecommendService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnDeleteOk.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnDeleteService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnReplyAddService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/profileChangeService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml">
           <value>
             <PaintGroupHighlightMap />
@@ -84,6 +144,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/okky-footer.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/okky-head.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -113,7 +178,22 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/columns/columncontent.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/columns/columnedit.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/columnwrite.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/qna_board/qna_read.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
