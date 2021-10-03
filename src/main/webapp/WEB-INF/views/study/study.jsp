@@ -56,7 +56,9 @@
                     <div class="list-title-wrapper clearfix">
                         <div class="list-tag clearfix">
                             <span class="list-group-item-text article-id">${board.no}</span>
-                            <a href="/articles/gathering" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> 정기모임/스터디</a>
+                            <c:if test="${board.closeok ==1}">
+                            <a href="#" class="list-group-item-text item-tag label label-info">마감</a>
+                            </c:if>
                         </div>
                         <h5 class="list-group-item-heading list-group-item-evaluate">
                             <a href="/StudyDetail.so?no=${board.no}">
@@ -67,7 +69,7 @@
                     <div class="list-summary-wrapper clearfix">
                         <div class="list-group-item-summary clearfix">
                             <ul>
-                                <li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i> 0</li>
+                                <li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i>0</li>
                                 <li class="item-icon-disabled">
                                     <i class="item-icon fa fa-thumbs-up"></i>${board.good}
                                 </li>
@@ -206,6 +208,9 @@
             e.preventDefault();
             $('#category-filter-form')[0].submit();
         });
+
+
+
     });
 </script>
 </html>

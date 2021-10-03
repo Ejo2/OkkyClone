@@ -1,46 +1,32 @@
 package kr.or.bit.user.service.columns;
 
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
+import kr.or.bit.user.action.Action;
+import kr.or.bit.user.action.ActionForward;
+import kr.or.bit.user.dao.ColumnDao;
 
-        import kr.or.bit.user.action.Action;
-        import kr.or.bit.user.action.ActionForward;
+import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class columnDeleteService implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-
-        String msg="";
-        String url="";
-
-        //삭제글 처리 (글번호 받기)
-        String no = request.getParameter("no");
-        String cpage = request.getParameter("cp"); // current page
-        String pagesize = request.getParameter("ps"); // pagesize
-        String referer = (String)request.getHeader("Referer");
-
         ActionForward forward = null;
 
-        if(no == null || no.trim().equals("")){
-            msg ="글번호가 넘어오지 않았습니다";
-            url = "BoardContent.do?no=" + no;
-            request.setAttribute("board_msg", msg);
-            request.setAttribute("board_url", url);
+        ColumnDao columnDao;
 
-            forward = new ActionForward();
-            forward.setRedirect(false);
-            forward.setPath("/WEB-INF/views/redirect/redirect.jsp");
-
-        } else {
-            request.setAttribute("no", no);
-            request.setAttribute("cp", cpage);
-            request.setAttribute("ps", pagesize);
-
-            forward = new ActionForward();
-            forward.setRedirect(false);
-            forward.setPath("/BoardDeleteOk.go");
+        try {
+            int no = Integer.parseInt(request.getParameter("no"));
+            columnDao = new ColumnDao();
+            columnDao.deleteOk(no);
+        } catch (NamingException e) {
+            e.printStackTrace();
         }
+
+        forward = new ActionForward();
+        forward.setRedirect(false); // forward
+        forward.setPath("/BoardList.go");
 
         return forward;
     }

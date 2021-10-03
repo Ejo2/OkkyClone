@@ -1,15 +1,14 @@
 package kr.or.bit.user.service.columns;
 
-        import java.util.List;
+import kr.or.bit.user.action.Action;
+import kr.or.bit.user.action.ActionForward;
+import kr.or.bit.user.dao.ColumnDao;
+import kr.or.bit.user.dto.Board;
+import kr.or.bit.utils.QnAPager;
 
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-
-        import kr.or.bit.user.action.Action;
-        import kr.or.bit.user.action.ActionForward;
-
-        import kr.or.bit.user.dao.ColumnDao;
-        import kr.or.bit.user.dto.Board;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 //import kr.or.bit.user.utils.ThePager;
 
 public class columnListService implements Action {
@@ -54,14 +53,14 @@ public class columnListService implements Action {
             List<Board> collist = qnADao.colList(cpage, pagesize);
             System.out.println("list.size() = " + collist.size());
             int pagersize=3; //[1][2][3]
-           // ThePager pager = new ThePager(totalboardcount,cpage,pagesize,pagersize,"QnAList.qo");
+            QnAPager pager = new QnAPager(totalboardcount,cpage,pagesize,pagersize,"BoardList.go");
 
             request.setAttribute("pagesize", pagesize);
             request.setAttribute("cpage", cpage);
             request.setAttribute("pagecount", pagecount);
             request.setAttribute("collist", collist);
             request.setAttribute("totalboardcount", totalboardcount);
-           // request.setAttribute("pager", pager);
+            request.setAttribute("pager", pager);
 
 
 
