@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="content-identity pull-right">
-                        <div class="content-identity-count"><i class="fa fa-comment"></i> 0</div>
+                        <div class="content-identity-count"><i class="fa fa-comment"></i>${requestScope.replyCount}</div>
                         <div class="content-identity-count"><i class="fa fa-eye"></i>${sb.hit}</div>
                     </div>
                 </div>
@@ -163,11 +163,11 @@
                 <!-- List group ------------------------------------------------------------------------------------------------>
                 <ul class="list-group">
                     <li id="note-title" class="list-group-item note-title">
-                        <h3 class="panel-title">답변 <span id="note-count">0</span></h3>
+                        <h3 class="panel-title">답변 <span id="note-count">${requestScope.replyCount}</span></h3>
                     </li>
 
                     <div id="replylist">
-                        <!------------------------------------------------------------------------------------------댓글 뿌려주는 영역-->
+                        <!-------------------------이 안의 코드는 더미코드로 뿌려지지 않습니다. javascript에서 뿌려집니다-------->
                         <li class="list-group-item note-item clearfix" id="note-2448736">
                             <div class="content-body panel-body pull-left">
                                 <div class="avatar clearfix avatar-medium ">
@@ -238,7 +238,7 @@
                                 </fieldset>
                             </div>
                             <div class="content-function-cog note-submit-buttons clearfix">
-                                <p><a href="javascript://" id="note-create-cancel-btn" class="btn btn-default btn-wide"
+                                <p><a href="#" id="note-create-cancel-btn" class="btn btn-default btn-wide"
                                 >취소</a></p>
                                 <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide"
                                        value="등록">
@@ -343,6 +343,7 @@
                 type: 'POST',
                 data: jsonData,
                 success: function (data) {
+                    alert("댓글이 등록되었습니다");
                     replyList();
                     $('#reply-content').val("");
 
@@ -357,7 +358,7 @@
     function replyList() {
         $.ajax({
             url: "/ReplyList.so",
-            type: 'GET',
+            type: 'POST',
             dataType: "json",//수신타입
             data: {
                 no: $("#no").text()
@@ -366,7 +367,7 @@
                 $('#replylist').empty();
 
                 if (data.length == 0) {
-                    $('#replylist').append('<p>댓글 없는 경우</p>');
+
                 } else {
                     $.each(data, function (index, obj) {
                         $('#replylist').append(
@@ -377,6 +378,7 @@
                             '<div class="avatar clearfix avatar-medium ">' +
                             '<a href="/user/info/122431" class="avatar-photo"><img src="https://phinf.pstatic.net/contact/20191027_276/1572171959967Pzk1W_JPEG/ccc.jpg"/></a>' +
                             '<div class="avatar-info">' +
+                            '<input type="hidden" id="replyRno" name="game_token" value="'+obj.rno+'">'+
                             '<a class="nickname" href="/user/info/122431">' + obj.id + '</a>' +
                             '<div class="date-created"><span class="timeago" >' + obj.rdate + '</span>' +
                             '</div>' +
@@ -393,11 +395,11 @@
                             '<div class="note-evaluate-wrapper">' +
 
                             '<div class="dropdown">' +
-                            '<div class="dropdown">' +
+                            '<div class="dropdown">' + //여기도 같은 문제
                             '<a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left"title="게시물 설정"></i></a>' +
                             '<ul class="dropdown-menu" role="menu">' +
-                            '<li><a href="#" class="edit"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>' +
-                            '<li><a href="#" id="reply-delete-btn"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>' +
+                            '<li><a href="javascript:replyUpdate(' + obj.rno + ')" id="note-text-2448736"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>' +
+                            '<li><a href="javascript:replyDelete('+  obj.rno + ')" id="reply-delete-btn"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>' +
                             '</ul>' +
                             '</div>' +
                             '</div>' +
@@ -416,6 +418,33 @@
 
     }
 
+    function replyDelete(rno) {
+        $.ajax({
+            url :"/Replydelete.so",
+            type : 'POST',
+            datatype : "text",
+            data :{
+                no: $("#no").text(),
+                rno:rno
+            },
+            success : function(data){
+                alert("댓글이 삭제되었습니다");
+                replyList();
+            },
+            error : function() {
+                alert('댓글 삭제 실패');
+            }
+        });
+    }
+
+    function replyUpdate(rno) {
+        $('#note-text-2448736').empty();
+        $('#note-text-2448736').append(
+            '<textarea name="repltextUpdate" class="form-control" id="reply-content"></textarea>'+
+            '<input type="button" value="수정하기" Style="margin-top: 5px;" onclick="alert('+rno+')">'
+        );
+
+    }
 
 </script>
 
