@@ -162,7 +162,7 @@ public class ColumnDao {
                 totalcount = rs.getInt("cnt");
             }
         }catch (Exception e) {
-
+            e.printStackTrace();
         }finally {
             try {
                 pstmt.close();
@@ -312,7 +312,7 @@ public class ColumnDao {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-
+        System.out.println("삭제ok");
         int row = 0;
         try {
             conn = ds.getConnection();

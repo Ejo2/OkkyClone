@@ -1,6 +1,6 @@
 package kr.or.bit.user.service;
 
-        import kr.or.bit.user.action.Action;
+import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.ColumnDao;
 
@@ -15,7 +15,7 @@ public class columnDeleteService implements Action {
         ActionForward forward = null;
 
         ColumnDao ColumnDao;
-
+        System.out.println("게시글 삭제 서비스");
         try {
             int no = Integer.parseInt(request.getParameter("no"));
             ColumnDao = new  ColumnDao();
