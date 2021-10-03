@@ -1,5 +1,6 @@
 package kr.or.bit.user.controller;
 
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -25,7 +26,7 @@ public class emailSenderController extends HttpServlet{
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
         Properties props = System.getProperties();
-        props.put("mail.smtp.user", "qkrtkdwns3410"); // 서버 아이디만 쓰기
+        props.put("mail.smtp.user", "qkrtkdwns34102"); // 서버 아이디만 쓰기
         props.put("mail.smtp.host", "smtp.gmail.com"); // 구글 SMTP
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.starttls.enable", "true");
@@ -84,16 +85,16 @@ public class emailSenderController extends HttpServlet{
     
 }
 
-class MyAuthentication extends Authenticator{
+class MyAuthentication extends Authenticator {
     
     PasswordAuthentication pa;
     
     
     public MyAuthentication(){
         
-        String id = "qkrtkdwns3410";       // 구글 ID
-        String pw = "Tkd1wns1!";          // 구글 비밀번호
-        
+        String id = "qkrtkdwns34102";       // 구글 ID
+        String pw = "qkrtkdwnsdlqslek!@#";          // 구글 비밀번호
+    
         // ID와 비밀번호를 입력한다.
         pa = new PasswordAuthentication(id, pw);
         

@@ -392,16 +392,6 @@
     });
 
 
-    // /*댓글삭제*/
-    // $(".note-delete-btn").on("click", function (rno){
-    //     if(confirm("정말로 삭제 하시겠습니까?")){
-    //         //예
-    //
-    //         $("#note-delete-form-2524880").submit();
-    //     } else {
-    //         //아니요
-    //     }
-    // });
 
     //추천 제이쿼리 (클릭하면 추천)
     $(".good").on('click',function(){
@@ -481,7 +471,7 @@
         });
     }
 
-
+/*댓글ajax*/
     function getCommentList(){
         var html = "";
         $.ajax({
@@ -495,10 +485,7 @@
                 }
 
                 for (let reply of result) {
-                    // console.log(reply.no);
-                    // console.log(reply.id);
-                    // console.log(reply.cont);
-                    // console.log(reply.date);
+
 
 
 

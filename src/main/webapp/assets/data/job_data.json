@@ -1,0 +1,324 @@
+{
+  "jobInfo": {
+    "edu_lv": [
+      {
+        "code": "0",
+        "name": "학력무관"
+      },
+      {
+        "code": "1",
+        "name": "고등학교졸업"
+      },
+      {
+        "code": "2",
+        "name": "대학졸업(2,3년)"
+      },
+      {
+        "code": "3",
+        "name": "대학교졸업(4년)"
+      },
+      {
+        "code": "4",
+        "name": "석사졸업"
+      },
+      {
+        "code": "5",
+        "name": "박사졸업"
+      },
+      {
+        "code": "6",
+        "name": "고등학교졸업이상"
+      },
+      {
+        "code": "7",
+        "name": "대학졸업(2,3년)이상"
+      },
+      {
+        "code": "8",
+        "name": "대학교졸업(4년)이상"
+      },
+      {
+        "code": "9",
+        "name": "석사졸업이상"
+      }
+    ],
+    "exp_lv": [
+      {
+        "code": "1",
+        "name": "신입"
+      },
+      {
+        "code": "2",
+        "name": "경력"
+      },
+      {
+        "code": "3",
+        "name": "신입/경력"
+      },
+      {
+        "code": "0",
+        "name": "경력무관"
+      }
+    ],
+    "job_mid" :
+    [
+      {
+        "code": "2",
+        "name": "IT개발·데이터"
+      },
+      {
+        "code": "14",
+        "name": "마케팅·홍보·조사"
+      },
+      {
+        "code": "15",
+        "name": "디자인"
+      },
+      {
+        "code": "16",
+        "name": "기획·전략"
+      }
+    ]
+            ,
+    "job": [
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "84",
+        "name": "백엔드/서버개발"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "86",
+        "name": "앱개발"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "87",
+        "name": "웹개발"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "90",
+        "name": "정보보안"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "91",
+        "name": "퍼블리셔"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "92",
+        "name": "프론트엔드"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "95",
+        "name": "DBA"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "99",
+        "name": "QA/테스터"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "128",
+        "name": "임베디드"
+      },
+      {
+        "job_mid_code": "2",
+        "job_mid_name": "IT개발·데이터",
+        "code": "181",
+        "name": "AI(인공지능)"
+      },
+      {
+        "job_mid_code": "14",
+        "job_mid_name": "마케팅·홍보·조사",
+        "code": "1412",
+        "name": "마케팅기획"
+      },
+      {
+        "job_mid_code": "14",
+        "job_mid_name": "마케팅·홍보·조사",
+        "code": "1425",
+        "name": "디지털마케팅"
+      },
+      {
+        "job_mid_code": "14",
+        "job_mid_name": "마케팅·홍보·조사",
+        "code": "1452",
+        "name": "그로스해킹"
+      },
+      {
+        "job_mid_code": "15",
+        "job_mid_name": "디자인",
+        "code": "1477",
+        "name": "게임디자인"
+      },
+      {
+        "job_mid_code": "15",
+        "job_mid_name": "디자인",
+        "code": "1499",
+        "name": "앱디자인"
+      },
+      {
+        "job_mid_code": "15",
+        "job_mid_name": "디자인",
+        "code": "1502",
+        "name": "웹디자인"
+      },
+      {
+        "job_mid_code": "15",
+        "job_mid_name": "디자인",
+        "code": "1529",
+        "name": "UI/UX디자인"
+      },
+      {
+        "job_mid_code": "16",
+        "job_mid_name": "기획·전략",
+        "code": "1624",
+        "name": "게임기획"
+      },
+      {
+        "job_mid_code": "16",
+        "job_mid_name": "기획·전략",
+        "code": "1633",
+        "name": "사업기획"
+      },
+      {
+        "job_mid_code": "16",
+        "job_mid_name": "기획·전략",
+        "code": "1635",
+        "name": "서비스기획"
+      },
+      {
+        "job_mid_code": "16",
+        "job_mid_name": "기획·전략",
+        "code": "1636",
+        "name": "앱기획"
+      },
+      {
+        "job_mid_code": "16",
+        "job_mid_name": "기획·전략",
+        "code": "1637",
+        "name": "웹기획"
+      },
+      {
+        "job_mid_code": "16",
+        "job_mid_name": "기획·전략",
+        "code": "1649",
+        "name": "PM(프로젝트매니저)"
+      },
+      {
+        "job_mid_code": "16",
+        "job_mid_name": "기획·전략",
+        "code": "1690",
+        "name": "UI/UX"
+      }
+    ],
+    "salary": [
+      {
+        "code": "0",
+        "name": "회사내규에 따름"
+      },
+      {
+        "code": "3",
+        "name": "1,400만원 이하"
+      },
+      {
+        "code": "4",
+        "name": "1,400~1,600만원"
+      },
+      {
+        "code": "5",
+        "name": "1,600~1,800만원"
+      },
+      {
+        "code": "6",
+        "name": "1,800~2,000만원"
+      },
+      {
+        "code": "7",
+        "name": "2,000~2,200만원"
+      },
+      {
+        "code": "8",
+        "name": "2,200~2,400만원"
+      },
+      {
+        "code": "9",
+        "name": "2,400~2,600만원"
+      },
+      {
+        "code": "10",
+        "name": "2,600~2,800만원"
+      },
+      {
+        "code": "11",
+        "name": "2,800~3,000만원"
+      },
+      {
+        "code": "12",
+        "name": "3,000~3,200만원"
+      },
+      {
+        "code": "13",
+        "name": "3,200~3,400만원"
+      },
+      {
+        "code": "14",
+        "name": "3,400~3,600만원"
+      },
+      {
+        "code": "15",
+        "name": "3,600~3,800만원"
+      },
+      {
+        "code": "16",
+        "name": "3,800~4,000만원"
+      },
+      {
+        "code": "17",
+        "name": "4,000~5,000만원"
+      },
+      {
+        "code": "18",
+        "name": "5,000~6,000만원"
+      },
+      {
+        "code": "19",
+        "name": "6,000~7,000만원"
+      },
+      {
+        "code": "20",
+        "name": "7,000~8,000만원"
+      },
+      {
+        "code": "21",
+        "name": "8,000~9,000만원"
+      },
+      {
+        "code": "22",
+        "name": "9,000~1억원"
+      },
+      {
+        "code": "23",
+        "name": "1억원 이상"
+      },
+      {
+        "code": "99",
+        "name": "면접후 결정"
+      }
+    ]
+  }
+}
