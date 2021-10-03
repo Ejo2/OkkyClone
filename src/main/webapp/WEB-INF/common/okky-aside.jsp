@@ -61,10 +61,10 @@
                   </div>
                   <ul class="list-unstyled">
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="javascript:void(0)" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
                         </li>
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="notification"><i class="fas fa-bell" style="margin-top: 7px"></i></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="javascript:void(0)" id="notification"><i class="fas fa-bell" style="margin-top: 7px"></i></a>
                         </li>
                               <%--팝오버 창 start--%>
                         <div id="popover-content" class="hide" role="tooltip">
@@ -153,21 +153,28 @@
       <div class="special-nav">
       </div>
 </div>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script>
+     $.noConflict();
+     jQuery(document).ready(function() {
+          jQuery("#setting").popover({
+               html: true,
+               content: function() {
+                    return $('#popover-content').html();
+               },
+          });
      
-     $("#setting").popover({
-          html: true,
-          content: function() {
-               return $('#popover-content').html();
-          },
+          jQuery('#notification').popover({
+               html: true,
+               content: function() {
+                    return $('#popover-content2').html();
+               },
+          });
      });
-     
-     $('#notification').popover({
-          html: true,
-          content: function() {
-               return $('#popover-content2').html();
-          },
-     });
+</script>
+<script>
+   
+
      
      $(document).ready(function() {
            /*해당 메뉴 클릭시 active 부여 (구버전)*/

@@ -8,8 +8,10 @@
           <element id="module-output" name="OkkyClone" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: servlets.com:cos:05Nov2002" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: servlets.com:cos:05Nov2002" />
+          <element id="library" level="project" name="json-lib-2.4-jdk15" />
+          <element id="library" level="project" name="lib" />
         </element>
       </element>
     </root>
