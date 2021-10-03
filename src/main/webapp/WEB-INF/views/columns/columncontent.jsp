@@ -55,8 +55,8 @@
 
     <c:set var="board" value="${requestScope.board}" />
     <c:set var="no" value="${requestScope.no}" />
-    <c:set var="cpage" value="${requestScope.cp}" />
-    <c:set var="pagesize" value="${requestScope.ps}" />
+    <%--<c:set var="cpage" value="${requestScope.cp}" />
+    <c:set var="pagesize" value="${requestScope.ps}" />--%>
     <c:set var="replyList" value="${requestScope.replyList}" />
     <c:set var="userInfo" value="${requestScope.userInfo}"/>
 <div>

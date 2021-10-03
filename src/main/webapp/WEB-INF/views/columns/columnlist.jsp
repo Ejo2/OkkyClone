@@ -77,7 +77,7 @@
                                 <a href="/articles/gathering" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> 정기모임/스터디</a>
                             </div>
                             <h5 class="list-group-item-heading list-group-item-evaluate">
-                                <a href="${pageContext.request.contextPath}/BoardContent.go?no=${collist.no}&cp=${cpage}&ps=${pagesize}">
+                                <a href="${pageContext.request.contextPath}/BoardContent.go?no=${collist.no}">
                                         ${collist.title}
                                 </a>
                             </h5>
