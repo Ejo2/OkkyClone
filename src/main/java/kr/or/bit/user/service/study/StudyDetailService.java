@@ -20,7 +20,7 @@ public class StudyDetailService implements Action {
             Study_Board sb = dao.getBoardByNo(no); //게시글 번호로 게시글 안의 자료 가져오기
             String cateName = dao.getCategorynameByNum(no);
 
-            int replyCount = dao.countReplyByNo(no);
+            int replyCount = dao.countReplyByNo(no);//특정게시글에 달린 댓글 수 세기
 
             request.setAttribute("sb", sb); //board 데이터
             request.setAttribute("cateName", cateName); //카테고리 이름
