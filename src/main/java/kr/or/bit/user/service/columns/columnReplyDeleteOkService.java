@@ -1,9 +1,8 @@
-package kr.or.bit.user.service;
+package kr.or.bit.user.service.columns;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.ColumnDao;
-
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;

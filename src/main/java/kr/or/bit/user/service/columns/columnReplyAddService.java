@@ -1,4 +1,4 @@
-package kr.or.bit.user.service;
+package kr.or.bit.user.service.columns;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
@@ -52,7 +52,7 @@ public class columnReplyAddService implements Action {
 
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/redirect.jsp");
+        forward.setPath("/WEB-INF/views/redirect/redirect.jsp");
 
         return forward;
     }

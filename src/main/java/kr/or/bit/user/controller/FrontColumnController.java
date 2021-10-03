@@ -2,7 +2,7 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
-import kr.or.bit.user.service.*;
+import kr.or.bit.user.service.columns.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,7 +34,7 @@ public class FrontColumnController extends HttpServlet {
         }else if(url_Command.equals("/BoardWrite.go")) { //글쓰기
             forward = new ActionForward();
             forward.setRedirect(false);
-            forward.setPath("/WEB-INF/views/columnwrite.jsp");
+            forward.setPath("/WEB-INF/views/columns/columnwrite.jsp");
         }else if(url_Command.equals("/BoardWriteOK.go")) { //글쓰기 ok
             action = new columnBoardAddService();
             forward = action.execute(request, response);
@@ -64,15 +64,7 @@ public class FrontColumnController extends HttpServlet {
         }else if(url_Command.equals("/ReplyDeleteOk.go")) {
             action = new columnReplyDeleteOkService();
             forward = action.execute(request, response);
-        }/*else if(url_Command.equals("/QnAReUpDate.go")) {
-            System.out.println("수정실행1");
-            action = new QnAReUpDateService();
-            forward = action.execute(request, response);
-        }else if(url_Command.equals("/QnAReUpDateOk.go")) {
-            System.out.println("수정실행2");
-            action = new QnAReUpDateOk();
-            forward = action.execute(request, response);
-        }*/
+        }
 
         if(forward != null) {
             if(forward.isRedirect()) { //true
