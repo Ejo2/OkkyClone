@@ -4930,11 +4930,13 @@ a.label:focus {
     background-color: #449d44;
 }
 .label-info {
-    background-color: #5bc0de;
+    /*background-color: #5bc0de; 예솔 수정했습니다*/
+    background-color: grey;
 }
 .label-info[href]:hover,
 .label-info[href]:focus {
-    background-color: #31b0d5;
+    /*background-color: #31b0d5; 예솔 수정했습니다*/
+    background-color: grey;
 }
 .label-warning {
     background-color: #f0ad4e;

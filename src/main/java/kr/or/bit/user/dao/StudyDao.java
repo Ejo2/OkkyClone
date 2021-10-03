@@ -5,6 +5,7 @@ import kr.or.bit.user.dto.Study_Board;
 import kr.or.bit.user.dto.Study_category;
 import kr.or.bit.utils.ConnectionHelper;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,10 +22,11 @@ public class StudyDao {
         try {
             conn= ConnectionHelper.getConnection("oracle");//추가
             //board에 대한 삽입
-            String sql1 = "insert into board(no,bno,id,title,cont,hit,good,removedok,scrapnum) values((select nvl(max(no),0) + 1 from board),300,'admin',?,?,1,1,0,1)";
+            String sql1 = "insert into board(no,bno,id,title,cont,hit,good,removedok,scrapnum) values((select nvl(max(no),0) + 1 from board),300,?,?,?,0,0,0,0)";
             pstmt = conn.prepareStatement(sql1);
-            pstmt.setString(1, sb.getTitle());
-            pstmt.setString(2, sb.getCont());
+            pstmt.setString(1, sb.getId());
+            pstmt.setString(2, sb.getTitle());
+            pstmt.setString(3, sb.getCont());
             resultrow = pstmt.executeUpdate();
 
             //B_study 에 대한 삽입  : 이건 나중에 따로
@@ -164,7 +166,7 @@ public class StudyDao {
 
         try {
             conn= ConnectionHelper.getConnection("oracle");
-            String sql ="select count(*) as counting from b_study";
+            String sql ="select count(*) as counting from board where removedok=0 and bno=300";
             pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
@@ -409,10 +411,11 @@ public class StudyDao {
         try {
             conn= ConnectionHelper.getConnection("oracle");//추가
             //board에 대한 삽입
-            String sql1 = "insert into comments(rno,no,id,rcont,removedok) values((select nvl(max(rno),0) + 1 from comments),?,'admin',?,0)";
+            String sql1 = "insert into comments(rno,no,id,rcont,removedok) values((select nvl(max(rno),0) + 1 from comments),?,?,?,0)";
             pstmt = conn.prepareStatement(sql1);
             pstmt.setInt(1, cm.getNo());
-            pstmt.setString(2, cm.getRcont());
+            pstmt.setString(2, cm.getId());
+            pstmt.setString(3, cm.getRcont());
             resultrow = pstmt.executeUpdate();
 
         }catch(Exception e) {
@@ -473,8 +476,9 @@ public class StudyDao {
 
         try {
             conn= ConnectionHelper.getConnection("oracle");
-            String sql ="select count(*) as counting from comments where no=45 and removedok=0";
+            String sql ="select count(*) as counting from comments where no=? and removedok=0";
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,no);
             ResultSet rs = pstmt.executeQuery();
 
 

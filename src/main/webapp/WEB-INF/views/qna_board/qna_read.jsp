@@ -190,10 +190,10 @@
 
 
                                     <ul class="dropdown-menu" role="menu" >
-                                        <li><a href="${pageContext.request.contextPath}/QnAEdit.qo?no=${no}&cp=${cpage}&ps=${pagesize}" class="edit"><i
-                                                class="fa fa-edit fa-fw"></i> 수정 </a></li>
-                                        <li><a href="javascript://" id="article-delete-btn"><i
-                                                class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/QnAEdit.qo?no=${no}&cp=${cpage}&ps=${pagesize}" class="edit">
+                                            <i class="fa fa-edit fa-fw"></i> 수정 </a></li>
+                                        <li><a href="javascript://" id="article-delete-btn">
+                                            <i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
                                     </ul>
                                 </div>
                             </form>
@@ -459,8 +459,10 @@
             method:"post",
             data:param_data,
             success: function (result) {
+                console.log(result);
 
                 if (result == "ok") {
+                    console.log("실행");
                     getCommentList();
                 }
             },
@@ -480,8 +482,9 @@
             data:{"no":"${no}"},
             dataType:"json",
             success : function(result) {
-                if(result.length>0){
-                    $(".reply_data_ul > li.reply_data").remove();
+                $(".reply_data_ul > li.reply_data").remove();
+                if(result.length==0){
+                    return;
                 }
 
                 for (let reply of result) {
