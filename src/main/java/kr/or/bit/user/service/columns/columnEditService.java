@@ -1,12 +1,12 @@
 package kr.or.bit.user.service.columns;
 
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-
         import kr.or.bit.user.action.Action;
-        import kr.or.bit.user.action.ActionForward;
-        import kr.or.bit.user.dao.ColumnDao;
-        import kr.or.bit.user.dto.Board;
+import kr.or.bit.user.action.ActionForward;
+import kr.or.bit.user.dao.ColumnDao;
+import kr.or.bit.user.dto.Board;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class columnEditService implements Action {
 
