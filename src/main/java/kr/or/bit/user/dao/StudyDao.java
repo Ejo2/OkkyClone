@@ -465,9 +465,59 @@ public class StudyDao {
         }
         return commentlist;
     }
+    ///글번호로 댓글 개수 가져오기////////////////////////////////////////////////////
+    public int countReplyByNo(int no) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            conn= ConnectionHelper.getConnection("oracle");
+            String sql ="select count(*) as counting from comments where no=45 and removedok=0";
+            pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
 
 
+            while(rs.next()) {
+                result = rs.getInt("counting");
+                System.out.println("table row갯수 : " + result);
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+    //게시글 번호, 댓글번호로 댓글 찾아서 삭제하기(사실은 안보이게 하는거)///////////////////////////////////
+    public int DeleteReply(int no,int rno) {
+        Connection conn =null;
+        int resultrow=0;
+        PreparedStatement pstmt = null;
+        try {
+            conn= ConnectionHelper.getConnection("oracle");
+            String sql = "update comments set removedok=1 where no=? and rno=?";
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setInt(1,no);
+            pstmt.setInt(2,rno);
+            resultrow = pstmt.executeUpdate();
+
+            if(resultrow>0){
+                System.out.println("반영된 행의 수 : " + resultrow);
+            }else{
+                System.out.println("반영된 행이 없다");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            ConnectionHelper.close(pstmt);
+            ConnectionHelper.close(conn);
+        }
+
+        return resultrow;
+    }
 
 
 

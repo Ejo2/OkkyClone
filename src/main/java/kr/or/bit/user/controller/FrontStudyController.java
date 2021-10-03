@@ -5,7 +5,7 @@ import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.StudyDao;
 import kr.or.bit.user.dto.Comments;
 import kr.or.bit.user.dto.Study_Board;
-import kr.or.bit.user.service.*;
+
 import kr.or.bit.user.service.study.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -97,20 +97,27 @@ public class FrontStudyController extends HttpServlet{
             commentlist = dao.getCommentsByNo(no);
             JSONArray jsonArr = new JSONArray();
             for(int i=0; i<commentlist.size(); i++) {
-                String time = (String)(commentlist.get(i).getRcont());
+                String time = String.valueOf(commentlist.get(i).getRdate());
                 System.out.println(time);
                 JSONObject jsonObj = new JSONObject();
                 jsonObj.put("rno", commentlist.get(i).getRno());
                 jsonObj.put("id", commentlist.get(i).getId());
-                jsonObj.put("rcont", time);
-                jsonObj.put("rdate", commentlist.get(i).getRdate());
-
+                jsonObj.put("rcont", commentlist.get(i).getRcont());
+                jsonObj.put("rdate", time);
                 jsonArr.add(jsonObj);
             }
             System.out.println(jsonArr.size());
 
             response.setContentType("application/x-json; charset=UTF-8");
             response.getWriter().print(jsonArr);
+
+        }else if(url_Command.equals("/Replydelete.so")) {//(ajax)스터디 댓글 지우기
+            int no = Integer.parseInt(request.getParameter("no"));
+            int rno = Integer.parseInt(request.getParameter("rno"));
+
+            StudyDao dao = new StudyDao();
+            int result = dao.DeleteReply(no,rno);
+
         }else{
             System.out.println("정해진 바 없는 uri 요청!");
             action = new StudyWriteGoService();
