@@ -243,16 +243,16 @@
                                             <a href="javascript://" class="note-vote-btn" role="button" data-type="assent"
                                                data-eval="true" data-id="2524880">
                                                 <i id="note-evaluate-assent-2524880"
-                                                   class="fa fa-angle-up note-evaluate-assent-assent regood" data-placement="left"
+                                                   class="fa fa-angle-up note-evaluate-assent-assent " data-placement="left"
                                                    data-toggle="tooltip" title="" data-original-title="추천"></i>
                                             </a>
 
-                                            <div id="content-vote-count-2524880" class="content-eval-count reboard_recommend">0</div>
+                                            <div id="content-vote-count-2524880" class="content-eval-count ">0</div>
 
                                             <a href="javascript://" class="note-vote-btn" role="button" data-type="dissent"
                                                data-eval="true" data-id="2524880">
                                                 <i id="note-evaluate-dissent-2524880"
-                                                   class="fa fa-angle-down note-evaluate-dissent-dissent rebad"
+                                                   class="fa fa-angle-down note-evaluate-dissent-dissent "
                                                    data-placement="left" data-toggle="tooltip" title=""
                                                    data-original-title="반대"></i>
                                             </a>

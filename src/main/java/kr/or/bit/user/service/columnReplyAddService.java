@@ -34,7 +34,7 @@ public class columnReplyAddService implements Action {
             reply.setId((String) session.getAttribute("id")); //로그인 한 사람만 댓글 작성 가능
 
             ColumnDao dao = new  ColumnDao ();
-            result = dao.qnaReplyWrite(reply);
+            result = dao.columnReplyWrite(reply);
 
             if(result > 0){
                 msg ="댓글 입력 성공";

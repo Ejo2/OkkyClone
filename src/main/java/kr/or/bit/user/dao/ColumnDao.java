@@ -335,9 +335,9 @@ public class ColumnDao {
     }
 
     //댓글 insert
-    public int qnaReplyWrite(Comments comments) {
+    public int columnReplyWrite(Comments comments) {
 
-        System.out.println("게시판 드가자" + comments);
+        System.out.println("게시판 insert" + comments);
         Connection conn = null;
         PreparedStatement pstmt = null;
         int row = 0;
