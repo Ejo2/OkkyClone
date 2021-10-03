@@ -119,6 +119,7 @@ public class FrontStudyController extends HttpServlet{
                 jsonObj.put("rcont", commentlist.get(i).getRcont());
                 jsonObj.put("rdate", time);
                 jsonArr.add(jsonObj);
+
             }
 
 
