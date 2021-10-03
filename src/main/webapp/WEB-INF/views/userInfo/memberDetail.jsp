@@ -22,11 +22,20 @@
       <div id="user" class="content clearfix" role="main">
             <div class="panel panel-default">
                   <div class="panel-body">
+                        <c:choose>
+                              <c:when test="${userInfo.photo ==null}">
+                                    <div class="avatar clearfix avatar-big col-sm-3 text-center">
+                                          <a href="#" class="avatar-photo"><img src="upload/bros_blank.jpg"></a>
+                                    </div>
+                              </c:when>
+                              <c:otherwise>
+                                    <div class="avatar clearfix avatar-big col-sm-3 text-center">
+                                          <a href="#" class="avatar-photo"><img src="upload/${userInfo.photo}"></a>
+                                    </div>
+                              </c:otherwise>
+                        </c:choose>
                         
                         
-                        <div class="avatar clearfix avatar-big col-sm-3 text-center">
-                              <a href="#" class="avatar-photo"><img src="upload/${userInfo.photo}"></a>
-                        </div>
                         <div class="user-info col-sm-9">
                               <div class="clearfix">
                                     <h2 class="pull-left">${userInfo.nickname}</h2>

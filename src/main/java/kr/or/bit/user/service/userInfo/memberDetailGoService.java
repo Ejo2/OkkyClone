@@ -87,7 +87,7 @@ public class memberDetailGoService implements Action{
                 
                 System.out.println("회원의 글목록을 띄웁니다.");
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views//userInfo/memberDetail.jsp");
+                forward.setPath("/WEB-INF/views/userInfo/memberDetail.jsp");
                 
             }
         }catch (Exception e){
