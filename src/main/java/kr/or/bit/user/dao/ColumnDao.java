@@ -2,6 +2,7 @@ package kr.or.bit.user.dao;
 
 import kr.or.bit.user.dto.Board;
 import kr.or.bit.user.dto.Comments;
+import kr.or.bit.user.dto.userDto;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -229,16 +230,7 @@ public class ColumnDao{
     }
     
     //게시글 수정하기 처리
-    public int columnEdit(HttpServletRequest boarddata){
-        String no = boarddata.getParameter("no");
-        String id = boarddata.getParameter("id");
-        String title = boarddata.getParameter("title");
-        String cont = boarddata.getParameter("cont");
-        
-        System.out.println("게시판번호 불러오기= " + no);
-        System.out.println("게시판아이디= " + id);
-        System.out.println("cont = " + cont);
-        System.out.println("게시판아이디= " + id);
+    public int columnEdit(Board board , userDto user){
         
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -251,7 +243,7 @@ public class ColumnDao{
             String sql_udpate = "UPDATE BOARD SET " +
                     " TITLE=? , CONT=? WHERE NO=?";
             pstmt = conn.prepareStatement(sql_idx);
-            pstmt.setInt(1, Integer.parseInt(no));
+            pstmt.setInt(1, board.getNo());
             
             rs = pstmt.executeQuery();
             
@@ -262,9 +254,9 @@ public class ColumnDao{
                 //pstmt.close();
                 //업데이트
                 pstmt = conn.prepareStatement(sql_udpate);
-                pstmt.setString(1, title);
-                pstmt.setString(2, cont);
-                pstmt.setInt(3, Integer.parseInt(no));
+                pstmt.setString(1, board.getTitle());
+                pstmt.setString(2, board.getCont());
+                pstmt.setInt(3, board.getNo());
                 row = pstmt.executeUpdate();
             }
         }catch (Exception e){

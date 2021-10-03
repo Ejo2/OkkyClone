@@ -26,6 +26,7 @@
 
 <c:set var="no" value="${requestScope.no}" />
 <c:set var="board" value="${requestScope.board}" />
+<c:set var="nickname" value="${sessionScope.nickname}"/>
 
 
 <div class="main content">
@@ -38,9 +39,8 @@
                         <a href="/user/info/127868" class='avatar-photo'><img
                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
                         <div class="avatar-info">
-                            <a class="nickname" href="/user/info/127868" title="닉네임">${requestScope.nickname}</a>
+                            <a class="nickname" href="/user/info/127868" title="닉네임">${nickname}</a>
 
-                            <div class="activity"><span class="fa fa-flash"></span> 10</div>
                             <div class="date-created"><span class="timeago" title="${board.writedate}">${board.writedate}</span></div>
                         </div>
                     </div>
@@ -56,6 +56,8 @@
               onsubmit="return postForm()">
             <fieldset class="form">
                 <input type="hidden" id="no" name ="no" value="${no}" />
+                <input type="hidden" id="no" name ="id" value="${sessionScope.id}" />
+                <input type="hidden" id="no" name ="nickname" value="${sessionScope.nickname}" />
                 <input type="hidden" name="_csrf" value="c6a51f4b-0401-45ae-a2b9-0c475512b478">
                 <div class="form-group has-feedback">
                     <div>
@@ -86,11 +88,11 @@
                 </div>
                 <input type="hidden" name="textType" value="HTML" id="textType">
 
-                <div class="recaptcha-wrapper">
-                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                    <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">
-                    </div>
-                </div>
+<%--                <div class="recaptcha-wrapper">--%>
+<%--                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>--%>
+<%--                    <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
                 <div class="nav" role="navigation">
                     <fieldset class="buttons">
