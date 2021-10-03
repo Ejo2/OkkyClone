@@ -6,8 +6,8 @@ import kr.or.bit.user.dao.StudyDao;
 import kr.or.bit.user.dto.Comments;
 import kr.or.bit.user.dto.Study_Board;
 import kr.or.bit.user.service.study.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
