@@ -5,6 +5,7 @@ import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.userDao;
 import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
+import kr.or.bit.utils.QnAPager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +47,7 @@ public class memberDetailGoService implements Action{
                 }
                 int pagesize = Integer.parseInt(ps);
                 int cpage = Integer.parseInt(cp);
-                
+                int pagecount = 0;
                 
                 //작성자가 작성한 게시글 리스트
                 List<boardDto> writeBoardList = dao.getUserDetailBoardList(session.getAttribute("id"), cpage, pagesize);
@@ -71,12 +72,15 @@ public class memberDetailGoService implements Action{
                     
                     pageCount = totalBoardCount / pagesize;
                 }else{
-                    pageCount = totalBoardCount / pagesize + 1;
+                    pageCount = (totalBoardCount / pagesize) + 1;
                 }
-                
+                int pagersize=3;
+    
+                QnAPager pager = new QnAPager(totalBoardCount,cpage,pagesize,pagersize,"memberDetailGo.do");
+    
                 request.setAttribute("pagesize", pagesize);
                 request.setAttribute("cpage", cpage);
-    
+                request.setAttribute("pager", pager);
                 request.setAttribute("pageCount", pageCount);
                 request.setAttribute("totalBoardCount", totalBoardCount);
                 

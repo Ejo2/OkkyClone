@@ -13,6 +13,7 @@
       <c:set var="writeBoardList" value="${requestScope.writeBoardList}"/>
       <c:set var="userScrapList" value="${requestScope.userScrapList}"/>
       <c:set var="totalBoardCount" value="${requestScope.totalBoardCount}"/>
+      <c:set var="pager" value="${requestScope.pager}" />
       
       <c:set var="pagesize" value="${requestScope.pagesize}"/>
       <c:set var="cpage" value="${requestScope.cpage}"/>
@@ -74,7 +75,8 @@
                                                 <span class="timeago" title="2021-09-26T15:36:30">${board.writeDate}</span>
                                           </div>
                                           <h5 class="list-group-item-heading">
-                                                <a href="#">${board.title}</a>
+                                                <a href="myContentGo.do?bno=${board.bno}&no=${board.no}">${board.title}</a>
+                                          
                                                 <div class="list-group-item-author pull-right clearfix">
                                                       
                                                       
@@ -94,30 +96,11 @@
                   
                   </ul>
                   <div class="text-center">
-                        
-                        <ul class="pagination pagination-sm">
-                              <li class="prev disabled">
-				<span>
-«				</span>
-                              </li>
-                              
-                              
-                              <li class="active">
-                                    <span>1</span>
-                              </li>
-                              <li>
-                                    <a href="/user/info/115337/activity?offset=20&amp;max=20">2</a>
-                              </li>
-                              <li>
-                                    <a href="/user/info/115337/activity?offset=40&amp;max=20">3</a>
-                              </li>
-                              
-                              
-                              <li class="next">
-                                    <a href="/user/info/115337/activity?offset=20&amp;max=20">»</a>
-                              </li>
-                        
-                        </ul>
+                        <nav aria-label="Page navigation example">
+                              <ul class="pagination">
+                                    ${pager}
+                              </ul>
+                        </nav>
                   </div>
             </div>
       </div>
