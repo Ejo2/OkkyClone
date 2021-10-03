@@ -61,10 +61,10 @@
                   </div>
                   <ul class="list-unstyled">
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="javascript:void(0)" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
                         </li>
                         <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="#" id="notification"><i class="fas fa-bell" style="margin-top: 7px"></i></a>
+                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="javascript:void(0)" id="notification"><i class="fas fa-bell" style="margin-top: 7px"></i></a>
                         </li>
                               <%--팝오버 창 start--%>
                         <div id="popover-content" class="hide" role="tooltip">
@@ -80,7 +80,6 @@
                               <div class="arrow" style="top : 50%;"></div>
                               <h3 class="popover-title">알림</h3>
                               <div class="popover-content" id="notification-popover">
-                              
                               </div>
                         </div>
                               <%--팝오버 창 end--%>
@@ -149,50 +148,57 @@
       <h3 id="sub-title" class="sub-title"></h3>
       <ul id="sub-sub-title" class="nav">
             <!--class ="nav-selected가 선택되고 있다는 표시의 빨간점. 각자 맡은 게시판 카테고리에 설정해줄것"-->
-           
+      
       </ul>
       <div class="special-nav">
       </div>
 </div>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script>
+     $.noConflict();
+     jQuery(document).ready(function() {
+          jQuery("#setting").popover({
+               html: true,
+               content: function() {
+                    return $('#popover-content').html();
+               },
+          });
      
-     $("#setting").popover({
-          html: true,
-          content: function() {
-               return $('#popover-content').html();
-          },
+          jQuery('#notification').popover({
+               html: true,
+               content: function() {
+                    return $('#popover-content2').html();
+               },
+          });
      });
-     
-     $('#notification').popover({
-          html: true,
-          content: function() {
-               return $('#popover-content2').html();
-          },
-     });
+</script>
+<script>
+   
 
+     
      $(document).ready(function() {
-          /*해당 메뉴 클릭시 active 부여 (구버전)*/
-          /*console.log($('#activeMenu').children('li').attr("class"));
-          $('#activeMenu > li').click(function(e) {
-          
-               console.log(e.target);
-               console.log($('#activeMenu').children('li').children('a'));
-               let a = $('#activeMenu').children('li').children('a');
-               console.log(a);
-               console.log(a[0]);
-               console.log('this : ' + $(this).attr("class"));
-          
-               if ($(this).attr("class") == undefined || $(this).attr("class") == "")
-               {
-                    $('#activeMenu').children('li').attr("class", "");
-                    $(this).attr("class", "active");
-               } else {
-               
-               }
-          
-          });*/
-            /*게시판 이동시 해당 메뉴에 active 효과 부여 >> 이동 단계에서 url 로 active 주는 방식*/
-          /*sub-sub-title에 해당하는 메뉴들을 html 형식으로 추가해주시면 됩니다.*/
+           /*해당 메뉴 클릭시 active 부여 (구버전)*/
+           /*console.log($('#activeMenu').children('li').attr("class"));
+            $('#activeMenu > li').click(function(e) {
+            
+            console.log(e.target);
+            console.log($('#activeMenu').children('li').children('a'));
+            let a = $('#activeMenu').children('li').children('a');
+            console.log(a);
+            console.log(a[0]);
+            console.log('this : ' + $(this).attr("class"));
+            
+            if ($(this).attr("class") == undefined || $(this).attr("class") == "")
+            {
+            $('#activeMenu').children('li').attr("class", "");
+            $(this).attr("class", "active");
+            } else {
+            
+            }
+            
+            });*/
+           /*게시판 이동시 해당 메뉴에 active 효과 부여 >> 이동 단계에서 url 로 active 주는 방식*/
+           /*sub-sub-title에 해당하는 메뉴들을 html 형식으로 추가해주시면 됩니다.*/
           $(function() {
                let url = location.href;
                let getAr0 = url.indexOf("QnA");
@@ -202,55 +208,55 @@
                let getAr4 = url.indexOf("join");
                let getAr5 = url.indexOf("login");
                let getAr6 = url.indexOf("main");
-     
+               
                if (getAr0 != -1) {
                     $('#qna').attr("class", "active");
                     $('#sub-title').html("Q&A");
                }
-               if(getAr1 != -1) {
+               if (getAr1 != -1) {
                     $("#study").addClass("active");
                     $('#sub-title').html("스터디");
-     
+                    
                }
-               if(getAr2 != -1) {
+               if (getAr2 != -1) {
                     $("#column").addClass("active");
                     $('#sub-title').html("칼럼");
-     
+                    
                }
-               if(getAr3 != -1) {
+               if (getAr3 != -1) {
                     $("#jobs").addClass("active");
                     $('#sub-title').html("JOBS");
                     $('#sub-sub-title').html("")
-     
-     
+                    
+                    
                }
-               if(getAr4 != -1) {
+               if (getAr4 != -1) {
                     $("#join").addClass("active");
                     $('#sub-title').html("회원가입");
                     $('#sub-sub-title').html("")
-     
-     
+                    
+                    
                }
-               if(getAr5 != -1) {
+               if (getAr5 != -1) {
                     $("#login").addClass("active");
                     $('#sub-title').html("로그인");
                     $('#sub-sub-title').html("")
-     
-     
+                    
+                    
                }
-               if(getAr6 != -1) {
+               if (getAr6 != -1) {
                     $('#sub-title').html("메인화면");
                     $('#sub-sub-title').html("")
-     
-     
+                    
+                    
                }
                
                
           });
           
-     
-     
-     
+          
+          
+          
      });
 
 </script>

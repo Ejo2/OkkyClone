@@ -13,9 +13,12 @@ public class columnEditOkService implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         String no = request.getParameter("no");
-
+        
+        System.out.println("에딧 서비스 no" + no);
+        
         String msg = "";
         String url = "";
+        
         ActionForward forward = null;
 
         try {
