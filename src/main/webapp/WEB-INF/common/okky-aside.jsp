@@ -118,7 +118,7 @@
       <ul id="activeMenu" class="nav nav-sidebar nav-main">
             <!--class="active 설정이 선택된 카테고리 표시. 각자 맡은 게시판 카테고리에 설정해줄것 "-->
             <li id="qna" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
-                    href="#" class="link"><i class="nav-icon fa fa-database"></i> <span
+                    href="/QnAList.qo" class="link"><i class="nav-icon fa fa-database"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
             <li id="tech" data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a
                     href="#" class="link"><i class="nav-icon fa fa-code"></i> <span
