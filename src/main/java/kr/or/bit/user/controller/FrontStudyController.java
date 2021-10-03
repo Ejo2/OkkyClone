@@ -5,11 +5,9 @@ import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.StudyDao;
 import kr.or.bit.user.dto.Comments;
 import kr.or.bit.user.dto.Study_Board;
-
 import kr.or.bit.user.service.study.*;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,10 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 @WebServlet("*.so")
 public class FrontStudyController extends HttpServlet{
@@ -104,9 +99,9 @@ public class FrontStudyController extends HttpServlet{
                 jsonObj.put("id", commentlist.get(i).getId());
                 jsonObj.put("rcont", commentlist.get(i).getRcont());
                 jsonObj.put("rdate", time);
-                jsonArr.add(jsonObj);
+                //jsonArr.add(jsonObj);
             }
-            System.out.println(jsonArr.size());
+           // System.out.println(jsonArr.size());
 
             response.setContentType("application/x-json; charset=UTF-8");
             response.getWriter().print(jsonArr);
