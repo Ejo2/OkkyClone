@@ -78,6 +78,9 @@ public class FrontColumnController extends HttpServlet{
             
             action = new columnReplyDeleteOkService();
             forward = action.execute(request, response);
+        }else if(url_Command.equals("/getCommentList.go")) {
+            action = new columnCommentListService();
+            forward = action.execute(request, response);
         }
         
         if (forward != null){

@@ -66,13 +66,12 @@ public class ColumnDao {
         List<Board> collist = null;
         try {
             conn = ds.getConnection();
-            String sql = "select * " +
-                    "from " +
-                    " (select rownum rn,no, bno,  id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
-                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id ORDER BY no DESC ) " +
-                    "  where rownum <= ?) " +
-                    "where rn >= ?" ;
-
+            String sql = "SELECT * " +
+                    "FROM " +
+                    " (select rownum rn,no, bno, id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
+                    " from ( SELECT no, bno, m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id where removedok !=1 ORDER BY no DESC ) "
+                    + " where rownum <= ?) " +
+                    "WHERE rn >= ?" ;
             pstmt = conn.prepareStatement(sql);
 
             int start = cpage * pagesize - (pagesize -1); //1 * 5 - (5 - 1) >> 1
@@ -93,7 +92,7 @@ public class ColumnDao {
                 colBoard.setNo(rs.getInt("no"));
                 colBoard.setBno(rs.getInt("bno"));
                 colBoard.setTitle(rs.getString("title"));
-                colBoard.setId(rs.getString("nickname"));
+                colBoard.setId(rs.getString("id"));
                 colBoard.setCont(rs.getString("cont"));
                 colBoard.setWritedate(rs.getDate("writedate"));
                 colBoard.setRemovedOk(rs.getInt("removedok"));
@@ -184,7 +183,7 @@ public class ColumnDao {
 
         try {
             conn = ds.getConnection();
-            String sql = "select no, bno, m.id, title, cont, writedate, good, hit, removedok, scrapnum ,m.nickname as nickname " +
+            String sql = "select no, bno, m.id as id, title, cont, writedate, good, hit, removedok, scrapnum ,m.nickname as nickname " +
                     "from board b" +
                     "     inner join" +
                     "     member m" +
@@ -197,7 +196,7 @@ public class ColumnDao {
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 board.setBno(rs.getInt("bno"));
-                board.setId(rs.getString("nickname"));
+                board.setId(rs.getString("id"));
                 board.setTitle(rs.getString("title"));
                 board.setCont(rs.getString("cont"));
                 board.setHit(rs.getInt("hit"));
@@ -235,6 +234,8 @@ public class ColumnDao {
         String cont = boarddata.getParameter("cont");
 
         System.out.println("게시판번호 불러오기= " + no);
+        System.out.println("게시판아이디= " + id);
+        System.out.println("cont = " + cont);
         System.out.println("게시판아이디= " + id);
 
         Connection conn = null;
