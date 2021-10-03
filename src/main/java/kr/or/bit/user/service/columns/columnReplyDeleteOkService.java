@@ -8,18 +8,19 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class columnDeleteService implements Action {
+public class columnReplyDeleteOkService implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         ActionForward forward = null;
 
+
         ColumnDao columnDao;
 
         try {
-            int no = Integer.parseInt(request.getParameter("no"));
+            int rno = Integer.parseInt(request.getParameter("rno"));
             columnDao = new ColumnDao();
-            columnDao.deleteOk(no);
+            columnDao.columnReplyDelete(rno);
         } catch (NamingException e) {
             e.printStackTrace();
         }
@@ -30,5 +31,4 @@ public class columnDeleteService implements Action {
 
         return forward;
     }
-
 }
