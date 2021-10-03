@@ -31,12 +31,12 @@ public class QnADao {
         List<Board> qnalist = null;
         try {
             conn = ds.getConnection();
-            String sql = "select * " +
-                    "from " +
+            String sql = "SELECT * " +
+                    "FROM " +
                     " (select rownum rn,no, bno,  id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
-                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id ORDER BY no DESC ) " +
+                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id where removedok !=1 ORDER BY no DESC ) " +
                     "  where rownum <= ?) " +
-                    "where rn >= ?" ;
+                    "WHERE rn >= ?" ;
 
             pstmt = conn.prepareStatement(sql);
             //공식같은 로직
