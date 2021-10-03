@@ -112,6 +112,9 @@ public class FrontMemoController extends HttpServlet{
             forward = action.execute(request, response);
     
             System.out.println("profileChange.do");
+        }else if (url_Command.equals("/myContentGo.do")){
+            action = new myContentService();
+            forward = action.execute(request, response);
         }
             
         
