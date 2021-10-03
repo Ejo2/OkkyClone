@@ -728,7 +728,7 @@
         let data = "job_mid_cd=" + job_mid_cd + '&job_cd=' + job_cd + "&edu_lv=" + edu_lv + "&loc_cd=" + loc_cd;
 
         
-        var allData = data.replace("undefined", "");
+        let allData = data.replace("undefined", "");
 
         console.log(data);
 
@@ -768,7 +768,7 @@
                         if (data.jobs.job[i]["url"] != null && data.jobs.job[i]["url"] != undefined) {
 
                             url = data.jobs.job[i]["url"];
-                            location = (data.jobs.job[i].position["location"].name).replace("&gt;", ">");
+                            location = (data.jobs.job[i].position["location"].name);
                             title = data.jobs.job[i].position["title"];
                             salary = data.jobs.job[i]["salary"].name;
                             required_education_level = data.jobs.job[i].position["required-education-level"].name;
@@ -849,7 +849,7 @@
 
     }
     //초기화면 셋팅 //TODO 개발자 cd로 값 셋팅하기
-    requestJobSearch("0","0","2","0","0","0");
+ //   requestJobSearch("0","0","2","0","0","0");
 </script>
 
 

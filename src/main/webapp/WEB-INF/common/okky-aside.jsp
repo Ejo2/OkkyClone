@@ -3,7 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="userInfo" value="${requestScope.userInfo}"/>
 <!--마크업09/23 : 사이드바1-->
-
+<style>
+      /* css 삭제*/
+      /*.container {padding : 20px;}*/
+      
+      /*.form-control {width : 120px;}*/
+      
+      /*.popover {max-width : 400px;}*/
+</style>
 <div class="sidebar sidebar-category"> <!--open 으로 만들시 됨!-->
       <a href="javascript://" class="sidebar-header">
             <i class="fa fa-bars sidebar-header-icon"></i>
