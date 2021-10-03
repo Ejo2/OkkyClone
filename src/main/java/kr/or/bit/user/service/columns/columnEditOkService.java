@@ -58,7 +58,7 @@ public class columnEditOkService implements Action {
                 msg = "글번호 입력 오류";
                 url = "BoardList.go";
             }else{
-                int result = ColumnDao.columnEdit(board,user);
+                int result = ColumnDao.columnEdit(board);
                 
                 if (result > 0){
                     msg = "edit success";
