@@ -66,7 +66,7 @@ public class FrontMemoController extends HttpServlet{
             action = new memberDetailGoService();
             forward = action.execute(request, response);
             System.out.println("memberDetailGo.do");
-        }else if (url_Command.equals("/job.do")){
+        }else if (url_Command.equals("/job.do")){ //jobOffer
             action = new jobService();
             forward = action.execute(request, response);
             System.out.println("job.do");
