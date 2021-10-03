@@ -6,6 +6,7 @@ import kr.or.bit.user.service.job.jobDataService;
 import kr.or.bit.user.service.job.jobService;
 import kr.or.bit.user.service.join.JoinGoService;
 import kr.or.bit.user.service.join.JoinService;
+import kr.or.bit.user.service.join.MainGoService;
 import kr.or.bit.user.service.loginLoout.LoginGoService;
 import kr.or.bit.user.service.loginLoout.LoginService;
 import kr.or.bit.user.service.loginLoout.logoutService;
@@ -112,6 +113,11 @@ public class FrontMemoController extends HttpServlet{
             forward = action.execute(request, response);
     
             System.out.println("profileChange.do");
+        }else if (url_Command.equals("/main.do")){ //main화면
+            action = new MainGoService();
+            forward = action.execute(request, response);
+
+            System.out.println("main.do");
         }
             
         
