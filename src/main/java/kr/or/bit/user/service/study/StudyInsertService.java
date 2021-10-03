@@ -15,6 +15,7 @@ public class StudyInsertService implements Action {
         forward = new ActionForward();
 
         Study_Board sb = new Study_Board();
+        sb.setId(request.getParameter("nickname"));
         sb.setTitle(request.getParameter("title"));
         sb.setSido(request.getParameter("location1") +" "+request.getParameter("location2"));
         sb.setSt_categorynum(Integer.parseInt(request.getParameter("categoryCode")));
@@ -27,27 +28,6 @@ public class StudyInsertService implements Action {
 
         int count = dao.getMaxNo();
         int result2 = dao.insertBoard_join(sb,count);
-
-        //제대로 던져주나 테스트
-        /*
-        String title = request.getParameter("title");
-        String location1 = request.getParameter("location1");
-        String location2 = request.getParameter("location2");
-        String categoryCode = request.getParameter("categoryCode");
-        String carrier = request.getParameter("carrier");
-        String deadline = request.getParameter("deadline");
-        String text = request.getParameter("text");
-
-        System.out.println(deadline);
-
-        request.setAttribute("title", title);
-        request.setAttribute("location1", location1);
-        request.setAttribute("location2", location2);
-        request.setAttribute("categoryCode", categoryCode);
-        request.setAttribute("carrier", carrier);
-        request.setAttribute("deadline",deadline);
-        request.setAttribute("text", text);
-        */
 
         forward.setRedirect(false);
         forward.setPath("/StudyPaging.so?page=1");
