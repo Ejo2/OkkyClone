@@ -22,14 +22,14 @@
   
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/asset.css">
-
+  <%--부트스트랩 3 추가함 --%>
+<%--  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">--%>
   <script src="summernote/js/summernote-lite.js"></script><!--예솔 추가함 : summernote-->
   <script src="summernote/js/summernote-ko-KR.js"></script><!--예솔 추가함 : summernote-->
   <link rel="stylesheet" href="summernote/css/summernote-lite.css"><!--예솔 추가함 : summernote-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!--예솔 추가함 : jquery-->
-  
-  <%--부트스트랩 3 추가함 -부트스트랩 js는 살려둬야 팝업창이 뜹니다.--%>
-  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <%--부트스트랩 3 추가함 --%>
+<%--  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--%>
  </head>
  
  

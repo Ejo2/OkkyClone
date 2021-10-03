@@ -1,4 +1,4 @@
-package kr.or.bit.user.service.qna;
+package kr.or.bit.user.service;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
@@ -9,9 +9,10 @@ import kr.or.bit.user.dto.Comments;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 public class QnAReplyAddService implements Action {
-
+    ActionForward forward = null;
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -37,23 +38,15 @@ public class QnAReplyAddService implements Action {
             QnADao dao = new QnADao();
             result = dao.qnaReplyWrite(reply);
 
-            if(result > 0){
-                msg ="댓글 입력 성공";
-                url ="QnAContent.qo?no="+no;
-            }else{
-                msg="댓글 입력 실패";
-                url="QnAContent.qo?no="+no;
-            }
+            msg = (result > 0)?"ok":"no";
+
+            response.setContentType("text/html;charset=utf-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(msg);
         } catch (Exception e) {
             e.getStackTrace();
         }
 
-        request.setAttribute("board_msg", msg);
-        request.setAttribute("board_url", url);
-
-        ActionForward forward = new ActionForward();
-        forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/redirect/redirect.jsp");
 
         return forward;
     }
