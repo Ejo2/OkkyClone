@@ -108,6 +108,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnCommentListService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnDeleteOk.java">
           <value>
             <PaintGroupHighlightMap />
@@ -124,6 +129,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnReplyAddService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnReplyDeleteOkService.java">
           <value>
             <PaintGroupHighlightMap />
           </value>

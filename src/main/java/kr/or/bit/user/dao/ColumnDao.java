@@ -66,7 +66,12 @@ public class ColumnDao {
         List<Board> collist = null;
         try {
             conn = ds.getConnection();
-            String sql = "SELECT * " + "FROM " + " (select rownum rn,no, bno, id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " + " from ( SELECT no, bno, m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id where removedok !=1 ORDER BY no DESC ) " + " where rownum <= ?) " + "WHERE rn >= ?" ;
+            String sql = "SELECT * " +
+                    "FROM " +
+                    " (select rownum rn,no, bno, id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
+                    " from ( SELECT no, bno, m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id where removedok !=1 ORDER BY no DESC ) "
+                    + " where rownum <= ?) " +
+                    "WHERE rn >= ?" ;
             pstmt = conn.prepareStatement(sql);
 
             int start = cpage * pagesize - (pagesize -1); //1 * 5 - (5 - 1) >> 1
@@ -87,7 +92,7 @@ public class ColumnDao {
                 colBoard.setNo(rs.getInt("no"));
                 colBoard.setBno(rs.getInt("bno"));
                 colBoard.setTitle(rs.getString("title"));
-                colBoard.setId(rs.getString("nickname"));
+                colBoard.setId(rs.getString("id"));
                 colBoard.setCont(rs.getString("cont"));
                 colBoard.setWritedate(rs.getDate("writedate"));
                 colBoard.setRemovedOk(rs.getInt("removedok"));
