@@ -113,6 +113,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnContentService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/columns/columnDeleteOk.java">
           <value>
             <PaintGroupHighlightMap />
@@ -139,6 +144,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/kr/or/bit/user/service/profileChangeService.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -199,6 +209,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/columns/columnedit.jsp">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/columns/columnlist.jsp">
           <value>
             <PaintGroupHighlightMap />
           </value>
