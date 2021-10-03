@@ -89,11 +89,11 @@
                         </div>
                         <input type="hidden" name="textType" value="HTML" id="textType">
 
-                        <div class="recaptcha-wrapper">
-                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                            <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">
-                            </div>
-                        </div>
+<%--                        <div class="recaptcha-wrapper">--%>
+<%--                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>--%>
+<%--                            <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
                         <div class="nav" role="navigation">
                             <fieldset class="buttons">

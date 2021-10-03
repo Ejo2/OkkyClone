@@ -1,0 +1,33 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="OkkyClone:웹 exploded2">
+    <output-path>$PROJECT_DIR$/src/main/webapp</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="OkkyClone/web/웹" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="OkkyClone" />
+          <element id="library" level="application" name="jquery-3.6.0" />
+          <element id="library" level="application" name="jquery-3.1.1" />
+          <element id="library" level="application" name="jquery" />
+          <element id="library" level="application" name="jquery-3.4.1" />
+          <element id="library" level="application" name="font-awesome" />
+          <element id="library" level="application" name="bootstrap-theme" />
+          <element id="library" level="application" name="bootstrap" />
+          <element id="library" level="application" name="@popperjs" />
+          <element id="library" level="application" name="popper.js" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: servlets.com:cos:05Nov2002" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:3.6.0" />
+          <element id="library" level="project" name="Maven: org.json:json:20210307" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
+          <element id="library" level="project" name="Maven: com.oracle.database.jdbc:ojdbc8:19.7.0.0" />
+          <element id="library" level="project" name="javax.mail-1.6.2" />
+          <element id="library" level="project" name="javax.mail-api-1.4.7" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
