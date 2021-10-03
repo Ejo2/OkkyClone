@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="summernote/css/summernote-lite.css"><!--예솔 추가함 : summernote-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!--예솔 추가함 : jquery-->
   <%--부트스트랩 3 추가함 --%>
-  <!--<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+<%--  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--%>
  </head>
  
  

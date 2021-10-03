@@ -80,7 +80,7 @@
                     <div class="list-title-wrapper clearfix">
                         <div class="list-tag clearfix">
                             <span class="list-group-item-text article-id">${qnalist.no}</span>
-                            <a href="/articles/gathering" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> 정기모임/스터디</a>
+                            <a href="/articles/gathering" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> QnA</a>
                         </div>
                         <h5 class="list-group-item-heading list-group-item-evaluate">
                             <a href="${pageContext.request.contextPath}/QnAContent.qo?no=${qnalist.no}&cp=${cpage}&ps=${pagesize}">
@@ -104,7 +104,7 @@
                         <div class="avatar clearfix avatar-list ">
                             <a href="/memberDetailGo.do" class='avatar-photo'><img src="//www.gravatar.com/avatar/9675fbddc407a1515b0b688801acf1cd?d=identicon&s=30"/></a>
                             <div class="avatar-info">
-                                <a class="nickname" href="/memberDetailGo.do" title="${requestScope.userInfo.nickname}">${qnalist.id}</a>
+                                <a class="nickname" href="/memberDetailGo.do" title="${sessionScope.id}">${qnalist.id}</a>
                                 <div class="date-created"><span class="timeago" title=" ${qnalist.writedate}"> ${qnalist.writedate}</span></div>
                             </div>
                         </div>
