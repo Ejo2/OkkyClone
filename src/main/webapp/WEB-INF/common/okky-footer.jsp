@@ -7,17 +7,14 @@
                         <img src="assets/img/okky_logo_footer.png" alt="footer">
                   </div>
                   <div>
-                        <a href="/intro/about">About OKKY</a>
-                        | <a href="/user/privacy" data-toggle="modal" data-target="#userPrivacy">개인정보보호</a>
-                        | <a href="/intro/ad">광고문의</a>
-                        | <a href="mailto:info@okky.kr">Contact</a>
-                        | <a href="https://www.facebook.com/okky.sns" target="_blank">Facebook</a>
-                        | <a href="https://github.com/okjsp/okky" target="_blank">Github</a> v1.5.4
+                        <a href="#">About OKKY</a>
+                        | <a href="#" data-toggle="modal" data-target="#userPrivacy">개인정보보호</a>
+                        | <a href="#">광고문의</a>
+                       
                         <hr style="margin: 8px 0;"/>
-                        <strong>상호명</strong> : 이브레인 | <strong>대표명</strong> : 노상범 | <strong>사업자등록번호</strong> :
-                        144-81-32887 | <strong>문의</strong> : info@okky.kr
-                        <br/> <strong>주소</strong> : 서울 강남구 봉은사로 303 TGL경복빌딩 502호 (06103)
-                        <br/> @ 2021 <a href="http://www.ebrain.kr" target="_blank">eBrain Management</a>
+                        <strong>상호명</strong> : Ejo | <strong>대표명</strong> : 박상준 | <strong>사업자등록번호</strong> :
+                        010-1111-1111 | <strong>문의</strong> : admin@Ejo.com
+                        <br/> <strong>주소</strong> : 서울특별시 강남구
                   </div>
             </div>
             <div class="sponsor-banner col-sm-3">
