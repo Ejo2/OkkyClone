@@ -1,2 +1,10 @@
 # 프로젝트 제외 경로
-/target/
+/target/OkkyClone\
+.idea\
+.settings\
+out\
+target\
+classes\
+.classpath
+src.zip
+.project
