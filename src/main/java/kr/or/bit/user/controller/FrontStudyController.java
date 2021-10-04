@@ -6,8 +6,8 @@ import kr.or.bit.user.dao.StudyDao;
 import kr.or.bit.user.dto.Comments;
 import kr.or.bit.user.dto.Study_Board;
 import kr.or.bit.user.service.study.*;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,7 +50,7 @@ public class FrontStudyController extends HttpServlet{
                 PrintWriter out = response.getWriter();
                 out.print("<script>");
                 out.print("alert('로그인 후 게시글 작성해주세요');");
-                out.print("location.href='main.jsp';");
+                out.print("location.href='/main.jsp';");
                 out.print("</script>");
             }else{
                 action = new StudyWriteGoService();
@@ -79,10 +79,29 @@ public class FrontStudyController extends HttpServlet{
             forward = action.execute(request, response);
 
         }else if(url_Command.equals("/StudyGood.so")) {//(ajax)스터디 좋아요&싫어요
+            //로그인 세션에 대한 내용
+            HttpSession httpSession = request.getSession();
+            String login = (String) httpSession.getAttribute("id");
+            
+            //타입(곧 지워질 예정)
             String type = request.getParameter("type");
+            //게시글번호
             int no = Integer.parseInt(request.getParameter("no"));
             StudyDao dao = new StudyDao();
-            int result = dao.goodUpAndDown(no,type);//좋아요 누를 글과 up/down 결정
+
+            int result1 = dao.goodLogSearch(no,login);//0이면 쓴적 없음, 1이면 쓴적 있음
+
+            if(result1 ==0){
+                int result2 = dao.goodUpAndDown(no,type);//좋아요 누를 글과 up/down 결정해서 board에 반영
+                int result3= dao.insertGood_Manage(no,login);//good_manage에 로그 기록
+            }else{
+                response.setCharacterEncoding("UTF-8");   
+                response.setContentType("text/html; charset=UTF-8");
+                PrintWriter out = response.getWriter();
+                out.print("<script>");
+                out.print("alert('좋아요 한번 누른자는 돌아가라....');"); //이거 안됨 ㅠㅠㅠㅠ
+                out.print("</script>");
+            }
             Study_Board sb = dao.getBoardByNo(no);//그 번호의 글 가져와서
             int good = sb.getGood();//좋아요 수 가져오기
             response.getWriter().print(good);
@@ -99,7 +118,6 @@ public class FrontStudyController extends HttpServlet{
             int result = dao.insertReply(cm);
 
         }else if(url_Command.equals("/ReplyList.so")) {//(ajax)스터디 댓글 리스트보기
-
             int no = Integer.parseInt(request.getParameter("no"));
             ArrayList<Comments> commentlist = new ArrayList<Comments>();
             StudyDao dao = new StudyDao();
@@ -116,10 +134,7 @@ public class FrontStudyController extends HttpServlet{
                 jsonArr.add(jsonObj);
 
             }
-
-
             System.out.println(jsonArr.size());
-
             response.setContentType("application/x-json; charset=UTF-8");
             response.getWriter().print(jsonArr);
 
@@ -130,6 +145,13 @@ public class FrontStudyController extends HttpServlet{
             StudyDao dao = new StudyDao();
             int result = dao.DeleteReply(no,rno);
 
+        }else if(url_Command.equals("/StudyReplyUpdate.so")) {//(ajax)스터디 댓글 수정
+            int rno = Integer.parseInt(request.getParameter("rno"));
+            String rcont = request.getParameter("rcont");
+
+            StudyDao dao = new StudyDao();
+            int result = dao.UpdateReply(rno,rcont);
+            
         }else{
             System.out.println("정해진 바 없는 uri 요청!");
             action = new StudyWriteGoService();

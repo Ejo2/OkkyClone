@@ -54,6 +54,7 @@ public class memberDetailGoService implements Action{
                 List<boardDto> totalBoardList = dao.getTotalBoardList(session.getAttribute("id"));
                 System.out.println("writeBoardList : " +writeBoardList);
                 System.out.println("totalBoardList : "+totalBoardList);
+
                 //작성자의 회원정보 관련 리스트
                 userDto userInfo = dao.getUserInfoList(session.getAttribute("id"));
                 System.out.println("userInfo" + userInfo);

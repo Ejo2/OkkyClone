@@ -34,7 +34,7 @@ public class QnADao {
             String sql = "SELECT * " +
                     "FROM " +
                     " (select rownum rn,no, bno,  id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
-                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id where removedok !=1 ORDER BY no DESC ) " +
+                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id where removedok !=1 and bno = 200 ORDER BY no DESC ) " +
                     "  where rownum <= ?) " +
                     "WHERE rn >= ?" ;
 

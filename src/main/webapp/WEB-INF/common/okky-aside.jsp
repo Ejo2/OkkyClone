@@ -19,7 +19,7 @@
       <!--1: 오키로고-->
       <h1>
             <div class="logo">
-                  <a href="/main.jsp"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
+                  <a href="/main.do"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
             </div>
       </h1>
       
@@ -36,7 +36,6 @@
                   </span>
             </div>
       </form>
-      
       <!--3: 로그인사진&설정&알람 로고-->
       
       <div class="nav-user nav-sidebar">
@@ -56,8 +55,9 @@
             <c:if test="${not empty sessionScope.id}">
                   <div class="avatar clearfix avatar-medium ">
                         <a href="memberDetailGo.do" class='avatar-photo'>
-                              <img
-                                      src="upload/${sessionScope.photo}"/></a>
+
+                <img
+                                src="upload/${sessionScope.photo}"/></a>
                   </div>
                   <ul class="list-unstyled">
                         <li>
@@ -153,7 +153,7 @@
       <div class="special-nav">
       </div>
 </div>
-<!--<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+<%--<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--%>
 <script>
      $.noConflict();
      jQuery(document).ready(function() {
@@ -163,7 +163,7 @@
                     return $('#popover-content').html();
                },
           });
-          
+     
           jQuery('#notification').popover({
                html: true,
                content: function() {
@@ -173,7 +173,8 @@
      });
 </script>
 <script>
-     
+   
+
      
      $(document).ready(function() {
            /*해당 메뉴 클릭시 active 부여 (구버전)*/
