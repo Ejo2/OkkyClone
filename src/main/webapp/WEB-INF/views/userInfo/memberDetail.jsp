@@ -13,7 +13,7 @@
       <c:set var="writeBoardList" value="${requestScope.writeBoardList}"/>
       <c:set var="userScrapList" value="${requestScope.userScrapList}"/>
       <c:set var="totalBoardCount" value="${requestScope.totalBoardCount}"/>
-      <c:set var="pager" value="${requestScope.pager}" />
+      <c:set var="pager" value="${requestScope.pager}"/>
       
       <c:set var="pagesize" value="${requestScope.pagesize}"/>
       <c:set var="cpage" value="${requestScope.cpage}"/>
@@ -49,7 +49,7 @@
                   <ul class="nav">
                         <li class="active"><a href="memberDetailGo.do">게시물
                               <span class="badge">${totalBoardCount}</span></a></li>
-                        
+                  
                   </ul>
             </div>
             <div class="col-sm-10 main-block-left pull-left">
@@ -65,8 +65,24 @@
                                     <div class="list-title-wrapper list-activity">
                                           <div class="list-activity-desc">
                           <span class="list-activity-desc-text">
+                           
                           	${board.id}님이
-                          	  게시글을 작성하셨습니다.
+                                 <c:choose>
+                                       <c:when test="${board.bno==200}">
+                                             칼럼
+                                       </c:when>
+                                       <c:when test="${board.bno==200}">
+                                             큐앤
+                                       </c:when>
+                                       <c:when test="${board.bno==300}">
+                                             스터디
+                                       </c:when>
+                                       <c:when test="${board.bno==400}">
+                                             구인
+                                       </c:when>
+                                 </c:choose>
+                                 
+                          	 게시판에 게시글을 작성하셨습니다.
                           
                           
                           
@@ -75,7 +91,7 @@
                                           </div>
                                           <h5 class="list-group-item-heading">
                                                 <a href="myContentGo.do?bno=${board.bno}&no=${board.no}">${board.title}</a>
-                                          
+                                                
                                                 <div class="list-group-item-author pull-right clearfix">
                                                       
                                                       
