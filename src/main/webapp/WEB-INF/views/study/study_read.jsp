@@ -101,7 +101,9 @@
 
                     <div id="content-function" class="content-function pull-right text-center">
                         <div class="content-function-group">
-                            <div class="note-evaluate-wrapper"> <!--비동기로 바꾸는 작업 필요-->
+                            <div class="note-evaluate-wrapper">
+
+                                <!--좋아요-->
                                 <a href="javascript:goodUpAndDown('up',${sb.no});" class="note-vote-btn" role="button"
                                    data-type="assent"
                                    data-eval="true" data-id="2524877">
@@ -109,10 +111,10 @@
                                        class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left"
                                        data-toggle="tooltip" title="추천"></i>
                                 </a>
-
+                                <!--좋아요 수 뿌려주기-->
                                 <div id="content-vote-count-2524877" class="content-eval-count">${sb.good}</div>
-                                <!--비동기로 좋아요 가져오기-->
 
+                                <!--싫어요-->
                                 <a href="javascript:goodUpAndDown('down',${sb.no});" class="note-vote-btn" role="button"
                                    data-type="dissent"
                                    data-eval="true" data-id="2524877">
@@ -123,11 +125,7 @@
                             </div>
                         </div>
                         <div class="content-function-group article-scrap-wrapper">
-                            <a href="javascript://" id="article-scrap-btn" data-type="scrap"><i class="fa fa-bookmark "
-                                                                                                data-toggle="tooltip"
-                                                                                                data-placement="left"
-                                                                                                title="스크랩"></i></a>
-                            <div id="article-scrap-count" class="content-count">${sb.scrapNum}</div>
+
                         </div>
                     </div>
                     <div class="content-function-cog share-btn-wrapper">
@@ -141,10 +139,21 @@
                                 <input type="hidden" name="_csrf" value="d3611fcc-5ba1-49ea-9f83-7e974f6bbf11">
                                 <input type="hidden" name="_method" value="DELETE" id="method">
                                 <div class="dropdown">
-                                    <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog"
-                                                                                      data-toggle="tooltip"
-                                                                                      data-placement="left"
-                                                                                      title="게시물 설정"></i></a>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.id==sb.id}">
+                                            <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog"
+                                                                                              data-toggle="tooltip"
+                                                                                              data-placement="left"
+                                                                                              title="게시물 설정"></i></a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog"
+                                                                                              data-toggle="tooltip"
+                                                                                              data-placement="left"
+                                                                                              title="게시물 설정" style="display: none"></i></a>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="StudyEdit.so?no=${sb.no}" class="edit"><i
                                                 class="fa fa-edit fa-fw"></i> 수정 </a></li>
@@ -224,8 +233,18 @@
                                         <a href="/user/info/127868" class='avatar-photo'><img
                                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40"/></a>
                                         <div class="avatar-info">
-                                            <a class="nickname" href="#" title="${sessionScope.id}"
-                                               id="reply-nickname">${sessionScope.id}</a>
+                                            <c:choose>
+                                                <c:when test="${sessionScope.id!=null}">
+                                                    <a class="nickname" href="#" title="${sessionScope.id}"
+                                                       id="reply-nickname">${sessionScope.id}</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="nickname" href="#" title="${sessionScope.id}"
+                                                       id="reply-nickname">로그인이 필요합니다</a>
+                                                </c:otherwise>
+                                            </c:choose>
+
+
 
                                         </div>
                                     </div>
@@ -237,10 +256,23 @@
                                 </fieldset>
                             </div>
                             <div class="content-function-cog note-submit-buttons clearfix">
-                                <p><a href="#" id="note-create-cancel-btn" class="btn btn-default btn-wide"
-                                >취소</a></p>
-                                <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide"
-                                       value="등록">
+
+                                <c:choose>
+                                    <c:when test="${sessionScope.id !=null}">
+                                        <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide"
+                                               value="등록">
+                                    </c:when>
+                                    <c:otherwise>
+
+                                        <input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide" style="width:70%;"
+                                               value="등록" disabled="disabled">
+                                    </c:otherwise>
+                                </c:choose>
+
+
+
+
+
                             </div>
                         </form>
                         <!--------------------------------------------------------------------------------------------------------------->
@@ -286,12 +318,10 @@
 </div>
 
 <script>
-
     $(function () {
         replyList();
         replyAdd();
     });
-
     //마감 여부 체크
     let closeok = ${sb.closeok};
     let html = "";
@@ -301,7 +331,6 @@
         html += "모집중";
     }
     $('#closeok').html(html);
-
     //비동기로 좋아요/싫어요 수 늘리기
     function goodUpAndDown(type, no) {
         let jsonData = {
@@ -326,34 +355,36 @@
             }
         })
     }
-
     //비동기로 댓글 입력
     function replyAdd() {
-        $('#btn-create-btn').click(function () {
-            //let content = document.quereySelector('#reply-content');
-            let jsonData = {
-                no: $("#no").text(),
-                id: $("#reply-nickname").text(),
-                content: $("#reply-content").val()
-                //content:content.value
-            }
-            $.ajax({
-                url: "/StudyReply.so",
-                type: 'POST',
-                data: jsonData,
-                success: function (data) {
-                    alert("댓글이 등록되었습니다");
-                    replyList();
-                    $('#reply-content').val("");
 
-                },
-                error: function () {
-                    alert('댓글 등록 실패');
+        $('#btn-create-btn').click(function () {
+                //let content = document.quereySelector('#reply-content');
+                let jsonData = {
+                    no: $("#no").text(),
+                    id: $("#reply-nickname").text(),
+                    content: $("#reply-content").val()
+                    //content:content.value
                 }
-            });
+                $.ajax({
+                    url: "/StudyReply.so",
+                    type: 'POST',
+                    data: jsonData,
+                    success: function (data) {
+                        alert("댓글이 등록되었습니다");
+                        replyList();
+                        $('#reply-content').val("");
+                    },
+                    error: function () {
+                        alert('댓글 등록 실패');
+                    }
+                });
+
+
+
+
         });
     };
-
     function replyList() {
         $.ajax({
             url: "/ReplyList.so",
@@ -364,14 +395,11 @@
             },
             success: function (data) {
                 $('#replylist').empty();
-
                 if (data.length == 0) {
-
                 } else {
                     $.each(data, function (index, obj) {
                         $('#replylist').append(
                             //    obj.rcont + '<br>'
-
                             '<li class="list-group-item note-item clearfix" id="note-2448736">' +
                             '<div class="content-body panel-body pull-left">' +
                             '<div class="avatar clearfix avatar-medium ">' +
@@ -392,9 +420,8 @@
                             '<div class="content-function pull-right text-center">' +
                             '<div class="content-function-group">' +
                             '<div class="note-evaluate-wrapper">' +
-
                             '<div class="dropdown">' +
-                            '<div class="dropdown">' + //여기도 같은 문제
+                            '<div class="dropdown">' + //아래부터 수정삭제 조건걸기
                             '<a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left"title="게시물 설정"></i></a>' +
                             '<ul class="dropdown-menu" role="menu">' +
                             '<li><a href="javascript:replyUpdate(' + obj.rno +',`'+obj.rcont+ '`)" id="update'+obj.rno+'"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>' +
@@ -414,9 +441,7 @@
                 alert('댓글 로드 실패');
             }
         });
-
     }
-
     function replyDelete(rno) {
         $.ajax({
             url :"/Replydelete.so",
@@ -435,7 +460,6 @@
             }
         });
     }
-
     function replyUpdate(rno,rcont) {
         //console.log(rno +"/"+ rcont); 잘 나온다!
         let idsource = "#" + "update"+rno;
@@ -449,7 +473,6 @@
             '<input type="button" value="수정하기" Style="margin-top: 5px;" onclick="updateProcess('+rno+')">'
         );
     }
-
     function updateProcess(rno) {
         let temp = "#" + "updateRcont"+rno;
         let jsonData = {
@@ -468,10 +491,7 @@
                 alert('댓글 등록 실패');
             }
         });
-
     };
-
-
 </script>
 
 <script src="/assets/js/application.js" type="text/javascript"></script>
@@ -485,12 +505,12 @@
 <script src="/assets/js/apps/article.js" type="text/javascript"></script>
 <script>
     (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
-            fjs.parentNode.insertBefore(js, fjs);
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
 

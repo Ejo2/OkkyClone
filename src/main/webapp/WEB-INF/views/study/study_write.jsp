@@ -45,7 +45,6 @@
                         <div class="form-group has-feedback">
                             <div>
                                 <div class="form-control" id="flex-test-id" style="display: flex; flex-direction: row;border:none;box-shadow:none;padding-left:0px;padding-right:0px">
-
                                     <div id="content1" style="flex-grow: 1;margin-right:10px">
                                         <select id="location1" name="location1" class="form-control" required="">
                                             <option value="">==시도 선택==</option>
@@ -69,12 +68,7 @@
                         </div>
 
 
-                        <div class="form-group has-feedback">
-                            <div>
-                                <input type="text" name="tagString" value="" placeholder="Tags," class="form-control"
-                                       id="tagString">
-                            </div>
-                        </div>
+
 
                         <div class="form-group has-feedback">
                             <div>
