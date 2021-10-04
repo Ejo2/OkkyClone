@@ -621,6 +621,85 @@ public class StudyDao {
         return resultrow;
     }
 
+    ///서치한 후 리스트 단 페이징 처리////////////////////////////////////////////////////
+    public ArrayList<Study_Board> getBoardListByPageNumWithSearch(int pageNum,String search) {
+        ArrayList<Study_Board> boardlist = new ArrayList<Study_Board>();
+        PreparedStatement pstmt = null;
+        String sql = "select * from(select rownum rn,no,id, title,hit,writedate,good,scrapnum,st_categorynum,sido,exp,closeok,removedok from ( select b.no ,id, title,hit,writedate,good,scrapnum,st_categorynum,sido,exp,closeok,removedok from board b join b_study s on b.no = s.no where removedok =0 and cont like ? order by no desc) where rownum <= ?) where rn >= ?";
+        int startPost = 0; //rn을 의미함
+        if (pageNum == 1) {
+            startPost = 1; //1페이지의 첫번째 rn
+        } else {
+            startPost = 5 * (pageNum - 1) + 1; //해당 페이지의 첫번째 rn
+        }
+        ;
+
+        try {
+            Connection conn = ConnectionHelper.getConnection("oracle");
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,search);
+            pstmt.setInt(2, startPost + 4);
+            pstmt.setInt(3, startPost);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Study_Board sb = new Study_Board();
+                sb.setNo(rs.getInt("no"));
+                sb.setId(rs.getString("id"));
+                sb.setTitle(rs.getString("title"));
+                sb.setHit(rs.getInt("hit"));
+                sb.setWritedate(rs.getTimestamp("writedate"));
+                sb.setGood(rs.getInt("good"));
+                sb.setScrapNum(rs.getInt("scrapNum"));
+                sb.setSt_categorynum(rs.getInt("st_categorynum"));
+                sb.setSido(rs.getString("sido"));
+                sb.setExp(rs.getString("exp"));
+                sb.setCloseok(rs.getInt("closeok"));
+                boardlist.add(sb);
+            }
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(pstmt);
+
+            ConnectionHelper.close(conn);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return boardlist;
+    }
+    ///search 한 후 table의 게시글 갯수 세기////////////////////////////////////////////////////
+    public int countPostWithSearch(String search) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "select count(*) as counting from board where removedok=0 and bno=300 and cont like ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,search);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                result = rs.getInt("counting");
+                System.out.println("table row갯수 : " + result);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+
+
+
+
+
+
+
+
 
 
 

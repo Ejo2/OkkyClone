@@ -2,9 +2,11 @@ package kr.or.bit.user.service.study;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
+import kr.or.bit.user.dao.StudyCategoryDao;
 import kr.or.bit.user.dao.StudyDao;
 import kr.or.bit.user.dto.StudyCriteria;
 import kr.or.bit.user.dto.Study_Board;
+import kr.or.bit.user.dto.Study_category;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +17,14 @@ public class StudyPagingService implements Action{
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response){
         
         int pageNum = Integer.parseInt(request.getParameter("page"));
-        
-        
         ActionForward forward = null;
         StudyCriteria sc = new StudyCriteria();
-        
+
+        StudyCategoryDao dao2 = new StudyCategoryDao();
+        List<Study_category> categoryList = dao2.getCategoryList();
+
+        request.setAttribute("categoryList", categoryList); //sort 창 때문에
+
         try{
             StudyDao dao = new StudyDao();
             List<Study_Board> boardlist = dao.getBoardListByPageNum(pageNum);
