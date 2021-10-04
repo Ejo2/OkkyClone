@@ -1,5 +1,6 @@
 package kr.or.bit.user.dao;
 
+import kr.or.bit.user.dto.Board;
 import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.ConnectionHelper;
@@ -73,47 +74,73 @@ public class userDao{
         return dto;
     }
     
-    public List<boardDto> getUserDetailBoardList(Object sessionId, int cpage, int pagesize) throws SQLException{
-        Connection conn = ConnectionHelper.getConnection("oracle");
+    public List<Board> getUserDetailBoardList(Object sessionId, int cpage, int pagesize) {
+        System.out.println("cpage" + cpage+"pagesize"+pagesize);
+        
+        Connection conn = null;
+        ResultSet rs = null;
         PreparedStatement pstmt = null;
-        String sql = "SELECT  ROWNUM ,NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM (SELECT * FROM BOARD WHERE ROWNUM<=?) WHERE ID=? AND ROWNUM>=?";
-        pstmt = conn.prepareStatement(sql);
+        List<Board> writeBoard = new ArrayList<>();
         
-        int start = cpage * pagesize - (pagesize - 1);
-        System.out.println(start);
-        int end = cpage * pagesize;
-        System.out.println(end);
-        
-        System.out.println("sessionId : " + sessionId);
-        pstmt.setInt(1, end);
-        pstmt.setObject(2, sessionId);
-        pstmt.setInt(3, start);
-        
-        System.out.println("확인");
-        ResultSet rs = pstmt.executeQuery();
-        
-        ArrayList<boardDto> writeBoardList = new ArrayList<>();
-        while (rs.next()){
-            boardDto dto = new boardDto();
-            dto.setNo(rs.getInt("no"));
-            dto.setBno(rs.getInt("bno"));
-            dto.setId(rs.getString("id"));
-            dto.setTitle(rs.getString("title"));
-            dto.setCont(rs.getString("cont"));
-            dto.setHit(rs.getInt("hit"));
-            dto.setWriteDate(rs.getDate("writedate"));
-            dto.setRemovedOk(rs.getInt("removedok"));
-            dto.setGood(rs.getInt("good"));
-            dto.setScrapNum(rs.getInt("scrapnum"));
-            writeBoardList.add(dto);
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "SELECT * FROM (SELECT  ROWNUM rn ,NO, BNO, id, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM,NICKNAME FROM (SELECT NO,BNO,M.ID AS id ,TITLE , CONT , WRITEDATE , GOOD ,HIT , REMOVEDOK , SCRAPNUM , NICKNAME FROM BOARD b INNER JOIN MEMBER M ON M.ID = b.ID WHERE REMOVEDOK !=1 ORDER BY NO DESC ) WHERE id=? AND ROWNUM <= ? )  WHERE rn >= ?";
             
-        }
-        System.out.println("내가 쓴 게시물 리스트" + writeBoardList);
-        ConnectionHelper.close(rs);
-        ConnectionHelper.close(conn);
-        ConnectionHelper.close(pstmt);
+            pstmt = conn.prepareStatement(sql);
+            
+            int start = cpage * pagesize - (pagesize - 1);
+            System.out.println(start);
+            int end = cpage * pagesize;
+            System.out.println(end);
+            
+            System.out.println("sessionId : " + sessionId + "확인");
+            pstmt.setObject(1, sessionId);
+            pstmt.setInt(2, end);
+            pstmt.setInt(3, start);
+            
+            System.out.println("확인");
+            rs = pstmt.executeQuery();
+            
         
-        return writeBoardList;
+            
+            while (rs.next()){
+                System.out.println("rsnext 타는지 확인");
+                Board dto = new Board();
+                dto.setNo(rs.getInt("no"));
+                dto.setBno(rs.getInt("bno"));
+                dto.setId(rs.getString("id"));
+                dto.setTitle(rs.getString("title"));
+                dto.setCont(rs.getString("cont"));
+                dto.setHit(rs.getInt("hit"));
+                dto.setWritedate(rs.getDate("writedate"));
+                dto.setRemovedOk(rs.getInt("removedok"));
+                dto.setGood(rs.getInt("good"));
+                dto.setScrapNum(rs.getInt("scrapnum"));
+                
+                System.out.println("dto::::" + dto);
+                
+                writeBoard.add(dto);
+                
+            }
+            System.out.println("내가 쓴 게시물 리스트" + writeBoard);
+            
+        }catch (Exception e){
+            System.out.println("에러뜸???");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            System.out.println("닫힘???");
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+            System.out.println("다 닫힘??");
+        }
+        
+        
+        System.out.println("writeBoard@@@@@ :: " + writeBoard);
+        
+        
+        return writeBoard;
     }
     
     public userDto getUserInfoList(Object sessionId) throws SQLException{
@@ -176,7 +203,7 @@ public class userDao{
     public List<boardDto> getTotalBoardList(Object sessionId) throws SQLException{
         Connection conn = ConnectionHelper.getConnection("oracle");
         PreparedStatement pstmt = null;
-        String sql = "SELECT NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM BOARD WHERE ID=?";
+        String sql = "SELECT NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM BOARD WHERE ID=? and REMOVEDOK!=1";
         pstmt = conn.prepareStatement(sql);
         
         

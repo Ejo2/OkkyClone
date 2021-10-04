@@ -3,6 +3,7 @@ package kr.or.bit.user.service.userInfo;
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.userDao;
+import kr.or.bit.user.dto.Board;
 import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
 
@@ -48,7 +49,7 @@ public class scrapListGoService implements Action{
             
             
                 //작성자가 작성한 게시글 리스트
-                List<boardDto> writeBoardList = dao.getUserDetailBoardList(session.getAttribute("id"), cpage, pagesize);
+                List<Board> writeBoardList = dao.getUserDetailBoardList(session.getAttribute("id"), cpage, pagesize);
                 List<boardDto> totalBoardList = dao.getTotalBoardList(session.getAttribute("id"));
                 System.out.println("writeBoardList : " +writeBoardList);
                 System.out.println("totalBoardList : "+totalBoardList);
