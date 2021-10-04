@@ -26,7 +26,7 @@ public class deleteUserService implements Action{
             if (result > 0){
     
                 msg = "회원 탈퇴 완료!";
-                url = "/main.jsp";
+                url = "/main.do";
             }else{
                 msg = "회원 탈퇴 실패!";
                 url = "userInfoChange.do";

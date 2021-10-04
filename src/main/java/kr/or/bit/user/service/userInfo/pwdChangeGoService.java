@@ -34,7 +34,7 @@ public class pwdChangeGoService implements Action{
                 
                 request.setAttribute("myPwd", myPwd);
                 forward.setRedirect(false);
-                forward.setPath("/WEB-INF/views/pwdChange.jsp");
+                forward.setPath("/WEB-INF/views/userInfo/pwdChange.jsp");
     
             }
         }catch (Exception e){

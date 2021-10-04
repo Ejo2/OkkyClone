@@ -6,7 +6,7 @@
 
     <!-- 시작페이지 설정 -->
     <welcome-file-list>
-        <welcome-file>main.jsp</welcome-file>
+        <welcome-file>main.do</welcome-file>
     </welcome-file-list>
 
 </web-app>

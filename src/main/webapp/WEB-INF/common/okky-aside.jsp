@@ -236,6 +236,7 @@
                     
                }
                if (getAr6 != -1) {
+                    
                     $('#sub-title').html("메인화면");
                     $('#sub-sub-title').html("")
      

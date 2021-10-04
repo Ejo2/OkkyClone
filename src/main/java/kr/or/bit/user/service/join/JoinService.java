@@ -37,7 +37,7 @@ public class JoinService implements Action{
         
         if (result > 0){
             msg = "등록성공";
-            url = "/main.jsp";
+            url = "/main.do";
         }else{
             msg = "등록실패";
             url = "/WEB-INF/views/loginlogout/join.jsp";
