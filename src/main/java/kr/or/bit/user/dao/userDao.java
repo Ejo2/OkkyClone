@@ -203,7 +203,7 @@ public class userDao{
     public List<boardDto> getTotalBoardList(Object sessionId) throws SQLException{
         Connection conn = ConnectionHelper.getConnection("oracle");
         PreparedStatement pstmt = null;
-        String sql = "SELECT NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM BOARD WHERE ID=?";
+        String sql = "SELECT NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM BOARD WHERE ID=? and REMOVEDOK!=1";
         pstmt = conn.prepareStatement(sql);
         
         

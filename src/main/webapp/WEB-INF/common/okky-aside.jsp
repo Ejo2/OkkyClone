@@ -55,15 +55,15 @@
             <c:if test="${not empty sessionScope.id}">
                   <div class="avatar clearfix avatar-medium ">
                         <a href="memberDetailGo.do" class='avatar-photo'>
-
-                <img
-                                src="upload/${sessionScope.photo}"/></a>
+                              
+                              <img
+                                      src="upload/${sessionScope.photo}"/></a>
                   </div>
                   <ul class="list-unstyled">
-                        <li>
+                        <li id="nextli">
                               <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="javascript:void(0)" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
                         </li>
-                      
+                              
                               <%--팝오버 창 start--%>
                         <div id="popover-content" class="hide" role="tooltip">
                               <div class="arrow" style="top : 50%;"></div>
@@ -74,7 +74,7 @@
                               </div>
                         </div>
                               <%--알림 기능은 후순위로 미루겠습니다.--%>
-                  
+                              
                               <%--팝오버 창 end--%>
                   
                   </ul>
@@ -145,15 +145,15 @@
 </div>
 <%--<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--%>
 <script>
-     jQuery(document).ready(function() {
-          jQuery("#setting").popover({
+     $(document).ready(function() {
+          $("#setting").popover({
                html: true,
                content: function() {
                     return $('#popover-content').html();
                },
           });
-     
-          jQuery('#notification').popover({
+          
+          $('#notification').popover({
                html: true,
                content: function() {
                     return $('#popover-content2').html();
@@ -162,8 +162,7 @@
      });
 </script>
 <script>
-   
-
+     
      
      $(document).ready(function() {
            /*해당 메뉴 클릭시 active 부여 (구버전)*/
@@ -189,7 +188,9 @@
            /*게시판 이동시 해당 메뉴에 active 효과 부여 >> 이동 단계에서 url 로 active 주는 방식*/
            /*sub-sub-title에 해당하는 메뉴들을 html 형식으로 추가해주시면 됩니다.*/
           $(function() {
+               
                let url = location.href;
+               
                let getAr0 = url.indexOf("QnA");
                let getAr1 = url.indexOf("Study");
                let getAr2 = url.indexOf("BoardList");
@@ -197,6 +198,7 @@
                let getAr4 = url.indexOf("join");
                let getAr5 = url.indexOf("login");
                let getAr6 = url.indexOf("main");
+               let getAr7 = url.indexOf("memberDetail")
                
                if (getAr0 != -1) {
                     $('#qna').attr("class", "active");
@@ -236,8 +238,18 @@
                if (getAr6 != -1) {
                     $('#sub-title').html("메인화면");
                     $('#sub-sub-title').html("")
-                    
-                    
+     
+     
+               }
+               if (getAr7 != -1) {
+                    let infoChange = '<a href="userInfoChange.do" style="text-decoration-line:none "><i class="fa fa-user"></i> </a>';
+                    let logout = '<label href="logout.do" for="logoutButton"><i class="fas fa-sign-out-alt" style="color: white"></i> </label>';
+                    $('#sub-title').html("회원정보 수정").css("font-size", "17px");
+                    $('#sub-sub-title').html("");
+                    $("#setting").addClass("hide");
+                    $("#nextli").append(infoChange);
+                    $("#nextli").append(logout);
+     
                }
                
                
