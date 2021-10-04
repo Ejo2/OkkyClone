@@ -68,7 +68,7 @@
                            
                           	${board.id}님이
                                  <c:choose>
-                                       <c:when test="${board.bno==200}">
+                                       <c:when test="${board.bno==100}">
                                              칼럼
                                        </c:when>
                                        <c:when test="${board.bno==200}">
@@ -85,6 +85,7 @@
                           	 게시판에 게시글을 작성하셨습니다.
                           
                           
+                            
                           
                           </span>
                                                 <span class="timeago" title="2021-09-26T15:36:30">${board.writedate}</span>
