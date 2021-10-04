@@ -79,8 +79,7 @@
 
                     <div class="form-group has-feedback">
                         <div>
-                            <input type="text" name="tagString" value="" placeholder="Tags," class="form-control"
-                                   id="tagString">
+
                         </div>
                     </div>
 
