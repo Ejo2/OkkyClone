@@ -17,12 +17,7 @@ public class MainDao {
 
 
         PreparedStatement pstmt = null;
-        String sql = "select * from(" +
-                "select rownum rn, no,id, title,hit,writedate,good,st_categorynum,sido,exp ,nickname " +
-                " from ( select b.no ,b.id, title,hit,writedate,good,st_categorynum,sido,exp,nickname "+
-                " from board b inner join b_study s on b.no = s.no " +
-                " inner join member m on b.id=m.id " +
-                " where removedok =0 and closeok=0 order by no desc)) ";
+        String sql = "select * from(select rownum rn, no,id, title,hit,writedate,good, st_categorynum, st_category, sido,exp ,nickname from ( select b.no ,b.id, title,hit,writedate,good, s.st_categorynum, sc.st_category, sido,exp,nickname from board b inner join b_study s on b.no = s.no inner join member m on b.id = m.id inner join study_category sc on s.st_categorynum = sc.st_categorynum where removedok =0 and closeok=0 order by no desc))  ";
         try {
             Connection conn = ConnectionHelper.getConnection("oracle");
             pstmt = conn.prepareStatement(sql);
@@ -42,7 +37,7 @@ public class MainDao {
                 mcd.setSido(rs.getString("sido"));
                 mcd.setExp(rs.getString("exp"));
                 mcd.setNickname(rs.getString("nickname"));
-
+                mcd.setSt_category(rs.getString("st_category"));
                 sBoardList.add(mcd);
             }
             ConnectionHelper.close(rs);

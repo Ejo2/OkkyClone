@@ -1,20 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+									pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 <style>
-		/* map css 추가 추후 css 파일로 뺄 예정*/
-    .map_wrap {position:relative;width:100%;height:210px;}
-    .title {font-weight:bold;display:block;}
-    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+    /* map css 추가 추후 css 파일로 뺄 예정*/
+    .map_wrap {
+        position: relative;
+        width: 100%;
+        height: 210px;
+    }
+
+    .title {
+        font-weight: bold;
+        display: block;
+    }
+
+    .hAddr {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        border-radius: 2px;
+        background: #fff;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 1;
+        padding: 5px;
+    }
+
+    #centerAddr {
+        display: block;
+        margin-top: 2px;
+        font-weight: normal;
+    }
 </style>
 <body>
 <!-- map -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b0618e62cea1f9413d5a53e1ddbd0d3&libraries=services"></script>
+<script type="text/javascript"
+								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b0618e62cea1f9413d5a53e1ddbd0d3&libraries=services"></script>
 
 <c:set var="sbl" value="${requestScope.getSBoardList}"/>
 <c:set var="bl" value="${requestScope.getBoardList}"/>
@@ -44,8 +69,8 @@
 				<!--2: 검색로고-->
 				<ul id="search-google-icon" class="nav nav-sidebar nav-sidebar-search-wrapper">
 						<li class="nav-sidebar-search"><a href="#" class="link" id="search-google"
-						                                  data-toggle="popover" data-trigger="click" data-original-title=""
-						                                  title=""><i class="fa fa-search"></i></a></li>
+																																								data-toggle="popover" data-trigger="click" data-original-title=""
+																																								title=""><i class="fa fa-search"></i></a></li>
 				</ul>
 
 				<!--2-1: 반응형으로 작아졌을때 검색창-->
@@ -62,18 +87,18 @@
 				<!--3: 로그인사진&설정&알람 로고-->
 				<div class="nav-user nav-sidebar">
 						<!-- 로그아웃 상태일 때  -->
-									<c:if test="${empty sessionScope.id}">
-										<div class="nav-user nav-sidebar">
-											<ul class="nav nav-sidebar">
+						<c:if test="${empty sessionScope.id}">
+								<div class="nav-user nav-sidebar">
+										<ul class="nav nav-sidebar">
 												<li id="login" data-toggle="tooltip" data-container="body" title="로그인">
-													<a href="loginGo.do" class="link"><i class="fa fa-sign-in"></i>
-														<span class="nav-sidebar-label">로그인</span></a></li>
+														<a href="loginGo.do" class="link"><i class="fa fa-sign-in"></i>
+																<span class="nav-sidebar-label">로그인</span></a></li>
 												<li id="join" data-toggle="tooltip" data-container="body" title="회원가입">
-													<a href="joinGo.do" class="link"><i class="fa fa-user"></i>
-														<span class="nav-sidebar-label">회원가입</span></a></li>
-											</ul>
-										</div>
-									</c:if>
+														<a href="joinGo.do" class="link"><i class="fa fa-user"></i>
+																<span class="nav-sidebar-label">회원가입</span></a></li>
+										</ul>
+								</div>
+						</c:if>
 
 						<!--로그인 상태일 때  -->
 
@@ -82,7 +107,7 @@
 										<a href="memberDetailGo.do" class="avatar-photo"><img
 														src="upload/${sessionScope.photo}"></a>
 										<div class="avatar-info">
-												<a class="nickname" href="memberDetailGo.do" title="신지혜20">신지혜20</a>
+												<a class="nickname" href="memberDetailGo.do" title="${sessionScope.nickname}">${sessionScope.nickname}</a>
 														<%--                              <a class="nickname" href="memberDetailGo.do" title="${sessionScope.nickname}">${sessionScope.nickname}</a>--%>
 												<div class="activity block"><span class="fa fa-flash"></span> 0</div>
 										</div>
@@ -93,13 +118,13 @@
 										<!--  톱니바퀴 -->
 										<div class="nav-user-func">
 												<a data-placement="bottom" data-toggle="popover" data-container="body" type="button"
-												   data-html="true" href="#" id="setting" data-original-title="" title=""><i class="fas fa-cog"
-												                                                                             style="margin-top: 7px"></i></a>
+															data-html="true" href="#" id="setting" data-original-title="" title=""><i class="fas fa-cog"
+																																																																																									style="margin-top: 7px"></i></a>
 
 
 												<form action="logout.do" method="post" style="display:none;">
 														<input type="submit" name="logoutButton"
-														       value="logoutButton" id="logoutButton">
+																					value="logoutButton" id="logoutButton">
 												</form>
 
 
@@ -128,10 +153,10 @@
 
 										<div class=nav-user-func">
 												<a href="memberDetailGo.do" id="user-notification" data-toggle="popover" data-trigger="click"
-												   tabindex="0" data-original-title="" title="">
+															tabindex="0" data-original-title="" title="">
 														<i id="user-notification-icon" class="fa fa-bell"></i>
 														<span id="user-notification-count" class="badge notification"
-														      style="display:none;">0</span>
+																				style="display:none;">0</span>
 												</a>
 										</div>
 
@@ -235,10 +260,10 @@
 				<%-- 카테고리 --%>
 				<ul class="nav nav-sidebar nav-main">
 
-						<li><a href="QnAContent.qo" class="link"><i class="nav-icon fa fa-database"></i> <span
+						<li><a href="QnAList.qo" class="link"><i class="nav-icon fa fa-database"></i> <span
 										class="nav-sidebar-label nav-sidebar-category-label">Q&amp;A</span></a></li>
-<%--						<li><a href="#" class="link"><i class="nav-icon fa fa-code"></i> <span--%>
-<%--										class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>--%>
+						<%--						<li><a href="#" class="link"><i class="nav-icon fa fa-code"></i> <span--%>
+						<%--										class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>--%>
 						<li><a href="StudyPaging.so?page=1" class="link"><i class="nav-icon fa fa-comments"></i> <span
 										class="nav-sidebar-label nav-sidebar-category-label">스터디</span></a></li>
 						<li><a href="BoardList.go" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
@@ -276,9 +301,9 @@
 												<!-- 글 1개 -->
 
 												<c:forEach var="blh" items="${getBoardListHit}" begin="1" end="7" step="1"
-												           varStatus="status">
+																							varStatus="status">
 														<li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
-																<div class="list-title-wrapper">
+																<div class="list-title-wrapper" data-group-value="${blh.bno}" data-value="${blh.no}">
 																		<h5 class="list-group-item-heading">
 																				<a href="${blh.no}">${blh.title}</a>
 																				<div class="list-group-item-author pull-right clearfix">
@@ -287,12 +312,11 @@
 																												src="//file.okky.kr/profile/2021/1621274110514.png"></a>
 																								<div class="avatar-info">
 																										<a class="nickname" href="/user/info/163"
-																										   title="${blh.nickname}">${blh.nickname}</a>
-																										<div class="activity"><span
-																														class="fa fa-flash"></span> ${blh.hit}
+																													title="${blh.nickname}">${blh.nickname}</a>
+																										<div class="activity"><i class="fa fa-eye"></i> ${blh.hit}
 																										</div>
 																										<div class="date-created"><span class="timeago"
-																										                                title="${blh.writedate}">2달 전</span>
+																																																										title="${blh.writedate}"></span>
 																										</div>
 																								</div>
 																						</div>
@@ -310,7 +334,7 @@
 				<div class="col-sm-6 main-block-right">
 						<div class="main-block">
 								<h4 class="main-header"><i class="fa fa-star"></i>공채 속보</h4><a href="/job.do"
-								                                                               class="main-more-btn pull-right"><i
+																																																																							class="main-more-btn pull-right"><i
 										class="fa fa-ellipsis-h"></i></a></h4>
 								<div class="panel panel-default">
 										<ul class="list-group">
@@ -326,68 +350,72 @@
 						<!-- QNA -->
 						<div class="main-block">
 								<h4 class="main-header"><i class="fa fa-database"></i> Q&amp;A </h4>
-										<div class="panel panel-default">
-												<ul class="list-group">
-														<c:forEach var="bl" items="${getBoardList}" begin="1" end="100" step="1"
-														           varStatus="status">
-																		<c:if test="${bl.bno == 200}">
-																				<li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
-																						<div class="list-title-wrapper">
-																								<h5 class="list-group-item-heading">
-																										<a href="/QnAContent.qo?no=${bl.no}">${bl.title}</a>
-																										<div class="list-group-item-author pull-right clearfix">
+								<div class="panel panel-default">
+										<ul class="list-group">
+												<c:set var="i" value="0"/>
+												<c:forEach var="bl" items="${getBoardList}" begin="1" end="100" step="1"
+																							varStatus="status">
+														<c:if test="${bl.bno == 200 and i < 10}">
+
+																<li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+																		<div class="list-title-wrapper">
+																				<h5 class="list-group-item-heading">
+																						<a href="/QnAContent.qo?no=${bl.no}">${bl.title}</a>
+																						<div class="list-group-item-author pull-right clearfix">
 
 
-																												<div class="avatar clearfix avatar-x-small ">
-																														<a href="/user/info/123252" class="avatar-photo"><img
-																																		src="https://ssl.pstatic.net/static/pwe/address/img_profile.png"></a>
-																														<div class="avatar-info">
-																																<a class="nickname" href="/user/info/123252"
-																																   title="${bl.nickname}">${bl.nickname}</a>
-																																<div class="activity"><span
-																																				class="fa fa-flash"></span> ${bl.hit}
-																																</div>
-																																<div class="date-created"><span class="timeago"
-																																                                title="${bl.writedate}">1시간 전</span>
-																																</div>
-																														</div>
+																								<div class="avatar clearfix avatar-x-small ">
+																										<a href="/user/info/123252" class="avatar-photo"><img
+																														src="https://ssl.pstatic.net/static/pwe/address/img_profile.png"></a>
+																										<div class="avatar-info">
+																												<a class="nickname" href="/user/info/123252"
+																															title="${bl.nickname}">${bl.nickname}</a>
+																												<div class="activity"><i class="fa fa-eye"></i> ${bl.hit}
+																												</div>
+																												<div class="date-created"><span class="timeago"
+																																																												title="${bl.writedate}"></span>
 																												</div>
 																										</div>
-																								</h5>
+																								</div>
 																						</div>
-																				</li>
-																		</c:if>
-														</c:forEach>
-												</ul>
-										</div>
+																				</h5>
+																		</div>
+																</li>
+																<c:set var="i" value="${i+1}"/>
+														</c:if>
+												</c:forEach>
+										</ul>
+								</div>
 						</div>
 
 						<!-- 스터디 -->
 						<div class="main-block">
-								<h4 class="main-header"><i class="fa fa-comment"></i> 스터디 <a href="/StudyDetail.so"
-								                                                             class="main-more-btn pull-right"><i
+								<h4 class="main-header"><i class="fa fa-comment"></i> 스터디 <a href="/StudyPaging.so?page=1"
+																																																																					class="main-more-btn pull-right"><i
 												class="fa fa-ellipsis-h"></i></a></h4>
 								<div class="panel panel-default">
 										<ul class="list-group">
-												<c:forEach var="sbl" items="${requestScope.getSBoardList}" begin="1" end="100" step="1"
-												           varStatus="status">
+												<c:forEach var="sbl" items="${requestScope.getSBoardList}" begin="1" end="10" step="1"
+																							varStatus="status">
 														<li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
 																<div class="list-title-wrapper">
 																		<h5 class="list-group-item-heading">
 																				<a href="/StudyDetail.so?no=${sbl.no}">${sbl.title}</a>
 																				<div class="list-group-item-author pull-right clearfix">
 																						<div class="avatar clearfix avatar-x-small ">
-																								<a href="/user/info/126619" class="avatar-photo"><img
-																												src="https://lh3.googleusercontent.com/a-/AOh14Gg9kv-OfJfsCMpQrWmpTbk3WGyT272EYyiRT6im=s96-c"></a>
-																								<div class="avatar-info">
-																										<a class="nickname" href="/user/info/126619"
-																										   title="${bl.nickname}">${bl.nickname}</a>
-																										<div class="activity"><span class="fa fa-flash"></span> ${bl.hit}
-																										</div>
-																										<div class="date-created"><span class="timeago"
-																										                                title="${bl.writedate}">1시간 전</span>
+																								<div class="avatar clearfix avatar-x-small ">
+																										<a href="/user/info/123252" class="avatar-photo"><img
+																														src="https://ssl.pstatic.net/static/pwe/address/img_profile.png"></a>
+																										<div class="avatar-info">
+																												<a class="nickname" href="/user/info/123252" title="${sbl.nickname}">${sbl.nickname}</a>
+																												<div class="activity"><i class="fa fa-eye"></i> ${sbl.hit}
+																												</div>
+																												<div class="date-created"><span class="timeago" ttitle="${sbl.writedate}"></span>
+
+																												</div>
 																										</div>
 																								</div>
+
 																						</div>
 																				</div>
 																		</h5>
@@ -411,128 +439,70 @@
 								</div>
 						</div>
 
-<%--						<div >--%>
-<%--								<a href="/banner/stats/402" target="_k"><img src="//file.okky.kr/banner/1631771146668.jpg"></a>--%>
-<%--						</div>--%>
-
 						<!-- 우측 글 1 (Tech) -->
 						<div class="main-block">
-								<h4 class="main-header"><i class="fa fa-code"></i> Tech <a href="/articles/tech"
-								                                                           class="main-more-btn pull-right"><i
+								<h4 class="main-header"><i class="fa fa-comment"></i> 인근 스터디 추천 <a href="/StudyDetail.so"
+																																																																											class="main-more-btn pull-right"><i
 												class="fa fa-ellipsis-h"></i></a></h4>
 								<div class="panel panel-default">
 										<div class="panel-body">
-												<div class="article-middle-block clearfix">
-														<div class="list-tag clearfix" style="">
-																<a href="/articles/tips" class="list-group-item-text item-tag label label-info"><i
-																				class="fa fa-code"></i> Tips &amp; 강좌</a>
+												<c:set var="i" value="0"/>
+												<c:forEach var="sbl" items="${requestScope.getSBoardList}" begin="1" end="100" step="1"
+																							varStatus="status">
+														<c:if test="${sbl.sido ne null}"> <!-- sido 정보가 존재할 때 돈다 -->
+																<c:set var="sido" value="${fn:split(sbl.sido, ' ')}"/>
+																<div class="article-middle-block clearfix" style="display:none;">
+																		<div class="list-tag clearfix" style="">
 
+																				<span class="list-group-item-text item-tag label label-info"
+																										id="${i}_sido1">${sido[0]}</span>
 
-																<a href="/articles/tagged/iam"
-																   class="list-group-item-text item-tag label label-gray ">iam</a>
-																<a href="/articles/tagged/aws"
-																   class="list-group-item-text item-tag label label-gray ">aws</a>
-														</div>
-														<h5>
-																<a href="/article/1063898">AWS IAM 사용자 리전 제한하기</a>
-														</h5>
-														<div class="list-group-item-author clearfix">
+																				<span class="list-group-item-text item-tag label label-gray "
+																										id="${i}_sido2">${sido[1]}</span>
+																				<span class="list-group-item-text item-tag label label-gray "
+																										style="background-color: #0a6aa1; float: right; ">${sbl.st_category}</span>
 
+																						<%--																<a href="/articles/tagged/aws"--%>
+																						<%--																			class="list-group-item-text item-tag label label-gray "id="sido3-${i}">${sido[2]}</a>--%>
+																		</div>
 
-																<div class="avatar clearfix avatar-x-small pull-right">
-																		<a href="/user/info/50698" class="avatar-photo"><img
-																						src="//www.gravatar.com/avatar/1b4378984e52feb7361b0ebf572cb67a?d=identicon&amp;s=10"></a>
-																		<div class="avatar-info">
-																				<a class="nickname" href="/user/info/50698" title="Mambo">Mambo</a>
-																				<div class="activity"><span class="fa fa-flash"></span> 6k</div>
-																				<div class="date-created"><span class="timeago"
-																				                                title="2021-10-03 14:34:22">4시간 전</span>
+																		<h5>
+																				<a href="/StudyDetail.so?no=${sbl.no}">${sbl.title}</a>
+																		</h5>
+
+																		<div class="list-group-item-author clearfix">
+
+																				<div class="avatar clearfix avatar-x-small pull-right">
+																						<a href="/user/info/50698" class="avatar-photo"><img
+																										src="//www.gravatar.com/avatar/1b4378984e52feb7361b0ebf572cb67a?d=identicon&amp;s=10"></a>
+																						<div class="avatar-info">
+																								<a class="nickname" href="/user/info/50698" title="${sbl.nickname}">${sbl.nickname}</a>
+																								<div class="activity"><i class="fa fa-eye"></i> ${sbl.hit}</div>
+																								<div class="date-created"><span class="timeago"
+																																																								tttitle="${sbl.writedate}">4</span>
+																								</div>
+																						</div>
 																				</div>
 																		</div>
 																</div>
-														</div>
-												</div>
-												<div class="article-middle-block clearfix">
-														<div class="list-tag clearfix" style="">
-																<a href="/articles/tips" class="list-group-item-text item-tag label label-info"><i
-																				class="fa fa-code"></i> Tips &amp; 강좌</a>
-
-
-																<a href="/articles/tagged/s3"
-																   class="list-group-item-text item-tag label label-gray ">s3</a>
-																<a href="/articles/tagged/ec2"
-																   class="list-group-item-text item-tag label label-gray ">ec2</a>
-																<a href="/articles/tagged/aws"
-																   class="list-group-item-text item-tag label label-gray ">aws</a>
-														</div>
-														<h5>
-																<a href="/article/1063801">EC2 인스턴스에서 S3 버킷 접근하기</a>
-														</h5>
-														<div class="list-group-item-author clearfix">
-
-
-																<div class="avatar clearfix avatar-x-small pull-right">
-																		<a href="/user/info/50698" class="avatar-photo"><img
-																						src="//www.gravatar.com/avatar/1b4378984e52feb7361b0ebf572cb67a?d=identicon&amp;s=10"></a>
-																		<div class="avatar-info">
-																				<a class="nickname" href="/user/info/50698" title="Mambo">Mambo</a>
-																				<div class="activity"><span class="fa fa-flash"></span> 6k</div>
-																				<div class="date-created"><span class="timeago"
-																				                                title="2021-10-02 21:51:38">21시간 전</span>
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-												<div class="article-middle-block clearfix">
-														<div class="list-tag clearfix" style="">
-																<a href="/articles/tips" class="list-group-item-text item-tag label label-info"><i
-																				class="fa fa-code"></i> Tips &amp; 강좌</a>
-
-
-																<a href="/articles/tagged/github"
-																   class="list-group-item-text item-tag label label-gray ">github</a>
-																<a href="/articles/tagged/password"
-																   class="list-group-item-text item-tag label label-gray ">password</a>
-																<a href="/articles/tagged/apikey"
-																   class="list-group-item-text item-tag label label-gray ">apikey</a>
-																<a href="/articles/tagged/remote"
-																   class="list-group-item-text item-tag label label-gray ">remote</a>
-														</div>
-														<h5>
-																<a href="/article/1063537">깃허브에 올라간 민감한 정보 대처법</a>
-														</h5>
-														<div class="list-group-item-author clearfix">
-
-
-																<div class="avatar clearfix avatar-x-small pull-right">
-																		<a href="/user/info/163" class="avatar-photo"><img
-																						src="//file.okky.kr/profile/2021/1621274110514.png"></a>
-																		<div class="avatar-info">
-																				<a class="nickname" href="/user/info/163" title="kenu">kenu</a>
-																				<div class="activity"><span class="fa fa-flash"></span> 56k</div>
-																				<div class="date-created"><span class="timeago"
-																				                                title="2021-10-01 20:41:03">2일 전</span>
-																				</div>
-																		</div>
-																</div>
-														</div>
-												</div>
+																<c:set var="i" value="${i+1}"/>
+														</c:if>
+												</c:forEach>
 										</div>
 								</div>
 						</div>
 
 						<!-- 우측 글 2 (칼럼) -->
 						<div class="main-block">
-								<h4 class="main-header"><i class="fa fa-quote-left"></i> 칼럼 <a href="/BoardContent.go"
-								                                                               class="main-more-btn pull-right"><i
+								<h4 class="main-header"><i class="fa fa-quote-left"></i> 칼럼 <a href="/BoardList.go"
+																																																																							class="main-more-btn pull-right"><i
 												class="fa fa-ellipsis-h"></i></a></h4>
 								<div class="panel panel-default">
 										<div class="panel-body">
 
 												<c:set var="i" value="1"/>
 												<c:forEach var="bl" items="${getBoardList}" begin="1" end="100" step="1"
-												           varStatus="status">
+																							varStatus="status">
 														<c:if test="${bl.bno eq 100}">
 																<c:if test="${i eq 1}">
 																		<h5><a href="/BoardContent.go?no=${bl.no}">${bl.title}</a></h5>
@@ -547,47 +517,25 @@
 								</div>
 						</div>
 
-						<!-- 우측 글 3 (학원/홍보) -->
 
-				</div>
-		</div>
-		<div class="right-banner-wrapper">
-
-
-				<!-- 우측광고 1 이동식-->
-				<div class="right-banner">
-						<%--			<a href="/banner/stats/405" target="n"><img src="//file.okky.kr/banner/1632646072967.png"--%>
-						<%--			                                            style="width:160px;"></a>--%>
-				</div>
-
-				<!-- 우측광고 2 이동식-->
-				<%--						<div class="google-ad">--%>
-				<%--							--%>
-				<%--						</div>--%>
-		</div>
-
-
-		<%--	</div>--%>
 
 
 		<script>
-        var contextPath = "";
-        var encodedURL = "%2F";
+      var contextPath = "";
+      var encodedURL = "%2F";
 		</script>
 
 		<script src="/assets/js/application.js" type="text/javascript"></script>
 		<%--	<script src="/assets/js/apps/search.js" type="text/javascript"></script>--%>
 		<%--	<script src="/assets/js/apps/notification.js" type="text/javascript"></script>--%>
 		<script>
-        $(function () {
-            $('.timeago').timeago();
-        });
-
-
+      $(function () {
+          $('.timeago').timeago();
+      });
 		</script>
 
 		<div id="userPrivacy" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-		     aria-hidden="true">
+							aria-hidden="true">
 				<div class="modal-dialog">
 						<div class="modal-content">
 						</div>
@@ -595,30 +543,13 @@
 		</div>
 
 		<div id="userAgreement" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-		     aria-hidden="true">
+							aria-hidden="true">
 				<div class="modal-dialog">
 						<div class="modal-content">
 						</div>
 				</div>
 		</div>
 
-
-		<%--	<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"--%>
-		<%--	     data-ad-status="unfilled">--%>
-		<%--		<ins id="aswift_1_expand" tabindex="0" title="Advertisement" aria-label="Advertisement"--%>
-		<%--		     style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;">--%>
-		<%--			<ins id="aswift_1_anchor"--%>
-		<%--			     style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block;">--%>
-		<%--				<iframe id="aswift_1" name="aswift_1"--%>
-		<%--				        style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;"--%>
-		<%--				        sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation"--%>
-		<%--				        frameborder="0"--%>
-		<%--				        src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-8103607814406874&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;lmt=1633249980&amp;plat=1%3A16777216%2C2%3A16777216%2C3%3A32%2C4%3A32%2C9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1048576%2C32%3A32&amp;format=0x0&amp;url=https%3A%2F%2Fokky.kr%2F&amp;ea=0&amp;flash=0&amp;pra=7&amp;wgl=1&amp;uach=WyJXaW5kb3dzIiwiMTAuMC4wIiwieDg2IiwiIiwiOTQuMC40NjA2LjYxIixbXSxudWxsLG51bGwsIjY0Il0.&amp;tt_state=W3siaXNzdWVyT3JpZ2luIjoiaHR0cHM6Ly9hdHRlc3RhdGlvbi5hbmRyb2lkLmNvbSIsInN0YXRlIjo3fV0.&amp;dt=1633249980356&amp;bpp=1&amp;bdt=787&amp;idt=53&amp;shv=r20210928&amp;mjsv=m202109270101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3D4278784cc95a1242-220cc21851ca00cf%3AT%3D1626325905%3ART%3D1626325905%3AS%3DALNI_MYt1Kn6iAUZgpu7SiLxBkWy36P81A&amp;prev_fmts=160x500&amp;nras=1&amp;correlator=4931479792519&amp;frm=20&amp;pv=1&amp;ga_vid=101483533.1626325906&amp;ga_sid=1633249980&amp;ga_hid=318252170&amp;ga_fc=0&amp;u_tz=540&amp;u_his=10&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_java=0&amp;u_nplug=5&amp;u_nmime=2&amp;adx=-12245933&amp;ady=-12245933&amp;biw=1054&amp;bih=782&amp;scr_x=0&amp;scr_y=0&amp;eid=31062937%2C21067496&amp;oid=2&amp;pvsid=1479478429246862&amp;pem=877&amp;eae=2&amp;fc=896&amp;brdim=311%2C92%2C311%2C92%2C1920%2C0%2C1087%2C919%2C1071%2C799&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=33792&amp;bc=31&amp;ifi=2&amp;uci=a!2&amp;fsb=1&amp;dtd=59"--%>
-		<%--				        marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no"--%>
-		<%--				        allowfullscreen="true" data-google-container-id="a!2" data-load-complete="true"></iframe>--%>
-		<%--			</ins>--%>
-		<%--		</ins>--%>
-		<%--	</ins>--%>
 		<iframe src="https://www.google.com/recaptcha/api2/aframe" width="0" height="0" style="display: none;"></iframe>
 
 
@@ -646,57 +577,62 @@
 </script>
 
 <script>
+    //time .0 묻어서 추가 구문
+    let setTime = String($('.timeago').attr('title')).replace(".0", "");
+    $('.timeago').attr('title', setTime);
 
-		let allData = "job_type=1&job_mid_cd=2&job_cd=&edu_lv=&loc_cd=";
+    let allData = "job_type=1&job_mid_cd=2&job_cd=&edu_lv=&loc_cd=";
 
-		$.ajax({
-    url: 'http://localhost:8090/jobData.do?',  //json데이터에 검색할 param담아서 요청
-    type: 'get',
-    dataType: 'json',
-    // data: "job_mid_cd="+job_mid_cd + '&job_cd='+job_cd + "&edu_lv="+edu_lv + "&loc_cd="+loc_cd ,
-    data: allData,
-    success: function (data) {
-        $.each(data, function (index, obj) {
-            for (let i = 0; i < 6; i++) {
-                let url = String(data.jobs.job[i]["url"]);
-                let title = String(data.jobs.job[i].position["title"]);
-		            let detailname = String(data.jobs.job[i].company["detail"].name);
-		            let href = String(data.jobs.job[i].company["detail"].href);
-                let deadline = new Date((data.jobs.job[i]['expiration-timestamp']) * 1000)
-                deadline = deadline.toLocaleDateString();
+    $.ajax({
+        url: 'http://localhost:8090/jobData.do?',  //json데이터에 검색할 param담아서 요청
+        type: 'get',
+        dataType: 'json',
+        data: allData,
+        success: function (data) {
+            $.each(data, function (index, obj) {
+                for (let i = 0; i < 6; i++) {
+                    let url = String(data.jobs.job[i]["url"]); //공고 url
+                    let title = String(data.jobs.job[i].position["title"]);
+                    let href = String(data.jobs.job[i].company["detail"].href);
+                    let deadline = new Date((data.jobs.job[i]['expiration-timestamp']) * 1000)
+                    deadline = deadline.toLocaleDateString();
 
-                let jobArticle = `
+                    let jobArticle = `
 										<li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
 												<div class="list-title-wrapper">
 														<h5 class="list-group-item-heading">
-																<a href="`+ url +`">`+ title +`</a>
+																<a href="` + url + `">` + title + `</a>
 																<div class="list-group-item-author pull-right clearfix">
-
-
 																		<div class="avatar clearfix avatar-x-small ">
-																				<a href="`+ href +`" class="avatar-photo"></a>
 																				<div class="avatar-info">
-<!--																						<a class="nickname" href="`+ href +`" title="`+ detailname +`">`+ detailname +`</a>-->
-																						<div class="activity"><span class="fa fa-flash"></span></div>
+																						<div class="activity"></div>
 																						<div class="date-created"><span class="timeago"
-																						                                title="`+ deadline +`">마감  `+ deadline +`</span>
+																						                                title="` + deadline + `">마감  ` + deadline + `</span>
 																						</div>
 																				</div>
 																		</div>
 																</div>
 														</h5>
 												</div>
-										</li>
-										`
-		            $('.col-sm-6.main-block-right .list-group').append(jobArticle);
-            }
-        });
-    }
-});
+										</li>`
+                    $('.col-sm-6.main-block-right .list-group').append(jobArticle);
+                }
+            });
+        }
+    });
 
+    //board 카테고리에 따라 매핑 href 변하게
+    let columnData = $('div[data-group-value="100"]').data('value');
+    let qnaData = $('div[data-group-value="200"]').data('value');
+    let studyData = $('div[data-group-value="300"]').data('value');
+
+    $('div[data-group-value="100"]').children().children().attr('href', 'StudyDetail.so?no=' + studyData);
+    $('div[data-group-value="200"]').children().children().attr('href', 'QnAContent.qo?no=' + studyData);
+    $('div[data-group-value="300"]').children().children().attr('href', 'BoardContent.go?no=' + studyData);
 
 </script>
 
+<!-- 주소, 맵 관련 -->
 <script>
 
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -717,7 +653,7 @@
     if (navigator.geolocation) {
 
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
 
             var lat = position.coords.latitude, // 위도
                 lon = position.coords.longitude; // 경도
@@ -757,7 +693,8 @@
             geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
         }
 
-// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수
+								//본문 안의 주소 데이터와 매핑하여 일치하는 요소의 값을 변경함
         function displayCenterInfo(result, status) {
             if (status === kakao.maps.services.Status.OK) {
                 var infoDiv = document.getElementById('centerAddr');
@@ -769,12 +706,64 @@
                         break;
                     }
                 }
-            }
-        }
+                let check = 0;
+                let sido = $('#centerAddr').html();
+                let splitsido = sido.split(' ');  //splitsido[0] 서울특별시 splitsido[1] 관악구
 
+
+                for (let i = 0; i < $('.panel-body .article-middle-block').length; i++) {
+                    if (check < 4) {
+                        //console.log($('#' + i + '_sido2 ').html()); //2번째 구 이름 정상출력 . 문) 전체< 잡아야함
+
+                        if (splitsido[1] == $('#' + i + '_sido2 ').html()) { //구 동일할 경우  ck += 1
+                            $('#' + i + '_sido2 ').parent().parent().attr('style', 'display:block');
+                            // splitsido[0] == $('#' + i + '_sido1 ').html()
+
+                            check += 1;
+                            console.log(" if check= " + check);
+
+                        } // 2번 진행됨. 아직 3이 아니니까 두번째 반복문 실행
+                    }
+                };
+
+
+                for (let j = 0; j < $('.panel-body .article-middle-block').length; j++) {
+                    if (check < 4) {
+                        if (splitsido[0] == $('#' + j + '_sido1 ').html() &&
+                            splitsido[1] == '전체') { //시 동일할 경우 ck += 1
+                            $('#' + j + '_sido1').parent().parent().attr('style', 'display:block');
+
+                            check += 1;
+                            console.log("else if check= " + check);
+                            if (check == 3) {
+                                break;
+                            }
+                        }
+                    }
+                };
+
+                for (let j = 0; j < $('.panel-body .article-middle-block').length; j++) {
+                    if (check < 4) {
+                        if (splitsido[0] == $('#' + j + '_sido1 ').html() &&
+                            splitsido[1] != $('#' + j + '_sido2 ').html()) { //시 동일할 경우 ck += 1
+                            $('#' + j + '_sido1').parent().parent().attr('style', 'display:block');
+
+                            check += 1;
+                            console.log("else if check= " + check);
+                            if (check == 3) {
+                                break;
+                            }
+                        }
+                    }
+
+                };;
+            };;
+
+        }
     }
 
-
 </script>
+
+
 
 </html>
