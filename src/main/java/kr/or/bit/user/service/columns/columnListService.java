@@ -4,12 +4,11 @@ import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.ColumnDao;
 import kr.or.bit.user.dto.Board;
-import kr.or.bit.utils.QnAPager;
+import kr.or.bit.utils.ColumnPager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-//import kr.or.bit.user.utils.ThePager;
 
 public class columnListService implements Action {
 
@@ -18,10 +17,10 @@ public class columnListService implements Action {
 
         ActionForward forward = null;
         try {
-            ColumnDao qnADao = new ColumnDao();
+            ColumnDao columnDao = new ColumnDao();
 
             // 게시물 총 건수
-            int totalboardcount = qnADao.totalBoardCount();
+            int totalboardcount =  columnDao.totalBoardCount();
             System.out.println("totalboardcount = " + totalboardcount);
             // 상세보기 >> 다시 LIST 넘어올때 >> 현재 페이지 설정
             String ps = request.getParameter("ps"); // pagesize
@@ -50,10 +49,10 @@ public class columnListService implements Action {
 
             // 102건 : pagesize=5 >> pagecount=21페이지
             // 전체 목록 가져오기
-            List<Board> collist = qnADao.colList(cpage, pagesize);
+            List<Board> collist =  columnDao.colList(cpage, pagesize);
             System.out.println("list.size() = " + collist.size());
             int pagersize=3; //[1][2][3]
-            QnAPager pager = new QnAPager(totalboardcount,cpage,pagesize,pagersize,"BoardList.go");
+            ColumnPager pager = new ColumnPager(totalboardcount,cpage,pagesize,pagersize,"BoardList.go");
 
             request.setAttribute("pagesize", pagesize);
             request.setAttribute("cpage", cpage);
