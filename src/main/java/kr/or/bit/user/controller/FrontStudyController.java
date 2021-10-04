@@ -6,8 +6,9 @@ import kr.or.bit.user.dao.StudyDao;
 import kr.or.bit.user.dto.Comments;
 import kr.or.bit.user.dto.Study_Board;
 import kr.or.bit.user.service.study.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -134,6 +135,7 @@ public class FrontStudyController extends HttpServlet{
                 jsonObj.put("rno", commentlist.get(i).getRno());
                 jsonObj.put("id", commentlist.get(i).getId());
                 jsonObj.put("rcont", commentlist.get(i).getRcont());
+                jsonObj.put("photo",commentlist.get(i).getPhoto());
                 jsonObj.put("rdate", time);
                 jsonArr.add(jsonObj);
 

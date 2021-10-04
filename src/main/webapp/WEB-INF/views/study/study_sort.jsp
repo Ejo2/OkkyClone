@@ -61,7 +61,7 @@
             <div class="list-summary-wrapper clearfix">
                 <div class="list-group-item-summary clearfix">
                     <ul>
-                        <li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i>0</li>
+                        <!--<li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i>0</li>-->
                         <li class="item-icon-disabled">
                             <i class="item-icon fa fa-thumbs-up"></i>${board.good}
                         </li>
@@ -71,8 +71,16 @@
             </div>
             <div class="list-group-item-author clearfix">
                 <div class="avatar clearfix avatar-list ">
-                    <a href="/user/info/102530" class='avatar-photo'><img
-                            src="//www.gravatar.com/avatar/9675fbddc407a1515b0b688801acf1cd?d=identicon&s=30"/></a>
+
+
+                    <c:forEach var="userlist" items="${userlist}">
+
+                        <c:if test="${userlist.id eq board.id}">
+                            <a href="/user/info/102530" class='avatar-photo'><img
+                                    src="upload/${userlist.photo}"/></a>
+                        </c:if>
+
+                    </c:forEach>
                     <div class="avatar-info">
                         <a class="nickname" href="/user/info/102530" title="dev_ape_2">${board.id}</a>
                         <div class="date-created"><span class="timeago"

@@ -51,8 +51,16 @@
                 <div class="panel-heading clearfix">
                     <c:set var="sb" value="${requestScope.sb}"></c:set>
                     <div class="avatar clearfix avatar-medium pull-left">
-                        <a href="/user/info/127868" class='avatar-photo'><img
-                                src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40"/></a>
+                        <a href="#" class='avatar-photo'>
+
+                            <c:forEach var="userlist" items="${userlist}">
+
+                                <c:if test="${userlist.id eq sb.id}">
+                                <img src="upload/${userlist.photo}"/></a>
+                                </c:if>
+
+                            </c:forEach>
+
                         <div class="avatar-info">
                             <a class="nickname" href="/user/info/127868" title=${sb.id}>${sb.id}</a>
                             <div class="date-created"><span class="timeago"
@@ -230,8 +238,24 @@
                                 <div style="margin-left: 5px;">
 
                                     <div class="avatar clearfix avatar-medium ">
-                                        <a href="/user/info/127868" class='avatar-photo'><img
-                                                src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40"/></a>
+
+                                        <c:choose>
+                                            <c:when test="${sessionScope.id!=null}">
+                                                <a href="/user/info/127868" class='avatar-photo'><img
+                                                        src="upload/${sessionScope.photo}"/></a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="/user/info/127868" class='avatar-photo'><img
+                                                        src="upload/bros_blank.jpg"/></a>
+                                            </c:otherwise>
+                                        </c:choose>
+
+
+
+
+
+
+
                                         <div class="avatar-info">
                                             <c:choose>
                                                 <c:when test="${sessionScope.id!=null}">
@@ -403,7 +427,7 @@
                             '<li class="list-group-item note-item clearfix" id="note-2448736">' +
                             '<div class="content-body panel-body pull-left">' +
                             '<div class="avatar clearfix avatar-medium ">' +
-                            '<a href="/user/info/122431" class="avatar-photo"><img src="https://phinf.pstatic.net/contact/20191027_276/1572171959967Pzk1W_JPEG/ccc.jpg"/></a>' +
+                            '<a href="/user/info/122431" class="avatar-photo"><img src="upload/'+obj.photo+'"/></a>' +
                             '<div class="avatar-info">' +
                             '<input type="hidden" id="replyRno" name="game_token" value="'+obj.rno+'">'+
                             '<a class="nickname" href="/user/info/122431">' + obj.id + '</a>' +

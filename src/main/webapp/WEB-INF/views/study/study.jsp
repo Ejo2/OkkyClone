@@ -61,7 +61,11 @@
             <div class="list-summary-wrapper clearfix">
                 <div class="list-group-item-summary clearfix">
                     <ul>
-                        <li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i>0</li>
+                        <!--문제생기면 여기다 붙여넣으세요-->
+
+                        <!--<li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i>0</li>-->
+
+                        <!--문제생기면 여기다 붙여넣으세요-->
                         <li class="item-icon-disabled">
                             <i class="item-icon fa fa-thumbs-up"></i>${board.good}
                         </li>
@@ -71,8 +75,20 @@
             </div>
             <div class="list-group-item-author clearfix">
                 <div class="avatar clearfix avatar-list ">
-                    <a href="/user/info/102530" class='avatar-photo'><img
-                            src="//www.gravatar.com/avatar/9675fbddc407a1515b0b688801acf1cd?d=identicon&s=30"/></a>
+                    <!--문제생기면 여기에다가 붙여넣으세요-->
+
+                    <c:forEach var="userlist" items="${userlist}">
+
+                        <c:if test="${userlist.id eq board.id}">
+                            <a href="/user/info/102530" class='avatar-photo'><img
+                                    src="upload/${userlist.photo}"/></a>
+                        </c:if>
+
+                    </c:forEach>
+
+
+
+                    <!--문제생기면 여기에다가 붙여넣으세요-->
                     <div class="avatar-info">
                         <a class="nickname" href="/user/info/102530" title="dev_ape_2">${board.id}</a>
                         <div class="date-created"><span class="timeago"
@@ -206,8 +222,6 @@
 
     function sortSubmit(){
         let searchword =  $("#search-field").val();
-        alert(searchword);
-        alert("StudyPagingWithSearch.so?search="+searchword);
         location.href = "StudyPagingWithSearch.so?page=1&search="+searchword;
 
     }
