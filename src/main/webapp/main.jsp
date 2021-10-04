@@ -349,7 +349,12 @@
 
 						<!-- QNA -->
 						<div class="main-block">
-								<h4 class="main-header"><i class="fa fa-database"></i> Q&amp;A </h4>
+								<h4 class="main-header"><i class="fa fa-database"></i> Q&amp;A
+										<a href="/QnAList.qo"
+													class="main-more-btn pull-right"><i
+														class="fa fa-ellipsis-h"></i></a>
+								</h4>
+
 								<div class="panel panel-default">
 										<ul class="list-group">
 												<c:set var="i" value="0"/>
@@ -441,7 +446,7 @@
 
 						<!-- 우측 글 1 (Tech) -->
 						<div class="main-block">
-								<h4 class="main-header"><i class="fa fa-comment"></i> 인근 스터디 추천 <a href="/StudyDetail.so"
+								<h4 class="main-header"><i class="fa fa-comment"></i> 접속위치기반 스터디추천<a href="/StudyDetail.so"
 																																																																											class="main-more-btn pull-right"><i
 												class="fa fa-ellipsis-h"></i></a></h4>
 								<div class="panel panel-default">
