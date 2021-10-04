@@ -4,8 +4,8 @@ import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.ColumnDao;
 import kr.or.bit.user.dto.Comments;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;

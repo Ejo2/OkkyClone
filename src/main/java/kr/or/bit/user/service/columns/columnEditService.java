@@ -17,9 +17,9 @@ public class columnEditService implements Action {
         System.out.println("수정게시판 번호=" + no);
         String msg="";
         String url="";
-
-        ColumnDao columnDao;
-
+    
+        ColumnDao columnDao = null;
+        System.out.println("columnEditService 의 트라이전");
         ActionForward forward = null;
         try {
             if(no == null || no.trim().equals("")){
@@ -27,8 +27,10 @@ public class columnEditService implements Action {
                 return null;
             }
             columnDao = new ColumnDao();
+            System.out.println("columnEditService 의 트라이전");
 
             Board board = columnDao.columnEditContent(no);
+            System.out.println("Board 출력 !!!!!!!!!!!!!!"+board);
 
             if(board == null){
                 msg ="데이터 오류";
@@ -44,6 +46,7 @@ public class columnEditService implements Action {
             }else {
                 request.setAttribute("no", no);
                 request.setAttribute("board", board);
+                System.out.println("setAttribute(\"board\", board) 출력 !!!!!!!!!!!!!!");
 
                 forward = new ActionForward();
                 forward.setRedirect(false);
