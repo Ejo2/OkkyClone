@@ -235,7 +235,7 @@
 				<%-- 카테고리 --%>
 				<ul class="nav nav-sidebar nav-main">
 
-						<li><a href="QnAContent.qo" class="link"><i class="nav-icon fa fa-database"></i> <span
+						<li><a href="QnAList.qo" class="link"><i class="nav-icon fa fa-database"></i> <span
 										class="nav-sidebar-label nav-sidebar-category-label">Q&amp;A</span></a></li>
 <%--						<li><a href="#" class="link"><i class="nav-icon fa fa-code"></i> <span--%>
 <%--										class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>--%>
