@@ -27,13 +27,13 @@ public class myContentService implements Action{
         String url = "";
     
         if (bno == 100){ //100번 칼럼
-            url = "BoardContent.go?no"+no;
+            url = "/BoardContent.go?no"+no;
             
         }else if (bno == 200){ //200번 큐앤
-            url = "QnAContent.qo?no="+no;
+            url = "/QnAContent.qo?no="+no;
     
         }else if (bno == 300){ //300번 스터디
-            url = "StudyDetail.so?no="+no;
+            url = "/StudyDetail.so?no="+no;
     
         }else if (bno == 400){ //400번 구인
             url = "";

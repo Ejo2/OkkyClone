@@ -85,7 +85,7 @@
 					<a href="memberDetailGo.do" class="avatar-photo"><img
 							src=upload/${sessionScope.photo}"></a>
 					<div class="avatar-info">
-						<a class="nickname" href="memberDetailGo.do" title="신지혜20">신지혜20</a>
+						<a class="nickname" href="memberDetailGo.do" title="${sessionScope.nickname}>${sessionScope.nickname}</a>
 							<%--                              <a class="nickname" href="memberDetailGo.do" title="${sessionScope.nickname}">${sessionScope.nickname}</a>--%>
 						<div class="activity block"><span class="fa fa-flash"></span> 0</div>
 					</div>
