@@ -68,7 +68,7 @@ public class ColumnDao{
             String sql = "SELECT * " +
                     "FROM " +
                     " (SELECT ROWNUM rn,NO, bno, id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
-                    " FROM ( SELECT NO, bno, m.id AS id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b INNER JOIN member m ON b.id=m.id WHERE removedok !=1 ORDER BY NO DESC ) "
+                    " FROM ( SELECT NO, bno, m.id AS id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b INNER JOIN member m ON b.id=m.id WHERE removedok !=1 and bno=100 ORDER BY NO DESC ) "
                     + " WHERE rownum <= ?) " +
                     "WHERE rn >= ?";
             pstmt = conn.prepareStatement(sql);
