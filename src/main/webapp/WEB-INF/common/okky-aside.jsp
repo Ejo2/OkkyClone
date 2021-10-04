@@ -46,7 +46,7 @@
                                     <a href="loginGo.do" class="link"><i class="fa fa-sign-in"></i>
                                           <span class="nav-sidebar-label">로그인</span></a></li>
                               <li id="join" data-toggle="tooltip" data-container="body" title="회원가입">
-                                    <a href="joinGo.do" class="link"><i class="fa fa-user"></i>
+                                    <a href="joinGo.do" class="link" style="background-color: #0059AB; color: white;border-left: none"><i class="fa fa-user"></i>
                                           <span class="nav-sidebar-label">회원가입</span></a></li>
                         </ul>
                   </div>
@@ -236,6 +236,7 @@
                     
                }
                if (getAr6 != -1) {
+                    
                     $('#sub-title').html("메인화면");
                     $('#sub-sub-title').html("")
      
