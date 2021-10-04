@@ -3,10 +3,13 @@ package kr.or.bit.user.service.study;
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.StudyDao;
+import kr.or.bit.user.dao.userDao;
 import kr.or.bit.user.dto.Study_Board;
+import kr.or.bit.user.dto.userDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 public class StudyDetailService implements Action {
     @Override
@@ -21,6 +24,12 @@ public class StudyDetailService implements Action {
             String cateName = dao.getCategorynameByNum(no);
 
             int replyCount = dao.countReplyByNo(no);//특정게시글에 달린 댓글 수 세기
+
+            ArrayList<userDto> userlist = new ArrayList<userDto>();
+            userDao ud = new userDao();
+            userlist = ud.selectAllUserDto();
+            request.setAttribute("userlist",userlist);//user아이디와 글쓴이 매핑-> 사진 찾아오려고
+
 
             request.setAttribute("sb", sb); //board 데이터
             request.setAttribute("cateName", cateName); //카테고리 이름

@@ -45,15 +45,12 @@
             <form id="category-filter-form" name="category-filter-form" method="get" action="${pageContext.request.contextPath}/QnAList.qo">
                 <div class="category-filter-wrapper">
                     <div class="job-filter-container">
-
+                        <ul class="list-sort pull-left">
+                            <li><a href="#" data-sort="id" data-order="desc" class="category-sort-link active">전체글</a></li>
+                        </ul>
                         <div class="job-filter-search">
                             <div class="input-group input-group-sm">
-                                <input type="search" name="query" id="search-field" class="form-control"
-                                       placeholder="검색어" value=""/>
-                                <span class="input-group-btn">
-						            <button class="btn btn-default" id="search-btn"><i
-                                            class="fa fa-search"></i></button>
-					                </span>
+
                             </div>
                         </div>
                     </div>
@@ -74,7 +71,7 @@
                     <div class="list-title-wrapper clearfix">
                         <div class="list-tag clearfix">
                             <span class="list-group-item-text article-id">${qnalist.no}</span>
-                            <a href="/articles/gathering" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> QnA</a>
+
                         </div>
                         <h5 class="list-group-item-heading list-group-item-evaluate">
                             <a href="${pageContext.request.contextPath}/QnAContent.qo?no=${qnalist.no}">
@@ -85,10 +82,7 @@
                     <div class="list-summary-wrapper clearfix">
                         <div class="list-group-item-summary clearfix">
                             <ul>
-                               <%-- <c:forEach var="totalReplyCount" items="${totalReplyCount}">--%>
-                                <li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i>0</li> <%--댓글수--%>
-                                  <%--  </c:forEach>--%>
-                                    <li class="item-icon-disabled">
+
                                     <i class="item-icon fa fa-thumbs-up"></i>${qnalist.good}</li>
                                 <li class=""><i class="item-icon fa fa-eye"></i>${qnalist.hit}</li>
                             </ul>
