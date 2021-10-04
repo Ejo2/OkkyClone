@@ -56,7 +56,7 @@
                   <ul class="list-group" id="list-group">
                         
                         <c:forEach var="board" items="${writeBoardList}">
-                              <li class="list-group-item list-group-item-small list-group-has-note clearfix">
+                              <li class="list-group-item list-group-item-small list-group-has-note clearfix center-block" >
                                     <div class="list-icon-wrapper pull-left">
                                           
                                           <i class="fa fa-angle-up fa-lg"></i>
