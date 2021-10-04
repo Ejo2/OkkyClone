@@ -72,7 +72,7 @@
                                              칼럼
                                        </c:when>
                                        <c:when test="${board.bno==200}">
-                                             큐앤
+                                             QnA
                                        </c:when>
                                        <c:when test="${board.bno==300}">
                                              스터디

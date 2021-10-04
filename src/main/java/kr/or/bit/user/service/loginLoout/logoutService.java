@@ -19,7 +19,7 @@ public class logoutService implements Action{
         ActionForward forward = new ActionForward();
     
         forward.setRedirect(false);
-        forward.setPath("/main.jsp");
+        forward.setPath("/main.do");
         return forward;
     }
     
