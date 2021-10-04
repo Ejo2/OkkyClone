@@ -65,6 +65,10 @@ public class FrontStudyController extends HttpServlet{
             action = new StudyPagingService();
             forward = action.execute(request, response);
             
+        }else if(url_Command.equals("/StudyPagingWithSearch.so")) {//스터디 게시판 리스트 with 페이징&검색
+            action = new StudyPagingWithSearchService();
+            forward = action.execute(request, response); 
+            
         }else if(url_Command.equals("/StudyDetail.so")) {//스터디 디테일뷰
             action = new StudyDetailService();
             forward = action.execute(request, response);
