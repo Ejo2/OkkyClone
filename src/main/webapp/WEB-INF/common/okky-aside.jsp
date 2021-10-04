@@ -19,7 +19,7 @@
       <!--1: 오키로고-->
       <h1>
             <div class="logo">
-                  <a href="/main.jsp"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
+                  <a href="/main.do"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
             </div>
       </h1>
       
@@ -55,9 +55,9 @@
             <c:if test="${not empty sessionScope.id}">
                   <div class="avatar clearfix avatar-medium ">
                         <a href="memberDetailGo.do" class='avatar-photo'>
-<%--   20211003 지혜 : 404 오류 임시   주석        --%>
-<%--                <img--%>
-<%--                                src="upload/${sessionScope.photo}"/></a>--%>
+
+                <img
+                                src="upload/${sessionScope.photo}"/></a>
                   </div>
                   <ul class="list-unstyled">
                         <li>
@@ -153,7 +153,7 @@
       <div class="special-nav">
       </div>
 </div>
-<!--<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script>
      $.noConflict();
      jQuery(document).ready(function() {

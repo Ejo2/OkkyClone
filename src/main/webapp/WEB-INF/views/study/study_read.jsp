@@ -309,7 +309,7 @@
             no: no
         }
         $.ajax({
-            url: "/StudyGood.so", //"StudyGood.so?type=up&no=${sb.no}"
+            url: "/StudyGood.so",
             type: "POST",
             dataType: "text",//수신타입
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -384,7 +384,7 @@
                             '</div>' +
                             '</div>' +
                             '<fieldset class="form">' +
-                            '<article id="note-text-2448736" class="list-group-item-text note-text">' +
+                            '<article id="note'+obj.rno+'" class="list-group-item-text note-text">' +
                             '<p>' + obj.rcont + '</p>' +
                             '</article>' +
                             '</fieldset>' +
@@ -397,7 +397,7 @@
                             '<div class="dropdown">' + //여기도 같은 문제
                             '<a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left"title="게시물 설정"></i></a>' +
                             '<ul class="dropdown-menu" role="menu">' +
-                            '<li><a href="javascript:replyUpdate(' + obj.rno + ')" id="note-text-2448736"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>' +
+                            '<li><a href="javascript:replyUpdate(' + obj.rno +',`'+obj.rcont+ '`)" id="update'+obj.rno+'"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>' +
                             '<li><a href="javascript:replyDelete('+  obj.rno + ')" id="reply-delete-btn"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>' +
                             '</ul>' +
                             '</div>' +
@@ -436,14 +436,41 @@
         });
     }
 
-    function replyUpdate(rno) {
-        $('#note-text-2448736').empty();
-        $('#note-text-2448736').append(
-            '<textarea name="repltextUpdate" class="form-control" id="reply-content"></textarea>'+
-            '<input type="button" value="수정하기" Style="margin-top: 5px;" onclick="alert('+rno+')">'
+    function replyUpdate(rno,rcont) {
+        //console.log(rno +"/"+ rcont); 잘 나온다!
+        let idsource = "#" + "update"+rno;
+        let idsource2 = "#" + "note"+rno;
+        //console.log(idsource);
+        //console.log(idsource2);
+        //console.log($(idsource2).val());
+        $(idsource).empty();
+        $(idsource2).append(
+            '<textarea name="repltextUpdate" class="form-control" id="updateRcont'+rno+'"></textarea>'+
+            '<input type="button" value="수정하기" Style="margin-top: 5px;" onclick="updateProcess('+rno+')">'
         );
-
     }
+
+    function updateProcess(rno) {
+        let temp = "#" + "updateRcont"+rno;
+        let jsonData = {
+            rno: rno,
+            rcont: $(temp).val()
+        }
+        $.ajax({
+            url: "/StudyReplyUpdate.so",
+            type: 'POST',
+            data: jsonData,
+            success: function (data) {
+                alert("댓글이 수정되었습니다");
+                replyList();
+            },
+            error: function () {
+                alert('댓글 등록 실패');
+            }
+        });
+
+    };
+
 
 </script>
 
@@ -458,12 +485,12 @@
 <script src="/assets/js/apps/article.js" type="text/javascript"></script>
 <script>
     (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=1539685662974940&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
 

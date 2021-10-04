@@ -22,10 +22,17 @@ public class columnEditOkService implements Action {
         String id = (String) session.getAttribute("id");
         String nickname = (String) session.getAttribute("nickname");
         
-        String title = request.getParameter("text");
-        String cont = request.getParameter("cont");
+        String title = request.getParameter("title");
+        String cont = request.getParameter("text");
+        
+        System.out.println("cont + " + cont);
+        System.out.println("id + " + id);
+        System.out.println("title + " + title);
+        System.out.println("cont + " + cont);
+        System.out.println("cont + " + cont);
     
         userDto user = new userDto();
+        
         user.setNickname(nickname);
         user.setId(id);
         
@@ -51,7 +58,7 @@ public class columnEditOkService implements Action {
                 msg = "글번호 입력 오류";
                 url = "BoardList.go";
             }else{
-                int result = ColumnDao.columnEdit(board,user);
+                int result = ColumnDao.columnEdit(board);
                 
                 if (result > 0){
                     msg = "edit success";
