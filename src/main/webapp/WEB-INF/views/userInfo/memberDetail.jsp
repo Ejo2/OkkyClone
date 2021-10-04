@@ -2,10 +2,10 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
-
 <jsp:include page="/WEB-INF/common/okky-aside.jsp"/>
+<html>
+
 <body>
 <div class="main">
       <!----------------------------------------------------------------------------------------------->
@@ -49,8 +49,7 @@
                   <ul class="nav">
                         <li class="active"><a href="memberDetailGo.do">게시물
                               <span class="badge">${totalBoardCount}</span></a></li>
-                        <li class=""><a id="bb" href="scrapListGo.do">스크랩
-                              <span class="badge">${userScrapList.size()}</span></a></li>
+                        
                   </ul>
             </div>
             <div class="col-sm-10 main-block-left pull-left">
@@ -72,7 +71,7 @@
                           
                           
                           </span>
-                                                <span class="timeago" title="2021-09-26T15:36:30">${board.writeDate}</span>
+                                                <span class="timeago" title="2021-09-26T15:36:30">${board.writedate}</span>
                                           </div>
                                           <h5 class="list-group-item-heading">
                                                 <a href="myContentGo.do?bno=${board.bno}&no=${board.no}">${board.title}</a>
@@ -114,7 +113,6 @@
      var encodedURL = "%2Farticles%2Fquestions";
 </script>
 
-<script src="assets/js/search.js" type="text/javascript"></script>
 
 <script>
      $(function() {

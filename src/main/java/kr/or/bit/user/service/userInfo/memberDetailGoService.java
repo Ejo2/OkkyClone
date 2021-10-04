@@ -3,6 +3,7 @@ package kr.or.bit.user.service.userInfo;
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.userDao;
+import kr.or.bit.user.dto.Board;
 import kr.or.bit.user.dto.boardDto;
 import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.QnAPager;
@@ -23,7 +24,7 @@ public class memberDetailGoService implements Action{
         
         HttpSession session = request.getSession();
         
-        
+    
         try{
             if (session.getAttribute("id") == null){
                 
@@ -33,8 +34,10 @@ public class memberDetailGoService implements Action{
                 
                 userDao dao = new userDao();
                 String ps = request.getParameter("ps");//pageSize
+    
                 String cp = request.getParameter("cp"); //currentPage
-                
+                System.out.println("ps"+ps);
+                System.out.println("cp"+cp);
                 
                 //ps,  cp 값이 없는 경우 _기본값_설정
                 if (ps == null || ps.equals("")){
@@ -47,13 +50,17 @@ public class memberDetailGoService implements Action{
                 }
                 int pagesize = Integer.parseInt(ps);
                 int cpage = Integer.parseInt(cp);
+                System.out.println(pagesize+"pagesize");
+                System.out.println(cpage+"cpage");
+                
                 int pagecount = 0;
                 
                 //작성자가 작성한 게시글 리스트
-                List<boardDto> writeBoardList = dao.getUserDetailBoardList(session.getAttribute("id"), cpage, pagesize);
+                List<Board> writeBoardList = dao.getUserDetailBoardList(session.getAttribute("id"), cpage, pagesize);
+                System.out.println("writeBoadList");
                 List<boardDto> totalBoardList = dao.getTotalBoardList(session.getAttribute("id"));
                 System.out.println("writeBoardList : " +writeBoardList);
-                System.out.println("totalBoardList : "+totalBoardList);
+//                System.out.println("totalBoardList : "+totalBoardList);
 
                 //작성자의 회원정보 관련 리스트
                 userDto userInfo = dao.getUserInfoList(session.getAttribute("id"));
