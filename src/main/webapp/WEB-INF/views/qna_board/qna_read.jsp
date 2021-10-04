@@ -116,8 +116,7 @@
                     <div id="content-body" class="panel-body content-body pull-left">
                         <div class="content-tags">
                             <span class="list-group-item-text article-id no">${no}</span>
-                            <a href="/articles/tech-qna" class="list-group-item-text item-tag label label-info">
-                                <i class="fa fa-database"></i>Q&A</a>
+
                         </div>
                         <h2 class="panel-title">
                             ${board.title}
@@ -149,10 +148,7 @@
                             </div>
                         </div>
                         <div class="content-function-group article-scrap-wrapper">
-                            <a href="javascript://" id="article-scrap-btn" data-type="scrap">
-                                <i class="fa fa-bookmark" data-toggle="tooltip" data-placement="left" title="스크랩"></i>
-                            </a>
-                            <div id="article-scrap-count" class="content-count">0</div>
+
                         </div>
                     </div>
                     <div class="content-function-cog share-btn-wrapper">
@@ -241,7 +237,7 @@
                                     <div class="content-function-group">
 
                                         <div class="note-evaluate-wrapper">
-                                            <a href="javascript://" class="note-vote-btn" role="button" data-type="assent"
+                                           <%-- <a href="javascript://" class="note-vote-btn" role="button" data-type="assent"
                                                data-eval="true" data-id="2524880">
                                                 <i id="note-evaluate-assent-2524880"
                                                    class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left"
@@ -256,7 +252,7 @@
                                                    class="fa fa-angle-down note-evaluate-dissent-dissent"
                                                    data-placement="left" data-toggle="tooltip" title=""
                                                    data-original-title="반대"></i>
-                                            </a>
+                                            </a>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -318,6 +314,7 @@
                             <div class="content-function-cog note-submit-buttons clearfix">
                                 <c:choose>
                                     <c:when test="${sessionScope.id !=null}">
+                                        <input id="note-create-cancel-btn" class="btn btn-default btn-wide" type="reset"  value="취소" style="margin-bottom: 5px" />
                                         <input  name="create" id="btn-create-btn" class="btn btn-success btn-wide reply_create" style="width:70%;"
                                                value="등록" onclick="insertReply();">
                                     </c:when>
@@ -358,10 +355,7 @@
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- okjspad_160x500 -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:160px;height:500px"
-             data-ad-client="ca-pub-8103607814406874"
-             data-ad-slot="6573675943"></ins>
+
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
@@ -509,13 +503,13 @@
                     html += '<div class="content-function pull-right text-center">';
                     html += '<div class="content-function-group">';
                     html += '<div class="note-evaluate-wrapper">';
-                    html += '<a href="javascript://" class="note-vote-btn" role="button" data-type="assent" data-eval="true" data-id="2524880">';
+                   /* html += '<a href="javascript://" class="note-vote-btn" role="button" data-type="assent" data-eval="true" data-id="2524880">';
                     html += '<i id="note-evaluate-assent-2524880" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="" data-original-title="추천"></i> ';
                     html += '</a>';
                     html += '<div id="content-vote-count-2524880" class="content-eval-count">0</div>';
                     html += '<a href="javascript://" class="note-vote-btn" role="button" data-type="dissent" data-eval="true" data-id="2524880">';
                     html += '<i id="note-evaluate-dissent-2524880" class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left" data-toggle="tooltip" title="" data-original-title="반대"></i>';
-                    html += '</a>';
+                    html += '</a>';*/
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
