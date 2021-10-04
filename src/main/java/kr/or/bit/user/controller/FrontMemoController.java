@@ -2,6 +2,7 @@ package kr.or.bit.user.controller;
 
 import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
+import kr.or.bit.user.service.idCheckService;
 import kr.or.bit.user.service.job.jobDataService;
 import kr.or.bit.user.service.job.jobService;
 import kr.or.bit.user.service.join.JoinGoService;
@@ -120,6 +121,9 @@ public class FrontMemoController extends HttpServlet{
             System.out.println("main.do");
         }else if(url_Command.equals("/myContentGo.do")){
             action = new myContentService();
+            forward = action.execute(request, response);
+        }else if (url_Command.equals("/idCheck.do")){
+            action = new idCheckService();
             forward = action.execute(request, response);
         }
         
