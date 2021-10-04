@@ -18,8 +18,8 @@ public class QnAContentService implements Action {
         ActionForward forward = null;
 
         String no = request.getParameter("no");
-        String cpage = request.getParameter("cp"); // current page
-        String pagesize = request.getParameter("ps"); // pagesize
+//        String cpage = request.getParameter("cp"); // current page
+//        String pagesize = request.getParameter("ps"); // pagesize
 
         System.out.println("글번호" + no);
 
@@ -42,14 +42,14 @@ public class QnAContentService implements Action {
             }
             no = no.trim();
 
-            if (cpage == null || cpage.trim().equals("")) {
-                //default 값 설정
-                cpage = "1";
-            }
-            if (pagesize == null || pagesize.trim().equals("")) {
-                //default 값 설정
-                pagesize = "5";
-            }
+//            if (cpage == null || cpage.trim().equals("")) {
+//                //default 값 설정
+//                cpage = "1";
+//            }
+//            if (pagesize == null || pagesize.trim().equals("")) {
+//                //default 값 설정
+//                pagesize = "5";
+//            }
                 isread = qnADao.getReadNum(no); //조회수
 
             if (isread) {
@@ -59,8 +59,8 @@ public class QnAContentService implements Action {
 
             request.setAttribute("board", board);
             request.setAttribute("no", no);
-            request.setAttribute("cp", cpage);
-            request.setAttribute("ps", pagesize);
+//            request.setAttribute("cp", cpage);
+//            request.setAttribute("ps", pagesize);
             request.setAttribute("replyList", replyList);
             request.setAttribute("totalReplyCount",totalReplyCount);
 

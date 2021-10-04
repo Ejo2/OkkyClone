@@ -22,13 +22,11 @@
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/common/okky-columns-aside.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
 
-<c:set var="board" value="${requestScope.board}" />
 <c:set var="no" value="${requestScope.no}" />
-<c:set var="cpage" value="${requestScope.cp}" />
-<c:set var="pagesize" value="${requestScope.ps}" />
-<c:set var="replyList" value="${requestScope.replyList}" />
+<c:set var="board" value="${requestScope.board}" />
+
 
 <div class="main content">
     <div class="panel panel-default clearfix">
@@ -47,16 +45,17 @@
                         </div>
                     </div>
                     <div class="content-identity pull-right">
-                        <div class="article-id">${board.no}</div>
+                        <div class="article-id">${no}</div>
                         <div><i class="fa fa-eye"></i>${board.hit}</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <form action="${pageContext.request.contextPath}/BoardEditOk.go" name="edit" method="post" id="article-form" class="article-form" role="form"
+        <form action="/BoardEditOk.go"  method="post" id="article-form" class="article-form" role="form"
               onsubmit="return postForm()">
             <fieldset class="form">
+                <input type="hidden" id="no" name ="no" value="${no}" />
                 <input type="hidden" name="_csrf" value="c6a51f4b-0401-45ae-a2b9-0c475512b478">
                 <div class="form-group has-feedback">
                     <div>
@@ -95,7 +94,7 @@
 
                 <div class="nav" role="navigation">
                     <fieldset class="buttons">
-                        <a href="${pageContext.request.contextPath}/BoardList.go" class="btn btn-default btn-wide"
+                        <a href="/articles/questions" class="btn btn-default btn-wide"
                            onclick="return confirm('정말로 취소하시겠습니까?')">취소</a>
                         <input type="submit" name="create" class="create btn btn-success btn-wide pull-right"
                                action="create" value="등록" id="create">
@@ -156,7 +155,15 @@
                 lang: "ko-KR",               // 한글 설정
                 placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
             });
+
+            /*submit 전송*/
+            $("#article-form").submit(function (){
+                let no =  $("#no").val();
+                let title = $("#title").val();
+                let cont = $("#summernote").val();
+            });
         });
+
 
         var tagsinputWidgets = $('input[name=tagString]').tagsinput(tagsInputConfig);
         $('input[name=tagString]').on('itemAdded', tagsInputItemAddedEventCallback);

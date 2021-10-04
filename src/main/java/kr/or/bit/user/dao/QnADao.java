@@ -31,12 +31,12 @@ public class QnADao {
         List<Board> qnalist = null;
         try {
             conn = ds.getConnection();
-            String sql = "select * " +
-                    "from " +
+            String sql = "SELECT * " +
+                    "FROM " +
                     " (select rownum rn,no, bno,  id , title, cont, writedate, good, hit, removedok, scrapnum, nickname " +
-                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id ORDER BY no DESC ) " +
+                    "  from ( SELECT no, bno,  m.id as id , title, cont, writedate, good, hit, removedok, scrapnum,nickname FROM board b inner join member m on b.id=m.id where removedok !=1 ORDER BY no DESC ) " +
                     "  where rownum <= ?) " +
-                    "where rn >= ?" ;
+                    "WHERE rn >= ?" ;
 
             pstmt = conn.prepareStatement(sql);
             //공식같은 로직
@@ -57,7 +57,7 @@ public class QnADao {
                 qnaBoard.setNo(rs.getInt("no"));
                 qnaBoard.setBno(rs.getInt("bno"));
                 qnaBoard.setTitle(rs.getString("title"));
-                qnaBoard.setId(rs.getString("nickname"));
+                qnaBoard.setId(rs.getString("id"));
                 qnaBoard.setCont(rs.getString("cont"));
                 qnaBoard.setWritedate(rs.getDate("writedate"));
                 qnaBoard.setRemovedOk(rs.getInt("removedok"));
@@ -124,7 +124,7 @@ public class QnADao {
 
         try {
             conn = ds.getConnection();
-            String sql = "select no, bno, m.id, title, cont, writedate, good, hit, removedok, scrapnum ,m.nickname as nickname " +
+            String sql = "select no, bno, m.id as id, title, cont, writedate, good, hit, removedok, scrapnum ,m.nickname as nickname " +
                     "from board b" +
                     "     inner join" +
                     "     member m" +
@@ -137,7 +137,7 @@ public class QnADao {
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 board.setBno(rs.getInt("bno"));
-                board.setId(rs.getString("nickname"));
+                board.setId(rs.getString("id"));
                 board.setTitle(rs.getString("title"));
                 board.setCont(rs.getString("cont"));
                 board.setHit(rs.getInt("hit"));
@@ -464,6 +464,5 @@ public class QnADao {
         }
         return row;
     }
-
 
 }

@@ -2,12 +2,19 @@
   <artifact type="exploded-war" name="OkkyClone:웹 exploded">
     <output-path>$PROJECT_DIR$/src/main/webapp</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="OkkyClone/web/웹" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="OkkyClone" />
+          <element id="javaee-facet-classes" facet="OkkyClone/web/Web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: servlets.com:cos:05Nov2002" />
+          <element id="library" level="project" name="json-lib-2.4-jdk15" />
+          <element id="library" level="project" name="lib" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="OkkyClone/web/Web" />
     </root>
   </artifact>
 </component>

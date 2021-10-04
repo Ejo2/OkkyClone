@@ -220,13 +220,12 @@
                             <div class="content-body panel-body pull-left">
                                 <div style="margin-left: 5px;">
 
-
                                     <div class="avatar clearfix avatar-medium ">
                                         <a href="/user/info/127868" class='avatar-photo'><img
                                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40"/></a>
                                         <div class="avatar-info">
-                                            <a class="nickname" href="#" title="${sb.id}"
-                                               id="reply-nickname">${sb.id}</a>
+                                            <a class="nickname" href="#" title="${sessionScope.id}"
+                                               id="reply-nickname">${sessionScope.id}</a>
 
                                         </div>
                                     </div>

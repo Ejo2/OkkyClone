@@ -117,7 +117,7 @@ public class FrontMemoController extends HttpServlet{
             action = new MainGoService();
             forward = action.execute(request, response);
 
-            System.out.println("main.do");
+            System.out.println("main.jsp");
         }
             
         
