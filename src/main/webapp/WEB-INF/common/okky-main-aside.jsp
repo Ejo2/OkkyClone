@@ -19,7 +19,7 @@
 	<!--1: 오키로고-->
 	<h1>
 		<div class="logo">
-			<a href="/main.jsp"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
+			<a href="/main.do"><img src="../../assets/img/okjsp_logo.png" alt="OKKY" title="OKKY"></a>
 		</div>
 	</h1>
 
