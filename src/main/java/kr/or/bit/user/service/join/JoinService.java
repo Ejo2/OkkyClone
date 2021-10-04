@@ -20,7 +20,7 @@ public class JoinService implements Action{
         dto.setPw(request.getParameter("pw"));
         dto.setEmail(request.getParameter("email"));
 //        dto.setPhoto(request.getParameter("photo"));
-        dto.setPhoto("https://bit.ly/3kFwIYe");//회원가입할때 기본 프로필사진 올리기
+        dto.setPhoto("bros_blank.jpg");//회원가입할때 기본 프로필사진 올리기
         System.out.println("dto :" + dto.getPhoto());
         
         

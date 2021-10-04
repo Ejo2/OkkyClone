@@ -55,8 +55,8 @@
 <body>
 <c:set var="board" value="${requestScope.board}"/>
 <c:set var="no" value="${requestScope.no}"/>
-<c:set var="cpage" value="${requestScope.cp}"/>
-<c:set var="pagesize" value="${requestScope.ps}"/>
+<%--<c:set var="cpage" value="${requestScope.cp}"/>--%>
+<%--<c:set var="pagesize" value="${requestScope.ps}"/>--%>
 <c:set var="replyList" value="${requestScope.replyList}"/>
 <c:set var="userInfo" value="${requestScope.userInfo}"/>
 
@@ -101,8 +101,6 @@
                         <div class="avatar-info">
                             <a class="nickname" href="/memberDetailGo.do"
                                title="${requestScope.userInfo.nickname}">${board.id}</a>
-                            <div class="activity"><span class="fa fa-flash"></span> 10</div>
-                            <%--활동점수--%>
                             <div class="date-created"><span class="timeago"
                                                             title="${board.writedate}">${board.writedate}</span>
                             </div>
@@ -190,10 +188,10 @@
 
 
                                     <ul class="dropdown-menu" role="menu" >
-                                        <li><a href="${pageContext.request.contextPath}/QnAEdit.qo?no=${no}&cp=${cpage}&ps=${pagesize}" class="edit"><i
-                                                class="fa fa-edit fa-fw"></i> 수정 </a></li>
-                                        <li><a href="javascript://" id="article-delete-btn"><i
-                                                class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/QnAEdit.qo?no=${no}&cp=${cpage}&ps=${pagesize}" class="edit">
+                                            <i class="fa fa-edit fa-fw"></i> 수정 </a></li>
+                                        <li><a href="javascript://" id="article-delete-btn">
+                                            <i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
                                     </ul>
                                 </div>
                             </form>
@@ -227,7 +225,6 @@
                                            <img src="//www.gravatar.com/avatar/970c7decc77dd782550e549336b71d3a?d=identicon&amp;s=40"></a>
                                         <div class="avatar-info">
                                             <a class="nickname" href="/memberDetailGo.do" title="${requestScope.userInfo.nickname}">${replyList.id}</a> <%--댓글 작성자 닉네님--%>
-                                            <div class="activity"><span class="fa fa-flash"></span> 28</div>  <%--활동점수--%>
                                             <div class="date-created"><span class="timeago" title="${replyList.rdate}">${replyList.rdate}</span>
                                             </div>
                                         </div>
@@ -271,7 +268,6 @@
                                             <c:when test="${sessionScope.id != null}">
                                             <a href="javascript://" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="" data-original-title="게시물 설정"></i></a>
                                                 <ul class="dropdown-menu" role="menu" >
-                                                    <li><a href="javascript://" class="note-edit-btn" data-id="2529765"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>
                                                     <li onclick="deleteReply('${replyList.rno}')"><a href="javascript://" class="note-delete-btn" data-id="2529765"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
                                                 </ul>
                                             </c:when>
@@ -307,7 +303,6 @@
                                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&amp;s=40"></a>
                                         <div class="avatar-info">
                                             <a class="nickname" href="/user/info/127868" title="${userInfo.nickname}">${sessionScope.id}</a> <%--로그인사용자 닉네임--%>
-                                            <div class="activity block"><span class="fa fa-flash"></span> 10</div> <%--활동점수--%>
                                         </div>
                                     </div>
                                 </div>
@@ -323,7 +318,6 @@
                             <div class="content-function-cog note-submit-buttons clearfix">
                                 <c:choose>
                                     <c:when test="${sessionScope.id !=null}">
-                                        <p><a href="javascript://" id="note-create-cancel-btn" class="btn btn-default btn-wide">취소</a></p>
                                         <input  name="create" id="btn-create-btn" class="btn btn-success btn-wide reply_create" style="width:70%;"
                                                value="등록" onclick="insertReply();">
                                     </c:when>
@@ -409,7 +403,7 @@
 
     /*추천기능*/
     function recommend(status){
-        let cur_recommend = Number($(".board_recommend").text());
+        let cur_recommend = Number($(".board_recommend").text()); //Number -> String을 숫자로 변경
         var param_data = {"status":status ,"no":"${no}"};
 
         $.ajax({
@@ -459,8 +453,10 @@
             method:"post",
             data:param_data,
             success: function (result) {
+                console.log(result);
 
                 if (result == "ok") {
+                    console.log("실행");
                     getCommentList();
                 }
             },
@@ -480,8 +476,9 @@
             data:{"no":"${no}"},
             dataType:"json",
             success : function(result) {
-                if(result.length>0){
-                    $(".reply_data_ul > li.reply_data").remove();
+                $(".reply_data_ul > li.reply_data").remove(); //기존에 그려져 있던 댓글 목록을 지운다,응답으로 받은 json 배열로 새로 그릴 것이기 때문
+                if(result.length==0){
+                    return;  //넘어온 json 배열 결과가 없다면 더 이상 작업할 필요가 없기 때문에
                 }
 
                 for (let reply of result) {
@@ -499,7 +496,6 @@
                     html += '<img src="//www.gravatar.com/avatar/970c7decc77dd782550e549336b71d3a?d=identicon&amp;s=40"></a>';
                     html += '<div class="avatar-info">';
                     html += '<a class="nickname" href="/memberDetailGo.do" title="aa" data-value="'+reply.no+'">'+reply.id+'</a>';
-                    html += '<div class="activity"><span class="fa fa-flash"></span> 28</div>';
                     html += '<div class="date-created"><span class="timeago" title="asdsa">'+reply.date+'</span>';
                     html += '</div>';
                     html += '</div>';
@@ -537,12 +533,12 @@
                     html += '<input id="rno" name="rno" value="">';
                     html += '</form>';
                     html += '</li>';
-                    $("ul.reply_data_ul").append(html);
-                    html = "";
+                    $("ul.reply_data_ul").append(html);  //부모에다가 자식을 추가한다
+                    html = ""; //한번 비우기(비우지 않으면 중복된 값 나옴)
                 };
 
-                $("li.reply_submit").appendTo($("ul.reply_data_ul"));
-                $("textarea[name='rcont']").val("");
+                $("li.reply_submit").appendTo($("ul.reply_data_ul")); //댓글 쓰는 창을 맨 밑으로 내리겠다 (부모에 자식중 제일 밑으로)
+                $("textarea[name='rcont']").val(""); //값비우기
             },
             error:function(request,status,error){
                 console.log(error);

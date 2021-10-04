@@ -8,9 +8,10 @@ import kr.or.bit.user.dto.Comments;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 public class columnReplyAddService implements Action {
-
+    ActionForward forward = null;
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -36,23 +37,15 @@ public class columnReplyAddService implements Action {
             ColumnDao dao = new  ColumnDao ();
             result = dao.columnReplyWrite(reply);
 
-            if(result > 0){
-                msg ="댓글 입력 성공";
-                url ="BoardContent.go?no="+no;
-            }else{
-                msg="댓글 입력 실패";
-                url="BoardContent.go?no="+no;
-            }
+            msg = (result > 0)?"ok":"no";
+
+            response.setContentType("text/html;charset=utf-8");
+            PrintWriter writer = response.getWriter();
+            writer.print(msg);
         } catch (Exception e) {
             e.getStackTrace();
         }
 
-        request.setAttribute("board_msg", msg);
-        request.setAttribute("board_url", url);
-
-        ActionForward forward = new ActionForward();
-        forward.setRedirect(false);
-        forward.setPath("/WEB-INF/views/redirect/redirect.jsp");
 
         return forward;
     }

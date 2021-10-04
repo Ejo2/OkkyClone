@@ -45,13 +45,7 @@
             <form id="category-filter-form" name="category-filter-form" method="get" action="${pageContext.request.contextPath}/QnAList.qo">
                 <div class="category-filter-wrapper">
                     <div class="job-filter-container">
-                        <ul class="list-sort pull-left">
-                            <li><a href="/articles/questions?query=&sort=id&order=desc" data-sort="id" data-order="desc" class="category-sort-link active">최신순</a></li>
-                            <li><a href="/articles/questions?query=&sort=voteCount&order=desc" data-sort="voteCount" data-order="desc" class="category-sort-link ">추천순</a></li>
-                            <li><a href="/articles/questions?query=&sort=noteCount&order=desc" data-sort="noteCount" data-order="desc" class="category-sort-link ">댓글순</a></li>
-                            <li><a href="/articles/questions?query=&sort=scrapCount&order=desc" data-sort="scrapCount" data-order="desc" class="category-sort-link ">스크랩순</a></li>
-                            <li><a href="/articles/questions?query=&sort=viewCount&order=desc" data-sort="viewCount" data-order="desc" class="category-sort-link ">조회순</a></li>
-                        </ul>
+
                         <div class="job-filter-search">
                             <div class="input-group input-group-sm">
                                 <input type="search" name="query" id="search-field" class="form-control"
@@ -83,7 +77,7 @@
                             <a href="/articles/gathering" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> QnA</a>
                         </div>
                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                            <a href="${pageContext.request.contextPath}/QnAContent.qo?no=${qnalist.no}&cp=${cpage}&ps=${pagesize}">
+                            <a href="${pageContext.request.contextPath}/QnAContent.qo?no=${qnalist.no}">
                                 ${qnalist.title}
                             </a>
                         </h5>

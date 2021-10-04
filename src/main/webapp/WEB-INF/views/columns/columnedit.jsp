@@ -24,11 +24,10 @@
 <body>
 <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
 
-<c:set var="board" value="${requestScope.board}" />
 <c:set var="no" value="${requestScope.no}" />
-<c:set var="cpage" value="${requestScope.cp}" />
-<c:set var="pagesize" value="${requestScope.ps}" />
-<c:set var="replyList" value="${requestScope.replyList}" />
+<c:set var="board" value="${requestScope.board}" />
+<c:set var="nickname" value="${sessionScope.nickname}"/>
+
 
 <div class="main content">
     <div class="panel panel-default clearfix">
@@ -40,23 +39,25 @@
                         <a href="/user/info/127868" class='avatar-photo'><img
                                 src="//www.gravatar.com/avatar/a25e133c0500a97505a15f6638e8e926?d=identicon&s=40" /></a>
                         <div class="avatar-info">
-                            <a class="nickname" href="/user/info/127868" title="닉네임">닉네임</a>
+                            <a class="nickname" href="/user/info/127868" title="닉네임">${nickname}</a>
 
-                            <div class="activity"><span class="fa fa-flash"></span> 10</div>
                             <div class="date-created"><span class="timeago" title="${board.writedate}">${board.writedate}</span></div>
                         </div>
                     </div>
                     <div class="content-identity pull-right">
-                        <div class="article-id">${board.no}</div>
+                        <div class="article-id">${no}</div>
                         <div><i class="fa fa-eye"></i>${board.hit}</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <form action="${pageContext.request.contextPath}/BoardEditOk.go" name="edit" method="post" id="article-form" class="article-form" role="form"
+        <form action="/BoardEditOk.go"  method="post" id="article-form" class="article-form" role="form"
               onsubmit="return postForm()">
             <fieldset class="form">
+                <input type="hidden" id="no" name ="no" value="${no}" />
+                <input type="hidden" id="no" name ="id" value="${sessionScope.id}" />
+                <input type="hidden" id="no" name ="nickname" value="${sessionScope.nickname}" />
                 <input type="hidden" name="_csrf" value="c6a51f4b-0401-45ae-a2b9-0c475512b478">
                 <div class="form-group has-feedback">
                     <div>
@@ -87,15 +88,15 @@
                 </div>
                 <input type="hidden" name="textType" value="HTML" id="textType">
 
-                <div class="recaptcha-wrapper">
-                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                    <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">
-                    </div>
-                </div>
+<%--                <div class="recaptcha-wrapper">--%>
+<%--                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>--%>
+<%--                    <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw">--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
                 <div class="nav" role="navigation">
                     <fieldset class="buttons">
-                        <a href="${pageContext.request.contextPath}/BoardList.go" class="btn btn-default btn-wide"
+                        <a href="/articles/questions" class="btn btn-default btn-wide"
                            onclick="return confirm('정말로 취소하시겠습니까?')">취소</a>
                         <input type="submit" name="create" class="create btn btn-success btn-wide pull-right"
                                action="create" value="등록" id="create">
@@ -156,7 +157,15 @@
                 lang: "ko-KR",               // 한글 설정
                 placeholder: '최대 2048자까지 쓸 수 있습니다'   //placeholder 설정
             });
+
+            /*submit 전송*/
+            $("#article-form").submit(function (){
+                let no =  $("#no").val();
+                let title = $("#title").val();
+                let cont = $("#summernote").val();
+            });
         });
+
 
         var tagsinputWidgets = $('input[name=tagString]').tagsinput(tagsInputConfig);
         $('input[name=tagString]').on('itemAdded', tagsInputItemAddedEventCallback);

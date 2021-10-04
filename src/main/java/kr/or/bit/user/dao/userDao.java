@@ -49,7 +49,7 @@ public class userDao{
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         try{
-            String sql = "SELECT ID,PW,PHOTO FROM MEMBER WHERE ID=? AND PW=?";
+            String sql = "SELECT ID,PW,PHOTO,NICKNAME,EMAIL FROM MEMBER WHERE ID=? AND PW=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             pstmt.setString(2, pw);
@@ -59,6 +59,8 @@ public class userDao{
                 dto.setId(rs.getString("id"));
                 dto.setPw(rs.getString("pw"));
                 dto.setPhoto(rs.getString("photo"));
+                dto.setEmail(rs.getString("email"));
+                dto.setNickname(rs.getString("nickname"));
                 
             }
         }catch (Exception e){

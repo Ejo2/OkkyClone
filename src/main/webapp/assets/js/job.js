@@ -697,6 +697,7 @@
     if (data.jobs.job[i]["url"] != null && data.jobs.job[i]["url"] != undefined
     && (exp_lv_select === String(data.jobs.job[i].position["experience-level"].code))) {
     console.log(obj.job.length);
+
     url = String(data.jobs.job[i]["url"]).replace('undefined', '미정');
     positionlocation = String(data.jobs.job[i].position["location"].name).replace('undefined', '미정');
     title = String(data.jobs.job[i].position["title"]).replace('undefined', '미정');
