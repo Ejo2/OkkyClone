@@ -50,7 +50,7 @@ public class FrontStudyController extends HttpServlet{
                 PrintWriter out = response.getWriter();
                 out.print("<script>");
                 out.print("alert('로그인 후 게시글 작성해주세요');");
-                out.print("location.href='main.jsp';");
+                out.print("location.href='/main.jsp';");
                 out.print("</script>");
             }else{
                 action = new StudyWriteGoService();
