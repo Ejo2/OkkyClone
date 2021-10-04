@@ -145,7 +145,6 @@
 </div>
 <%--<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--%>
 <script>
-     $.noConflict();
      jQuery(document).ready(function() {
           jQuery("#setting").popover({
                html: true,
