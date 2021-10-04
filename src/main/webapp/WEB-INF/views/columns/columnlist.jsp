@@ -40,12 +40,9 @@
                 <div class="category-filter-wrapper">
                     <div class="job-filter-container">
                         <ul class="list-sort pull-left">
-                            <li><a href="${collist}?query=&sort=id&order=desc" data-sort="id" data-order="desc" class="category-sort-link active">최신순</a></li>
-                            <li><a href="${collist}?query=&sort=voteCount&order=desc" data-sort="voteCount" data-order="desc" class="category-sort-link ">추천순</a></li>
-                            <li><a href="${collist}?query=&sort=noteCount&order=desc" data-sort="noteCount" data-order="desc" class="category-sort-link ">댓글순</a></li>
-                            <li><a href="${collist}?query=&sort=scrapCount&order=desc" data-sort="scrapCount" data-order="desc" class="category-sort-link ">스크랩순</a></li>
-                            <li><a href="${collist}?query=&sort=hit&order=desc" data-sort="hit" data-order="desc" class="category-sort-link ">조회순</a></li>
+                            <li><a href="/BoardList.go" data-sort="id" data-order="desc" class="category-sort-link active">전체글</a></li>
                         </ul>
+                        <!--
                         <div class="job-filter-search">
                             <div class="input-group input-group-sm">
                                 <input type="search" name="query" id="search-field" class="form-control"
@@ -56,6 +53,7 @@
                                </span>
                             </div>
                         </div>
+                        -->
                     </div>
                     <!---->
                     <input type="hidden" name="sort" id="category-sort-input" value="id"/> <!--이게 뭘까-->
@@ -74,7 +72,7 @@
                         <div class="list-title-wrapper clearfix">
                             <div class="list-tag clearfix">
                                 <span class="list-group-item-text article-id">${collist.no}</span>
-                                <a href="/articles/gathering" class="list-group-item-text item-tag label label-info"><i class="fa fa-comments"></i> 정기모임/스터디</a>
+
                             </div>
                             <h5 class="list-group-item-heading list-group-item-evaluate">
                                 <a href="${pageContext.request.contextPath}/BoardContent.go?no=${collist.no}">
@@ -85,7 +83,9 @@
                         <div class="list-summary-wrapper clearfix">
                             <div class="list-group-item-summary clearfix">
                                 <ul>
+                                    <!--
                                     <li class="item-icon-disabled"><i class="item-icon fa fa-comment "></i> 0</li>
+                                    -->
                                     <li class="item-icon-disabled">
                                         <i class="item-icon fa fa-thumbs-up"></i>${collist.good}</li>
                                     <li class=""><i class="item-icon fa fa-eye"></i>${collist.hit}</li>
