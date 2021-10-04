@@ -74,44 +74,63 @@ public class userDao{
     }
     
     public List<boardDto> getUserDetailBoardList(Object sessionId, int cpage, int pagesize) throws SQLException{
-        Connection conn = ConnectionHelper.getConnection("oracle");
+        Connection conn = null;
+        ResultSet rs = null;
         PreparedStatement pstmt = null;
-        String sql = "SELECT  ROWNUM ,NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM (SELECT * FROM BOARD WHERE ROWNUM<=?) WHERE ID=? AND ROWNUM>=?";
-        pstmt = conn.prepareStatement(sql);
-        
-        int start = cpage * pagesize - (pagesize - 1);
-        System.out.println(start);
-        int end = cpage * pagesize;
-        System.out.println(end);
-        
-        System.out.println("sessionId : " + sessionId);
-        pstmt.setInt(1, end);
-        pstmt.setObject(2, sessionId);
-        pstmt.setInt(3, start);
-        
-        System.out.println("확인");
-        ResultSet rs = pstmt.executeQuery();
-        
-        ArrayList<boardDto> writeBoardList = new ArrayList<>();
-        while (rs.next()){
-            boardDto dto = new boardDto();
-            dto.setNo(rs.getInt("no"));
-            dto.setBno(rs.getInt("bno"));
-            dto.setId(rs.getString("id"));
-            dto.setTitle(rs.getString("title"));
-            dto.setCont(rs.getString("cont"));
-            dto.setHit(rs.getInt("hit"));
-            dto.setWriteDate(rs.getDate("writedate"));
-            dto.setRemovedOk(rs.getInt("removedok"));
-            dto.setGood(rs.getInt("good"));
-            dto.setScrapNum(rs.getInt("scrapnum"));
-            writeBoardList.add(dto);
+        ArrayList<boardDto> writeBoardList = null;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "SELECT * FROM (SELECT  ROWNUM ,NO, BNO, id, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM,NICKNAME FROM (SELECT NO,BNO,M.ID AS id ,TITLE , CONT , WRITEDATE , GOOD ,HIT , REMOVEDOK , SCRAPNUM , NICKNAME FROM BOARD b INNER JOIN MEMBER M ON M.ID = b.ID WHERE REMOVEDOK !=1 ORDER BY NO DESC ) WHERE id=? AND ROWNUM <= ? )  WHERE ROWNUM >= ?";
             
+            pstmt = conn.prepareStatement(sql);
+            
+            int start = cpage * pagesize - (pagesize - 1);
+            System.out.println(start);
+            int end = cpage * pagesize;
+            System.out.println(end);
+            
+            System.out.println("sessionId : " + sessionId);
+            pstmt.setObject(1, sessionId);
+            pstmt.setInt(2, end);
+            pstmt.setInt(3, start);
+            
+            System.out.println("확인");
+            rs = pstmt.executeQuery();
+            
+            writeBoardList = new ArrayList<>();
+            
+            while (rs.next()){
+                System.out.println("rsnext 타는지 확인");
+                boardDto dto = new boardDto();
+                dto.setNo(rs.getInt("no"));
+                dto.setBno(rs.getInt("bno"));
+                dto.setId(rs.getString("id"));
+                dto.setTitle(rs.getString("title"));
+                dto.setCont(rs.getString("cont"));
+                dto.setHit(rs.getInt("hit"));
+                dto.setWriteDate(rs.getDate("writedate"));
+                dto.setRemovedOk(rs.getInt("removedok"));
+                dto.setGood(rs.getInt("good"));
+                dto.setScrapNum(rs.getInt("scrapnum"));
+                
+                System.out.println("dto::::" + dto);
+                
+                writeBoardList.add(dto);
+                
+            }
+            System.out.println("내가 쓴 게시물 리스트" + writeBoardList);
+            
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
         }
-        System.out.println("내가 쓴 게시물 리스트" + writeBoardList);
-        ConnectionHelper.close(rs);
-        ConnectionHelper.close(conn);
-        ConnectionHelper.close(pstmt);
+        
+        
+        System.out.println("writeBoardList :: " + writeBoardList);
+        
         
         return writeBoardList;
     }

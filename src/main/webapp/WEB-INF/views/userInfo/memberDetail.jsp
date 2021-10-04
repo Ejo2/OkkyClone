@@ -49,8 +49,7 @@
                   <ul class="nav">
                         <li class="active"><a href="memberDetailGo.do">게시물
                               <span class="badge">${totalBoardCount}</span></a></li>
-                        <li class=""><a id="bb" href="scrapListGo.do">스크랩
-                              <span class="badge">${userScrapList.size()}</span></a></li>
+                        
                   </ul>
             </div>
             <div class="col-sm-10 main-block-left pull-left">

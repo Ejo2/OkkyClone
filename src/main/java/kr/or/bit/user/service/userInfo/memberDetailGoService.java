@@ -10,6 +10,7 @@ import kr.or.bit.utils.QnAPager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.util.List;
 
 /*
@@ -34,7 +35,8 @@ public class memberDetailGoService implements Action{
                 userDao dao = new userDao();
                 String ps = request.getParameter("ps");//pageSize
                 String cp = request.getParameter("cp"); //currentPage
-                
+                System.out.println("ps"+ps);
+                System.out.println("cp"+cp);
                 
                 //ps,  cp 값이 없는 경우 _기본값_설정
                 if (ps == null || ps.equals("")){
@@ -47,6 +49,9 @@ public class memberDetailGoService implements Action{
                 }
                 int pagesize = Integer.parseInt(ps);
                 int cpage = Integer.parseInt(cp);
+                System.out.println(pagesize+"pagesize");
+                System.out.println(cpage+"cpage");
+                
                 int pagecount = 0;
                 
                 //작성자가 작성한 게시글 리스트

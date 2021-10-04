@@ -63,9 +63,7 @@
                         <li>
                               <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="javascript:void(0)" id="setting"><i class="fas fa-cog" style="margin-top: 7px"></i></a>
                         </li>
-                        <li>
-                              <a data-placement="bottom" data-toggle="popover" data-container="body" data-placement="left" type="button" data-html="true" href="javascript:void(0)" id="notification"><i class="fas fa-bell" style="margin-top: 7px"></i></a>
-                        </li>
+                      
                               <%--팝오버 창 start--%>
                         <div id="popover-content" class="hide" role="tooltip">
                               <div class="arrow" style="top : 50%;"></div>
@@ -76,12 +74,7 @@
                               </div>
                         </div>
                               <%--알림 기능은 후순위로 미루겠습니다.--%>
-                        <div id="popover-content2" class="hide" role="tooltip">
-                              <div class="arrow" style="top : 50%;"></div>
-                              <h3 class="popover-title">알림</h3>
-                              <div class="popover-content" id="notification-popover">
-                              </div>
-                        </div>
+                  
                               <%--팝오버 창 end--%>
                   
                   </ul>
@@ -119,9 +112,6 @@
             <li id="qna" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a
                     href="/QnAList.qo" class="link"><i class="nav-icon fa fa-database"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
-            <li id="tech" data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a
-                    href="#" class="link"><i class="nav-icon fa fa-code"></i> <span
-                    class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
             <li id="study" data-toggle="tooltip" data-placement="right" data-container="body" title="스터디"><a
                     href="/StudyPaging.so?page=1" class="link"><i class="nav-icon fa fa-comments"></i> <span
                     class="nav-sidebar-label nav-sidebar-category-label">스터디</span></a></li>
