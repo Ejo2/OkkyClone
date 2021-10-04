@@ -1,7 +1,9 @@
 package kr.or.bit.user.dao;
 
 import kr.or.bit.user.dto.Comments;
+import kr.or.bit.user.dto.Comments_count;
 import kr.or.bit.user.dto.Study_Board;
+import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.ConnectionHelper;
 
 import java.sql.Connection;
@@ -450,7 +452,8 @@ public class StudyDao {
         try {
             conn = ConnectionHelper.getConnection("oracle");
             String sql = "select * from comments where removedok=0 and no=? order by rno";
-            pstmt = conn.prepareStatement(sql);
+            String sql2 = "select rno,no,c.id,rcont,rdate,removedok,photo from comments c join member m on c.id = m.id where removedok=0 and no=? order by rno";
+            pstmt = conn.prepareStatement(sql2);
             pstmt.setInt(1, no);
             rs = pstmt.executeQuery();
 
@@ -461,7 +464,7 @@ public class StudyDao {
                 cm.setId(rs.getString("id"));
                 cm.setRcont(rs.getString("rcont"));
                 cm.setRdate(rs.getTimestamp("rdate"));
-
+                cm.setPhoto(rs.getString("photo"));
                 commentlist.add(cm);
             }
 
@@ -691,6 +694,40 @@ public class StudyDao {
 
         return result;
     }
+    //글번호별 게시글 갯수 세기
+    public ArrayList<Comments_count> comment_and_count(){
+        ArrayList<Comments_count> comment = new ArrayList<Comments_count>();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "select no,count(rno) counting from (select * from comments where removedok=0) group by no";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                Comments_count cc = new Comments_count();
+                cc.setNo(rs.getInt("no"));
+                cc.setCounting(rs.getInt("counting"));
+                comment.add(cc);
+            }
+
+        }catch (Exception e){
+            System.out.println("에러뜸???");
+            System.out.println(e.getMessage());
+
+        }finally{
+            System.out.println("닫힘???");
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+            System.out.println("다 닫힘??");
+        }
+        return comment;
+    }
+
 
 
 

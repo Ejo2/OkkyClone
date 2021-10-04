@@ -4,14 +4,17 @@ import kr.or.bit.user.action.Action;
 import kr.or.bit.user.action.ActionForward;
 import kr.or.bit.user.dao.StudyCategoryDao;
 import kr.or.bit.user.dao.StudyDao;
+import kr.or.bit.user.dao.userDao;
 import kr.or.bit.user.dto.StudyCriteria;
 import kr.or.bit.user.dto.Study_Board;
 import kr.or.bit.user.dto.Study_category;
+import kr.or.bit.user.dto.userDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudyPagingWithSearchService implements Action {
@@ -44,6 +47,11 @@ public class StudyPagingWithSearchService implements Action {
             StudyCategoryDao dao2 = new StudyCategoryDao();
             List<Study_category> categoryList = dao2.getCategoryList();
             request.setAttribute("categoryList", categoryList); //sort 창 때문에
+
+            ArrayList<userDto> userlist = new ArrayList<userDto>();
+            userDao ud = new userDao();
+            userlist = ud.selectAllUserDto();
+            request.setAttribute("userlist",userlist);//어트리뷰트 2 : user아이디와 글쓴이 매핑-> 사진 찾아오려고
 
             try{
                 StudyDao dao = new StudyDao();
