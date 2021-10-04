@@ -5,9 +5,9 @@
 <html>
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 
+<jsp:include page="/WEB-INF/common/okky-aside.jsp"/>
 <body>
 <div class="main">
-      <jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
       <!----------------------------------------------------------------------------------------------->
       <c:set var="userInfo" value="${requestScope.userInfo}"/>
       <c:set var="writeBoardList" value="${requestScope.writeBoardList}"/>
