@@ -19,20 +19,8 @@
                         <form action='login.do' class="form-signin form-user panel-body panel-margin" method='POST' id='loginForm' autocomplete='off'>
                               <input style="width: 100%" type="text" name="id" autocorrect="off" autocapitalize="off" id="id" class="username form-control input-sm" placeholder="아이디" required autofocus>
                               <input style="width: 100%" type="password" name='pw' class="password form-control input-sm" placeholder="비밀번호" required>
-                              <div class="checkbox">
-                                    <label>
-                                          <input type="checkbox" name="remember_me" id="remember_me"> 로그인 유지
-                                    </label>
-                              </div>
-                              <!-- AutoPassword 추가 -->
-                              <div class="APW-login">
-                                    <span>AutoPassword&trade;</span>
-                                    <label class="switch">
-                                          <input type="checkbox" id="btnAutoPW">
-                                          <span class="slider round"></span>
-                                    </label>
-                              </div>
                               
+                      
                               <!--button class="btn btn-primary btn-block" type="submit"><g:message code="springSecurity.login.button"/></button-->
                               
                               <div id="divUserLogin">
@@ -40,8 +28,6 @@
                               </div>
                               
                               <div class="signup-block">
-                                    <a href="/find/user/index">계정 찾기</a>
-                                    <span class="inline-saperator">/</span>
                                     <a href="joinGo.do">회원 가입</a>
                               </div>
                         </form>

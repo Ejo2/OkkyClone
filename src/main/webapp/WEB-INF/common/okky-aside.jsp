@@ -199,6 +199,7 @@
                let getAr5 = url.indexOf("login");
                let getAr6 = url.indexOf("main");
                let getAr7 = url.indexOf("memberDetail")
+               let getAr8 = url.indexOf("userInfoChange")
                
                if (getAr0 != -1) {
                     $('#qna').attr("class", "active");
@@ -245,7 +246,17 @@
                if (getAr7 != -1) {
                     let infoChange = '<a href="userInfoChange.do" style="text-decoration-line:none "><i class="fa fa-user"></i> </a>';
                     let logout = '<label href="logout.do" for="logoutButton"><i class="fas fa-sign-out-alt" style="color: white"></i> </label>';
-                    $('#sub-title').html("회원정보 수정").css("font-size", "17px");
+                    $('#sub-title').html("회원 정보 상세").css("font-size", "17px");
+                    $('#sub-sub-title').html("");
+                    $("#setting").addClass("hide");
+                    $("#nextli").append(infoChange);
+                    $("#nextli").append(logout);
+     
+               }
+               if (getAr8 != -1) {
+                    let infoChange = '<a href="userInfoChange.do" style="text-decoration-line:none "><i class="fa fa-user"></i> </a>';
+                    let logout = '<label href="logout.do" for="logoutButton"><i class="fas fa-sign-out-alt" style="color: white"></i> </label>';
+                    $('#sub-title').html("회원 정보 수정").css("font-size", "17px");
                     $('#sub-sub-title').html("");
                     $("#setting").addClass("hide");
                     $("#nextli").append(infoChange);

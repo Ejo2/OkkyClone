@@ -43,11 +43,12 @@
                                     <br>
       
                                     <label for="pw2">패스워드 확인</label><input maxlength="16" style="width: 100%" type="password" name="pw2" class="form-control input-sm" required="" placeholder="비밀번호 확인" value="" id="pw2">
+                                    <font name="checkpw"></font>
                                     <br>
+      
                                     <label for="email">이메일</label><input maxlength="30" type="text" name="email" style="width:100%;" class="form-control input-sm" required="" placeholder="이메일" value="" id="email">
                                     <br>
       
-                                    <input type="file" name="photo" id="photo" value="파일선택" accept="image/*">
                                     <%--프로필사진은 일단은 기본 이미지로 대체합니다.
                                     이후 회원정보에서 프로필 사진 업로드합니다.
                                     여기서는 photo에 null값으로 들어갈 예정입니다.--%>
