@@ -8,3 +8,11 @@ classes\
 .classpath
 src.zip
 .project
+OkkyClone\
+.idea\
+.settings\
+out\
+classes\
+target\
+.classpath
+.project
