@@ -17,13 +17,11 @@ public class MainContentsDto {
     private int scrapNum;
     ///////////////////////b_study
     private int st_categorynum;
+    private String st_category;
     private String sido;
     private String exp;
-
-
-
-    private int closeok;
     private String nickname;
+
 
     public String getNickname() {
         return nickname;
@@ -33,7 +31,8 @@ public class MainContentsDto {
         this.nickname = nickname;
     }
 
-    ////getter , setter //////////////////
+
+
     public int getRn() {
         return rn;
     }
@@ -130,6 +129,14 @@ public class MainContentsDto {
         this.st_categorynum = st_categorynum;
     }
 
+    public String getSt_category() {
+        return st_category;
+    }
+
+    public void setSt_category(String st_category) {
+        this.st_category = st_category;
+    }
+
     public String getSido() {
         return sido;
     }
@@ -146,18 +153,11 @@ public class MainContentsDto {
         this.exp = exp;
     }
 
-    public int getCloseok() {
-        return closeok;
-    }
-
-    public void setCloseok(int closeok) {
-        this.closeok = closeok;
-    }
-
     @Override
     public String toString() {
         return "MainContentsDto{" +
-                "no=" + no +
+                "rn=" + rn +
+                ", no=" + no +
                 ", bno=" + bno +
                 ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
@@ -168,11 +168,9 @@ public class MainContentsDto {
                 ", removedOk=" + removedOk +
                 ", scrapNum=" + scrapNum +
                 ", st_categorynum=" + st_categorynum +
+                ", st_category='" + st_category + '\'' +
                 ", sido='" + sido + '\'' +
                 ", exp='" + exp + '\'' +
-                ", closeok=" + closeok +
-                ", nickname='" + nickname + '\'' +
                 '}';
     }
-
 }

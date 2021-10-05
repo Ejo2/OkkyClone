@@ -4,7 +4,7 @@
 <jsp:include page="/WEB-INF/common/okky-head.jsp"/>
 <body>
 <div class="main">
-	<jsp:include page="/WEB-INF/common/okky-aside.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/common/okky-aside.jsp"/>
 	<!----------------------------------------------------------------------------------------------->
 	<%--	jobs의 세부카테고리 표기 nav--%>
 	<div class="sidebar-category-nav">
@@ -14,6 +14,7 @@
 				<a href="/job.do?jobType=CONTRACT">구인 <span
 						class="label label-primary label">계약직</span><span class="nav-indicator"><span
 						class="nav-selected-dot"></span></span></a>
+
 				<a href="/job.do?jobType=FULLTIME">구인 <span
 						class="label label-success label">정규직</span><span class="nav-indicator"><span
 						class="nav-selected-dot"></span></span></a>
@@ -306,7 +307,7 @@
         });
     });
 </script>
-<script src="../../../assets/js/job.js" type="text/javascript"></script>
+<script src="assets/js/job.js" type="text/javascript"></script>
 
 
 
