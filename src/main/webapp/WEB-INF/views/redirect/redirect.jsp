@@ -6,25 +6,11 @@
       
       if (msg != null && url != null){
 %>
-<%--<script src="https://www.jsdelivr.com/package/npm/sweetalert2"></script>--%>
 <script>
     
      alert('<%=msg%>');
-     location.href = <%=url%>;
-     <%--let msg = '<%=msg%>';--%>
-     <%--let url = '<%=url%>';--%>
-     
-     <%--console.log(msg);--%>
-     <%--console.log(url);--%>
-     <%--setTimeout(function() {--%>
-     <%--     Swal({--%>
-     <%--          title: '알림',--%>
-     <%--          text: msg,--%>
-     <%--          type: 'success',--%>
-     <%--     }, function() {--%>
-     <%--          window.location = url;--%>
-     <%--     });--%>
-     <%--});--%>
+     location.href = '<%=url%>';
+ 
 </script>
 
 <%

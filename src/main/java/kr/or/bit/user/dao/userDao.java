@@ -521,6 +521,38 @@ public class userDao{
         return -1; //오류시
     }
     
+    //예솔 필요해서 함수 추가!(10월 4일 오후 10시)
+    public ArrayList<userDto> selectAllUserDto() {
+        ArrayList<userDto> userList = new ArrayList<userDto>();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "select * from member";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                userDto ud = new userDto();
+                ud.setId(rs.getString("id"));
+                ud.setNickname(rs.getString("nickname"));
+                ud.setPhoto(rs.getString("photo"));
+                userList.add(ud);
+            }
+        }catch (Exception e){
+            System.out.println("에러뜸???");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            System.out.println("닫힘???");
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+            System.out.println("다 닫힘??");
+        }
+        return userList;
+    }
 }
 
 
