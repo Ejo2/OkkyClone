@@ -38,22 +38,21 @@
                                     <br>
                                     <label for="nickname">닉네임</label><input maxlength="15" style="width: 100%" type="text" name="nickname" class="form-control input-sm" required="" placeholder="닉네임" value="" id="nickname">
                                     <br>
-      
+                                    
                                     <label for="pw">패스워드</label><input maxlength="16" style="width: 100%" type="password" name="pw" class="form-control input-sm" required="" placeholder="비밀번호 : 대 소문자 특수문자 포함 8 ~16" value="" id="pw">
                                     <br>
-      
+                                    
                                     <label for="pw2">패스워드 확인</label><input maxlength="16" style="width: 100%" type="password" name="pw2" class="form-control input-sm" required="" placeholder="비밀번호 확인" value="" id="pw2">
                                     <font name="checkpw"></font>
                                     <br>
-      
+                                    
                                     <label for="email">이메일</label><input maxlength="30" type="text" name="email" style="width:100%;" class="form-control input-sm" required="" placeholder="이메일" value="" id="email">
                                     <br>
-      
+                                    
                                     <%--프로필사진은 일단은 기본 이미지로 대체합니다.
                                     이후 회원정보에서 프로필 사진 업로드합니다.
                                     여기서는 photo에 null값으로 들어갈 예정입니다.--%>
-                                    
-                                   
+                              
                               
                               </fieldset>
                               
@@ -90,6 +89,7 @@
           
           $('#idCheckBtn').on("click", function() {
                let myId = $('#id').val();
+               console.log(myId);
                $.ajax(
                     {
                          url: "idCheck.do",
@@ -101,13 +101,15 @@
                          success: function(responsedata) {
                               let result = responsedata.trim();
                               if (result == 1) {
+                                   
+                                   alert('아이디가 중복됩니다..');
+                                   $("#joinBtn").addClass("hide");
+                                   
+                              } else if (result == 0) {
+                                   
                                    alert('아이디 사용가능');
                                    $('#joinBtn').removeClass("hide");
                                    
-                              } else {
-                                   alert('아이디가 중복됩니다..');
-                                   
-                                   $("#joinBtn").addClass("hide");
                               }
                          },
                          fail: function(data) {
@@ -147,13 +149,17 @@
           
           //비밀번호 체크
           let passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+          
           $('#pw').keyup(function() {
                
                if (!passwdCheck.test($('#pw').val())) {
+                    
                     $("#pw").focus();
                     $('#pw').css("outline", "2px solid #d50000");
+                    
                     // $('#idCheck').css("background-color", "blue");
                } else if (passwdCheck.test($('#pw').val())) {
+                    
                     $('#pw').css("outline", "2px solid #0000ff");
                }
           });
@@ -177,40 +183,44 @@
           $('#email').keyup(function() {
                //이메일
                if (!emailCheck.test($("#email").val())) {
+                    
                     console.log($('#email').val());
                     $("#email").focus();
                     $('#email').css("outline", "2px solid #d50000");
+                    
                } else if (emailCheck.test($('#email').val())) {
+                    
                     $('#email').css("outline", "2px solid #0000ff");
+                    
                }
           });
           
-          $('#join').click(function() {
-               const formElement = $("#loginForm");
+          $('#joinBtn').click(function() {
+               const formElement = $("#joinForm");
                if ($('#id').val() == "" || $('#pw').val() == "" || $('#pw2').val() == "" ||
                     $('#email').val() == "" || $('#photo').val() == "")
                {
-                    
+     
                     alert('빈값이 있습니다.');
-                    formElement.attr("action", "join.do");
+     
+                    formElement.attr("action", "joinGo.do");
                     formElement.attr("method", "post");
                     formElement.submit();
                     
                     
                }
-               if ($('#id').css("outline") == "2px solid #d50000" || $('font[name=check]').html() ==
-                    "암호틀림" ||
-                    $('#email').css("outline") ==
-                    "2px solid #d50000" || $('#pw').css("outline") == "2px solid #d50000" ||
-                    $('#pw2').css("outline") ==
-                    "2px solid #d50000")
+               if ($('#id').css("outline") == "2px solid #d50000" || $('font[name=checkpw]').html() == "암호틀림"
+                    || $('#email').css("outline") == "2px solid #d50000" || $('#pw').css("outline") ==
+                    "2px solid #d50000" ||
+                    $('#pw2').css("outline") == "2px solid #d50000")
                {
                     alert('형식에 맞지 않습니다.');
+     
                     
-                    formElement.attr("action", "join.do");
+                    formElement.attr("action", "joinGo.do");
                     formElement.attr("method", "post");
                     formElement.submit();
-                    
+     
                }
           });
           

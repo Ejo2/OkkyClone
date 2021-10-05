@@ -23,9 +23,9 @@ public class idCheckService implements Action{
         System.out.println("result 출력 출력"+result);
         if (result == 1){
             
-            request.setAttribute("result", 1); //이미존재.
-        }else{
-            request.setAttribute("result", 0);
+            request.setAttribute("result", 0); //이미존재.
+        }else{//0이미존재하는 회원
+            request.setAttribute("result", 1);
         }
         
         

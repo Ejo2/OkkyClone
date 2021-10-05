@@ -120,11 +120,16 @@ public class FrontMemoController extends HttpServlet{
 
             System.out.println("main.do");
         }else if(url_Command.equals("/myContentGo.do")){
+            
             action = new myContentService();
             forward = action.execute(request, response);
+            
         }else if (url_Command.equals("/idCheck.do")){
+            
+            System.out.println("idCheck.do");
             action = new idCheckService();
             forward = action.execute(request, response);
+            
         }
         
         
