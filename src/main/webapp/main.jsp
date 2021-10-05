@@ -501,6 +501,7 @@
         </div>
       </div>
 
+
       <!-- 우측 글 2 (칼럼) -->
       <div class="main-block">
         <h4 class="main-header"><i class="fa fa-quote-left"></i> 칼럼 <a href="/BoardList.go"
