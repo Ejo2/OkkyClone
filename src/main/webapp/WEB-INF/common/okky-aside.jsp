@@ -240,8 +240,8 @@
                     
                     $('#sub-title').html("메인화면");
                     $('#sub-sub-title').html("")
-     
-     
+                    
+                    
                }
                if (getAr7 != -1) {
                     let infoChange = '<a href="userInfoChange.do" style="text-decoration-line:none "><i class="fa fa-user"></i> </a>';
@@ -251,7 +251,7 @@
                     $("#setting").addClass("hide");
                     $("#nextli").append(infoChange);
                     $("#nextli").append(logout);
-     
+                    
                }
                if (getAr8 != -1) {
                     let infoChange = '<a href="userInfoChange.do" style="text-decoration-line:none "><i class="fa fa-user"></i> </a>';
@@ -261,11 +261,19 @@
                     $("#setting").addClass("hide");
                     $("#nextli").append(infoChange);
                     $("#nextli").append(logout);
-     
+                    
                }
                
                
           });
+          
+          // function CheckSession() {
+          //      if (sessionStorage.getItem("loginKey") == null) {
+          //           window.location = "로그인화면주소";
+          //      }
+          // }
+          //
+          // setInterval(CheckSession(), 100);
           
           
           
