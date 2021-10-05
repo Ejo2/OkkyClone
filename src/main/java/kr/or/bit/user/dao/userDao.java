@@ -520,8 +520,7 @@ public class userDao{
         }
         return -1; //오류시
     }
-    
-    //예솔 필요해서 함수 추가!(10월 4일 오후 10시)
+
     public ArrayList<userDto> selectAllUserDto() {
         ArrayList<userDto> userList = new ArrayList<userDto>();
         Connection conn = null;
@@ -552,8 +551,8 @@ public class userDao{
             System.out.println("다 닫힘??");
         }
         return userList;
-
     }
+
 }
 
 
