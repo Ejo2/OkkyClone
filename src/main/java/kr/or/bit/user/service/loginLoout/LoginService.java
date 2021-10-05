@@ -24,12 +24,15 @@ public class LoginService implements Action{
         userDto dto = dao.login(id, pw);
     
         if (dto != null){
-            
+    
             HttpSession session = request.getSession();
+            
             session.setAttribute("id", id);
             session.setAttribute("photo", dto.getPhoto());
+            
             session.setAttribute("nickname", dto.getNickname());
-            session.setAttribute("email", dto.getEmail());
+//            session.setAttribute("email", dto.getEmail());
+            
             System.out.println(id);
             
             forward.setRedirect(true);
