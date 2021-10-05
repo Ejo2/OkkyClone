@@ -33,7 +33,7 @@ public class LoginService implements Action{
             System.out.println(id);
             
             forward.setRedirect(true);
-            forward.setPath("/main.jsp");
+            forward.setPath("/main.do");
             
         }else{
             
