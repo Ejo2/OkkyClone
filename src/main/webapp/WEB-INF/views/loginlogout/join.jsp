@@ -52,11 +52,7 @@
                                     이후 회원정보에서 프로필 사진 업로드합니다.
                                     여기서는 photo에 null값으로 들어갈 예정입니다.--%>
                                     
-                                    <div class="checkbox">
-                                          <label>
-                                                <input type="checkbox" name="person.dmAllow" value="true" checked="checked">이메일 수신 동의
-                                          </label>
-                                    </div>
+                                   
                               
                               </fieldset>
                               

@@ -31,6 +31,7 @@ public class FrontQnAController extends HttpServlet {
 
         if (url_Command.equals("/QnAList.qo")) {
             action = new QnAListService();
+            System.out.println("이게 돌아감?");
             forward = action.execute(request, response);
         } else if (url_Command.equals("/QnAWrite.qo")) {
             action = new QnAWriteService();
