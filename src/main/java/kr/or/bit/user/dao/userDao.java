@@ -520,8 +520,7 @@ public class userDao{
         }
         return -1; //오류시
     }
-
-
+    
     //예솔 필요해서 함수 추가!(10월 4일 오후 10시)
     public ArrayList<userDto> selectAllUserDto() {
         ArrayList<userDto> userList = new ArrayList<userDto>();
@@ -533,7 +532,7 @@ public class userDao{
             String sql = "select * from member";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-
+            
             while (rs.next()) {
                 userDto ud = new userDto();
                 ud.setId(rs.getString("id"));
@@ -544,7 +543,7 @@ public class userDao{
         }catch (Exception e){
             System.out.println("에러뜸???");
             System.out.println(e.getMessage());
-
+            
         }finally{
             System.out.println("닫힘???");
             ConnectionHelper.close(rs);
@@ -552,19 +551,9 @@ public class userDao{
             ConnectionHelper.close(pstmt);
             System.out.println("다 닫힘??");
         }
-            return userList;
+        return userList;
     }
 }
-
-
-
-
-
-
-
-
-    
-
 
 
 
