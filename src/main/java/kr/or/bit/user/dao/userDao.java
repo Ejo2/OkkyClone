@@ -532,7 +532,7 @@ public class userDao{
             String sql = "select * from member";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            
+
             while (rs.next()) {
                 userDto ud = new userDto();
                 ud.setId(rs.getString("id"));
@@ -543,7 +543,7 @@ public class userDao{
         }catch (Exception e){
             System.out.println("에러뜸???");
             System.out.println(e.getMessage());
-            
+
         }finally{
             System.out.println("닫힘???");
             ConnectionHelper.close(rs);
