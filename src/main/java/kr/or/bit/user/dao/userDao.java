@@ -552,6 +552,7 @@ public class userDao{
             System.out.println("다 닫힘??");
         }
         return userList;
+
     }
 }
 
