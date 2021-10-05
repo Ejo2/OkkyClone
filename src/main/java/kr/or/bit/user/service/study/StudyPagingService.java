@@ -29,11 +29,12 @@ public class StudyPagingService implements Action{
         userDao ud = new userDao();
         userlist = ud.selectAllUserDto();
         request.setAttribute("userlist",userlist);//어트리뷰트 2 : user아이디와 글쓴이 매핑-> 사진 찾아오려고
-
-        StudyDao dao3 = new StudyDao();
-        ArrayList<Comments_count> commentcount = new ArrayList<Comments_count>();
-        commentcount =dao3.comment_and_count();
-        request.setAttribute("commentcount",commentcount);//어트리뷰트 : 게시글번호에 딸린 댓글의 수
+        
+        //안되니까 건드리지 마세요
+        //StudyDao dao3 = new StudyDao();
+        //ArrayList<Comments_count> commentcount = new ArrayList<Comments_count>();
+       // commentcount =dao3.comment_and_count();
+        //request.setAttribute("commentcount",commentcount);//어트리뷰트 : 게시글번호에 딸린 댓글의 수
 
 
 

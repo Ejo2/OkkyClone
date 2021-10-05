@@ -694,9 +694,9 @@ public class StudyDao {
 
         return result;
     }
-    //글번호별 게시글 갯수 세기
+    //글번호별 게시글 갯수 세기(작동안함. 건드리지 말것)
     public ArrayList<Comments_count> comment_and_count(){
-        ArrayList<Comments_count> comment = new ArrayList<Comments_count>();
+     /*   ArrayList<Comments_count> comment = new ArrayList<Comments_count>();
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement pstmt = null;
@@ -726,6 +726,9 @@ public class StudyDao {
             System.out.println("다 닫힘??");
         }
         return comment;
+
+      */
+        return null;
     }
 
 

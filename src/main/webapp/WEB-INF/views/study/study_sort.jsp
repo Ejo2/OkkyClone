@@ -216,8 +216,6 @@
 
     function sortSubmit(){
         let searchword =  $("#search-field").val();
-        alert(searchword);
-        alert("StudyPagingWithSearch.so?search="+searchword);
         location.href = "StudyPagingWithSearch.so?page=1&search="+searchword;
 
     }
