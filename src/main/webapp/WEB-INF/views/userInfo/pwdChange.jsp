@@ -22,10 +22,11 @@
                                           <input style="width: 100%;" type="password" name="password" class="form-control form-control-inline text-center" placeholder="현재 비밀번호">
                                     </div>
                                     <div class="form-group">
-                                          <input style="width: 100%;" type="password" value="" name="newPassword" class="form-control form-control-inline text-center" placeholder="새 비밀번호">
+                                          <input style="width: 100%;"  id="pw" type="password" value="" name="newPassword" class="form-control form-control-inline text-center" placeholder="새 비밀번호 : 대 소문자 특수문자 포함 8 ~16">
                                     </div>
                                     <div class="form-group">
-                                          <input style="width: 100%;" type="password" value="" name="passwordConfirm" class="form-control form-control-inline text-center" placeholder="새 비밀번호 확인">
+                                          <input style="width: 100%;" id="pw2" type="password" value="" name="passwordConfirm" class="form-control form-control-inline text-center" placeholder="새 비밀번호 확인">
+                                          <font name="checkpw"></font>
                                     </div>
                                     <button id="changeSubmit" type="submit" class="btn btn-primary">비밀번호 변경</button>
                                     <a href="javascript:history.back()" class="btn btn-default">취소</a>
@@ -84,8 +85,32 @@
                     }
                }
           })
+     
+          //비밀번호 체크
+          let passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);
+          $('#pw').keyup(function() {
           
-          
+               if (!passwdCheck.test($('#pw').val())) {
+                    $("#pw").focus();
+                    $('#pw').css("outline", "2px solid #d50000");
+                    // $('#idCheck').css("background-color", "blue");
+               } else if (passwdCheck.test($('#pw').val())) {
+                    $('#pw').css("outline", "2px solid #0000ff");
+               }
+          });
+     
+          //비밀번호 확인 체크
+          $('#pw2').keyup(function() {
+               if ($('#pw2').val() != $('#pw').val()) {
+                    console.log($('#pw2') + " / " + $('#pw'));
+                    $('font[name=checkpw]').text('');
+                    $('font[name=checkpw]').html("암호틀림");
+               } else {
+                    $('font[name=checkpw]').text('');
+                    $('font[name=checkpw]').html("암호맞음");
+                    $('font[name=checkpw]').css("color", "blue");
+               }
+          });
           
           
      });

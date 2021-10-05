@@ -39,7 +39,7 @@
                                     <label for="nickname">닉네임</label><input maxlength="15" style="width: 100%" type="text" name="nickname" class="form-control input-sm" required="" placeholder="닉네임" value="" id="nickname">
                                     <br>
       
-                                    <label for="pw">패스워드</label><input maxlength="16" style="width: 100%" type="password" name="pw" class="form-control input-sm" required="" placeholder="비밀번호" value="" id="pw">
+                                    <label for="pw">패스워드</label><input maxlength="16" style="width: 100%" type="password" name="pw" class="form-control input-sm" required="" placeholder="비밀번호 : 대 소문자 특수문자 포함 8 ~16" value="" id="pw">
                                     <br>
       
                                     <label for="pw2">패스워드 확인</label><input maxlength="16" style="width: 100%" type="password" name="pw2" class="form-control input-sm" required="" placeholder="비밀번호 확인" value="" id="pw2">
@@ -90,7 +90,6 @@
           
           $('#idCheckBtn').on("click", function() {
                let myId = $('#id').val();
-               console.log("myID 아이이이잉이이" + myId)
                $.ajax(
                     {
                          url: "idCheck.do",
