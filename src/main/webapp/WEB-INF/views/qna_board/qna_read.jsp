@@ -134,7 +134,7 @@
                                    data-eval="true" data-id="2524877">
                                     <i id="note-evaluate-assent-2524877"
                                        class="fa fa-angle-up note-evaluate-assent-assent good" data-placement="left"
-                                       data-toggle="tooltip" title="추천"></i>
+                                       data-toggle="tooltip" title="추천" ></i>
                                 </a>
 
                                 <div id="content-vote-count-2524877" class="content-eval-count board_recommend">${board.good}</div>
