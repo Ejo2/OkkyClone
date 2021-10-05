@@ -75,14 +75,14 @@
                                class="form-control" id="title">
                     </div>
                 </div>
-
+                <!--
                 <div class="form-group has-feedback">
                     <div>
                         <input type="text" name="tagString" value="" placeholder="Tags," class="form-control"
                                id="tagString">
                     </div>
                 </div>
-
+                -->
                 <div class="form-group has-feedback">
                     <textarea name="text" id="summernote" rows="20" class="form-control input-block-level">${board.cont}</textarea>
                 </div>

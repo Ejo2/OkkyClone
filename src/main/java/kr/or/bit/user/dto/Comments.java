@@ -9,6 +9,7 @@ public class Comments {
     private String rcont;
     private Date rdate;
     private int removedOk;
+    private String photo;
 
     public Comments() {
 
@@ -69,6 +70,14 @@ public class Comments {
 
     public void setRemovedOk(int removedOk) {
         this.removedOk = removedOk;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     @Override

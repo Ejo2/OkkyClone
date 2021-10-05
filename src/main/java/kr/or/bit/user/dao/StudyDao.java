@@ -1,7 +1,9 @@
 package kr.or.bit.user.dao;
 
 import kr.or.bit.user.dto.Comments;
+import kr.or.bit.user.dto.Comments_count;
 import kr.or.bit.user.dto.Study_Board;
+import kr.or.bit.user.dto.userDto;
 import kr.or.bit.utils.ConnectionHelper;
 
 import java.sql.Connection;
@@ -450,7 +452,8 @@ public class StudyDao {
         try {
             conn = ConnectionHelper.getConnection("oracle");
             String sql = "select * from comments where removedok=0 and no=? order by rno";
-            pstmt = conn.prepareStatement(sql);
+            String sql2 = "select rno,no,c.id,rcont,rdate,removedok,photo from comments c join member m on c.id = m.id where removedok=0 and no=? order by rno";
+            pstmt = conn.prepareStatement(sql2);
             pstmt.setInt(1, no);
             rs = pstmt.executeQuery();
 
@@ -461,7 +464,7 @@ public class StudyDao {
                 cm.setId(rs.getString("id"));
                 cm.setRcont(rs.getString("rcont"));
                 cm.setRdate(rs.getTimestamp("rdate"));
-
+                cm.setPhoto(rs.getString("photo"));
                 commentlist.add(cm);
             }
 
@@ -620,6 +623,122 @@ public class StudyDao {
 
         return resultrow;
     }
+
+    ///서치한 후 리스트 단 페이징 처리////////////////////////////////////////////////////
+    public ArrayList<Study_Board> getBoardListByPageNumWithSearch(int pageNum,String search) {
+        ArrayList<Study_Board> boardlist = new ArrayList<Study_Board>();
+        PreparedStatement pstmt = null;
+        String sql = "select * from(select rownum rn,no,id, title,hit,writedate,good,scrapnum,st_categorynum,sido,exp,closeok,removedok from ( select b.no ,id, title,hit,writedate,good,scrapnum,st_categorynum,sido,exp,closeok,removedok from board b join b_study s on b.no = s.no where removedok =0 and cont like ? order by no desc) where rownum <= ?) where rn >= ?";
+        int startPost = 0; //rn을 의미함
+        if (pageNum == 1) {
+            startPost = 1; //1페이지의 첫번째 rn
+        } else {
+            startPost = 5 * (pageNum - 1) + 1; //해당 페이지의 첫번째 rn
+        }
+        ;
+
+        try {
+            Connection conn = ConnectionHelper.getConnection("oracle");
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,search);
+            pstmt.setInt(2, startPost + 4);
+            pstmt.setInt(3, startPost);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Study_Board sb = new Study_Board();
+                sb.setNo(rs.getInt("no"));
+                sb.setId(rs.getString("id"));
+                sb.setTitle(rs.getString("title"));
+                sb.setHit(rs.getInt("hit"));
+                sb.setWritedate(rs.getTimestamp("writedate"));
+                sb.setGood(rs.getInt("good"));
+                sb.setScrapNum(rs.getInt("scrapNum"));
+                sb.setSt_categorynum(rs.getInt("st_categorynum"));
+                sb.setSido(rs.getString("sido"));
+                sb.setExp(rs.getString("exp"));
+                sb.setCloseok(rs.getInt("closeok"));
+                boardlist.add(sb);
+            }
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(pstmt);
+
+            ConnectionHelper.close(conn);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return boardlist;
+    }
+    ///search 한 후 table의 게시글 갯수 세기////////////////////////////////////////////////////
+    public int countPostWithSearch(String search) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "select count(*) as counting from board where removedok=0 and bno=300 and cont like ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,search);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                result = rs.getInt("counting");
+                System.out.println("table row갯수 : " + result);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+    //글번호별 게시글 갯수 세기(작동안함. 건드리지 말것)
+    public ArrayList<Comments_count> comment_and_count(){
+     /*   ArrayList<Comments_count> comment = new ArrayList<Comments_count>();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "select no,count(rno) counting from (select * from comments where removedok=0) group by no";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                Comments_count cc = new Comments_count();
+                cc.setNo(rs.getInt("no"));
+                cc.setCounting(rs.getInt("counting"));
+                comment.add(cc);
+            }
+
+        }catch (Exception e){
+            System.out.println("에러뜸???");
+            System.out.println(e.getMessage());
+
+        }finally{
+            System.out.println("닫힘???");
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+            System.out.println("다 닫힘??");
+        }
+        return comment;
+
+      */
+        return null;
+    }
+
+
+
+
+
+
+
+
+
 
 
 

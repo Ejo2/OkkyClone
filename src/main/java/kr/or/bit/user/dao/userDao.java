@@ -74,8 +74,8 @@ public class userDao{
         return dto;
     }
     
-    public List<Board> getUserDetailBoardList(Object sessionId, int cpage, int pagesize) {
-        System.out.println("cpage" + cpage+"pagesize"+pagesize);
+    public List<Board> getUserDetailBoardList(Object sessionId, int cpage, int pagesize){
+        System.out.println("cpage" + cpage + "pagesize" + pagesize);
         
         Connection conn = null;
         ResultSet rs = null;
@@ -101,7 +101,6 @@ public class userDao{
             System.out.println("확인");
             rs = pstmt.executeQuery();
             
-        
             
             while (rs.next()){
                 System.out.println("rsnext 타는지 확인");
@@ -203,7 +202,7 @@ public class userDao{
     public List<boardDto> getTotalBoardList(Object sessionId) throws SQLException{
         Connection conn = ConnectionHelper.getConnection("oracle");
         PreparedStatement pstmt = null;
-        String sql = "SELECT NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM BOARD WHERE ID=?";
+        String sql = "SELECT NO, BNO, ID, TITLE, CONT, HIT, WRITEDATE, GOOD, REMOVEDOK, SCRAPNUM FROM BOARD WHERE ID=? AND REMOVEDOK!=1";
         pstmt = conn.prepareStatement(sql);
         
         
@@ -389,10 +388,172 @@ public class userDao{
         return result;
     }
     
+    public userDto getAllUserIdEmail(String id){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        userDto dto = new userDto();
+        int result = 0;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "SELECT EMAIL,ID FROM MEMBER WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            
+            if (rs.next()){
+                dto.setEmail(rs.getString(1));
+                dto.setId(rs.getString(2));
+            }
+            
+            
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
+        return dto;
+    }
+    
+    public int joinIdCheck(String id){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int result = -1;
+        try{
+            //1. DB연결
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "";
+            pstmt = conn.prepareStatement(sql);
+            
+            //2. sql 구문 & pstmt생성
+            
+            sql = "SELECT ID FROM MEMBER WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            
+            //3. 실행 -> select -> rs저장
+            rs = pstmt.executeQuery();
+            
+            //4. 데이터처리
+            
+            if (rs.next()){
+                result = 0;
+                
+            }else{
+                result = 1;
+                
+            }
+            
+            System.out.println("아이디 중복체크결과 : " + result);
+        }catch (Exception e){
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
+        return result;
+    }
+    
+    public int userIdCheck(String userName){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String SQL = "SELECT * FROM MEMBER WHERE id = ?";
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userName);
+            rs = pstmt.executeQuery();
+            
+            if (rs.next()){
+                return 0; //이미 존재하는 회원
+            }else{
+                return 1; //가입 가능
+            
+            
+            }
+        
+        }catch (Exception e){
+            e.printStackTrace();
+            
+        }finally{
+            
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
+        
+        return -1; //DB오류
+        
+    }
+    //아이디 체크
+    public int findByUserName(String name){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+    
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "SELECT count(*) from MEMBER WHERE ID=?";
+            pstmt = conn.prepareStatement(sql);
+    
+            pstmt.setString(1, name);
+    
+            rs = pstmt.executeQuery();
+    
+    
+            if (rs.next()){
+                return rs.getInt(1);
+            }
+            
+        }catch (Exception e){
+            e.getMessage();
+        }finally{
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+        }
+        return -1; //오류시
+    }
+    
+    //예솔 필요해서 함수 추가!(10월 4일 오후 10시)
+    public ArrayList<userDto> selectAllUserDto() {
+        ArrayList<userDto> userList = new ArrayList<userDto>();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        try{
+            conn = ConnectionHelper.getConnection("oracle");
+            String sql = "select * from member";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                userDto ud = new userDto();
+                ud.setId(rs.getString("id"));
+                ud.setNickname(rs.getString("nickname"));
+                ud.setPhoto(rs.getString("photo"));
+                userList.add(ud);
+            }
+        }catch (Exception e){
+            System.out.println("에러뜸???");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            System.out.println("닫힘???");
+            ConnectionHelper.close(rs);
+            ConnectionHelper.close(conn);
+            ConnectionHelper.close(pstmt);
+            System.out.println("다 닫힘??");
+        }
+        return userList;
+    }
 }
-
-
-
 
 
 

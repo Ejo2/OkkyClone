@@ -28,6 +28,8 @@
   <script src="summernote/js/summernote-ko-KR.js"></script><!--예솔 추가함 : summernote-->
   <link rel="stylesheet" href="summernote/css/summernote-lite.css"><!--예솔 추가함 : summernote-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!--예솔 추가함 : jquery-->
+  <%--박상준 스윗얼럿 추가했음 ㅇㅇ--%>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <%--부트스트랩 3 추가함 --%>
 <%--  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>--%>
  </head>
