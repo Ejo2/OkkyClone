@@ -23,7 +23,7 @@ public class QnAPager {
     }
 
     public String toString(){
-        StringBuffer linkString = new StringBuffer();
+        StringBuffer linkString = new StringBuffer(); //문자열을 이어 붙일수 있는 객체
 
         //1. 처음, 이전 항목 만들기
         if (currentPage == 1) {
@@ -41,11 +41,11 @@ public class QnAPager {
 
 
         //2. 페이지 번호 Link 만들기
-        int pagerBlock = (currentPage - 1) / pagerSize;
-        int start = (pagerBlock * pagerSize) + 1;
-        int end = start + pagerSize;
+        int pagerBlock = (currentPage - 1) / pagerSize;  //(1-1/3) = 0  (4-1)/3 = 0
+        int start = (pagerBlock * pagerSize) + 1;  //(0*3) = 0 +1 = 1
+        int end = start + pagerSize;  //1+3 =4
         for (int i = start; i < end; i++) {
-            if (i > pageCount) break;
+            if (i > pageCount) break; //i가 총 페이지수 보다 크면 멈추기(i가 3보다 크다면 멈추기)
             linkString.append("&nbsp;");
             if(i == currentPage) {
                 linkString.append(String.format("<li class='page-item active'><a class='page-link' href='%s?cp=%d'>%d</a></li>",linkUrl, i  , i));

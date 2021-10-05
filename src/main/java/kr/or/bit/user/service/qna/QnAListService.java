@@ -50,7 +50,7 @@ public class QnAListService implements Action {
             // 전체 목록 가져오기
             List<Board> qnalist = qnADao.qnaList(cpage, pagesize);
             System.out.println("list.size() = " + qnalist.size());
-            int pagersize=3;
+            int pagersize=3; // 한 페이지에 번호를 몇개까지 보일것인지
             QnAPager pager = new QnAPager(totalboardcount,cpage,pagesize,pagersize,"QnAList.qo");
 
             request.setAttribute("pagesize", pagesize);

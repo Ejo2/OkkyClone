@@ -134,7 +134,7 @@
                                    data-eval="true" data-id="2524877">
                                     <i id="note-evaluate-assent-2524877"
                                        class="fa fa-angle-up note-evaluate-assent-assent good" data-placement="left"
-                                       data-toggle="tooltip" title="추천"></i>
+                                       data-toggle="tooltip" title="추천" ></i>
                                 </a>
 
                                 <div id="content-vote-count-2524877" class="content-eval-count board_recommend">${board.good}</div>
@@ -517,7 +517,6 @@
                     html += '<div class="dropdown">';
                     html += '<a href="javascript://" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="" data-original-title="게시물 설정"></i></a>';
                     html += '<ul class="dropdown-menu" role="menu">';
-                    html += '<li><a href="javascript://" class="note-edit-btn" data-id="2529765"><i class="fa fa-edit fa-fw"></i> 수정 </a></li>';
                     html += '<li onclick="deleteReply('+reply.rno+')">'
                     html +=  '<a href="javascript://" class="note-delete-btn" data-id="2529765"><i class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>';
                     html += '</ul>';

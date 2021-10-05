@@ -286,7 +286,7 @@ public class QnADao{
         int totalcount = 0;
         try{
             conn = ds.getConnection(); //dbcp 연결객체 얻기
-            String sql = "SELECT COUNT(*) cnt FROM BOARD WHERE REMOVEDOK != 1"; //1(삭제)이 아닌것을 가져옴
+            String sql = "SELECT COUNT(*) cnt FROM BOARD WHERE REMOVEDOK != 1 and bno = 200"; //1(삭제)이 아닌것을 가져옴
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             if (rs.next()){

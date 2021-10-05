@@ -18,7 +18,7 @@ public class logoutService implements Action{
     
         ActionForward forward = new ActionForward();
     
-        forward.setRedirect(false);
+        forward.setRedirect(true);
         forward.setPath("/main.do");
         return forward;
     }
