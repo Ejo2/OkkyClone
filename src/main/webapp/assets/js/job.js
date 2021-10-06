@@ -407,6 +407,7 @@ function test(obj) {
         }
     }
 
+    
     if (check === undefined) {   // 동일한 value값을 가진 태그가 없으면 생성
         $('div[data-type="location"] .filter-active-tags').append(
             ' <span class="filter-pill" data-name="district" data-group-value="' + $(obj).data("group-value") + '" data-value=' + $(obj).data("value") + '>' + $(obj).text() +
