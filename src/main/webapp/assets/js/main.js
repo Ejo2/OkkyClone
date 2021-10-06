@@ -28,8 +28,8 @@ $.ajax({
 																		<div class="avatar clearfix avatar-x-small ">
 																				<div class="avatar-info">
 																						<div class="activity"></div>
-																						<div class="date-created"><span class="timeago"
-																						                                title="` + deadline + `">마감  ` + deadline + `</span>
+																						<div class="date-created">
+																						<span class="timeago"   title="` + deadline + `">마감  ` + deadline + `</span>
 																						</div>
 																				</div>
 																		</div>
