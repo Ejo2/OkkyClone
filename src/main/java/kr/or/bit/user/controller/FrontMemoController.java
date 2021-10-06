@@ -25,25 +25,25 @@ import java.io.IOException;
 @WebServlet("*.do")
 public class FrontMemoController extends HttpServlet{
     private static final long serialVersionUID = 1L;
-    
-    
+
+
     public FrontMemoController(){
         super();
     }
-    
+
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        
+
         String requestURI = request.getRequestURI();
         String contextPath = request.getContextPath();
         String url_Command = requestURI.substring(contextPath.length());
-        
+
         Action action = null;
         ActionForward forward = null;
-        
+
         if (url_Command.equals("/loginGo.do")){
             action = new LoginGoService();
             forward = action.execute(request, response);
-            
+
         }else if (url_Command.equals("/login.do")){
             action = new LoginService();
             forward = action.execute(request, response);
@@ -52,17 +52,17 @@ public class FrontMemoController extends HttpServlet{
             action = new JoinGoService();
             forward = action.execute(request, response);
             System.out.println("joinGo.do");
-    
+
         }else if (url_Command.equals("/join.do")){
             action = new JoinService();
             forward = action.execute(request, response);
             System.out.println("join.do");
-            
+
         }else if (url_Command.equals("/logout.do")){
             action = new logoutService();
             forward = action.execute(request, response);
             System.out.println("logout.do");
-            
+
         }else if (url_Command.equals("/memberDetailGo.do")){
             //UI 페이지 이동
             action = new memberDetailGoService();
@@ -73,22 +73,22 @@ public class FrontMemoController extends HttpServlet{
             forward = action.execute(request, response);
             System.out.println("job.do");
         }else if (url_Command.equals("/scrapListGo.do")){
-            
+
             action = new scrapListGoService();
             forward = action.execute(request, response);
-    
+
         }else if (url_Command.equals("/userInfoChange.do")){
-    
+
             action = new userInfoChange();
             forward = action.execute(request, response);
             System.out.println("userInfoChange.do");
-    
+
         }else if (url_Command.equals("/updateUserNickname.do")){
-            
+
             action = new updateUserNicknameService();
             forward = action.execute(request, response);
             System.out.println("updateUserNickname.do");
-    
+
         }else if (url_Command.equals("/jobData.do")){ //jobdata를 json으로 생성
             action = new jobDataService();
             forward = action.execute(request, response);
@@ -96,10 +96,10 @@ public class FrontMemoController extends HttpServlet{
         }else if (url_Command.equals("/validation.do")){
             action = new validationService();
             forward = action.execute(request, response);
-    
+
         }else if (url_Command.equals("/pwdChangeGo.do")){
             action = new pwdChangeGoService();
-            
+
             forward = action.execute(request, response);
         }else if (url_Command.equals("/updatePwd.do")){
             action = new updatePwdService();
@@ -107,12 +107,12 @@ public class FrontMemoController extends HttpServlet{
         }else if (url_Command.equals("/byebyeGo.do")){
             action = new deleteUserService();
             forward = action.execute(request, response);
-    
+
             System.out.println("byebyeGo.do");
         }else if (url_Command.equals("/profileChange.do")){
             action = new profileChangeService();
             forward = action.execute(request, response);
-    
+
             System.out.println("profileChange.do");
         }else if (url_Command.equals("/main.do")){ //main화면
             action = new MainGoService();
@@ -120,15 +120,20 @@ public class FrontMemoController extends HttpServlet{
 
             System.out.println("main.do");
         }else if(url_Command.equals("/myContentGo.do")){
+
             action = new myContentService();
             forward = action.execute(request, response);
+
         }else if (url_Command.equals("/idCheck.do")){
+
+            System.out.println("idCheck.do");
             action = new idCheckService();
             forward = action.execute(request, response);
+
         }
-        
-        
-        
+
+
+
         if (forward != null){
             if (forward.isRedirect()){ //true
                 response.sendRedirect(forward.getPath());
@@ -142,15 +147,15 @@ public class FrontMemoController extends HttpServlet{
             }
         }
     }
-    
-    
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         doProcess(request, response);
     }
-    
-    
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         doProcess(request, response);
     }
-    
+
 }

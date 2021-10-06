@@ -315,7 +315,7 @@ $(function () {
 
             // <li><a href="javascript:replyUpdate(1, "toootoo") class='edit'> <i class="fa fa-edit fa-fw"></i> 수정 </a></li>`
             // `<li><a href="javascript:replyUpdate(` + obj.rno + `,"` + obj.rcont + `") class='edit'><i class="fa fa-edit fa-fw"></i> 수정 </a></li>`
-            // $(this).toggleClass("active");
+            $(this).toggleClass("active");
 
         }
         ;
@@ -393,8 +393,8 @@ function test(obj) {
 
     // 신규태그 생성 및 중복태그의 제거
     if ($(obj).data("value") === $(obj).data("group-value")) {   // <~전체> 옵션을 선택했다면 초기화
-                                                                 // $('div[data-type="district"]').children().prop('class', 'filter-select');  //첫번째자식 = ~전체 // 를 비활성화
-                                                                 // $('div[data-type="location"] .filter-active-tags').children().empty();
+        // $('div[data-type="district"]').children().prop('class', 'filter-select');  //첫번째자식 = ~전체 // 를 비활성화
+        // $('div[data-type="location"] .filter-active-tags').children().empty();
         console.log("여기 탔니?");
         $(obj).parent().children().prop('class', 'filter-select'); //클릭한 div의 동일레벨 div 클래스가 비활성화
         $('div[data-type="location"] .filter-active-tags').children().remove(); //태그창 싹 비우고
@@ -430,7 +430,6 @@ function search() {
 
     let job_mid_cd_select = ''; //선택한 1차직종 옵션
     let job_cd_select = ''; //선택한 2차직종 옵션 //2차-전체 선택시에는 1차직종값만 넘기고 그외 선택시에는 2차직종값만 넘김
-
 
     let jobTagNode = $('div[data-type="position"] .filter-active-tags').children(); //직종의 태그옵션임
     let locTagNode = $('div[data-type="location"] .filter-active-tags').children(); //지역의 태그옵션임
@@ -679,10 +678,8 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
         url: 'http://localhost:8090/jobData.do?',  //json데이터에 검색할 param담아서 요청
         type: 'get',
         dataType: 'json',
-        // data: "job_mid_cd="+job_mid_cd + '&job_cd='+job_cd + "&edu_lv="+edu_lv + "&loc_cd="+loc_cd ,
         data: allData,
         success: function (data) {
-            // console.log(data.jobs.job[0].position["experience-level"].code);
             //data길이만큼 돌면서 list를 출력하는 함수
             $.each(data, function (index, obj) {
                 if (exp_lv_select != "" || sal_cd_select != "") { //경력이나 급여 조건을 선택했을 경우
@@ -690,8 +687,6 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                     if (exp_lv_select != "" && sal_cd_select == "") { //경력조건만 선택했을 경우
                         for (let j = 1; j < 2; j++) {
                             for (let i = 1; i < obj.job.length; i++) {
-                                console.log(String(exp_lv_select));
-                                // console.log(String(data.jobs.job[j].position["experience-level"].code));
 
                                 if (data.jobs.job[i]["url"] != null && data.jobs.job[i]["url"] != undefined
                                     && (exp_lv_select === String(data.jobs.job[i].position["experience-level"].code))) {
@@ -722,7 +717,7 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                             <div class="list-position-info-wrapper">
                                                 <div class="list-position-info-box">
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-krw" aria-hidden="true"></i>
+                                                        <i class="far fa-money-bill-alt" aria-hidden="true"></i>
                                                         <target class="salary-name">` + salary + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
@@ -736,25 +731,18 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                                         <target class="experience-level-name">` + experience_level + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <i class="far fa-pencil" aria-hidden="true"></i>
                                                         <target class="job-type-name">` + job_type + `</target>
                                                     </div>
                                                 </div>
                                                 <div class="list-position-info-box">
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                        <i class="far fa-map-marker-alt" aria-hidden="true"></i>
                                                         <target class="location-name">` + positionlocation + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                        <i class="far fa-calendar" aria-hidden="true"></i>
                                                         <target class="expiration-timestamp">마감일      ` + deadline + `</target>
-                                                    </div>
-                                                </div>
-                                                <div class="list-position-info-box">
-                                                   
-                                                    <div class="list-position-info-item">
-                                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                        <target class="expiration-timestamp">마감일      \` + deadline + \`</target>
                                                     </div>
                                                 </div>
                                             </div>
@@ -767,16 +755,11 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                         <a class="company-nickname nickname" href="` + href + `">` + detailname + `</a>
                                     </div>
                                 </li>`;
-
-                                    console.log("경력조건만 선택했을 경우3");
-
                                     $("div#divParent > ul.list-group").append(htmlfile);
-
                                 } else {
                                     console.log("slgigkklllgdddsfsfff")
                                 }
-                            }
-                            ;
+                            };
                         }
 
 
@@ -826,7 +809,7 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                             <div class="list-position-info-wrapper">
                                                 <div class="list-position-info-box">
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-krw" aria-hidden="true"></i>
+                                                        <i class="far fa-money-bill-alt" aria-hidden="true"></i>
                                                         <target class="salary-name">` + salary + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
@@ -840,17 +823,17 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                                         <target class="experience-level-name">` + experience_level + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <i class="far fa-pencil" aria-hidden="true"></i>
                                                         <target class="job-type-name">` + job_type + `</target>
                                                     </div>
                                                 </div>
                                                 <div class="list-position-info-box">
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                        <i class="far fa-map-marker-alt" aria-hidden="true"></i>
                                                         <target class="location-name">` + positionlocation + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                                        <i class="far fa-calendar" aria-hidden="true"></i>
                                                         <target class="expiration-timestamp">마감일      ` + deadline + `</target>
                                                     </div>
                                                 </div>
@@ -864,15 +847,10 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                         <a class="company-nickname nickname" href="` + href + `">` + detailname + `</a>
                                     </div>
                                 </li>`;
-
-                                    console.log("급여조건만 선택했을 경우3");
-
                                     $("div#divParent > ul.list-group").append(htmlfile);
-
                                 } else {
                                     console.log("급여조건만")
                                 }
-                                console.log("급여조건만 선택했을 경우2");
                             }
                             ;
                         }
@@ -912,7 +890,7 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                             <div class="list-position-info-wrapper">
                                                 <div class="list-position-info-box">
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-krw" aria-hidden="true"></i>
+                                                        <i class="far fa-money-bill-alt" aria-hidden="true"></i>
                                                         <target class="salary-name">` + salary + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
@@ -926,17 +904,17 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                                         <target class="experience-level-name">` + experience_level + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <i class="far fa-pencil" aria-hidden="true"></i>
                                                         <target class="job-type-name">` + job_type + `</target>
                                                     </div>
                                                 </div>
                                                 <div class="list-position-info-box">
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                        <i class="far fa-map-marker-alt" aria-hidden="true"></i>
                                                         <target class="location-name">` + positionlocation + `</target>
                                                     </div>
                                                     <div class="list-position-info-item">
-                                                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                                        <i class="far fa-calendar" aria-hidden="true"></i>
                                                         <target class="expiration-timestamp">마감일      ` + deadline + `</target>
                                                     </div>
                                                 </div>
@@ -950,20 +928,12 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                                         <a class="company-nickname nickname" href="` + href + `">` + detailname + `</a>
                                     </div>
                                 </li>`;
-
-                                    console.log("경력, 급여 조건 둘다 선택했을 경우     3");
-
                                     $("div#divParent > ul.list-group").append(htmlfile);
-
                                 } else {
                                     console.log("경력, 급여 조건 둘다 선택했을 경우     2")
                                 }
-                                console.log("경력, 급여 조건 둘다 선택했을 경우     1");
-                            }
-                            ;
-                        }
-                        ;
-                        console.log(" 경력, 급여 조건 둘다 선택했을 경우");
+                            };
+                        };
                     }
 
                 } else if (exp_lv_select == '' && sal_cd_select == '') { //경력, 급여 조건 둘다 선택 안했을 경우
@@ -1052,6 +1022,7 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                 }
 
             });
+
             //총 road된 게시글 수
             totalData = $('.list-group').children().length;
             if (totalData == '') {
@@ -1089,14 +1060,12 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
 
                 if (prev > 0) {
                     pageHtml += "<li lass='prev disabled'><a href='#' id='prev'> « </a></li>";
-                    // pageHtml += "<li><a href='#' id='prev'> 이전 </a></li>";
                 }
 
                 //페이징 번호 표시
                 for (var i = first; i <= last; i++) {
                     if (currentPage == i) {
                         pageHtml += "<li class='active'><a href='#' id='" + i + "'>" + i + "</a></li>";
-                        // pageHtml +="<li class='on'><a href='#' id='" + i + "'>" + i + "</a></li>";
                     } else {
                         pageHtml += "<li><a href='#' id='" + i + "'>" + i + "</a></li>";
                     }
@@ -1104,16 +1073,10 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
 
                 if (last < totalPage) {
                     pageHtml += "<li class=''><a href='#' id='next'> » </a></li>";
-                    // pageHtml += "<li><a href='#' id='next'> 다음 </a></li>";
                 }
                 console.log($(".pagination.pagination-sm"));
                 $(".pagination.pagination-sm").html(pageHtml);
                 let displayCount = "";
-                // 페이지를 나타냄
-                // displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
-                // $("#displayCount").text(displayCount);
-
-
                 //페이징 번호 클릭 이벤트
                 $(".pagination.pagination-sm li a").click(function () {
                     let $id = $(this).attr("id");
@@ -1122,7 +1085,6 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                     console.log($id);
                     if ($id == "next") selectedPage = next;
                     if ($id == "prev") selectedPage = prev;
-
                     //전역변수에 선택한 페이지 번호를 담는다...
                     globalCurrentPage = selectedPage;
                     //페이징 표시 재호출
@@ -1134,7 +1096,7 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
 
             //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
             function displayData(currentPage, dataPerPage) {
-//모두-> 숫자로 값 변동이 일어난다면 내용 숨기고 몇번째~몇번째 display만 변경한느 형식,
+//기본 셋팅에서-> 숫자로 값 변동이 일어난다면 내용 숨기고 몇번째~몇번째 display만 변경하는 형식,
                 let chartHtml = "";
                 $('.list-group-item-flex.contract').attr('style', ('display:none'));
 //Number로 변환하지 않으면 아래에서 +를 할 경우 스트링 결합이 되어버림..
@@ -1146,22 +1108,9 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                     i < (currentPage - 1) * dataPerPage + dataPerPage;
                     i++
                 ) {
-                    //$('.list-group-item-flex.contract').attr('style', ('display:none'));
-
-                    // console.log($('.list-group-item-flex.contract:eq(' + i + ')'));
-                    // console.log($('.list-group-item-flex.contract:eq(' + i + ')').attr('style'));
-                    // chartHtml +=
                     $('.list-group-item-flex.contract:eq(' + i + ')').attr('style', ('display:""'));
-                    // console.log($('.list-group-item-flex.contract:eq(' + i + ')').attr('style'));
-                    //     "<tr><td>" +
-                    //     dataPerPage[i] +
-                    //     "</td><td>" +
-                    //     dataPerPage[i] +
-                    //     "</td><td>" +
-                    //     dataPerPage[i] +
-                    //     "</td></tr>";
-                }
 
+                }
             }
 
             $("#dataPerPage").change(function () {
@@ -1170,7 +1119,6 @@ function requestJobSearch(edu_lv, loc_cd, job_mid_cd, job_cd, exp_lv_select, sal
                 paging(totalData, dataPerPage, pageCount, globalCurrentPage);
                 displayData(globalCurrentPage, dataPerPage);
             });
-
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);

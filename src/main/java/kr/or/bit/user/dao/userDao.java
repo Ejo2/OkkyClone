@@ -317,7 +317,7 @@ public class userDao{
         
         return result;
     }
-    
+
     public int deleteUser(String myId){
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -325,38 +325,47 @@ public class userDao{
         int result = 0;
         try{
             conn = ConnectionHelper.getConnection("oracle");
-            
-            
+
+
             String sql2 = "DELETE  FROM SCRAP WHERE ID=?";
             pstmt = conn.prepareStatement(sql2);
             pstmt.setString(1, myId);
-            
+
             result += pstmt.executeUpdate();
             System.out.println("반영된 삭제 행의 갯수" + result);
-            
+
+            String sql4 = "delete FROM B_STUDY bs WHERE bs.NO in (SELECT no FROM BOARD WHERE ID=?)";
+            pstmt = conn.prepareStatement(sql4);
+            pstmt.setString(1, myId);
+            result += pstmt.executeUpdate();
+
+            System.out.println("반영된 삭제 행의 갯수" + result);
+
             String sql = "DELETE FROM BOARD WHERE ID=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, myId);
-            
+
             result += pstmt.executeUpdate();
             System.out.println("반영된 삭제 행의 갯수" + result);
-            
+
             String sql3 = "DELETE FROM MEMBER WHERE ID=?";
             pstmt = conn.prepareStatement(sql3);
             pstmt.setString(1, myId);
-            
+
             result += pstmt.executeUpdate();
             System.out.println("반영된 삭제 행의 갯수" + result);
-            
+
+            conn.commit();
+
         }catch (Exception e){
-            
+
             System.out.println(e.getMessage());
         }finally{
             ConnectionHelper.close(rs);
             ConnectionHelper.close(conn);
             ConnectionHelper.close(pstmt);
         }
-        
+
         return result;
     }
     
