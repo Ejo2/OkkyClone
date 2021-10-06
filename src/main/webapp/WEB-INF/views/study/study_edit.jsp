@@ -23,9 +23,9 @@
                         
                         <div class="avatar clearfix avatar-medium pull-left">
                               <a href="/user/info/112840" class='avatar-photo'><img
-                                      src="//www.gravatar.com/avatar/EB4A935EC22B3AD295D18E838B72F9FB?d=identicon&s=40"/></a>
+                                      src="upload/${sessionScope.photo}"/></a>
                               <div class="avatar-info">
-                                    <a class="nickname" href="/user/info/112840" title="mulbum">mulbum</a>
+                                    <a class="nickname" href="/user/info/112840" title="${sessionScope.id}">${sessionScope.id}</a>
                               
                               </div>
                         </div>
@@ -72,8 +72,7 @@
                                     
                                     <div class="form-group has-feedback">
                                           <div>
-                                                <input type="text" name="tagString" value="" placeholder="Tags," class="form-control"
-                                                       id="tagString">
+
                                           </div>
                                     </div>
                                     

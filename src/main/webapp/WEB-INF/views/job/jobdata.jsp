@@ -4,7 +4,7 @@
 <%@ page import="javax.servlet.http.HttpServletRequest" %>
 <% //사람인api JSON으로 받아오기
     System.out.println("111312516588888811");
-    String accessKey = "57ZHVpeFbUxqlaVapckledfKUIGL43YL424bfpXt6OfMIWVrcwW"; // 발급받은 accessKey";
+    String accessKey = "jsLGT92EksTKyBljn15pTleOh415wIwf13IhGEGnFOmOxrZlS"; // 발급받은 accessKey";
     StringBuffer apiData = new StringBuffer();
     String job_mid_cd= request.getParameter("job_mid_cd");
     String job_cd= request.getParameter("job_cd");
