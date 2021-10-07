@@ -1,0 +1,352 @@
+-------------------------------------------------------------------------------게시판 생성
+/* 회원정보 */
+CREATE TABLE MEMBER (
+	id NVARCHAR2(30) NOT NULL, /* 회원아이디 */
+	nickname NVARCHAR2(50) NOT NULL, /* 회원닉네임 */
+	pw NVARCHAR2(50) NOT NULL, /* 회원비밀번호 */
+	email NVARCHAR2(50) NOT NULL, /* 회원이메일 */
+	photo NVARCHAR2(200) DEFAULT 'bros_blank.jpg' 
+);
+
+COMMENT ON TABLE MEMBER IS '회원정보';
+
+COMMENT ON COLUMN MEMBER.id IS '회원아이디';
+
+COMMENT ON COLUMN MEMBER.nickname IS '회원닉네임';
+
+COMMENT ON COLUMN MEMBER.pw IS '회원비밀번호';
+
+COMMENT ON COLUMN MEMBER.email IS '회원이메일';
+
+COMMENT ON COLUMN MEMBER.photo IS '회원 프로필사진';
+
+CREATE UNIQUE INDEX PK_MEMBER
+	ON MEMBER (
+		id ASC
+	);
+
+ALTER TABLE MEMBER
+	ADD
+		CONSTRAINT PK_MEMBER
+		PRIMARY KEY (
+			id
+		);
+
+/* 회원 스크랩 */
+CREATE TABLE scrap (
+	id NVARCHAR2(30) NOT NULL, /* 회원아이디 */
+	no NUMBER NOT NULL /* 글 번호 */
+);
+
+/* 게시글 시퀀스 생성*/ 
+CREATE SEQUENCE board_no
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+/* 댓글 시퀀스 생성*/ 
+CREATE SEQUENCE comments_rno
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+
+COMMENT ON TABLE scrap IS '회원 스크랩';
+
+COMMENT ON COLUMN scrap.id IS '회원아이디';
+
+COMMENT ON COLUMN scrap.no IS '글 번호';
+
+CREATE UNIQUE INDEX PK_scrap
+	ON scrap (
+		id ASC,
+		no ASC
+	);
+
+ALTER TABLE scrap
+	ADD
+		CONSTRAINT PK_scrap
+		PRIMARY KEY (
+			id,
+			no
+		);
+
+/* 게시판 분류 */
+CREATE TABLE category (
+	bno NUMBER NOT NULL, /* 게시판 번호 */
+	bname NVARCHAR2(20) NOT NULL /* 게시판 이름 */
+);
+
+COMMENT ON TABLE category IS '게시판 분류';
+
+COMMENT ON COLUMN category.bno IS '게시판 번호';
+
+COMMENT ON COLUMN category.bname IS '게시판 이름';
+
+CREATE UNIQUE INDEX PK_category
+	ON category (
+		bno ASC
+	);
+
+ALTER TABLE category
+	ADD
+		CONSTRAINT PK_category
+		PRIMARY KEY (
+			bno
+		);
+
+/* 스터디 게시판 */
+CREATE TABLE B_study (
+	no NUMBER NOT NULL, /* 글 번호 */
+	st_categoryNum NUMBER NOT NULL, /* 스터디 유형변호 */
+	sido NVARCHAR2(50), /* 지역(시,도) */
+	exp NVARCHAR2(20), /* 경력 */
+	closeOk NUMBER DEFAULT 0 /* 마감 여부 */
+);
+
+COMMENT ON TABLE B_study IS '스터디 게시판';
+
+COMMENT ON COLUMN B_study.no IS '글 번호';
+
+COMMENT ON COLUMN B_study.st_categoryNum IS '스터디 유형변호';
+
+COMMENT ON COLUMN B_study.sido IS '지역(시,도)';
+
+COMMENT ON COLUMN B_study.exp IS '경력';
+
+COMMENT ON COLUMN B_study.closeOk IS '마감 여부';
+
+/* 메인 게시판 */
+CREATE TABLE Board (
+	no NUMBER NOT NULL, /* 글 번호 */
+	bno NUMBER NOT NULL, /* 게시판 번호 */
+	id NVARCHAR2(30) NOT NULL, /* 회원아이디 */
+	title NVARCHAR2(30) NOT NULL, /* 글 제목 */
+	cont NVARCHAR2(1000) NOT NULL, /* 글 내용 */
+	hit NUMBER DEFAULT 0, /* 조회수 */
+	writedate DATE DEFAULT sysdate, /* 작성 일시 */
+	good NUMBER DEFAULT 0, /* 추천 */
+	removedOk NUMBER DEFAULT 0, /* 삭제여부 */
+	scrapNum NUMBER DEFAULT 0 /* 스크랩 */
+);
+
+COMMENT ON TABLE Board IS '메인 게시판';
+
+COMMENT ON COLUMN Board.no IS '글 번호';
+
+COMMENT ON COLUMN Board.bno IS '게시판 번호';
+
+COMMENT ON COLUMN Board.id IS '회원아이디';
+
+COMMENT ON COLUMN Board.title IS '글 제목';
+
+COMMENT ON COLUMN Board.cont IS '글 내용';
+
+COMMENT ON COLUMN Board.hit IS '조회수';
+
+COMMENT ON COLUMN Board.writedate IS '작성 일시';
+
+COMMENT ON COLUMN Board.good IS '추천';
+
+COMMENT ON COLUMN Board.removedOk IS '삭제여부';
+
+COMMENT ON COLUMN Board.scrapNum IS '스크랩';
+
+CREATE UNIQUE INDEX PK_Board
+	ON Board (
+		no ASC
+	);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT PK_Board
+		PRIMARY KEY (
+			no
+		);
+
+/* 댓글 */
+CREATE TABLE comments (
+	rno NUMBER NOT NULL, /* 댓글번호 */
+	no NUMBER NOT NULL, /* 글 번호 */
+	id NVARCHAR2(30), /* 회원아이디 */
+	rcont NVARCHAR2(500) NOT NULL, /* 댓글내용 */
+	rdate DATE DEFAULT sysdate, /* 작성일 */
+	removedOk NUMBER DEFAULT 0 /* 삭제여부 */
+);
+
+COMMENT ON TABLE comments IS '댓글';
+
+COMMENT ON COLUMN comments.rno IS '댓글번호';
+
+COMMENT ON COLUMN comments.no IS '글 번호';
+
+COMMENT ON COLUMN comments.id IS '회원아이디';
+
+COMMENT ON COLUMN comments.rcont IS '댓글내용';
+
+COMMENT ON COLUMN comments.rdate IS '작성일';
+
+COMMENT ON COLUMN comments.removedOk IS '삭제여부';
+
+CREATE UNIQUE INDEX PK_comments
+	ON comments (
+		rno ASC
+	);
+
+ALTER TABLE comments
+	ADD
+		CONSTRAINT PK_comments
+		PRIMARY KEY (
+			rno
+		);
+
+/* 스터디 유형 */
+CREATE TABLE study_category (
+	st_categoryNum NUMBER NOT NULL, /* 스터디 유형변호 */
+	st_category NVARCHAR2(20) NOT NULL /* 스터디 유형명 */
+);
+
+COMMENT ON TABLE study_category IS '스터디 유형';
+
+COMMENT ON COLUMN study_category.st_categoryNum IS '스터디 유형변호';
+
+COMMENT ON COLUMN study_category.st_category IS '스터디 유형명';
+
+CREATE UNIQUE INDEX PK_study_category
+	ON study_category (
+		st_categoryNum ASC
+	);
+
+ALTER TABLE study_category
+	ADD
+		CONSTRAINT PK_study_category
+		PRIMARY KEY (
+			st_categoryNum
+		);
+
+/* 좋아요 관리 */
+CREATE TABLE good_manage (
+	idx NUMBER NOT NULL, /* 새 컬럼 */
+	id NVARCHAR2(30), /* 회원아이디 */
+	no NUMBER /* 글 번호 */
+);
+
+COMMENT ON TABLE good_manage IS '좋아요 관리';
+
+COMMENT ON COLUMN good_manage.idx IS '새 컬럼';
+
+COMMENT ON COLUMN good_manage.id IS '회원아이디';
+
+COMMENT ON COLUMN good_manage.no IS '글 번호';
+
+CREATE UNIQUE INDEX PK_good_manage
+	ON good_manage (
+		idx ASC
+	);
+
+ALTER TABLE good_manage
+	ADD
+		CONSTRAINT PK_good_manage
+		PRIMARY KEY (
+			idx
+		);
+
+ALTER TABLE scrap
+	ADD
+		CONSTRAINT FK_MEMBER_TO_scrap
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES MEMBER (
+			id
+		);
+
+ALTER TABLE scrap
+	ADD
+		CONSTRAINT FK_Board_TO_scrap
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);
+
+ALTER TABLE B_study
+	ADD
+		CONSTRAINT FK_Board_TO_B_study
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);
+
+ALTER TABLE B_study
+	ADD
+		CONSTRAINT FK_study_category_TO_B_study
+		FOREIGN KEY (
+			st_categoryNum
+		)
+		REFERENCES study_category (
+			st_categoryNum
+		);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_category_TO_Board
+		FOREIGN KEY (
+			bno
+		)
+		REFERENCES category (
+			bno
+		);
+
+ALTER TABLE Board
+	ADD
+		CONSTRAINT FK_MEMBER_TO_Board
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES MEMBER (
+			id
+		);
+
+ALTER TABLE comments
+	ADD
+		CONSTRAINT FK_Board_TO_comments
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);
+
+ALTER TABLE comments
+	ADD
+		CONSTRAINT FK_MEMBER_TO_comments
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES MEMBER (
+			id
+		);
+
+ALTER TABLE good_manage
+	ADD
+		CONSTRAINT FK_MEMBER_TO_good_manage
+		FOREIGN KEY (
+			id
+		)
+		REFERENCES MEMBER (
+			id
+		);
+
+ALTER TABLE good_manage
+	ADD
+		CONSTRAINT FK_Board_TO_good_manage
+		FOREIGN KEY (
+			no
+		)
+		REFERENCES Board (
+			no
+		);

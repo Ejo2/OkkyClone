@@ -1,0 +1,31 @@
+-----------------------------------------------스터디 카테고리 삽입
+
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(1,'코딩테스트');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(2,'프로젝트');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(3,'언어/스킬 스터디');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(4,'모각코');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(5,'재능기부');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(6,'미라클모닝');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(7,'취업스터디_자소서 및 면접');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(8,'1주1글');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(9,'자격증');
+INSERT INTO study_category(st_categorynum, st_category)
+VALUES(10,'기타');
+
+-----------------------------------------------게시판 카테고리 삽입  
+
+insert into category(bno,bname)
+values(300,'study-board');
+insert into category(bno,bname)
+values(100,'column-board');
+insert into category(bno,bname)
+values(200,'qna-board');

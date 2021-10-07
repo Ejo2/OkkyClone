@@ -334,6 +334,13 @@ public class userDao{
             result += pstmt.executeUpdate();
             System.out.println("반영된 삭제 행의 갯수" + result);
             
+            String sql4 = "delete FROM B_STUDY bs WHERE bs.NO in (SELECT no FROM BOARD WHERE ID=?)";
+            pstmt = conn.prepareStatement(sql4);
+            pstmt.setString(1, myId);
+            result += pstmt.executeUpdate();
+            
+            System.out.println("반영된 삭제 행의 갯수" + result);
+            
             String sql = "DELETE FROM BOARD WHERE ID=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, myId);
@@ -347,6 +354,8 @@ public class userDao{
             
             result += pstmt.executeUpdate();
             System.out.println("반영된 삭제 행의 갯수" + result);
+            
+            conn.commit();
             
         }catch (Exception e){
             
