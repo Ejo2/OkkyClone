@@ -54,7 +54,6 @@
                                     </div>
                                     <form action="profileChange.do" method="POST" enctype="multipart/form-data" id="uploadForm">
                                           
-                                          <h2><b>이미지 미리보기</b></h2>
                                           <input type="file" name="filename1" id="input_img"/>
                                           <div class="profile-picture" data-id="0">
                                                 <span class="avatar-photo"><img id="img"></span>

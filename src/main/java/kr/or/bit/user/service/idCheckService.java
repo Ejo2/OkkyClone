@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /*
-
+ 
  */
 public class idCheckService implements Action{
     @Override
@@ -17,26 +17,40 @@ public class idCheckService implements Action{
         String id = request.getParameter("id");
         System.out.println("id 출력출력"+id);
         int result = 0;
-
+    
         userDao dao = new userDao();
         result = dao.userIdCheck(id);
         System.out.println("result 출력 출력"+result);
         if (result == 1){
-
+            
             request.setAttribute("result", 0); //이미존재.
         }else{//0이미존재하는 회원
             request.setAttribute("result", 1);
         }
-
-
-
+        
+        
+    
         ActionForward forward = new ActionForward();
         forward.setRedirect(false);
         forward.setPath("/WEB-INF/views/valid/userValid.jsp");
         return forward;
     }
-
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
