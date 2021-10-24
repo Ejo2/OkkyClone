@@ -195,7 +195,7 @@
           if ($('#uploadImage').css("display") == 'none') {
                $('#uploadImage').show();
           } else {
-               $('#uploadImage').hide()
+               $('#uploadImage').hide();
           }
      });
 
