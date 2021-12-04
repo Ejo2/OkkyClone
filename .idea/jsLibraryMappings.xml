@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{@popperjs, api, kakao}" />
-    <file url="PROJECT" libraries="{bootstrap, bootstrap-theme, font-awesome, jquery, jquery-3.1.1, jquery-3.4.1, jquery-3.6.0, popper.js, sweetalert2}" />
-  </component>
-</project>
