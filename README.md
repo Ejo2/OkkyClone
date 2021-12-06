@@ -1,10 +1,13 @@
 # OKKY-Clone-Web-Project
+> 시연영상 ()
 
 ### 프로젝트 주제
 
 > OKKY(개발자 커뮤니티 사이트) clone📝 <br>
-> 시연영상 (https://drive.google.com/file/d/1Q5dYBxrZaJ_AcVZ5hpRczrgbY9CseFYx/view)
-## 0.
+
+## 0. 구현결과
+- 시연 영상 : <a href= "https://drive.google.com/file/d/1Q5dYBxrZaJ_AcVZ5hpRczrgbY9CseFYx/view"> 시연영상 </a> <br><br>
+## 1.
 
 * 기술 스택<br>
   Web Server: Apache Tomcat 9.0<br>
@@ -14,7 +17,7 @@
 * 프로젝트 기간 : 2021. 9.26 ~ 2021.10.6
 * 프로젝트 참여 인원 : 5인
 
-## 1. 주요 기능
+## 2. 주요 기능
 
 >
 
@@ -23,7 +26,7 @@
 - 위치기반 스터디 분류 기능
 - 외부 API(사람인) JSON 데이터 필터링에 따라 리스트 동적생성 
 
-## 2. 요구되는 페이지
+## 3. 요구되는 페이지
 
 >
 
