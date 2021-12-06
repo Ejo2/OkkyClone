@@ -1,5 +1,4 @@
 # OKKY-Clone-Web-Project
-> 시연영상 ()
 
 ### 프로젝트 주제
 
