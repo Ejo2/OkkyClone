@@ -3,7 +3,7 @@
 ### 프로젝트 주제
 
 > OKKY(개발자 커뮤니티 사이트) clone📝
-
+> 시연영상 (https://drive.google.com/file/d/1Q5dYBxrZaJ_AcVZ5hpRczrgbY9CseFYx/view)
 ## 0.
 
 * 기술 스택<br>
